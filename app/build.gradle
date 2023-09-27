@@ -46,4 +46,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
     implementation 'com.google.android.gms:play-services-auth:20.7.0'
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
 }
