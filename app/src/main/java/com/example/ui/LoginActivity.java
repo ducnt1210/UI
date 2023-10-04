@@ -2,10 +2,6 @@ package com.example.ui;
 
 import static android.service.controls.ControlsProviderService.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -13,6 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ui.Model.UserModel;
 import com.example.ui.databinding.ActivityLoginBinding;
@@ -57,10 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signOut();
-//        TODO: comment 2 above to keep user sign in
-
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         sweetAlertDialog.setCancelable(false);
@@ -79,6 +75,11 @@ public class LoginActivity extends AppCompatActivity {
                 ggSignin();
             }
         });
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+        gsc.signOut();
+//        TODO: comment 2 above to keep user sign in
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
