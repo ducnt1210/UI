@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@color/bg_grey"
     tools:context=".MainActivityPackage.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <RelativeLayout
             android:id="@+id/home_header"
             android:layout_width="match_parent"
@@ -22,30 +23,30 @@
                 android:id="@+id/home_header_logo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/museum_icon"
-                android:layout_marginLeft="20dp"
                 android:layout_centerVertical="true"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/museum_icon" />
 
             <TextView
                 android:id="@+id/home_app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="VMUSEUM"
-                android:textColor="@color/white"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/philo_bold"
-                android:textSize="30dp"/>
+                android:text="VMUSEUM"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
 
             <ImageButton
                 android:id="@+id/home_header_search_icon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/baseline_search_24"
-                android:background="@null"/>
+                android:background="@null"
+                android:src="@drawable/baseline_search_24" />
         </RelativeLayout>
 
         <ScrollView
@@ -56,259 +57,240 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <ImageView
                     android:id="@+id/home_map"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/map_demo"/>
+                    android:layout_height="200dp"
+                    android:src="@drawable/map_demo" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
-                    android:text="Introduction"
+                    android:fontFamily="@font/alegrey_bold"
+                    android:text="Giới thiệu"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/alegrey_bold"/>
+                    android:textStyle="bold" />
 
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fillViewport="true">
+                    android:layout_height="220dp"
+                    android:layout_marginTop="10dp"
+                    android:fillViewport="true"
+                    android:padding="5dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <RelativeLayout
-                            android:layout_width="320dp"
-                            android:layout_height="230dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp">
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/intro_cardview1"
-                                android:layout_width="300dp"
-                                android:layout_height="200dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardElevation="8dp">
-                                <RelativeLayout
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview1"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_marginRight="30dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:gravity="center_horizontal">
-                                    <ImageView
-                                        android:id="@+id/intro_img1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:src="@drawable/demo_img"
-                                        android:scaleType="centerCrop"/>
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img" />
 
-                                    <TextView
-                                        android:id="@+id/intro_text1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:paddingTop="5dp"
-                                        android:paddingBottom="5dp"
-                                        android:paddingLeft="10dp"
-                                        android:paddingRight="10dp"
-                                        android:text="Chiến lược bảo tàng"
-                                        android:textAlignment="textStart"
-                                        android:textSize="22sp"
-                                        android:textStyle="bold"
-                                        android:background="#90542F0F"
-                                        android:textColor="@color/white"
-                                        android:layout_alignParentBottom="true"
-                                        android:fontFamily="@font/alegrey_bold"/>
-                                </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/intro_text1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Chiến lược bảo tàng"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
 
-                            </androidx.cardview.widget.CardView>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="320dp"
-                            android:layout_height="230dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp">
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/intro_cardview2"
-                                android:layout_width="300dp"
-                                android:layout_height="200dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardElevation="8dp">
-                                <RelativeLayout
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview2"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_marginRight="30dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img2"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:gravity="center_horizontal">
-                                    <ImageView
-                                        android:id="@+id/intro_img2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:src="@drawable/demo_img2"
-                                        android:scaleType="centerCrop"/>
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img2" />
 
-                                    <TextView
-                                        android:id="@+id/intro_text2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:paddingTop="5dp"
-                                        android:paddingBottom="5dp"
-                                        android:paddingLeft="10dp"
-                                        android:paddingRight="10dp"
-                                        android:text="Lịch sử bảo tàng"
-                                        android:textAlignment="textStart"
-                                        android:textSize="22sp"
-                                        android:textStyle="bold"
-                                        android:background="#90542F0F"
-                                        android:textColor="@color/white"
-                                        android:layout_alignParentBottom="true"
-                                        android:fontFamily="@font/alegrey_bold"/>
-                                </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/intro_text2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Lịch sử bảo tàng"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
 
-                            </androidx.cardview.widget.CardView>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="320dp"
-                            android:layout_height="230dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp">
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/intro_cardview3"
-                                android:layout_width="300dp"
-                                android:layout_height="200dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardElevation="8dp">
-                                <RelativeLayout
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview3"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_marginRight="30dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img3"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:gravity="center_horizontal">
-                                    <ImageView
-                                        android:id="@+id/intro_img3"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:src="@drawable/demo_img"
-                                        android:scaleType="centerCrop"/>
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img" />
 
-                                    <TextView
-                                        android:id="@+id/intro_text3"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:paddingTop="5dp"
-                                        android:paddingBottom="5dp"
-                                        android:paddingLeft="10dp"
-                                        android:paddingRight="10dp"
-                                        android:text="Các không gian"
-                                        android:textAlignment="textStart"
-                                        android:textSize="22sp"
-                                        android:textStyle="bold"
-                                        android:background="#90542F0F"
-                                        android:textColor="@color/white"
-                                        android:layout_alignParentBottom="true"
-                                        android:fontFamily="@font/alegrey_bold"/>
-                                </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/intro_text3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Các không gian"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
 
-                            </androidx.cardview.widget.CardView>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="320dp"
-                            android:layout_height="230dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp">
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/intro_cardview4"
-                                android:layout_width="300dp"
-                                android:layout_height="200dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardElevation="8dp">
-                                <RelativeLayout
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview4"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_marginRight="30dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img4"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:gravity="center_horizontal">
-                                    <ImageView
-                                        android:id="@+id/intro_img4"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:src="@drawable/demo_img2"
-                                        android:scaleType="centerCrop"/>
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img2" />
 
-                                    <TextView
-                                        android:id="@+id/intro_text4"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:paddingTop="5dp"
-                                        android:paddingBottom="5dp"
-                                        android:paddingLeft="10dp"
-                                        android:paddingRight="10dp"
-                                        android:text="Tổ chức và nhân sự"
-                                        android:textAlignment="textStart"
-                                        android:textSize="22sp"
-                                        android:textStyle="bold"
-                                        android:background="#90542F0F"
-                                        android:textColor="@color/white"
-                                        android:layout_alignParentBottom="true"
-                                        android:fontFamily="@font/alegrey_bold"/>
-                                </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/intro_text4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Tổ chức và nhân sự"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
 
-                            </androidx.cardview.widget.CardView>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="320dp"
-                            android:layout_height="230dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp">
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/intro_cardview5"
-                                android:layout_width="300dp"
-                                android:layout_height="200dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardElevation="8dp">
-                                <RelativeLayout
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview5"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img5"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:gravity="center_horizontal">
-                                    <ImageView
-                                        android:id="@+id/intro_img5"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:src="@drawable/demo_img"
-                                        android:scaleType="centerCrop"/>
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img" />
 
-                                    <TextView
-                                        android:id="@+id/intro_text5"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:paddingTop="5dp"
-                                        android:paddingBottom="5dp"
-                                        android:paddingLeft="10dp"
-                                        android:paddingRight="10dp"
-                                        android:text="Hợp tác"
-                                        android:textAlignment="textStart"
-                                        android:textSize="22sp"
-                                        android:textStyle="bold"
-                                        android:background="#90542F0F"
-                                        android:textColor="@color/white"
-                                        android:layout_alignParentBottom="true"
-                                        android:fontFamily="@font/alegrey_bold"/>
-                                </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/intro_text5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Hợp tác"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
 
-                            </androidx.cardview.widget.CardView>
-                        </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
                     </LinearLayout>
 
                 </HorizontalScrollView>
@@ -317,223 +299,234 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
-                    android:text="News and Events"
+                    android:fontFamily="@font/alegrey_bold"
+                    android:text="Tin tức và Sự kiện"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/alegrey_bold"/>
+                    android:textStyle="bold" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="vertical">
+                    android:padding="5dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:padding="5dp">
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/new_cardview1"
-                            android:layout_width="170dp"
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview1"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="8dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="170dp"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp">
-                            <RelativeLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img1"
                                 android:layout_width="match_parent"
-                                android:layout_height="170dp"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal">
-                                <ImageView
-                                    android:id="@+id/new_img1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="120dp"
-                                    android:src="@drawable/demo_img2"
-                                    android:scaleType="centerCrop"/>
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img2" />
 
-                                <TextView
-                                    android:id="@+id/new_text1"
-                                    android:padding="5dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
-                                    android:textAlignment="textStart"
-                                    android:layout_alignParentBottom="true"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/alegrey_bold"/>
-                            </RelativeLayout>
+                            <TextView
+                                android:id="@+id/new_text1"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
 
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/new_cardview2"
-                            android:layout_width="170dp"
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview2"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_alignParentRight="true"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="8dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="170dp"
-                            app:cardCornerRadius="10dp"
-                            android:layout_alignParentRight="true"
-                            app:cardElevation="8dp">
-                            <RelativeLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img2"
                                 android:layout_width="match_parent"
-                                android:layout_height="170dp"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal">
-                                <ImageView
-                                    android:id="@+id/new_img2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="120dp"
-                                    android:src="@drawable/demo_img"
-                                    android:scaleType="centerCrop"/>
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img" />
 
-                                <TextView
-                                    android:id="@+id/new_text2"
-                                    android:padding="5dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:text="Đây 🥹 (￣_￣|||)"
-                                    android:textAlignment="textStart"
-                                    android:layout_alignParentBottom="true"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/alegrey_bold"/>
-                            </RelativeLayout>
+                            <TextView
+                                android:id="@+id/new_text2"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây 🥹 (￣_￣|||)"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
 
-                        </androidx.cardview.widget.CardView>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:padding="5dp">
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/new_cardview3"
-                            android:layout_width="170dp"
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview3"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_below="@id/new_cardview1"
+                        android:layout_marginTop="30dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="8dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="170dp"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp">
-                            <RelativeLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img3"
                                 android:layout_width="match_parent"
-                                android:layout_height="170dp"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal">
-                                <ImageView
-                                    android:id="@+id/new_img3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="120dp"
-                                    android:src="@drawable/demo_img"
-                                    android:scaleType="centerCrop"/>
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img" />
 
-                                <TextView
-                                    android:id="@+id/new_text3"
-                                    android:padding="5dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
-                                    android:textAlignment="textStart"
-                                    android:layout_alignParentBottom="true"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/alegrey_bold"/>
-                            </RelativeLayout>
+                            <TextView
+                                android:id="@+id/new_text3"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
 
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/new_cardview4"
-                            android:layout_width="170dp"
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview4"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_below="@id/new_cardview2"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="30dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="8dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="170dp"
-                            app:cardCornerRadius="10dp"
-                            android:layout_alignParentRight="true"
-                            app:cardElevation="8dp">
-                            <RelativeLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img4"
                                 android:layout_width="match_parent"
-                                android:layout_height="170dp"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal">
-                                <ImageView
-                                    android:id="@+id/new_img4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="120dp"
-                                    android:src="@drawable/demo_img2"
-                                    android:scaleType="centerCrop"/>
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img2" />
 
-                                <TextView
-                                    android:id="@+id/new_text4"
-                                    android:padding="5dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:text="Đây 🥹 (￣_￣|||)"
-                                    android:textAlignment="textStart"
-                                    android:layout_alignParentBottom="true"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/alegrey_bold"/>
-                            </RelativeLayout>
+                            <TextView
+                                android:id="@+id/new_text4"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây 🥹 (￣_￣|||)"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
 
-                        </androidx.cardview.widget.CardView>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:padding="5dp">
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/new_cardview5"
-                            android:layout_width="170dp"
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview5"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_below="@id/new_cardview3"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="170dp"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp">
-                            <RelativeLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img5"
                                 android:layout_width="match_parent"
-                                android:layout_height="170dp"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal">
-                                <ImageView
-                                    android:id="@+id/new_img5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="120dp"
-                                    android:src="@drawable/demo_img2"
-                                    android:scaleType="centerCrop"/>
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img2" />
 
-                                <TextView
-                                    android:id="@+id/new_text5"
-                                    android:padding="5dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
-                                    android:textAlignment="textStart"
-                                    android:layout_alignParentBottom="true"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/alegrey_bold"/>
-                            </RelativeLayout>
+                            <TextView
+                                android:id="@+id/new_text5"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
 
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/new_cardview6"
-                            android:layout_width="170dp"
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview6"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_below="@id/new_cardview4"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="170dp"
-                            app:cardCornerRadius="10dp"
-                            android:layout_alignParentRight="true"
-                            app:cardElevation="8dp">
-                            <RelativeLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img6"
                                 android:layout_width="match_parent"
-                                android:layout_height="170dp"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal">
-                                <ImageView
-                                    android:id="@+id/new_img6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="120dp"
-                                    android:src="@drawable/demo_img"
-                                    android:scaleType="centerCrop"/>
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img" />
 
-                                <TextView
-                                    android:id="@+id/new_text6"
-                                    android:padding="5dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:text="Đây 🥹 (￣_￣|||)"
-                                    android:textAlignment="textStart"
-                                    android:layout_alignParentBottom="true"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/alegrey_bold"/>
-                            </RelativeLayout>
+                            <TextView
+                                android:id="@+id/new_text6"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây 🥹 (￣_￣|||)"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
 
-                        </androidx.cardview.widget.CardView>
-                    </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
 
-                </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 
