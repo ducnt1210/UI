@@ -7,8 +7,8 @@
 
     <item
         android:id="@+id/none"
-        android:title="None"
-        android:icon="@drawable/baseline_home_24" />
+        android:title="Artifacts"
+        android:icon="@drawable/list" />
 
     <item
         android:id="@+id/none1"
