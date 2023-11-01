@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:orientation="vertical"
     android:paddingTop="20dp"
     tools:context=".SignupActivity">
@@ -16,11 +16,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:fontFamily="@font/roboto_black_font"
+        android:fontFamily="@font/youngserif"
+        android:textStyle="bold"
         android:gravity="center"
         android:text="Sign up"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="40dp" />
+        android:textColor="#5E3511"
+        android:textSize="45dp" />
 
     <EditText
         android:id="@+id/full_name"
@@ -79,13 +80,29 @@
         android:layout_marginTop="20dp"
         android:text="Sign Up" />
 
-    <TextView
-        android:id="@+id/toLoginActivity"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Login"
-        android:textColor="@color/main_green"
-        android:textSize="15sp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Already have an account? "/>
+
+        <TextView
+            android:id="@+id/toLoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Login"
+            android:textColor="@color/main_green"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
 
 </LinearLayout>

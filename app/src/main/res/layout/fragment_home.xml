@@ -1,16 +1,537 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red_btn_bg_color"
+    android:background="@color/bg_grey"
     tools:context=".MainActivityPackage.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="30sp"
-        android:text="Home Frag" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/home_header"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/brown_gradient">
+
+            <ImageView
+                android:id="@+id/home_header_logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/museum_icon" />
+
+            <TextView
+                android:id="@+id/home_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/philo_bold"
+                android:text="VMUSEUM"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
+
+            <ImageButton
+                android:id="@+id/home_header_search_icon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:background="@null"
+                android:src="@drawable/baseline_search_24" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/home_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/map_demo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/alegrey_bold"
+                    android:text="Giới thiệu"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="10dp"
+                    android:fillViewport="true"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview1"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_marginRight="30dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img" />
+
+                                <TextView
+                                    android:id="@+id/intro_text1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Chiến lược bảo tàng"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview2"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_marginRight="30dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img2" />
+
+                                <TextView
+                                    android:id="@+id/intro_text2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Lịch sử bảo tàng"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview3"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_marginRight="30dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img" />
+
+                                <TextView
+                                    android:id="@+id/intro_text3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Các không gian"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview4"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_marginRight="30dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img2" />
+
+                                <TextView
+                                    android:id="@+id/intro_text4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Tổ chức và nhân sự"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/intro_cardview5"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/intro_img5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/demo_img" />
+
+                                <TextView
+                                    android:id="@+id/intro_text5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#90542F0F"
+                                    android:fontFamily="@font/alegrey_bold"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Hợp tác"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/alegrey_bold"
+                    android:text="Tin tức và Sự kiện"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview1"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="8dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img1"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img2" />
+
+                            <TextView
+                                android:id="@+id/new_text1"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview2"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_alignParentRight="true"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="8dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img2"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img" />
+
+                            <TextView
+                                android:id="@+id/new_text2"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây 🥹 (￣_￣|||)"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview3"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_below="@id/new_cardview1"
+                        android:layout_marginTop="30dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="8dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img3"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img" />
+
+                            <TextView
+                                android:id="@+id/new_text3"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview4"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_below="@id/new_cardview2"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="30dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="8dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img4"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img2" />
+
+                            <TextView
+                                android:id="@+id/new_text4"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây 🥹 (￣_￣|||)"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview5"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_below="@id/new_cardview3"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img5"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img2" />
+
+                            <TextView
+                                android:id="@+id/new_text5"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/new_cardview6"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_below="@id/new_cardview4"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/new_img6"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/demo_img" />
+
+                            <TextView
+                                android:id="@+id/new_text6"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_alignParentBottom="true"
+                                android:fontFamily="@font/alegrey_bold"
+                                android:padding="5dp"
+                                android:text="Đây 🥹 (￣_￣|||)"
+                                android:textAlignment="textStart"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
 
 </FrameLayout>
