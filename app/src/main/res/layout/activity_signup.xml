@@ -10,18 +10,18 @@
 
     <ImageView
         android:layout_width="80dp"
-        android:src="@drawable/museum_icon"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        android:src="@drawable/museum_icon" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:fontFamily="@font/youngserif"
-        android:textStyle="bold"
         android:gravity="center"
         android:text="Sign up"
         android:textColor="#5E3511"
-        android:textSize="45dp" />
+        android:textSize="45dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/full_name"
@@ -39,8 +39,8 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_background"
         android:gravity="center"
-        android:inputType="phone"
-        android:hint="Mobile number" />
+        android:hint="Mobile number"
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/email"
@@ -83,15 +83,16 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Already have an account? "/>
+            android:text="Already have an account? " />
 
         <TextView
             android:id="@+id/toLoginActivity"
@@ -102,7 +103,6 @@
             android:textColor="@color/main_green"
             android:textSize="15sp" />
     </LinearLayout>
-
 
 
 </LinearLayout>

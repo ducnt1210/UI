@@ -17,7 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
@@ -48,4 +48,5 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
     implementation 'com.google.android.gms:play-services-auth:20.7.0'
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

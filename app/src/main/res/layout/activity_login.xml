@@ -17,11 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:fontFamily="@font/youngserif"
-        android:textStyle="bold"
         android:gravity="center"
         android:text="Login"
         android:textColor="#5E3511"
-        android:textSize="45dp" />
+        android:textSize="45dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/email"
@@ -73,15 +73,16 @@
 
     <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="or try"
-        android:layout_height="wrap_content" />
+        android:text="or try" />
 
     <ImageView
-        android:layout_marginTop="10dp"
         android:id="@+id/ggButton"
         android:layout_width="40dp"
-        android:src="@drawable/gg_signin"
-        android:layout_height="40dp" />
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/gg_signin" />
 
 </LinearLayout>

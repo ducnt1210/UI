@@ -84,6 +84,7 @@
                             android:textSize="20dp" />
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_dantocVN"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -111,6 +112,7 @@
                             android:textSize="20dp" />
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_dantocTG"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
@@ -139,6 +141,7 @@
                             android:textSize="20dp" />
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_vuonkientruc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
