@@ -1,11 +1,9 @@
 package com.example.ui;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,8 +14,6 @@ import com.example.ui.MainActivityPackage.HomeFragment;
 import com.example.ui.MainActivityPackage.NotifcationFragment;
 import com.example.ui.MainActivityPackage.SettingFragment;
 import com.example.ui.databinding.ActivityMainBinding;
-import com.journeyapps.barcodescanner.ScanContract;
-import com.journeyapps.barcodescanner.ScanOptions;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,35 +48,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.qrScan.setOnClickListener(v -> {
-            scanCode();
+            Intent intent = new Intent(MainActivity.this, QRActivity.class);
+            MainActivity.this.startActivity(intent);
         });
     }
-
-    private void scanCode() {
-        ScanOptions options = new ScanOptions();
-        options.setPrompt("Scan a QR Code");
-        options.setBeepEnabled(true);
-        options.setOrientationLocked(true);
-        options.setCaptureActivity(CaptureActivityPortrait.class);
-        barLauncher.launch(options);
-    }
-
-    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(
-            new ScanContract(),
-            result -> {
-                if (result.getContents() != null) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle("Result");
-                    builder.setMessage(result.getContents());
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    }).show();
-                }
-            }
-    );
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
