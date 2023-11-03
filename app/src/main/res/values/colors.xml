@@ -8,5 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_green">#FF2bb971</color>
+    <color name="red">#F44336</color>
     <color name="bg_grey">#FFf1f1f1</color>
+
+    <color name="night_mode">#6124B1</color>
+    <color name="notifications">#13B2C3</color>
+    <color name="security">#F9A825</color>
+    <color name="settings">#FF2bb971</color>"
 </resources>
