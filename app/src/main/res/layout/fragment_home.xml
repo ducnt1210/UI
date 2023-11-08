@@ -64,21 +64,59 @@
                     android:id="@+id/home_map"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/map_demo" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+<!--                <RelativeLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="200dp">-->
+
+                <!--                    <VideoView-->
+                <!--                        android:id="@+id/home_video"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        />-->
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:src="@drawable/overlay_video"/>-->
+
+                <!--                </RelativeLayout>-->
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:fontFamily="@font/alegrey_bold"
-                    android:text="Giới thiệu"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="30dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/alegrey_bold"
+                        android:text="Giới thiệu"
+                        android:layout_centerVertical="true"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/homeIntroMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/oldstandar_regular"
+                        android:text="@string/your_string_here"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/brown"/>
+
+                </RelativeLayout>
 
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="220dp"
-                    android:layout_marginTop="10dp"
                     android:fillViewport="true"
                     android:padding="5dp">
 
@@ -96,6 +134,7 @@
                             app:cardElevation="8dp">
 
                             <RelativeLayout
+                                android:id="@+id/intro_cardview1_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal"
@@ -336,7 +375,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_alignParentBottom="true"
+                                android:ellipsize="end"
                                 android:fontFamily="@font/alegrey_bold"
+                                android:maxLines="2"
                                 android:padding="5dp"
                                 android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
                                 android:textAlignment="textStart"
@@ -371,7 +412,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_alignParentBottom="true"
+                                android:ellipsize="end"
                                 android:fontFamily="@font/alegrey_bold"
+                                android:maxLines="2"
                                 android:padding="5dp"
                                 android:text="Đây 🥹 (￣_￣|||)"
                                 android:textAlignment="textStart"
@@ -407,7 +450,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_alignParentBottom="true"
+                                android:ellipsize="end"
                                 android:fontFamily="@font/alegrey_bold"
+                                android:maxLines="2"
                                 android:padding="5dp"
                                 android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
                                 android:textAlignment="textStart"
@@ -444,7 +489,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_alignParentBottom="true"
+                                android:ellipsize="end"
                                 android:fontFamily="@font/alegrey_bold"
+                                android:maxLines="2"
                                 android:padding="5dp"
                                 android:text="Đây 🥹 (￣_￣|||)"
                                 android:textAlignment="textStart"
@@ -480,7 +527,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_alignParentBottom="true"
+                                android:ellipsize="end"
                                 android:fontFamily="@font/alegrey_bold"
+                                android:maxLines="2"
                                 android:padding="5dp"
                                 android:text="Đây là Đài tiếng nói Việt Nam, phát thanh từ Hà Nội - Thủ Đô nước Cộng Hòa XHCNVN"
                                 android:textAlignment="textStart"
@@ -517,7 +566,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_alignParentBottom="true"
+                                android:ellipsize="end"
                                 android:fontFamily="@font/alegrey_bold"
+                                android:maxLines="2"
                                 android:padding="5dp"
                                 android:text="Đây 🥹 (￣_￣|||)"
                                 android:textAlignment="textStart"
