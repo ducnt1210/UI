@@ -8,13 +8,20 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.ui.R;
+import com.example.ui.databinding.FragmentArtifactsBinding;
 
-public class BlankFragment extends Fragment {
+public class ArtifactsFragment extends Fragment {
 
+    FragmentArtifactsBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_artifacts, container, false);
+        binding=FragmentArtifactsBinding.inflate(inflater,container,false);
+
+
+        binding.artifactsHeader.headerText.setText("Danh mục hiện vật");
+        binding.artifactsHeader.headerIcon.setImageResource(R.drawable.white_list);
+        return binding.getRoot();
     }
 }

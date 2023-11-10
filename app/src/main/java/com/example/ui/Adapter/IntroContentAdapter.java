@@ -76,25 +76,31 @@ public class IntroContentAdapter extends RecyclerView.Adapter<IntroContentAdapte
                         }
                     });
                     introContentTextView.setVisibility(View.GONE);
+                    imageView.setVisibility(View.VISIBLE);
                 } else {
+                    introContentTextView.setVisibility(View.VISIBLE);
                     imageView.setVisibility(View.GONE);
                     if (introContent.startsWith("$heading$")) {
+                        introContentTextView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
                         introContentTextView.setText(introContent.substring("$heading$".length()));
                         introContentTextView.setTextSize(20);
                         introContentTextView.setTextColor(itemView.getResources().getColor(R.color.main_green));
+                        introContentTextView.setTypeface(introContentTextView.getTypeface(), Typeface.NORMAL);
                         introContentTextView.setTypeface(itemView.getContext().getResources().getFont(R.font.alegrey_bold));
                     } else if (introContent.startsWith("$note$")) {
                         introContentTextView.setText(introContent.substring("$note$".length()));
                         introContentTextView.setTextSize(11);
-                        introContentTextView.setTypeface(introContentTextView.getTypeface(), Typeface.ITALIC);
                         introContentTextView.setTextColor(itemView.getResources().getColor(R.color.black));
                         introContentTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                         introContentTextView.setTypeface(itemView.getContext().getResources().getFont(R.font.alegrey));
+                        introContentTextView.setTypeface(introContentTextView.getTypeface(), Typeface.ITALIC);
+                        introContentTextView.setTypeface(introContentTextView.getTypeface(), Typeface.ITALIC);
                     } else {
                         introContentTextView.setText("\t\t\t" + introContent);
                         introContentTextView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
                         introContentTextView.setTextColor(itemView.getResources().getColor(R.color.black));
                         introContentTextView.setTextSize(14);
+                        introContentTextView.setTypeface(introContentTextView.getTypeface(), Typeface.NORMAL);
                         introContentTextView.setTypeface(itemView.getContext().getResources().getFont(R.font.alegrey));
                     }
                 }

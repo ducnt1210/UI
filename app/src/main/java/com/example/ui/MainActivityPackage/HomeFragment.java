@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.ui.IntroContentActivity;
+import com.example.ui.MapActivity;
 import com.example.ui.R;
 import com.example.ui.databinding.FragmentHomeBinding;
 
@@ -26,6 +27,13 @@ public class HomeFragment extends Fragment {
     }
 
     protected void getIntroContentView() {
+        binding.homeMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MapActivity.class);
+                startActivity(intent);
+            }
+        });
         binding.homeIntroMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
