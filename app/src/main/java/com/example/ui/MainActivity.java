@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.ui.MainActivityPackage.BlankFragment;
+import com.example.ui.MainActivityPackage.ArtifactsFragment;
 import com.example.ui.MainActivityPackage.HomeFragment;
 import com.example.ui.MainActivityPackage.NotifcationFragment;
 import com.example.ui.MainActivityPackage.SettingFragment;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new HomeFragment());
                     break;
                 case R.id.none:
-                    replaceFragment(new BlankFragment());
+                    replaceFragment(new ArtifactsFragment());
                     break;
                 case R.id.notification:
                     replaceFragment(new NotifcationFragment());
