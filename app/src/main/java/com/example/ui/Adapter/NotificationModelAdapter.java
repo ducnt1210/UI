@@ -1,4 +1,4 @@
-package com.example.ui.Adapters;
+package com.example.ui.Adapter;
 //
 //import android.app.Activity;
 //import android.content.Context;
@@ -97,7 +97,6 @@ package com.example.ui.Adapters;
 
 import android.content.Context;
 import android.icu.text.SimpleDateFormat;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,17 +108,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.ui.Model.NotificationModel;
 import com.example.ui.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.errorprone.annotations.ForOverride;
 import com.google.firebase.Timestamp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.net.ProtocolFamily;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
