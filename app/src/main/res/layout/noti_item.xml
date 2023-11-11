@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/noti_item"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="80sp"
         android:background="@drawable/bg_unread_noti"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
@@ -20,7 +20,7 @@
             android:layout_height="60dp"
             android:layout_centerVertical="true"
             android:src="@drawable/demo_img2"
-            app:civ_border_color="@color/white"/>
+            app:civ_border_color="@color/white" />
 
         <ImageView
             android:id="@+id/noti_item_dot_status"
