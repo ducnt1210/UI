@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">VMUSEUM</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_string_here">
+        <u>Tổng quan →</u>
+    </string>
 </resources>
