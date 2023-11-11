@@ -16,7 +16,9 @@
             android:paddingBottom="70dp"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/nav_header" />
+            <include
+                android:id="@+id/nav_header"
+                layout="@layout/nav_header" />
 
             <LinearLayout
                 android:layout_width="match_parent"
