@@ -32,6 +32,9 @@
             android:name=".IntroContentActivity"
             android:exported="false" />
         <activity
+            android:name=".EditInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".QRActivity"
             android:exported="false" />
 
