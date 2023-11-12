@@ -162,10 +162,6 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
         NotificationModel item = this.notificationModelList.get(position);
-        Log.d("count", "2 two times");
-        Log.d("description", item.getDescription());
-        Log.d("time", item.getTime().toDate().toString());
-        Log.d("seen", String.valueOf(item.getSeen()));
         if (item == null) return;
 
         if (item.getSeen()) {
@@ -173,10 +169,6 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
         } else {
             holder.dotStatus.setVisibility(View.VISIBLE);
         }
-        StorageReference storageReference =
-                FirebaseStorage.getInstance().getReference();
-        NotificationViewHolder finalHolder = holder;
-        Context finalContext = this.context;
 //        storageReference.child(item.getImage_path()).
 //                getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 //                    @Override
@@ -195,13 +187,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 
 //        holder.time.setText(convertTimeFormat(item.getTime()));
         holder.content.setText(item.getDescription());
-        holder.time.setText(item.getTime().toDate().toString());
-    }
-
-    private String convertTimeFormat(Timestamp time) {
-        SimpleDateFormat sfd = new SimpleDateFormat("HH:mm dd-MM-yyyy");
-        String formatted = sfd.format(new Date(String.valueOf(time)));
-        return formatted;
+        holder.time.setText(item.formatDate(item.getTime()));
     }
 
     @Override
@@ -213,9 +199,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
     }
 
     public class NotificationViewHolder extends RecyclerView.ViewHolder {
-        public RelativeLayout item;
         public ImageView dotStatus;
-        public CircleImageView imageItem;
         public TextView time, content;
 
         public NotificationViewHolder(View itemView) {

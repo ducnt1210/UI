@@ -3,6 +3,10 @@ package com.example.ui.Model;
 
 import com.google.firebase.Timestamp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Formatter;
 
 public class NotificationModel {
@@ -82,5 +86,21 @@ public class NotificationModel {
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public String formatDate(Timestamp timestamp) {
+        Date date = timestamp.toDate();
+        String pattern = "hh:mm dd/MM/yyyy";
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+//        SimpleDateFormat sdf =
+        DateFormat formatter = new SimpleDateFormat(pattern);
+        String formattedDate = formatter.format(date);
+        return formattedDate;
+    }
+
+    public boolean isSameday(Date date1, Date date2) {
+        return date1.getDate() == date2.getDate()
+                && date1.getMonth() == date2.getMonth()
+                && date1.getYear() == date2.getYear();
     }
 }
