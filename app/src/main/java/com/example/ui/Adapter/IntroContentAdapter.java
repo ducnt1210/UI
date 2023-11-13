@@ -55,6 +55,7 @@ public class IntroContentAdapter extends RecyclerView.Adapter<IntroContentAdapte
             super(itemView);
             introContentTextView = itemView.findViewById(R.id.intro_content_item_text);
             imageView = itemView.findViewById(R.id.img_intro_item);
+            imageView.setImageResource(R.drawable.loading);
         }
 
         public void bind(String introContent) {
@@ -66,7 +67,7 @@ public class IntroContentAdapter extends RecyclerView.Adapter<IntroContentAdapte
                         @Override
                         public void onSuccess(Uri uri) {
                             if (uri != null) {
-                                Glide.with(itemView.getContext()).load(uri).into(imageView);
+                                Glide.with(itemView.getContext()).load(uri).override(1000).fitCenter().into(imageView);
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {

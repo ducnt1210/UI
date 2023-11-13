@@ -41,6 +41,11 @@ public class IntroContentActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_intro_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setDrawingCacheEnabled(true);
+        recyclerView.setDrawingCacheQuality(RecyclerView.DRAWING_CACHE_QUALITY_HIGH);
+
         videoView = findViewById(R.id.intro_video);
         videoView.setOnPreparedListener(mp -> {
             mp.setLooping(true);

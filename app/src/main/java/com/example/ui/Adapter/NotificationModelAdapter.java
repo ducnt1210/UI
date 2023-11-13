@@ -170,6 +170,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 
         if (item.getSeen()) {
             holder.dotStatus.setVisibility(View.INVISIBLE);
+            holder.item.setBackgroundResource(R.drawable.bg_read_noti);
         } else {
             holder.dotStatus.setVisibility(View.VISIBLE);
         }
@@ -221,7 +222,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
         public NotificationViewHolder(View itemView) {
             super(itemView);
 
-//            item = itemView.findViewById(R.id.noti_item);
+            item = itemView.findViewById(R.id.noti_item);
             dotStatus = itemView.findViewById(R.id.noti_item_dot_status);
 //            imageItem = itemView.findViewById(R.id.img_noti_item);
             time = itemView.findViewById(R.id.txt_noti_item_time);
