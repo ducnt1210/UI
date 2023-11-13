@@ -42,8 +42,8 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class NotifcationFragment extends Fragment {
-    RecyclerView recyclerViewToday;
-    RecyclerView recyclerViewPrevious;
+    private RecyclerView recyclerViewToday;
+    private RecyclerView recyclerViewPrevious;
     private FirebaseFirestore db;
     private NotificationModelAdapter notificationModelAdapterToday;
     private NotificationModelAdapter notificationModelAdapterPrevious;
@@ -91,10 +91,15 @@ public class NotifcationFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (DocumentSnapshot doc: task.getResult()) {
+//                            List<String> description = (List<String>) doc.get("description");
+//                            Log.d("length discription", Integer.toString(description.size()));
+//                            for (int i = 0; i < description.size(); ++i) {
+//                                Log.d("doc" + Integer.toString(i), description.get(i));
+//                            }
                             NotificationModel notificationModel =
                                     new NotificationModel(doc.getId(),
                                             doc.getString("image_path"),
-                                            doc.getString("description"),
+                                            (List<String>) doc.get("description"),
                                             doc.getString("user_id"),
                                             doc.getBoolean("seen"),
                                             doc.getTimestamp("time"));
@@ -103,7 +108,7 @@ public class NotifcationFragment extends Fragment {
                                 Toast.makeText(getContext(),
                                         "There is a notification coming from future. Please check again",
                                         Toast.LENGTH_SHORT);
-                                Log.e("Future notification", "There is a notification come from future");
+                                Log.e("Future notification", notificationModel.getId());
                                 exit(0);
                             } else if (notificationModel.isSameday(currentDate, notificationModel.getTime().toDate())) {
                                 notificationModelListToday.add(notificationModel);

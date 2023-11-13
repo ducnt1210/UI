@@ -1,102 +1,9 @@
 package com.example.ui.Adapter;
-//
-//import android.app.Activity;
-//import android.content.Context;
-//import android.net.Uri;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.BaseAdapter;
-//import android.widget.ImageView;
-//import android.widget.RelativeLayout;
-//import android.widget.TextView;
-//
-//import com.bumptech.glide.Glide;
-//import com.example.ui.Model.NotificationModel;
-//import com.example.ui.R;
-//import com.google.android.gms.tasks.OnSuccessListener;
-//import com.google.firebase.storage.FirebaseStorage;
-//import com.google.firebase.storage.StorageReference;
-//
-//import java.util.List;
-//
-//import de.hdodenhof.circleimageview.CircleImageView;
-//
-//public class NotificationModelAdapter extends BaseAdapter {
-//    private Context context;
-//    private List<NotificationModel> notificationModelList;
-//
-//    public NotificationModelAdapter(Context context, List<NotificationModel> notificationModelList) {
-//        this.context = context;
-//        this.notificationModelList = notificationModelList;
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        return notificationModelList.size();
-//    }
-//
-//    @Override
-//    public Object getItem(int i) {
-//        return notificationModelList.get(i);
-//    }
-//
-//    @Override
-//    public long getItemId(int i) {
-//        return i;
-//    }
-//
-//    public static class NotificationViewHolder {
-//        public RelativeLayout item;
-//        public ImageView dotStatus;
-//        public CircleImageView imageItem;
-//        public TextView time, content;
-//    }
-//
-//
-//    @Override
-//    public View getView(int i, View view, ViewGroup viewGroup) {
-//        NotificationViewHolder viewHolder  = null;
-//        if (view == null) {
-//            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-//            view = inflater.inflate(R.layout.noti_item, null);
-//            viewHolder = new NotificationViewHolder();
-//            viewHolder.item = view.findViewById(R.id.noti_item);
-//            viewHolder.dotStatus = view.findViewById(R.id.noti_item_dot_status);
-//            viewHolder.imageItem = view.findViewById(R.id.img_noti_item);
-//            viewHolder.time = view.findViewById(R.id.txt_noti_item_time);
-//            viewHolder.content = view.findViewById(R.id.txt_noti_item_content);
-//        } else {
-//            viewHolder = ((NotificationViewHolder) view.getTag());
-//        }
-////        viewHolder.dotStatus.setImageResource();
-//        NotificationModel item = notificationModelList.get(i);
-//        if (item.getSeen()) {
-//            viewHolder.dotStatus.setVisibility(View.INVISIBLE);
-//        } else {
-//            viewHolder.dotStatus.setVisibility(view.VISIBLE);
-//        }
-//        StorageReference storageReference =
-//                FirebaseStorage.getInstance().getReference();
-//        View finalView = view;
-//        NotificationViewHolder finalViewHolder = viewHolder;
-//        storageReference.child(item.getImage_path()).
-//                getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                    @Override
-//                    public void onSuccess(Uri uri) {
-//                        Glide.with(finalView).load(uri.toString()).into(finalViewHolder.imageItem);
-//                    }
-//                });
-//
-//        viewHolder.time.setText(item.getTime().toString());
-//        viewHolder.content.setText(item.getDescription());
-//
-//        return view;
-//    }
-//}
 
 import android.content.Context;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,18 +16,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.Model.NotificationModel;
+import com.example.ui.NotificationActivity;
 import com.example.ui.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationModelAdapter.NotificationViewHolder> {
+public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationModelAdapter.NotificationModelViewHolder> {
     private Context context;
     public List<NotificationModel> notificationModelList;
 
@@ -143,24 +55,24 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
         notifyDataSetChanged();
     }
 
-    public void addData(NotificationModel data) {
+    public void addNotification(NotificationModel data) {
         this.notificationModelList.add(data);
         notifyDataSetChanged();
     }
 
-    public void clearData() {
+    public void clearNotification() {
         this.notificationModelList.clear();
         notifyDataSetChanged();
     }
 
    @Override
-   public NotificationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+   public NotificationModelViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.noti_item, parent, false);
-       return new NotificationViewHolder(view);
+       return new NotificationModelViewHolder(view);
    }
 
     @Override
-    public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NotificationModelViewHolder holder, int position) {
         NotificationModel item = this.notificationModelList.get(position);
         if (item == null) return;
 
@@ -186,8 +98,60 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 //                });
 
 //        holder.time.setText(convertTimeFormat(item.getTime()));
-        holder.content.setText(item.getDescription());
+        holder.content.setText(deleteMark(item.getDescription()));
         holder.time.setText(item.formatDate(item.getTime()));
+
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (item.getSeen() == false) {
+                    item.setSeen(true);
+                    updateData(item);
+                    notifyDataSetChanged();
+                }
+                goToDetailedNotification(item);
+//                holder.dotStatus.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+    private String deleteMark(List<String> description) {
+        String result = "";
+        for (String des: description) {
+            if (des.startsWith("$heading$")) {
+                result = result + des.substring("$heading$".length()) + "\n";
+            } else if (des.startsWith("$note$")) {
+                result = result + des.substring("$note$".length()) + "\n";
+            } else if (des.startsWith("$imgs$")) {
+                continue;
+            } else {
+                result = result + des + "\n";
+            }
+        }
+        return result;
+    }
+
+    private void goToDetailedNotification(NotificationModel item) {
+        Intent intent = new Intent(this.context, NotificationActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", item.getId());
+        bundle.putStringArrayList("description", (ArrayList<String>) item.getDescription());
+        bundle.putString("time", item.formatDate(item.getTime()));
+        intent.putExtras(bundle);
+        this.context.startActivity(intent);
+    }
+
+    private void updateData(NotificationModel item) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Notification")
+                .document(item.getId())
+                .set(item)
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("Failed seen update", item.getId());
+                    }
+                });
     }
 
     @Override
@@ -198,14 +162,15 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
         return 0;
     }
 
-    public class NotificationViewHolder extends RecyclerView.ViewHolder {
+    public class NotificationModelViewHolder extends RecyclerView.ViewHolder {
+        public RelativeLayout item;
         public ImageView dotStatus;
         public TextView time, content;
 
-        public NotificationViewHolder(View itemView) {
+        public NotificationModelViewHolder(View itemView) {
             super(itemView);
 
-//            item = itemView.findViewById(R.id.noti_item);
+            item = itemView.findViewById(R.id.noti_item);
             dotStatus = itemView.findViewById(R.id.noti_item_dot_status);
 //            imageItem = itemView.findViewById(R.id.img_noti_item);
             time = itemView.findViewById(R.id.txt_noti_item_time);
