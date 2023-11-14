@@ -1,18 +1,15 @@
 package com.example.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.ui.Adapter.IntroContentAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.ui.Adapter.NotificationAdapter;
-import com.example.ui.Model.NotificationModel;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,6 +24,7 @@ public class NotificationActivity extends AppCompatActivity {
     private NotificationAdapter notificationAdapter;
     private SweetAlertDialog sweetAlertDialog;
     private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,30 +35,40 @@ public class NotificationActivity extends AppCompatActivity {
         sweetAlertDialog.setCancelable(false);
         sweetAlertDialog.show();
 
-        textViewTime = (TextView) findViewById(R.id.textViewTime);
+        textViewTime = findViewById(R.id.textViewTime);
 
         Bundle bundle = getIntent().getExtras();
+
+        String time = (String) bundle.get("time");
+        textViewTime.setText(time);
+        recyclerView = findViewById(R.id.recyclerViewNotification);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setDrawingCacheEnabled(true);
+        recyclerView.setDrawingCacheQuality(RecyclerView.DRAWING_CACHE_QUALITY_HIGH);
         if (bundle != null) {
-            List<String> description = (List<String>) bundle.get("description");
-            Log.d("description", Integer.toString(description.size()));
+            String docId = (String) bundle.get("id");
 
-            if (description != null && !description.isEmpty()) {
-                List<String> desList = new ArrayList<>();
-                desList.addAll(description);
-                notificationAdapter = new NotificationAdapter(desList);
-            }
+            db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("Notification").document(docId);
 
-            String time = (String) bundle.get("time");
-            textViewTime.setText(time);
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerViewNotification);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            docRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    List<String> description = (List<String>) documentSnapshot.get("description");
 
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setItemViewCacheSize(20);
-            recyclerView.setDrawingCacheEnabled(true);
-            recyclerView.setDrawingCacheQuality(RecyclerView.DRAWING_CACHE_QUALITY_HIGH);
+                    if (description != null && !description.isEmpty()) {
+                        List<String> descriptionList = new ArrayList<>();
+                        descriptionList.addAll(description);
+                        notificationAdapter = new NotificationAdapter(descriptionList);
+                        recyclerView.setAdapter(notificationAdapter);
+                    }
+                } else {
+                    Log.d("NotificationActivity", "No such document");
+                }
+            }).addOnFailureListener(e -> Log.d("NotificationActivity", "get failed with ", e));
 
-            recyclerView.setAdapter(notificationAdapter);
 
         }
 
