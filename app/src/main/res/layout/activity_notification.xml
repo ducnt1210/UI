@@ -12,8 +12,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/noti_img_header" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/intro_text_heading"
@@ -41,17 +40,18 @@
             android:padding="20dp">
 
             <TextView
+                android:id="@+id/textViewTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/philo_bold"
-                android:text="Thứ 2 ngày 13 tháng 11 năm 2023"
+                android:text=""
                 android:textColor="@color/gray"
                 android:textSize="10sp"
                 android:textStyle="italic" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_intro_content"
+                android:id="@+id/recyclerViewNotification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

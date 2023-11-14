@@ -23,6 +23,9 @@
         android:theme="@style/Theme.UI"
         tools:targetApi="31">
         <activity
+            android:name=".NotificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".MapActivity"
             android:exported="false" />
         <activity
@@ -30,6 +33,9 @@
             android:exported="false" />
         <activity
             android:name=".IntroContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditInfoActivity"
             android:exported="false" />
         <activity
             android:name=".QRActivity"
