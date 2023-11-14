@@ -42,28 +42,27 @@ public class NotificationActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             List<String> description = (List<String>) bundle.get("description");
-            Log.d("description", Integer.toString(description.size()));
 
-            if (description != null && !description.isEmpty()) {
-                List<String> desList = new ArrayList<>();
-                desList.addAll(description);
-                notificationAdapter = new NotificationAdapter(desList);
-            }
-
+//            Log.d("description", Integer.toString(description.size()));
+//            for (int i = 0; i < description.size(); ++i) {
+//                Log.d("des" + Integer.toString(i), description.get(i));
+//            }
             String time = (String) bundle.get("time");
             textViewTime.setText(time);
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerViewNotification);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setItemViewCacheSize(20);
-            recyclerView.setDrawingCacheEnabled(true);
-            recyclerView.setDrawingCacheQuality(RecyclerView.DRAWING_CACHE_QUALITY_HIGH);
-
-            recyclerView.setAdapter(notificationAdapter);
-
+            notificationAdapter = new NotificationAdapter(description);
+        } else {
+            notificationAdapter = new NotificationAdapter(new ArrayList<>());
         }
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewNotification);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setDrawingCacheEnabled(true);
+        recyclerView.setDrawingCacheQuality(RecyclerView.DRAWING_CACHE_QUALITY_HIGH);
+
+        recyclerView.setAdapter(notificationAdapter);
 
         sweetAlertDialog.dismissWithAnimation();
     }

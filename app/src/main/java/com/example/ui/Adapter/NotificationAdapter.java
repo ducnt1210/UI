@@ -70,7 +70,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             super(view);
             textView = (TextView) view.findViewById(R.id.notification_content_text);
             imageView = (ImageView) view.findViewById(R.id.notification_content_image);
+
             imageView.setImageResource(R.drawable.loading);
+
         }
 
         public void bind(String notificationContent) {

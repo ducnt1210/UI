@@ -135,7 +135,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
     private void goToDetailedNotification(NotificationModel item) {
         Intent intent = new Intent(this.context, NotificationActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("id", item.getId());
+//        bundle.putString("id", item.getId());
         bundle.putStringArrayList("description", (ArrayList<String>) item.getDescription());
         bundle.putString("time", item.formatDate(item.getTime()));
         intent.putExtras(bundle);
