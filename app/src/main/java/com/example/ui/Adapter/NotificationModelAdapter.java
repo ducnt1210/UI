@@ -118,15 +118,14 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 
     private String deleteMark(List<String> description) {
         String result = "";
-        for (String des: description) {
+        if (description.size() > 0) {
+            String des = description.get(0);
             if (des.startsWith("$heading$")) {
-                result = result + des.substring("$heading$".length()) + "\n";
+                result = result + des.substring("$heading$".length());
             } else if (des.startsWith("$note$")) {
-                result = result + des.substring("$note$".length()) + "\n";
-            } else if (des.startsWith("$imgs$")) {
-                continue;
-            } else {
-                result = result + des + "\n";
+                result = result + des.substring("$note$".length());
+            } else if (des.startsWith("$imgs$") == false) {
+                result = result + des;
             }
         }
         return result;
