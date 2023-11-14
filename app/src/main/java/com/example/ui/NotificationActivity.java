@@ -43,17 +43,27 @@ public class NotificationActivity extends AppCompatActivity {
         if (bundle != null) {
             List<String> description = (List<String>) bundle.get("description");
             Log.d("description", Integer.toString(description.size()));
-            for (int i = 0; i < description.size(); ++i) {
-                Log.d("des" + Integer.toString(i), description.get(i));
+
+            if (description != null && !description.isEmpty()) {
+                List<String> desList = new ArrayList<>();
+                desList.addAll(description);
+                notificationAdapter = new NotificationAdapter(desList);
             }
+
             String time = (String) bundle.get("time");
             textViewTime.setText(time);
-            notificationAdapter = new NotificationAdapter(description);
+            recyclerView = (RecyclerView) findViewById(R.id.recyclerViewNotification);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setItemViewCacheSize(20);
+            recyclerView.setDrawingCacheEnabled(true);
+            recyclerView.setDrawingCacheQuality(RecyclerView.DRAWING_CACHE_QUALITY_HIGH);
+
+            recyclerView.setAdapter(notificationAdapter);
+
         }
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewNotification);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(notificationAdapter);
 
         sweetAlertDialog.dismissWithAnimation();
     }

@@ -12,7 +12,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/noti_img_header"/>
 
         <TextView
             android:id="@+id/intro_text_heading"
