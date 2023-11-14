@@ -1,18 +1,15 @@
 package com.example.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.ui.Adapter.IntroContentAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.ui.Adapter.NotificationAdapter;
-import com.example.ui.Model.NotificationModel;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,6 +24,7 @@ public class NotificationActivity extends AppCompatActivity {
     private NotificationAdapter notificationAdapter;
     private SweetAlertDialog sweetAlertDialog;
     private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +35,7 @@ public class NotificationActivity extends AppCompatActivity {
         sweetAlertDialog.setCancelable(false);
         sweetAlertDialog.show();
 
-        textViewTime = (TextView) findViewById(R.id.textViewTime);
+        textViewTime = findViewById(R.id.textViewTime);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {

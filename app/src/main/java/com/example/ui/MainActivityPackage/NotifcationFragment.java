@@ -57,6 +57,12 @@ public class NotifcationFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getNotificationModelList();
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         notificationModelAdapterToday = new NotificationModelAdapter(getContext());
         notificationModelAdapterPrevious = new NotificationModelAdapter(getContext());
