@@ -1,11 +1,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <gradient
-                android:startColor="@color/gray"
-                android:endColor="@color/white"
-                android:type="linear"
-                android:angle="45"/>
+            <solid android:color="@color/gray" />
             <corners android:radius="5dp" />
         </shape>
     </item>
@@ -17,7 +13,7 @@
         android:bottom="0dp">
         <shape>
             <corners android:radius="5dp" />
-            <solid android:color="#FFFFFFFF" /> <!-- Màu nền của dialog -->
+            <solid android:color="#D5D5D5" /> <!-- Màu nền của dialog -->
         </shape>
     </item>
 </layer-list>
