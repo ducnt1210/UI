@@ -79,6 +79,13 @@
             android:textColor="@android:color/tab_indicator_text"
             android:inputType="none" />
 
+        <Button
+            android:id="@+id/update_information_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="UPDATE INFORMATION" />
+
 
         <TextView
             android:layout_width="match_parent"
@@ -116,7 +123,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/change_passwordBT" />
+            android:text="CHANGE PASSWORD" />
+
 
     </LinearLayout>
 

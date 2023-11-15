@@ -10,6 +10,5 @@
     <string name="log_out">Log out</string>
     <string name="password_changeTV">PASSWORD CHANGE</string>
     <string name="password_desTV">" Leave passwords empty, when you don't want to change it."</string>
-    <string name="change_passwordBT">CHANGE PASSWORD</string>
     <string name="delete_all_user_data">DELETE ALL USER DATA</string>
 </resources>

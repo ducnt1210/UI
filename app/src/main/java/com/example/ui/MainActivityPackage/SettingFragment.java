@@ -79,6 +79,9 @@ public class SettingFragment extends Fragment {
                         .into(binding.navHeader.imageProfile);
             }
         }
+
+        System.out.println("This is person name" + MainActivity.currentUser.getName());
+        System.out.println("This is person email" + MainActivity.currentUser.getEmail());
         binding.navHeader.username.setText(MainActivity.currentUser.getName());
         binding.navHeader.email.setText(MainActivity.currentUser.getEmail());
 

@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ui.MainActivityPackage.ArtifactsFragment;
 import com.example.ui.MainActivityPackage.HomeFragment;
-import com.example.ui.MainActivityPackage.NotifcationFragment;
+import com.example.ui.MainActivityPackage.NotificationFragment;
 import com.example.ui.MainActivityPackage.SettingFragment;
 import com.example.ui.Model.UserModel;
 import com.example.ui.databinding.ActivityMainBinding;
@@ -43,9 +43,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+        String FragmentID = getIntent().getStringExtra("FragmentID");
+        if (FragmentID != null) {
+            switch (FragmentID) {
+                case "HomeFragment":
+                    replaceFragment(new HomeFragment());
+                    binding.bottomNavigationView.setSelectedItemId(R.id.home);
+                    break;
+                case "ArtifactsFragment":
+                    replaceFragment(new ArtifactsFragment());
+                    binding.bottomNavigationView.setSelectedItemId(R.id.none);
+                    break;
+                case "NotificationFragment":
+                    replaceFragment(new NotificationFragment());
+                    binding.bottomNavigationView.setSelectedItemId(R.id.notification);
+                    break;
+                case "SettingFragment":
+                    replaceFragment(new SettingFragment());
+                    binding.bottomNavigationView.setSelectedItemId(R.id.setting);
+                    break;
+            }
+        } else {
+            replaceFragment(new HomeFragment());
+        }
+
         getUser();
 
-        replaceFragment(new HomeFragment());
         binding.bottomNavigationView.setBackground(null);
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -57,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new ArtifactsFragment());
                     break;
                 case R.id.notification:
-                    replaceFragment(new NotifcationFragment());
+                    replaceFragment(new NotificationFragment());
                     break;
                 case R.id.setting:
                     replaceFragment(new SettingFragment());
@@ -97,7 +121,8 @@ public class MainActivity extends AppCompatActivity {
         }
         if (user != null) {
             String Uid = user.getUid();
-            currentUser = new UserModel(Uid, null, null, null);
+//            Comment this to fix bug of current user not loaded when from edit info to setting fragment
+//            currentUser = new UserModel(Uid, null, null, null);
             FirebaseFirestore.getInstance().collection("User").document(Uid).get()
                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
