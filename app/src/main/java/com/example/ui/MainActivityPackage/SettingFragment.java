@@ -54,14 +54,12 @@ public class SettingFragment extends Fragment {
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                         Log.d("FinancialApp", "Upload profile picture successfully!");
                                         Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
-                                        sweetAlertDialog.dismissWithAnimation();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         Log.d("FinancialApp", "Upload profile picture failed!");
                                         Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
-                                        sweetAlertDialog.dismissWithAnimation();
                                     }
                                 });
                     }
@@ -81,6 +79,9 @@ public class SettingFragment extends Fragment {
                         .into(binding.navHeader.imageProfile);
             }
         }
+
+        System.out.println("This is person name" + MainActivity.currentUser.getName());
+        System.out.println("This is person email" + MainActivity.currentUser.getEmail());
         binding.navHeader.username.setText(MainActivity.currentUser.getName());
         binding.navHeader.email.setText(MainActivity.currentUser.getEmail());
 
@@ -127,7 +128,7 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getImage.launch("image/*");
-                sweetAlertDialog.show();
+
             }
         });
 

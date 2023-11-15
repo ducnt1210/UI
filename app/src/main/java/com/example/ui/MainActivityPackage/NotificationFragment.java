@@ -1,11 +1,9 @@
 package com.example.ui.MainActivityPackage;
 
-import static com.google.firebase.firestore.FieldValue.serverTimestamp;
 import static java.lang.System.exit;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,16 +21,12 @@ import com.example.ui.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firestore.v1.DocumentTransform;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -41,7 +35,7 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class NotifcationFragment extends Fragment {
+public class NotificationFragment extends Fragment {
     private RecyclerView recyclerViewToday;
     private RecyclerView recyclerViewPrevious;
     private FirebaseFirestore db;

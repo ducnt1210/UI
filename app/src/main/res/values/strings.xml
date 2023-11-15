@@ -4,4 +4,11 @@
     <string name="your_string_here">
         <u>Tổng quan →</u>
     </string>
+    <string name="full_nameTV">Fullname</string>
+    <string name="numberTV">Phone number</string>
+    <string name="email">Email</string>
+    <string name="log_out">Log out</string>
+    <string name="password_changeTV">PASSWORD CHANGE</string>
+    <string name="password_desTV">" Leave passwords empty, when you don't want to change it."</string>
+    <string name="delete_all_user_data">DELETE ALL USER DATA</string>
 </resources>
