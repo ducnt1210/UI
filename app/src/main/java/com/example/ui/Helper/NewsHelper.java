@@ -18,7 +18,7 @@ public class NewsHelper {
     private final CollectionReference newsCollection;
 
     public NewsHelper() {
-        db = FirebaseFirestore.getInstance();
+            db = FirebaseFirestore.getInstance();
         newsCollection = db.collection(COLLECTION_NAME);
 
         checkIfCollectionExists();
