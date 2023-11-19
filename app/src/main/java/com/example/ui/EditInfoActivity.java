@@ -86,6 +86,7 @@ public class EditInfoActivity extends AppCompatActivity {
         });
 
         binding.changePasswordButton.setOnClickListener(v -> {
+            sweetAlertDialog.show();
             updatePassword();
         });
 
@@ -97,14 +98,17 @@ public class EditInfoActivity extends AppCompatActivity {
         String password = binding.changedPassword.getText().toString();
         String cf_password = binding.changedPasswordCf.getText().toString();
         if (password.length() == 0) {
+            sweetAlertDialog.dismiss();
             binding.changedPassword.setError("Empty");
             return;
         }
         if (cf_password.length() == 0) {
+            sweetAlertDialog.dismiss();
             binding.changedPasswordCf.setError("Empty");
             return;
         }
         if (!password.equals(cf_password)) {
+            sweetAlertDialog.dismiss();
             binding.changedPasswordCf.setError("Password does not match!");
             return;
         }
@@ -112,6 +116,7 @@ public class EditInfoActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        sweetAlertDialog.dismiss();
                         Toast.makeText(EditInfoActivity.this, "Password update!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(EditInfoActivity.this, MainActivity.class).putExtra("FragmentID", "SettingFragment"));
                         finish();
@@ -120,8 +125,8 @@ public class EditInfoActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        sweetAlertDialog.dismiss();
                         Toast.makeText(EditInfoActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        ;
                         startActivity(new Intent(EditInfoActivity.this, MainActivity.class).putExtra("FragmentID", "SettingFragment"));
                         finish();
                     }
@@ -131,14 +136,17 @@ public class EditInfoActivity extends AppCompatActivity {
     private void updateInformation() {
         if (binding.userName.getText().toString().isEmpty()) {
             binding.userName.setError("Name cannot be empty");
+            sweetAlertDialog.dismiss();
             return;
         }
         if (binding.userNumber.getText().toString().isEmpty()) {
             binding.userNumber.setError("Number cannot be empty");
+            sweetAlertDialog.dismiss();
             return;
         }
         if (!binding.userNumber.getText().toString().matches(allCountryRegex)) {
             binding.userNumber.setError("Invalid number");
+            sweetAlertDialog.dismiss();
             return;
         }
 
@@ -158,7 +166,7 @@ public class EditInfoActivity extends AppCompatActivity {
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                     Log.d("VMUSEUM", "Upload profile picture successfully!");
                                     Toast.makeText(EditInfoActivity.this, "Update successfully!", Toast.LENGTH_SHORT).show();
-                                    sweetAlertDialog.dismissWithAnimation();
+                                    sweetAlertDialog.dismiss();
                                     startActivity(new Intent(EditInfoActivity.this, MainActivity.class).putExtra("FragmentID", "SettingFragment"));
                                     finish();
                                 }
@@ -168,13 +176,13 @@ public class EditInfoActivity extends AppCompatActivity {
 //                                    TODO: set update but not yet upload profile picture
                                     Log.d("VMUSEUM", "Upload profile picture failed!");
                                     Toast.makeText(EditInfoActivity.this, "Upload profile picture failed! Please try again.", Toast.LENGTH_SHORT).show();
-                                    sweetAlertDialog.dismissWithAnimation();
+                                    sweetAlertDialog.dismiss();
                                     startActivity(new Intent(EditInfoActivity.this, MainActivity.class).putExtra("FragmentID", "SettingFragment"));
                                     finish();
                                 }
                             });
                         } else {
-                            sweetAlertDialog.dismissWithAnimation();
+                            sweetAlertDialog.dismiss();
                             Toast.makeText(EditInfoActivity.this, "Update successfully!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(EditInfoActivity.this, MainActivity.class).putExtra("FragmentID", "SettingFragment"));
                             finish();
@@ -184,7 +192,7 @@ public class EditInfoActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        sweetAlertDialog.dismissWithAnimation();
+                        sweetAlertDialog.dismiss();
                         Toast.makeText(EditInfoActivity.this, "Update failed!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(EditInfoActivity.this, MainActivity.class).putExtra("FragmentID", "SettingFragment"));
                         finish();

@@ -80,8 +80,6 @@ public class SettingFragment extends Fragment {
             }
         }
 
-        System.out.println("This is person name" + MainActivity.currentUser.getName());
-        System.out.println("This is person email" + MainActivity.currentUser.getEmail());
         binding.navHeader.username.setText(MainActivity.currentUser.getName());
         binding.navHeader.email.setText(MainActivity.currentUser.getEmail());
 
@@ -129,6 +127,27 @@ public class SettingFragment extends Fragment {
             public void onClick(View view) {
                 getImage.launch("image/*");
 
+            }
+        });
+
+        binding.fbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/tuanduc.nguyen1210/")));
+            }
+        });
+
+        binding.instagramButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/")));
+            }
+        });
+
+        binding.twitterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/")));
             }
         });
 
