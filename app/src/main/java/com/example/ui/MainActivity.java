@@ -2,20 +2,36 @@ package com.example.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.ui.MainActivityPackage.BlankFragment;
+import com.example.ui.MainActivityPackage.ArtifactsFragment;
 import com.example.ui.MainActivityPackage.HomeFragment;
-import com.example.ui.MainActivityPackage.NotifcationFragment;
+import com.example.ui.MainActivityPackage.NotificationFragment;
 import com.example.ui.MainActivityPackage.SettingFragment;
+import com.example.ui.Model.UserModel;
 import com.example.ui.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class MainActivity extends AppCompatActivity {
+    public static UserModel currentUser;
+    public static Uri profilePicture = null;
+    FirebaseUser user;
 
     ActivityMainBinding binding;
 
@@ -26,7 +42,34 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        replaceFragment(new HomeFragment());
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        String FragmentID = getIntent().getStringExtra("FragmentID");
+        if (FragmentID != null) {
+            switch (FragmentID) {
+                case "HomeFragment":
+                    replaceFragment(new HomeFragment());
+                    binding.bottomNavigationView.setSelectedItemId(R.id.home);
+                    break;
+                case "ArtifactsFragment":
+                    replaceFragment(new ArtifactsFragment());
+                    binding.bottomNavigationView.setSelectedItemId(R.id.none);
+                    break;
+                case "NotificationFragment":
+                    replaceFragment(new NotificationFragment());
+                    binding.bottomNavigationView.setSelectedItemId(R.id.notification);
+                    break;
+                case "SettingFragment":
+                    replaceFragment(new SettingFragment());
+                    binding.bottomNavigationView.setSelectedItemId(R.id.setting);
+                    break;
+            }
+        } else {
+            replaceFragment(new HomeFragment());
+        }
+
+        getUser();
+
         binding.bottomNavigationView.setBackground(null);
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -35,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new HomeFragment());
                     break;
                 case R.id.none:
-                    replaceFragment(new BlankFragment());
+                    replaceFragment(new ArtifactsFragment());
                     break;
                 case R.id.notification:
-                    replaceFragment(new NotifcationFragment());
+                    replaceFragment(new NotificationFragment());
                     break;
                 case R.id.setting:
                     replaceFragment(new SettingFragment());
@@ -58,5 +101,63 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
+    }
+
+    protected void getUser() {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            FirebaseAuth.getInstance()
+                    .signInAnonymously()
+                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+        if (user != null) {
+            String Uid = user.getUid();
+//            Comment this to fix bug of current user not loaded when from edit info to setting fragment
+//            currentUser = new UserModel(Uid, null, null, null);
+            FirebaseFirestore.getInstance().collection("User").document(Uid).get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            currentUser = documentSnapshot.toObject(UserModel.class);
+                            assert currentUser != null;
+                            currentUser.setId(Uid);
+                            getProfilePicture();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity.this, "User Failed!", Toast.LENGTH_SHORT).show();
+//                            sweetAlertDialog.dismissWithAnimation();
+                        }
+                    });
+        }
+    }
+
+    public void getProfilePicture() {
+        FirebaseStorage.getInstance().getReference().child("images/" + currentUser.getId()).getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        profilePicture = uri;
+//                        sweetAlertDialog.dismissWithAnimation();
+                        Log.d("FinancialApp", "Get profile picture");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+//                        sweetAlertDialog.dismissWithAnimation();
+                        Log.d("FinancialApp", e.getMessage());
+                    }
+                });
     }
 }

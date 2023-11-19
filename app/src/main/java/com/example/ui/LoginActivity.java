@@ -76,9 +76,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signOut();
-        gsc.signOut();
+//        firebaseAuth = FirebaseAuth.getInstance();
+//        firebaseAuth.signOut();
+//        gsc.signOut();
 //        TODO: comment 2 above to keep user sign in
 
         firebaseAuth = FirebaseAuth.getInstance();
