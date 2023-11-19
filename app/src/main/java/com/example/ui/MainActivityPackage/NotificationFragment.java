@@ -63,6 +63,7 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("frag", "test");
         getNotificationModelList();
     }
 

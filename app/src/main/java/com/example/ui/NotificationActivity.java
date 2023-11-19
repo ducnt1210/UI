@@ -129,14 +129,17 @@ public class NotificationActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (update) {
-            update = false;
-//            MainActivity.FragmentID = "NotificationFragment";
-            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
-            intent.putExtra("FragmentID", "NotificationFragment");
-            startActivity(intent);
-        } else {
-            super.onBackPressed();
-        }
+//        if (update) {
+//            update = false;
+////            MainActivity.FragmentID = "NotificationFragment";
+//            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+//            intent.putExtra("FragmentID", "NotificationFragment");
+//            startActivity(intent);
+//        } else {
+//            super.onBackPressed();
+//        }
+        Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+        intent.putExtra("FragmentID", "NotificationFragment");
+        startActivity(intent);
     }
 }

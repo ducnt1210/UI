@@ -80,6 +80,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 //        Log.d("notification", Integer.toString(notificationModelList.size()));
         NotificationModel item = this.notificationModelList.get(position);
         if (item != null) {
+            Log.d("type", item.toString());
             holder.dateTextView.setVisibility(View.GONE);
 
             if (item.getSeen()) {
@@ -121,6 +122,9 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
                 }
             });
         } else {
+            holder.item.setVisibility(View.GONE);
+            Log.d("type", "null");
+            Log.d("count", Integer.toString(count));
             if (count == 0){
                 ++count;
                 holder.dateTextView.setText("Hôm nay");
@@ -128,7 +132,6 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
                 count = 0;
                 holder.dateTextView.setText("Trước đó");
             }
-            holder.item.setVisibility(View.GONE);
         }
     }
 
