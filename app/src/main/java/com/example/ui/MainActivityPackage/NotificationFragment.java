@@ -2,7 +2,12 @@ package com.example.ui.MainActivityPackage;
 
 import static java.lang.System.exit;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,11 +16,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.Adapter.NotificationModelAdapter;
+import com.example.ui.MainActivity;
 import com.example.ui.Model.NotificationModel;
 import com.example.ui.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -102,6 +109,7 @@ public class NotificationFragment extends Fragment {
                                             (List<String>) doc.get("description"),
                                             doc.getString("user_id"),
                                             doc.getBoolean("seen"),
+                                            doc.getBoolean("sentNotification"),
                                             doc.getTimestamp("time"));
                             if (notificationModel.getTime().toDate().compareTo(currentDate) > 0) {
                                 sweetAlertDialog.dismissWithAnimation();
@@ -110,7 +118,7 @@ public class NotificationFragment extends Fragment {
                                         Toast.LENGTH_SHORT);
                                 Log.e("Future notification", notificationModel.getId());
                                 exit(0);
-                            } else if (notificationModel.isSameday(currentDate, notificationModel.getTime().toDate())) {
+                            } else if (notificationModel.isSameday(currentDate)) {
                                 notificationModelListToday.add(notificationModel);
                             } else {
                                 notificationModelListPrevious.add(notificationModel);
@@ -142,4 +150,24 @@ public class NotificationFragment extends Fragment {
                     }
                 });
     }
+
+//    private void sendNotification(String name, String message) {
+//        Intent intent = new Intent(this, MainActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+//
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(.this, "My Notification");
+//        builder.setContentTitle(name);
+//        builder.setSmallIcon(R.drawable.wallet_icon);
+//        builder.setContentText(message);
+//        builder.setAutoCancel(true);
+//        builder.setContentIntent(pendingIntent);
+//
+//        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(AddSavingActivity.this);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+//            return;
+//        }
+//        managerCompat.notify(1, builder.build());
+//    }
 }

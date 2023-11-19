@@ -99,8 +99,8 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 //                });
 
 //        holder.time.setText(convertTimeFormat(item.getTime()));
-        holder.content.setText(deleteMark(item.getDescription()));
-        holder.time.setText(item.formatDate(item.getTime()));
+        holder.content.setText(item.heading());
+        holder.time.setText(item.formatDate());
 
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,27 +116,14 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
         });
     }
 
-    private String deleteMark(List<String> description) {
-        String result = "";
-        if (description.size() > 0) {
-            String des = description.get(0);
-            if (des.startsWith("$heading$")) {
-                result = result + des.substring("$heading$".length());
-            } else if (des.startsWith("$note$")) {
-                result = result + des.substring("$note$".length());
-            } else if (des.startsWith("$imgs$") == false) {
-                result = result + des;
-            }
-        }
-        return result;
-    }
-
     private void goToDetailedNotification(NotificationModel item) {
         Intent intent = new Intent(this.context, NotificationActivity.class);
         Bundle bundle = new Bundle();
 //        bundle.putString("id", item.getId());
         bundle.putStringArrayList("description", (ArrayList<String>) item.getDescription());
-        bundle.putString("time", item.formatDate(item.getTime()));
+        bundle.putString("time", item.formatDate());
+        bundle.putBoolean("update", false);
+        bundle.putString("id", item.getId());
         intent.putExtras(bundle);
         this.context.startActivity(intent);
     }

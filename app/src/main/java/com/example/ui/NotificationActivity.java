@@ -1,15 +1,28 @@
 package com.example.ui;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.Adapter.NotificationAdapter;
+import com.example.ui.Model.NotificationModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -39,6 +52,24 @@ public class NotificationActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
+            boolean update = bundle.getBoolean("update");
+            if (update) {
+                this.getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        if (isEnabled()) {
+                            setEnabled(false);
+//                            NotificationActivity.this.onBackPressed();
+                            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+                            intent.putExtra("FragmentID", "NotificationFragment");
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+                String id = bundle.getString("id");
+                updateNotification(id);
+            }
             List<String> description = (List<String>) bundle.get("description");
 
 //            Log.d("description", Integer.toString(description.size()));
@@ -63,5 +94,34 @@ public class NotificationActivity extends AppCompatActivity {
         recyclerView.setAdapter(notificationAdapter);
 
         sweetAlertDialog.dismissWithAnimation();
+    }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//    }
+
+    private void updateNotification(String id) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference reference = db.collection("Notification").document(id);
+
+        reference.get().addOnSuccessListener(documentSnapshot -> {
+            NotificationModel notificationModel = new NotificationModel(
+                    documentSnapshot.getId(),
+                    documentSnapshot.getString("image_path"),
+                    (List<String>) documentSnapshot.get("description"),
+                    documentSnapshot.getString("user_id"),
+//                    documentSnapshot.getBoolean("seen"),
+                    true,
+                    documentSnapshot.getBoolean("sentNotification"),
+                    documentSnapshot.getTimestamp("time")
+            );
+            reference.set(notificationModel).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("Update notification failed", id);
+                }
+            });
+        });
     }
 }
