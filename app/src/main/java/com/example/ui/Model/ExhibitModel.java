@@ -4,26 +4,14 @@ import java.util.ArrayList;
 
 public class ExhibitModel {
     private String id;
-    private AreaModel area;
+    private String parentId;
     private String name;
-    private ArrayList<String> image_path;
-    private ArrayList<String> video_path;
-    private String description;
+    private ArrayList<String> description;
 
-    public ExhibitModel(String id, AreaModel area, String name, ArrayList<String> image_path, ArrayList<String> video_path, String description) {
+    public ExhibitModel(String id, String parentId, String name, ArrayList<String> description) {
         this.id = id;
-        this.area = area;
+        this.parentId = parentId;
         this.name = name;
-        this.image_path = image_path;
-        this.video_path = video_path;
-        this.description = description;
-    }
-
-    public ExhibitModel(AreaModel area, String name, ArrayList<String> image_path, ArrayList<String> video_path, String description) {
-        this.area = area;
-        this.name = name;
-        this.image_path = image_path;
-        this.video_path = video_path;
         this.description = description;
     }
 
@@ -35,12 +23,12 @@ public class ExhibitModel {
         this.id = id;
     }
 
-    public AreaModel getArea() {
-        return area;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setArea(AreaModel area) {
-        this.area = area;
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     public String getName() {
@@ -51,27 +39,11 @@ public class ExhibitModel {
         this.name = name;
     }
 
-    public ArrayList<String> getImage_path() {
-        return image_path;
-    }
-
-    public void setImage_path(ArrayList<String> image_path) {
-        this.image_path = image_path;
-    }
-
-    public ArrayList<String> getVideo_path() {
-        return video_path;
-    }
-
-    public void setVideo_path(ArrayList<String> video_path) {
-        this.video_path = video_path;
-    }
-
-    public String getDescription() {
+    public ArrayList<String> getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(ArrayList<String> description) {
         this.description = description;
     }
 }
