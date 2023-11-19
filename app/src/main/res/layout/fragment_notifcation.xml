@@ -24,36 +24,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/alegrey_bold"
-                    android:text="Hôm nay"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:fontFamily="@font/alegrey_bold"-->
+<!--                    android:text="Hôm nay"-->
+<!--                    android:textSize="25sp"-->
+<!--                    android:textStyle="bold" />-->
 
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/notificationRecyclerViewToday"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:listitem="@layout/noti_item"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:fontFamily="@font/alegrey_bold"-->
+<!--                    android:text="Trước đó"-->
+<!--                    android:textSize="25sp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/notificationRecyclerViewPrevious"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:listitem="@layout/noti_item"/>-->
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/notificationRecyclerViewToday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/noti_item"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/alegrey_bold"
-                    android:text="Trước đó"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/notificationRecyclerViewPrevious"
+                    android:id="@+id/notificationRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:listitem="@layout/noti_item"/>
