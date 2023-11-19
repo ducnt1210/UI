@@ -90,7 +90,7 @@ public class Utils {
 
     public static String formatDate(Timestamp timestamp) {
         Date date = timestamp.toDate();
-        String pattern = "hh:mm dd/MM/yyyy";
+        String pattern = "hh:mm a dd/MM/yyyy";
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 //        SimpleDateFormat sdf =
         DateFormat formatter = new SimpleDateFormat(pattern);
