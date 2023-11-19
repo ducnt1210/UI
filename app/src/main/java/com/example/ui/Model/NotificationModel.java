@@ -1,6 +1,7 @@
 package com.example.ui.Model;
 
 
+import com.example.ui.Utils;
 import com.google.firebase.Timestamp;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class NotificationModel {
     private List<String> description;
     private String user_id;
     private boolean seen;
+    private boolean sentNotification;
     private Timestamp time;
 
     public NotificationModel() {
@@ -24,22 +26,24 @@ public class NotificationModel {
     }
 
     public NotificationModel(String id, String image_path, List<String> description,
-                             String user_id, boolean seen, Timestamp time) {
+                             String user_id, boolean seen, boolean sentNotification, Timestamp time) {
         this.id = id;
         this.image_path = image_path;
         this.description = description;
         this.user_id = user_id;
         this.seen = seen;
         this.time = time;
+        this.sentNotification = sentNotification;
     }
 
     public NotificationModel(String image_path, List<String> description,
-                             String user_id, boolean seen, Timestamp time) {
+                             String user_id, boolean seen, boolean sentNotification, Timestamp time) {
         this.image_path = image_path;
         this.description = description;
         this.user_id = user_id;
         this.seen = seen;
         this.time = time;
+        this.sentNotification = sentNotification;
     }
 
     public String getId() {
@@ -82,6 +86,14 @@ public class NotificationModel {
         this.seen = seen;
     }
 
+    public boolean getSentNotification() {
+        return this.sentNotification;
+    }
+
+    public void setSentNotification(boolean sentNotification) {
+        this.sentNotification = sentNotification;
+    }
+
     public Timestamp getTime() {
         return this.time;
     }
@@ -90,19 +102,43 @@ public class NotificationModel {
         this.time = time;
     }
 
-    public String formatDate(Timestamp timestamp) {
-        Date date = timestamp.toDate();
-        String pattern = "hh:mm dd/MM/yyyy";
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-//        SimpleDateFormat sdf =
-        DateFormat formatter = new SimpleDateFormat(pattern);
-        String formattedDate = formatter.format(date);
-        return formattedDate;
+    public String formatDate() {
+        return Utils.formatDate(this.time);
     }
 
-    public boolean isSameday(Date date1, Date date2) {
-        return date1.getDate() == date2.getDate()
-                && date1.getMonth() == date2.getMonth()
-                && date1.getYear() == date2.getYear();
+    public boolean isSameday(Date otherDay) {
+        return Utils.isSameDay(this.time.toDate(), otherDay);
+    }
+
+    public String heading() {
+        String result = "";
+        if (this.description.size() > 0) {
+            String des = this.description.get(0);
+            if (des.startsWith("$heading$")) {
+                result = result + des.substring("$heading$".length());
+            } else if (des.startsWith("$note$")) {
+                result = result + des.substring("$note$".length());
+            } else if (des.startsWith("$imgs$") == false) {
+                result = result + des;
+            }
+        }
+        return result;
+    }
+
+    public String fullDescription() {
+        String result = "";
+        if (this.description.size() > 1) {
+            for (int i = 1; i < this.description.size(); ++i) {
+                String des = this.description.get(i);
+                if (des.startsWith("$heading$")) {
+                    result = result + des.substring("$heading$".length()) + "\n";
+                } else if (des.startsWith("$note$")) {
+                    result = result + des.substring("$note$".length()) + "\n";
+                } else if (des.startsWith("$imgs$") == false) {
+                    result = result + des + "\n";
+                }
+            }
+        }
+        return result;
     }
 }
