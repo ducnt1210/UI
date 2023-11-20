@@ -38,6 +38,8 @@ public class IntroContentActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setIntroContentView();
 
+        getSupportActionBar().hide();
+
         recyclerView = findViewById(R.id.rv_intro_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

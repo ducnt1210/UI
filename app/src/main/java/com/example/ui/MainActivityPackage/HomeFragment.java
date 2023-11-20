@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.ui.Helper.NewsHelper;
 import com.example.ui.IntroContentActivity;
+import com.example.ui.MainActivity;
 import com.example.ui.MapActivity;
 import com.example.ui.R;
 import com.example.ui.databinding.FragmentHomeBinding;
@@ -35,6 +36,8 @@ public class HomeFragment extends Fragment {
         initNews();
         binding = FragmentHomeBinding.bind(rootView);
         getIntroContentView();
+
+        ((MainActivity)requireActivity()).getSupportActionBar().hide();
 
         return rootView;
     }
@@ -96,8 +99,8 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-      
-        public void initNews() {
+
+    public void initNews() {
         newsHelper.fetchLatestNews(new NewsHelper.NewsDataCallback() {
             @Override
             public void onDataLoaded(List<DocumentSnapshot> newsList) {

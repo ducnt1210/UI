@@ -64,11 +64,12 @@
 
                 <ImageView
                     android:id="@+id/home_map"
-                    android:layout_width="300dp"
-                    android:layout_height="350dp"
+                    android:layout_width="330dp"
+                    android:layout_height="280dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/map_img" />
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/map_img_detaill" />
 
 
                 <RelativeLayout
