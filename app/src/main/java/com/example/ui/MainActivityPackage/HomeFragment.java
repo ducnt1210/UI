@@ -1,6 +1,7 @@
 package com.example.ui.MainActivityPackage;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -22,7 +24,11 @@ import com.example.ui.NewsEventsActivity;
 import com.example.ui.R;
 import com.example.ui.Utils;
 import com.example.ui.databinding.FragmentHomeBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,15 +145,28 @@ public class HomeFragment extends Fragment {
 
             String title = document.getString("title");
             List<String> description = (List<String>) document.get("description");
-            String imageUrl = document.getString("image_path");
+            String imageName = document.getString("image_path");
             String time = Utils.formatDate(document.getTimestamp("time"));
 
             text.setText(title);
-
-            // Sử dụng Glide để tải và hiển thị ảnh
-            Glide.with(this)
-                    .load(imageUrl)
-                    .into(img);
+            StorageReference imageRef = FirebaseStorage.getInstance("gs://ui-123456.appspot.com").getReference().child("newsevents_images").child(imageName);
+            imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    if (uri != null) {
+                        Glide.with(getContext()).load(uri).into(img);
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("Firebase Storage", "Error downloading image: " + e.getMessage());
+                }
+            });
+//            // Sử dụng Glide để tải và hiển thị ảnh
+//            Glide.with(this)
+//                    .load(imageUrl)
+//                    .into(img);
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
