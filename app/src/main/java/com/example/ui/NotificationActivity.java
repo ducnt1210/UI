@@ -38,6 +38,8 @@ public class NotificationActivity extends AppCompatActivity {
     private SweetAlertDialog sweetAlertDialog;
     private FirebaseFirestore db;
 
+    private boolean update = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,20 +54,20 @@ public class NotificationActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            boolean update = bundle.getBoolean("update");
+            update = bundle.getBoolean("update");
             if (update) {
-                this.getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
-                    @Override
-                    public void handleOnBackPressed() {
-                        if (isEnabled()) {
-                            setEnabled(false);
-//                            NotificationActivity.this.onBackPressed();
-                            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
-                            intent.putExtra("FragmentID", "NotificationFragment");
-                            startActivity(intent);
-                        }
-                    }
-                });
+//                this.getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+//                    @Override
+//                    public void handleOnBackPressed() {
+//                        if (isEnabled()) {
+//                            setEnabled(false);
+////                            NotificationActivity.this.onBackPressed();
+//                            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+//                            intent.putExtra("FragmentID", "NotificationFragment");
+//                            startActivity(intent);
+//                        }
+//                    }
+//                });
 
                 String id = bundle.getString("id");
                 updateNotification(id);
@@ -123,5 +125,21 @@ public class NotificationActivity extends AppCompatActivity {
                 }
             });
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+//        if (update) {
+//            update = false;
+////            MainActivity.FragmentID = "NotificationFragment";
+//            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+//            intent.putExtra("FragmentID", "NotificationFragment");
+//            startActivity(intent);
+//        } else {
+//            super.onBackPressed();
+//        }
+        Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+        intent.putExtra("FragmentID", "NotificationFragment");
+        startActivity(intent);
     }
 }

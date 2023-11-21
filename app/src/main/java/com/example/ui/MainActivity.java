@@ -48,6 +48,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static UserModel currentUser;
+    private String FragmentID = "HomeFragment";
     public static Uri profilePicture = null;
     FirebaseUser user;
     ActivityMainBinding binding;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        String FragmentID = getIntent().getStringExtra("FragmentID");
+        FragmentID = getIntent().getStringExtra("FragmentID");
         if (FragmentID != null) {
             switch (FragmentID) {
                 case "HomeFragment":
@@ -99,15 +100,19 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
+                    FragmentID = "HomeFragment";
                     replaceFragment(new HomeFragment());
                     break;
                 case R.id.none:
+                    FragmentID = "ArtifactsFragment";
                     replaceFragment(new ArtifactsFragment());
                     break;
                 case R.id.notification:
+                    FragmentID = "NotificationFragment";
                     replaceFragment(new NotificationFragment());
                     break;
                 case R.id.setting:
+                    FragmentID = "SettingFragment";
                     replaceFragment(new SettingFragment());
                     break;
             }
@@ -119,6 +124,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, QRActivity.class);
             MainActivity.this.startActivity(intent);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (FragmentID == "HomeFragment") {
+            finish();
+        } else {
+            FragmentID = "HomeFragment";
+            replaceFragment(new HomeFragment());
+        }
     }
 
     private void replaceFragment(Fragment fragment) {
