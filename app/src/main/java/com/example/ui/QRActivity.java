@@ -9,6 +9,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Size;
@@ -20,6 +21,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.OptIn;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
@@ -67,6 +69,7 @@ public class QRActivity extends AppCompatActivity {
 
     ActivityResultLauncher<String> getImageToAnalyze = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
+                @RequiresApi(api = Build.VERSION_CODES.P)
                 @Override
                 public void onActivityResult(Uri selectedImageUri) {
                     if (selectedImageUri != null) {
@@ -74,7 +77,6 @@ public class QRActivity extends AppCompatActivity {
 //                            InputImage inputImage = InputImage.fromFilePath(QRActivity.this, selectedImageUri);
                             ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), selectedImageUri);
                             Bitmap bitmap = ImageDecoder.decodeBitmap(source);
-
                             InputImage inputImage = InputImage.fromBitmap(bitmap, 0);
 
                             BarcodeScannerOptions barcodeScannerOptions = new BarcodeScannerOptions.Builder()
@@ -99,6 +101,12 @@ public class QRActivity extends AppCompatActivity {
                                             // Handle failure
                                             Log.d("MUSEUM1", "Scan QR code failed!");
                                             Toast.makeText(QRActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnCompleteListener(new OnCompleteListener<List<Barcode>>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<List<Barcode>> task) {
+                                            bitmap.recycle();
                                         }
                                     });
                         } catch (IOException e) {

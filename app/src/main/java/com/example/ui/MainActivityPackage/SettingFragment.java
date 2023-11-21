@@ -17,10 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.ui.EditInfoActivity;
 import com.example.ui.LoginActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.R;
+import com.example.ui.SettingPackage.EditInfoActivity;
+import com.example.ui.SettingPackage.PrivacyActivity;
 import com.example.ui.databinding.FragmentSettingBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -193,6 +194,13 @@ public class SettingFragment extends Fragment {
                         .setCancelButtonBackgroundColor(Color.parseColor("#FFA5A5A5"))
                         .setConfirmButtonBackgroundColor(R.color.red)
                         .show();
+            }
+        });
+
+        binding.securityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), PrivacyActivity.class));
             }
         });
 
