@@ -131,7 +131,7 @@ public class MapActivity extends AppCompatActivity {
         }
 
         for (int x = 530; x < 610; x+=1) {
-            for (int y = 120; y < 280; y+=1) {
+            for (int y = 210; y < 290; y+=1) {
                 if (isSimilarColor(originalBitmap.getPixel(x, y), roadColor)) {
                     canvas.drawPoint(x, y, paintColor(resColor));
                 }
