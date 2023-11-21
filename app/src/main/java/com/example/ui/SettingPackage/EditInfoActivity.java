@@ -1,4 +1,4 @@
-package com.example.ui;
+package com.example.ui.SettingPackage;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.ui.MainActivity;
 import com.example.ui.Model.UserModel;
+import com.example.ui.R;
 import com.example.ui.databinding.ActivityEditInfoBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
