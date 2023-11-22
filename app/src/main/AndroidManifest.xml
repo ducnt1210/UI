@@ -25,9 +25,12 @@
         android:theme="@style/Theme.UI"
         tools:targetApi="31">
         <activity
-            android:name=".SettingPackage.PrivacyActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".SettingPackage.LanguageActivity"
             android:exported="false" />
+        <activity
+            android:name=".SettingPackage.PrivacyActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".NotificationActivity"
             android:exported="false" />
