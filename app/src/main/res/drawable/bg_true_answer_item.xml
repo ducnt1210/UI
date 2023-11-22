@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="50dp" />
+    <solid android:color="#4CAF50" /> <!-- Màu nền của dialog -->
+</shape>
