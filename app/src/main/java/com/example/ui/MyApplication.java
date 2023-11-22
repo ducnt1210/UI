@@ -1,17 +1,20 @@
 package com.example.ui;
 
-import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 
-public class MyApplication extends Application {
+import com.zeugmasolutions.localehelper.LocaleAwareApplication;
+
+public class MyApplication extends LocaleAwareApplication {
     public static final String CHANNEL_ID = "1";
+
     @Override
     public void onCreate() {
         super.onCreate();
         createNotificationChannel();
     }
+
     public void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String name = "Notification";

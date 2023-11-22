@@ -21,6 +21,7 @@ import com.example.ui.LoginActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.R;
 import com.example.ui.SettingPackage.EditInfoActivity;
+import com.example.ui.SettingPackage.LanguageActivity;
 import com.example.ui.SettingPackage.PrivacyActivity;
 import com.example.ui.databinding.FragmentSettingBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -56,13 +57,13 @@ public class SettingFragment extends Fragment {
                                 .putFile(result).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        Log.d("FinancialApp", "Upload profile picture successfully!");
+                                        Log.d("UI", "Upload profile picture successfully!");
                                         Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Log.d("FinancialApp", "Upload profile picture failed!");
+                                        Log.d("UI", "Upload profile picture failed!");
                                         Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
                                     }
                                 });
@@ -201,6 +202,13 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), PrivacyActivity.class));
+            }
+        });
+
+        binding.languageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), LanguageActivity.class));
             }
         });
 
