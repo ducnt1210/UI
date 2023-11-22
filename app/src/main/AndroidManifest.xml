@@ -32,6 +32,9 @@
             android:name=".OpeningActivity"
             android:exported="false" />
         <activity
+            android:name=".NewsEventsActivity"
+            android:exported="false" />
+        <activity
             android:name=".NotificationActivity"
             android:exported="false" />
         <activity

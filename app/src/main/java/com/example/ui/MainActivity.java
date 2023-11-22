@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         } else {
+            FragmentID = "HomeFragment";
             replaceFragment(new HomeFragment());
         }
 
