@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VMUSEUM</string>
+    <string name="numberTV">電話番号</string>
+    <string name="password_changeTV">パスワードの変更</string>
+    <string name="password_desTV">パスワードを変更したくない場合は、空のままにしてください。</string>
+    <string name="delete_all_user_data">すべてのユーザーデータを削除します</string>
+    <string name="choose_your_language">言語を選んでください</string>
+    <string name="vietnamese">🇻🇳ベトナム語</string>
+    <string name="english">\\ud83c\\uddec\\ud83c\\udde7 英語</string>
+    <string name="japanese">🇯🇵日本人</string>
+    <string name="chinese">🇨🇳中国語</string>
+    <string name="set_your_languageBT">言語を設定する</string>
+    <string name="full_nameTV">フルネーム</string>
+    <string name="email">Eメール</string>
+    <string name="log_out">ログアウト</string>
+</resources>
