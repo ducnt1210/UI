@@ -1,6 +1,8 @@
 package com.example.ui.MainActivityPackage;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +22,11 @@ import com.example.ui.MapActivity;
 import com.example.ui.R;
 import com.example.ui.databinding.FragmentHomeBinding;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -121,6 +127,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateCardView(DocumentSnapshot document, int cardIndex) {
+        FirebaseStorage storage;
+
+// Khởi tạo FirebaseStorage
+        storage = FirebaseStorage.getInstance("gs://ui-123456.appspot.com");
         // Update your CardView with Firestore data
         View view = getView();
         if (view != null) {
@@ -131,10 +141,31 @@ public class HomeFragment extends Fragment {
             text.setText(document.getString("title"));
             String imageUrl = document.getString("image_path");
 
-            // Sử dụng Glide để tải và hiển thị ảnh
-            Glide.with(this)
-                    .load(imageUrl)
-                    .into(img);
+
+// Lấy reference đến ảnh trong Firebase Storage
+            StorageReference storageRef = storage.getReference().child("newsevents_images").child(imageUrl);;
+
+            try {
+                File localFile = File.createTempFile(imageUrl, "jpg");
+
+                storageRef.getFile(localFile)
+                        .addOnSuccessListener(taskSnapshot -> {
+                            // Ảnh đã được tải về thành công, hiển thị nó trong ImageView
+                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            img.setImageBitmap(bitmap);
+                            // Sử dụng Glide để tải và hiển thị ảnh
+                            Glide.with(requireContext())
+                                    .load(localFile)
+                                    .into(img);
+
+                        })
+                        .addOnFailureListener(exception -> {
+                            // Xử lý khi có lỗi trong quá trình tải ảnh
+                        });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

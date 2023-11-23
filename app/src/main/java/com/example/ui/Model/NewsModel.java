@@ -7,19 +7,12 @@ import java.util.Timer;
 public class NewsModel {
     private String id;
     private String title;
-    private ArrayList<String> image_path;
+    private String image_path;
     private Timestamp time;
-    private String description;
+    private ArrayList<String> description;
 
-    public NewsModel(String id, String title, ArrayList<String> image_path, Timestamp time, String description) {
+    public NewsModel(String id, String title, String image_path, Timestamp time, ArrayList<String> description) {
         this.id = id;
-        this.title = title;
-        this.image_path = image_path;
-        this.time = time;
-        this.description = description;
-    }
-
-    public NewsModel(String title, ArrayList<String> image_path, Timestamp time, String description) {
         this.title = title;
         this.image_path = image_path;
         this.time = time;
@@ -42,11 +35,11 @@ public class NewsModel {
         this.title = title;
     }
 
-    public ArrayList<String> getImage_path() {
+    public String getImage_path() {
         return image_path;
     }
 
-    public void setImage_path(ArrayList<String> image_path) {
+    public void setImage_path(String image_path) {
         this.image_path = image_path;
     }
 
@@ -58,11 +51,11 @@ public class NewsModel {
         this.time = time;
     }
 
-    public String getDescription() {
+    public ArrayList<String> getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(ArrayList<String> description) {
         this.description = description;
     }
 }
