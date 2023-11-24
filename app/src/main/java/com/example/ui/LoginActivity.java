@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ui.Model.UserModel;
 import com.example.ui.databinding.ActivityLoginBinding;
@@ -36,12 +35,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity;
 
 import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends LocaleAwareCompatActivity {
 
     SweetAlertDialog sweetAlertDialog;
     ActivityLoginBinding binding;
@@ -52,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_UI);
+        super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Objects.requireNonNull(getSupportActionBar()).hide();

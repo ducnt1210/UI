@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VMUSEUM</string>
+    <string name="full_nameTV">Tên</string>
+    <string name="numberTV">Số điện thoại</string>
+    <string name="email">Email</string>
+    <string name="log_out">Đăng xuất</string>
+    <string name="password_changeTV">THAY ĐỔI MẬT KHẨU</string>
+    <string name="password_desTV">ĐỂ TRỐNG VÙNG PASSWORD NẾU BẠN KHÔNG MUỐN THAY ĐỔI NÓ</string>
+    <string name="delete_all_user_data">XÓA HẾT DỮ LIỆU NGƯỜI DÙNG</string>
+    <string name="choose_your_language">Chọn ngôn ngữ của bạn</string>
+    <string name="vietnamese">🇻🇳 Tiếng Việt</string>
+    <string name="english">\ud83c\uddec\ud83c\udde7 Tiếng Anh</string>
+    <string name="japanese">🇯🇵 Tiếng nhật</string>
+    <string name="chinese">🇨🇳 Tiếng Trung</string>
+    <string name="set_your_languageBT">CHỌN NGÔN NGỮ</string>
+</resources>
