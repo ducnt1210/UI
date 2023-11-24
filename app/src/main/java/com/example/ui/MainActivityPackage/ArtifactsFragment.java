@@ -11,12 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ui.Adapter.AreaAdapter;
 import com.example.ui.MainActivity;
-import com.example.ui.R;
 import com.example.ui.databinding.FragmentArtifactsBinding;
-import com.example.ui.Model.AreaModel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class ArtifactsFragment extends Fragment {
 
@@ -38,9 +33,6 @@ public class ArtifactsFragment extends Fragment {
         System.out.println(1234);
         areaAdapter = new AreaAdapter(getContext());
         expandableListView.setAdapter(areaAdapter);
-
-        binding.artifactsHeader.headerText.setText("Danh mục hiện vật");
-        binding.artifactsHeader.headerIcon.setImageResource(R.drawable.white_list);
 
         return binding.getRoot();
     }

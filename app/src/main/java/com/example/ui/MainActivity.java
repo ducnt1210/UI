@@ -193,13 +193,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         profilePicture = uri;
 //                        sweetAlertDialog.dismissWithAnimation();
-                        Log.d("FinancialApp", "Get profile picture");
+                        Log.d("UI", "Get profile picture");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
 //                        sweetAlertDialog.dismissWithAnimation();
-                        Log.d("FinancialApp", e.getMessage());
+                        Log.d("UI", e.getMessage());
                     }
                 });
     }
