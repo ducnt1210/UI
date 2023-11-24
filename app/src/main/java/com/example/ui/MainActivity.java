@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             FragmentID = "HomeFragment";
             replaceFragment(new HomeFragment());
+            binding.bottomNavigationView.setSelectedItemId(R.id.home);
         }
 
         getUser();
@@ -102,10 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
-                case R.id.home:
-                    FragmentID = "HomeFragment";
-                    replaceFragment(new HomeFragment());
-                    break;
                 case R.id.none:
                     FragmentID = "ArtifactsFragment";
                     replaceFragment(new ArtifactsFragment());
@@ -117,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.setting:
                     FragmentID = "SettingFragment";
                     replaceFragment(new SettingFragment());
+                    break;
+                default:
+                    FragmentID = "HomeFragment";
+                    replaceFragment(new HomeFragment());
                     break;
             }
             notSentNotification(user.getUid());

@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.bind(rootView);
         getIntroContentView();
 
-        ((MainActivity)requireActivity()).getSupportActionBar().hide();
+        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).hide();
 
         return rootView;
     }
@@ -156,7 +156,7 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onSuccess(Uri uri) {
                     if (uri != null) {
-                        Glide.with(getContext()).load(uri).into(img);
+                        Glide.with(requireContext()).load(uri).into(img);
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
