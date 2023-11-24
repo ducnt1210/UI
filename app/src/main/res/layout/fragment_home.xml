@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,10 +7,10 @@
     android:background="@color/bg_grey"
     tools:context=".MainActivityPackage.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -336,6 +336,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="40dp"
                         android:padding="5dp">
 
 
@@ -470,6 +471,10 @@
                                     android:id="@+id/new_img4"
                                     android:layout_width="match_parent"
                                     android:layout_height="120dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="0dp"
+                                    android:layout_marginEnd="0dp"
                                     android:scaleType="centerCrop"
                                     android:src="@drawable/demo_img2" />
 
@@ -575,4 +580,19 @@
 
     </LinearLayout>
 
-</FrameLayout>
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:text="Đặt vé"
+        app:icon="@drawable/ticket_icon"
+        app:shapeAppearanceOverlay="@style/RoundedCorner"
+        android:textSize="18sp"
+        android:fontFamily="@font/merriweathersanswght"
+        android:backgroundTint="@color/red"
+        android:textAlignment="center"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

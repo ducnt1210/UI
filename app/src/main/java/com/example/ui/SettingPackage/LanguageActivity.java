@@ -88,9 +88,6 @@ public class LanguageActivity extends LocaleAwareCompatActivity {
         } else if (binding.CNRadio.isChecked()) {
             current_language = chinese;
             locale = Locale.CHINA;
-        } else {
-            current_language = english;
-            locale = Locales.INSTANCE.getEnglish();
         }
         this.updateLocale(locale);
     }

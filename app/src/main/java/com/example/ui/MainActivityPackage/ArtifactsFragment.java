@@ -11,12 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ui.Adapter.AreaAdapter;
 import com.example.ui.MainActivity;
-import com.example.ui.R;
 import com.example.ui.databinding.FragmentArtifactsBinding;
-import com.example.ui.Model.AreaModel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class ArtifactsFragment extends Fragment {
 
