@@ -39,6 +39,9 @@ public class ArtifactsFragment extends Fragment {
         areaAdapter = new AreaAdapter(getContext());
         expandableListView.setAdapter(areaAdapter);
 
+        binding.artifactsHeader.headerText.setText("Danh mục hiện vật");
+        binding.artifactsHeader.headerIcon.setImageResource(R.drawable.white_list);
+
         return binding.getRoot();
     }
 }
