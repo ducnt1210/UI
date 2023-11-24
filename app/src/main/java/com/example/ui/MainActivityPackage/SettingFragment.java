@@ -17,9 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.ui.EditInfoActivity;
 import com.example.ui.LoginActivity;
 import com.example.ui.MainActivity;
+import com.example.ui.R;
+import com.example.ui.SettingPackage.EditInfoActivity;
+import com.example.ui.SettingPackage.LanguageActivity;
+import com.example.ui.SettingPackage.PrivacyActivity;
 import com.example.ui.databinding.FragmentSettingBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -30,6 +33,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -52,13 +57,13 @@ public class SettingFragment extends Fragment {
                                 .putFile(result).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        Log.d("FinancialApp", "Upload profile picture successfully!");
+                                        Log.d("UI", "Upload profile picture successfully!");
                                         Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Log.d("FinancialApp", "Upload profile picture failed!");
+                                        Log.d("UI", "Upload profile picture failed!");
                                         Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
                                     }
                                 });
@@ -148,6 +153,62 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/")));
+            }
+        });
+
+        binding.deleteAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sweetAlertDialog = new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE);
+                sweetAlertDialog.setTitleText("Are you sure?")
+                        .setContentText("You won't be able to recover this account!")
+                        .setConfirmText("Yes, delete it!")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                FirebaseFirestore.getInstance().collection("User").document(MainActivity.currentUser.getId())
+                                        .delete()
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).delete();
+                                                gsc.signOut();
+                                                FirebaseAuth.getInstance().signOut();
+                                                MainActivity.profilePicture = null;
+                                                MainActivity.currentUser = null;
+                                                requireActivity().finishAffinity();
+                                                requireActivity().finishAndRemoveTask();
+                                                sweetAlertDialog.dismiss();
+                                                startActivity(new Intent(getActivity(), LoginActivity.class));
+                                                requireActivity().finish();
+                                            }
+                                        });
+                            }
+                        })
+                        .showCancelButton(true)
+                        .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sweetAlertDialog.dismiss();
+                            }
+                        })
+                        .setCancelButtonBackgroundColor(Color.parseColor("#FFA5A5A5"))
+                        .setConfirmButtonBackgroundColor(R.color.red)
+                        .show();
+            }
+        });
+
+        binding.securityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), PrivacyActivity.class));
+            }
+        });
+
+        binding.languageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), LanguageActivity.class));
             }
         });
 
