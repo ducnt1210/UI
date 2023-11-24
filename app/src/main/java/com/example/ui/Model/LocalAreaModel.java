@@ -2,17 +2,23 @@ package com.example.ui.Model;
 
 import java.util.ArrayList;
 
-public class AreaModel {
+public class LocalAreaModel {
     private String id;
 
     private String name;
-    private ArrayList<String> localAreaIds;
+    private ArrayList<String> exhibits;
+    private String parentId;
     private ArrayList<String> description;
 
-    public AreaModel(String id, String name, ArrayList<String> localAreaIds, ArrayList<String> description) {
+    public LocalAreaModel() {
+
+    }
+
+    public LocalAreaModel(String id, String name, ArrayList<String> exhibits, String parentId, ArrayList<String> description) {
         this.id = id;
         this.name = name;
-        this.localAreaIds = localAreaIds;
+        this.exhibits = exhibits;
+        this.parentId = parentId;
         this.description = description;
     }
 
@@ -32,12 +38,20 @@ public class AreaModel {
         this.name = name;
     }
 
-    public ArrayList<String> getLocalAreaIds() {
-        return localAreaIds;
+    public ArrayList<String> getExhibits() {
+        return exhibits;
     }
 
-    public void setLocalAreaIds(ArrayList<String> localAreaIds) {
-        this.localAreaIds = localAreaIds;
+    public void setExhibits(ArrayList<String> exhibits) {
+        this.exhibits = exhibits;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     public ArrayList<String> getDescription() {
