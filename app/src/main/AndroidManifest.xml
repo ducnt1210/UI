@@ -28,6 +28,13 @@
             android:name=".NewsEventsActivity"
             android:exported="false" />
         <activity
+            android:name=".SettingPackage.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingPackage.PrivacyActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".NotificationActivity"
             android:exported="false" />
         <activity
@@ -43,7 +50,7 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".EditInfoActivity"
+            android:name=".SettingPackage.EditInfoActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
