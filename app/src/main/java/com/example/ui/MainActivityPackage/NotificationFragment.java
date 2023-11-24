@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -57,6 +58,9 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        ActionBar actionBar = ((MainActivity) requireActivity()).getSupportActionBar();
+        actionBar.show();
+        actionBar.setTitle("Thông báo");
         return inflater.inflate(R.layout.fragment_notifcation, container, false);
     }
 

@@ -31,6 +31,9 @@
             android:name=".SettingPackage.LanguageActivity"
             android:exported="false" />
         <activity
+            android:name=".OpeningActivity"
+            android:exported="false" />
+        <activity
             android:name=".SettingPackage.PrivacyActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />

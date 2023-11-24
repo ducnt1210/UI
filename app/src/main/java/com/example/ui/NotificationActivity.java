@@ -52,6 +52,8 @@ public class NotificationActivity extends AppCompatActivity {
 
         textViewTime = findViewById(R.id.textViewTime);
 
+        getSupportActionBar().hide();
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             update = bundle.getBoolean("update");

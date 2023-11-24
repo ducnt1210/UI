@@ -85,6 +85,8 @@ public class SettingFragment extends Fragment {
             }
         }
 
+        ((MainActivity)requireActivity()).getSupportActionBar().hide();
+
         binding.navHeader.username.setText(MainActivity.currentUser.getName());
         binding.navHeader.email.setText(MainActivity.currentUser.getEmail());
 

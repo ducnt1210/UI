@@ -5,14 +5,35 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/category_item_name"
+    <RelativeLayout
+        android:id="@+id/category_item_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@drawable/bg_unread_noti"
-        android:fontFamily="@font/merriweathersanswght"
-        android:padding="10dp"
-        android:text="Nhóm ngôn ngữ Việt - Mường"
-        android:textStyle="bold" />
+        android:background="@drawable/bg_unread_noti">
+
+        <TextView
+            android:id="@+id/category_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/merriweathersanswght"
+            android:padding="10dp"
+            android:text="Nhóm ngôn ngữ Việt - Mường"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/category_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/karmaregular"
+            android:padding="10dp"
+            android:text="Chi tiết"
+            android:textColor="@color/brown"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 </LinearLayout>
