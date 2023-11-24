@@ -25,7 +25,13 @@
         android:theme="@style/Theme.UI"
         tools:targetApi="31">
         <activity
+            android:name=".NewsEventsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SettingPackage.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OpeningActivity"
             android:exported="false" />
         <activity
             android:name=".SettingPackage.PrivacyActivity"

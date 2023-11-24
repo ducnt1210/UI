@@ -239,6 +239,28 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/layout_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/textViewScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Score: "
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/textViewScoreValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/textViewScore"
+                    android:text="1200"
+                    android:textSize="24sp" />
+            </RelativeLayout>
+
 
         </LinearLayout>
     </ScrollView>

@@ -18,6 +18,12 @@
         <item name="android:editTextStyle">@style/oldstandar_regularEditTextStyle</item>
     </style>
 
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/philo_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="splashscreenTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_image</item>
         <item name="android:statusBarColor">@color/white</item>
@@ -29,6 +35,11 @@
 
     <style name="oldstandar_regularEditTextStyle" parent="android:Widget.EditText">
         <item name="android:fontFamily">@font/oldstandar_regular</item>
+    </style>
+
+    <style name="RoundedCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
     </style>
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">

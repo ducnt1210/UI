@@ -92,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         } else {
+            FragmentID = "HomeFragment";
             replaceFragment(new HomeFragment());
+            binding.bottomNavigationView.setSelectedItemId(R.id.home);
         }
 
         getUser();
@@ -101,10 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
-                case R.id.home:
-                    FragmentID = "HomeFragment";
-                    replaceFragment(new HomeFragment());
-                    break;
                 case R.id.none:
                     FragmentID = "ArtifactsFragment";
                     replaceFragment(new ArtifactsFragment());
@@ -116,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.setting:
                     FragmentID = "SettingFragment";
                     replaceFragment(new SettingFragment());
+                    break;
+                default:
+                    FragmentID = "HomeFragment";
+                    replaceFragment(new HomeFragment());
                     break;
             }
             notSentNotification(user.getUid());
@@ -192,13 +194,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         profilePicture = uri;
 //                        sweetAlertDialog.dismissWithAnimation();
-                        Log.d("FinancialApp", "Get profile picture");
+                        Log.d("UI", "Get profile picture");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
 //                        sweetAlertDialog.dismissWithAnimation();
-                        Log.d("FinancialApp", e.getMessage());
+                        Log.d("UI", e.getMessage());
                     }
                 });
     }
