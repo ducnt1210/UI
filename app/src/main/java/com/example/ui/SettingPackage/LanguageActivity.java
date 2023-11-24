@@ -1,8 +1,12 @@
 package com.example.ui.SettingPackage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.ui.MainActivity;
+import com.example.ui.MainActivityPackage.SettingFragment;
+import com.example.ui.NavigationOpeningActivity;
 import com.example.ui.databinding.ActivityLanguageBinding;
 import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity;
 import com.zeugmasolutions.localehelper.Locales;
@@ -24,10 +28,25 @@ public class LanguageActivity extends LocaleAwareCompatActivity {
         binding = ActivityLanguageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        String checkUser = getIntent().getStringExtra("checkUser");
+        if (checkUser != null && checkUser.contains("newUser")) {
+            binding.openingTextView.setVisibility(View.VISIBLE);
+        } else binding.openingTextView.setVisibility(View.GONE);
+
         binding.setLanguageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setLanguageApp();
+                if (checkUser != null && checkUser.contains("newUser")) {
+                    Intent intent = new Intent(LanguageActivity.this, NavigationOpeningActivity.class);
+                    binding.openingTextView.setVisibility(View.VISIBLE);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("checkUser", "newUser");
+                    startActivity(intent);
+                } else {
+                    binding.openingTextView.setVisibility(View.GONE);
+                    startActivity(new Intent(LanguageActivity.this, MainActivity.class).putExtra("FragmentID", "SettingFragment"));
+                }
             }
         });
 

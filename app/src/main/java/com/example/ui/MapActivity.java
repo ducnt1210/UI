@@ -46,7 +46,7 @@ public class MapActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.show();
-        actionBar.setTitle("Bản đồ");
+        actionBar.setTitle(R.string.map_instruction);
 
         binding.mapLayout.setOnTouchListener((view, motionEvent) -> {
             onTouchEvent(motionEvent);

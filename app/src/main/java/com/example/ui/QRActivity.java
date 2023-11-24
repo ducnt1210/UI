@@ -129,8 +129,7 @@ public class QRActivity extends AppCompatActivity {
 //            .setTitleText("Oops...")
 //            .setContentText("Something went wrong!");
 
-        setTitle("Quét mã QR");
-
+        getSupportActionBar().hide();
         previewView = binding.cameraPreview;
         this.getWindow().setFlags(1024, 1024);
 

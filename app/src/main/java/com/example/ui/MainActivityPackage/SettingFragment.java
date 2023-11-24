@@ -25,6 +25,7 @@ import com.example.ui.LoginActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.R;
 import com.example.ui.SettingPackage.EditInfoActivity;
+import com.example.ui.SettingPackage.InstructionActivity;
 import com.example.ui.SettingPackage.LanguageActivity;
 import com.example.ui.SettingPackage.PrivacyActivity;
 import com.example.ui.databinding.FragmentSettingBinding;
@@ -189,6 +190,13 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/")));
+            }
+        });
+
+        binding.instructionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), InstructionActivity.class));
             }
         });
 

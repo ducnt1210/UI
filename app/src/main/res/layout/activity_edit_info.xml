@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="UPDATE INFORMATION" />
+            android:text="@string/updateinfo" />
 
 
         <TextView
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="48sp"
             android:layout_marginTop="30dp"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <EditText
@@ -115,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="48sp"
             android:layout_marginTop="30dp"
-            android:hint="Confirm your password"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword" />
 
         <Button
@@ -123,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="CHANGE PASSWORD" />
+            android:text="@string/change_password" />
 
 
     </LinearLayout>

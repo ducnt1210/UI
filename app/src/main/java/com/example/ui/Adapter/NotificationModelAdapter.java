@@ -127,10 +127,10 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             Log.d("count", Integer.toString(count));
             if (count == 0){
                 ++count;
-                holder.dateTextView.setText("Hôm nay");
+                holder.dateTextView.setText(R.string.today);
             } else {
                 count = 0;
-                holder.dateTextView.setText("Trước đó");
+                holder.dateTextView.setText(R.string.before);
             }
         }
     }

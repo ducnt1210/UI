@@ -28,15 +28,21 @@
             android:name=".NewsEventsActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingPackage.LanguageActivity"
+            android:name=".SettingPackage.InstructionItemContentActivity"
             android:exported="false" />
         <activity
-            android:name=".OpeningActivity"
+            android:name=".NavigationOpeningActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingPackage.LanguageActivity"
             android:exported="false" />
         <activity
             android:name=".SettingPackage.PrivacyActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SettingPackage.InstructionActivity"
+            android:exported="false" />
         <activity
             android:name=".NotificationActivity"
             android:exported="false" />

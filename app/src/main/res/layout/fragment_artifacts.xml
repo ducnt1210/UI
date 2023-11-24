@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@drawable/search_bg"
-                    android:hint="🔍 Tìm kiếm"
+                    android:hint="@string/search_bar"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp" />
 
