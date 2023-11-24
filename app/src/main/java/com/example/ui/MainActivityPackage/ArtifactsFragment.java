@@ -32,15 +32,12 @@ public class ArtifactsFragment extends Fragment {
 
         ActionBar actionBar = ((MainActivity) requireActivity()).getSupportActionBar();
         actionBar.show();
-        actionBar.setTitle("Danh mục hiện vật");
+        actionBar.setTitle(R.string.artifact_category);
 
         // Initialize and set the adapter
         System.out.println(1234);
         areaAdapter = new AreaAdapter(getContext());
         expandableListView.setAdapter(areaAdapter);
-
-        binding.artifactsHeader.headerText.setText("Danh mục hiện vật");
-        binding.artifactsHeader.headerIcon.setImageResource(R.drawable.white_list);
 
         return binding.getRoot();
     }

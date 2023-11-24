@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.ui.Model.UserModel;
+import com.example.ui.SettingPackage.LanguageActivity;
 import com.example.ui.databinding.ActivityLoginBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -88,8 +89,9 @@ public class LoginActivity extends LocaleAwareCompatActivity {
         if (user != null) {
             String checkUser = getIntent().getStringExtra("checkUser");
             if (checkUser != null && checkUser.contains("newUser")) {
-                Intent intent = new Intent(LoginActivity.this, OpeningActivity.class);
+                Intent intent = new Intent(LoginActivity.this, LanguageActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("checkUser", "newUser");
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);

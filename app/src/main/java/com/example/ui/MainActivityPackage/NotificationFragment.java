@@ -60,7 +60,7 @@ public class NotificationFragment extends Fragment {
         // Inflate the layout for this fragment
         ActionBar actionBar = ((MainActivity) requireActivity()).getSupportActionBar();
         actionBar.show();
-        actionBar.setTitle("Thông báo");
+        actionBar.setTitle(R.string.notification);
         return inflater.inflate(R.layout.fragment_notifcation, container, false);
     }
 

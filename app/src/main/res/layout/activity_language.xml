@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="30dp"
-    android:orientation="vertical"
     android:background="@color/bg_grey"
+    android:orientation="vertical"
+    android:padding="30dp"
     tools:context=".SettingPackage.LanguageActivity">
+
+    <TextView
+        android:id="@+id/openingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="80dp"
+        android:fontFamily="@font/alegreysan"
+        android:gravity="center"
+        android:text="WELCOME TO THE VMUSEUM! \nFirst, please choose your language!"
+        android:textColor="?attr/colorSecondary"
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="10dp"
-        app:cardCornerRadius="10dp"
-        android:layout_height="wrap_content">
+        app:cardCornerRadius="10dp">
 
         <LinearLayout
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="10dp"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/choose_your_language"
-                android:textSize="30sp"
-                android:layout_height="wrap_content" />
+                android:textSize="30sp" />
 
             <RadioGroup
                 android:id="@+id/languageRadioGroup"
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
                 <RadioButton
@@ -67,11 +80,11 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:layout_width="wrap_content"
         android:id="@+id/set_language_button"
-        android:layout_marginTop="100dp"
-        android:text="@string/set_your_languageBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="30dp"
+        android:text="@string/set_your_languageBT" />
 
 </LinearLayout>

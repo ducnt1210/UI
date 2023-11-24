@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/baseline_home_24" />
 
     <item
         android:id="@+id/none"
-        android:title="Artifacts"
+        android:title="@string/artifacts"
         android:icon="@drawable/list" />
 
     <item
@@ -17,11 +17,11 @@
 
     <item
         android:id="@+id/notification"
-        android:title="Notification"
+        android:title="@string/notification"
         android:icon="@drawable/baseline_notifications_24" />
 
     <item
         android:id="@+id/setting"
-        android:title="Setting"
+        android:title="@string/setting"
         android:icon="@drawable/baseline_settings_24" />
 </menu>

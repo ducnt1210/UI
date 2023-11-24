@@ -21,6 +21,7 @@ import com.example.ui.IntroContentActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.MapActivity;
 import com.example.ui.NewsEventsActivity;
+import com.example.ui.NavigationOpeningActivity;
 import com.example.ui.R;
 import com.example.ui.Utils;
 import com.example.ui.databinding.FragmentHomeBinding;
@@ -35,7 +36,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
-    FragmentHomeBinding binding;
+    private FragmentHomeBinding binding;
 
     private NewsHelper newsHelper;
     @Override
@@ -54,6 +55,14 @@ public class HomeFragment extends Fragment {
     }
 
     protected void getIntroContentView() {
+        binding.homeHeaderSearchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), NavigationOpeningActivity.class);
+                intent.putExtra("heading", "Timkiem");
+                startActivity(intent);
+            }
+        });
         binding.homeMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

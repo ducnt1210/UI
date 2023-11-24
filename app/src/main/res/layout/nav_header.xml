@@ -72,9 +72,8 @@
                 android:paddingStart="20dp"
                 android:layout_marginTop="20dp"
                 android:paddingEnd="20dp"
-                android:text="Edit Info"
+                android:text="@string/editinfo"
                 android:textAllCaps="false" />
-
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
