@@ -87,7 +87,8 @@
                             android:fontFamily="@font/alegrey_bold"
                             android:text="@string/introduce"
                             android:textSize="25sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="#666666"/>
 
                         <TextView
                             android:id="@+id/homeIntroMore"
@@ -330,7 +331,8 @@
                         android:fontFamily="@font/alegrey_bold"
                         android:text="@string/news_events"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="#666666"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"

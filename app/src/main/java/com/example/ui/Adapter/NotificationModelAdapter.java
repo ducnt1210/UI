@@ -3,6 +3,7 @@ package com.example.ui.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -125,6 +126,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             holder.item.setVisibility(View.GONE);
             Log.d("type", "null");
             Log.d("count", Integer.toString(count));
+            holder.dateTextView.setTextColor(Color.parseColor("#666666"));
             if (count == 0){
                 ++count;
                 holder.dateTextView.setText(R.string.today);
