@@ -33,12 +33,14 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     private NewsHelper newsHelper;
+    public String language = Locale.getDefault().getLanguage();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -48,6 +50,7 @@ public class HomeFragment extends Fragment {
         initNews();
         binding = FragmentHomeBinding.bind(rootView);
         getIntroContentView();
+        Log.d("ABCDDD", language);
 
         Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).hide();
 
@@ -154,8 +157,21 @@ public class HomeFragment extends Fragment {
             ImageView img = cardView.findViewById(getImageId(cardIndex));
             TextView text = cardView.findViewById(getTextId(cardIndex));
 
-            String title = document.getString("title");
-            List<String> description = (List<String>) document.get("description");
+            String title;
+            List<String> description;
+            if (language.equals("vi")) {
+                title = document.getString("title");
+                description = (List<String>) document.get("description");
+            } else if (language.equals("en")) {
+                title = document.getString("title_en");
+                description = (List<String>) document.get("description_en");
+            } else if (language.equals("ja")) {
+                title = document.getString("title_ja");
+                description = (List<String>) document.get("description_ja");
+            } else {
+                title = document.getString("title_zh");
+                description = (List<String>) document.get("description_zh");
+            }
             String imageName = document.getString("image_path");
             String time = Utils.formatDate(document.getTimestamp("time"));
 

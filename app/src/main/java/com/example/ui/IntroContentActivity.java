@@ -20,6 +20,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -35,6 +36,7 @@ public class IntroContentActivity extends AppCompatActivity {
     private int savedVideoPosition = 0;
     private VideoView videoView;
     private SweetAlertDialog sweetAlertDialog;
+    String language = Locale.getDefault().getLanguage();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,7 +88,16 @@ public class IntroContentActivity extends AppCompatActivity {
 
         documentReference.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
-                List<String> dataIntro = (List<String>) documentSnapshot.get("content");
+                List<String> dataIntro;
+                if (language.equals("vi")) {
+                    dataIntro = (List<String>) documentSnapshot.get("content");
+                } else if (language.equals("en")) {
+                    dataIntro = (List<String>) documentSnapshot.get("content_en");
+                } else if (language.equals("ja")) {
+                    dataIntro = (List<String>) documentSnapshot.get("content_ja");
+                } else {
+                    dataIntro = (List<String>) documentSnapshot.get("content_zh");
+                }
 
                 if (dataIntro != null && !dataIntro.isEmpty()) {
                     List<String> introContentList = new ArrayList<>();
@@ -138,22 +149,22 @@ public class IntroContentActivity extends AppCompatActivity {
     protected void setIntroContentView() {
         String heading = getIntent().getStringExtra("heading");
         if (heading.equals("Chienluoc")) {
-            binding.introTextHeading.setText("Chiến lược bảo tàng");
+            binding.introTextHeading.setText(R.string.strategy);
             showContent("Chienluoc");
         } else if (heading.equals("Lichsu")) {
-            binding.introTextHeading.setText("Lịch sử bảo tàng");
+            binding.introTextHeading.setText(R.string.history);
             showContent("Lichsu");
         } else if (heading.equals("Khonggian")) {
-            binding.introTextHeading.setText("Các không gian");
+            binding.introTextHeading.setText(R.string.history);
             showContent("Khonggian");
         } else if (heading.equals("Nhansu")) {
-            binding.introTextHeading.setText("Tổ chức và nhân sự");
+            binding.introTextHeading.setText(R.string.personel);
             showContent("Nhansu");
         } else if (heading.equals("Hoptac")) {
-            binding.introTextHeading.setText("Hợp tác");
+            binding.introTextHeading.setText(R.string.cooperation);
             showContent("Hoptac");
         } else {
-            binding.introTextHeading.setText("Giới thiệu");
+            binding.introTextHeading.setText(R.string.introduce);
             showContent("Tongquan");
         }
     }

@@ -71,4 +71,36 @@
     <string name="qrscan">扫描QR码或从设备中选择</string>
     <string name="turn_flash">打开闪光灯</string>
     <string name="choose_qr">选择QR码</string>
+
+    <!--    ArtifactFragment-->
+    <string name="architect">建筑师</string>
+    <string name="peoples_vietnam">越南人民</string>
+    <string name="peoples_world">世界人民</string>
+    <string name="book_ticket">预订门票</string>
+
+    <!--    MapActivity-->
+    <string name="see_direction">查看方向</string>
+    <string name="see_detail">查看详情</string>
+    <string name="nha_cham">1. 湛楼</string>
+    <string name="ghe_ngo_khome">2. 高棉船</string>
+    <string name="thuy_dinh">3. 水寺</string>
+    <string name="nha_viet">4. 越南人的房子</string>
+    <string name="nha_thuyen">5. 船屋</string>
+    <string name="nha_rong_ba_na">6. 巴纳社区房屋</string>
+    <string name="nha_e_de">7. 埃德之家</string>
+    <string name="nha_mo_gia_rai">8. 贾劳墓屋</string>
+    <string name="nha_mo_co_tu">9. 古屋墓</string>
+    <string name="lo_ren_nung">10. 努恩锻造</string>
+    <string name="nha_tay">11. 泰国房子</string>
+    <string name="nha_dao">12. 刀屋</string>
+    <string name="nha_h_mong">13. H\'蒙房子</string>
+    <string name="nha_ha_nhi">14. 哈尼房子</string>
+    <string name="nha_thuc_nghiem">15. 实验室</string>
+    <string name="nha_hang">16. 餐厅</string>
+    <string name="cua_hang_sach">17. 书店</string>
+    <string name="cua_hang_luu_niem">18. 纪念品商店</string>
+    <string name="cafe">19. 咖啡馆</string>
+    <string name="cafe_cake">20. 咖啡和蛋糕</string>
+    <string name="toa_canh_dieu">风筝塔</string>
+    <string name="toa_trong_dong">青铜鼓塔</string>
 </resources>

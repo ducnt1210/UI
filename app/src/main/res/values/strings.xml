@@ -72,4 +72,36 @@
     <string name="qrscan">Scan a QR or choose from the device</string>
     <string name="turn_flash">Turn on Flash</string>
     <string name="choose_qr">Choose a QR</string>
+
+<!--    ArtifactFragment-->
+    <string name="architect">Architect garden</string>
+    <string name="peoples_vietnam">Peoples of Vietnam</string>
+    <string name="peoples_world">Peoples of the world</string>
+    <string name="book_ticket">BOOK TICKET</string>
+
+<!--    MapActivity-->
+    <string name="see_direction">See direction</string>
+    <string name="see_detail">See detail</string>
+    <string name="nha_cham">1. Cham House</string>
+    <string name="ghe_ngo_khome">2. Khomer Boat</string>
+    <string name="thuy_dinh">3. Water Temple</string>
+    <string name="nha_viet">4. Viet House</string>
+    <string name="nha_thuyen">5. Boat House</string>
+    <string name="nha_rong_ba_na">6. Ba Na Communal House</string>
+    <string name="nha_e_de">7. E De House</string>
+    <string name="nha_mo_gia_rai">8. Gia Rai Tomb</string>
+    <string name="nha_mo_co_tu">9. Co Tu Tomb</string>
+    <string name="lo_ren_nung">10. Nung forge</string>
+    <string name="nha_tay">11. Tay House</string>
+    <string name="nha_dao">12. Dao House</string>
+    <string name="nha_h_mong">13. H\'Mong House</string>
+    <string name="nha_ha_nhi">14. Ha Nhi House</string>
+    <string name="nha_thuc_nghiem">15. Experimental House</string>
+    <string name="nha_hang">16. Restaurant</string>
+    <string name="cua_hang_sach">17. Bookstore</string>
+    <string name="cua_hang_luu_niem">18. Souvenir Shop</string>
+    <string name="cafe">19. Cafe</string>
+    <string name="cafe_cake">20. Cafe and Cake</string>
+    <string name="toa_canh_dieu">Kite Tower</string>
+    <string name="toa_trong_dong">Bronze Drum Tower</string>
 </resources>

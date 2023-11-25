@@ -71,4 +71,36 @@
     <string name="qrscan">QRコードをスキャンするか、デバイスから選択します</string>
     <string name="turn_flash">フラッシュをオンにする</string>
     <string name="choose_qr">QRコードを選択する</string>
+
+<!--    ArtifactsFragment-->
+    <string name="architect">建築庭園</string>
+    <string name="peoples_vietnam">ベトナム人</string>
+    <string name="peoples_world">世界の人々</string>
+    <string name="book_ticket">チケットを予約する</string>
+
+<!--    MapActivity-->
+    <string name="see_direction">方向を見る</string>
+    <string name="see_detail">詳細を見る</string>
+    <string name="nha_cham">1. チャムハウス</string>
+    <string name="ghe_ngo_khome">2. クメールボート</string>
+    <string name="thuy_dinh">3. 水の寺院</string>
+    <string name="nha_viet">4. ベトナムの家</string>
+    <string name="nha_thuyen">5. ボートハウス</string>
+    <string name="nha_rong_ba_na">6. バナコミュニティハウス</string>
+    <string name="nha_e_de">7. エデハウス</string>
+    <string name="nha_mo_gia_rai">8. ギアライトゥーム</string>
+    <string name="nha_mo_co_tu">9. コトゥーム</string>
+    <string name="lo_ren_nung">10. ヌンフォージ</string>
+    <string name="nha_tay">11. タイハウス</string>
+    <string name="nha_dao">12. ダオハウス</string>
+    <string name="nha_h_mong">13. H\'モンハウス</string>
+    <string name="nha_ha_nhi">14. ハニハウス</string>
+    <string name="nha_thuc_nghiem">15. 実験ハウス</string>
+    <string name="nha_hang">16. レストラン</string>
+    <string name="cua_hang_sach">17. 書店</string>
+    <string name="cua_hang_luu_niem">18. お土産屋さん</string>
+    <string name="cafe">19. カフェ</string>
+    <string name="cafe_cake">20. カフェとケーキ</string>
+    <string name="toa_canh_dieu">凧タワー</string>
+    <string name="toa_trong_dong">ブロンズドラムタワー</string>
 </resources>

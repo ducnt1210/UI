@@ -41,6 +41,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -53,6 +54,7 @@ public class NotificationFragment extends Fragment {
 //    private NotificationModelAdapter notificationModelAdapterPrevious;
     private NotificationModelAdapter notificationModelAdapter;
     private SweetAlertDialog sweetAlertDialog;
+    String language = Locale.getDefault().getLanguage();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,10 +121,20 @@ public class NotificationFragment extends Fragment {
 //                            for (int i = 0; i < description.size(); ++i) {
 //                                Log.d("doc" + Integer.toString(i), description.get(i));
 //                            }
+                            List<String> description;
+                            if (language.equals("vi")) {
+                                description = (List<String>) doc.get("description");
+                            } else if (language.equals("en")) {
+                                description = (List<String>) doc.get("description_en");
+                            } else if (language.equals("ja")) {
+                                description = (List<String>) doc.get("description_ja");
+                            } else  {
+                                description = (List<String>) doc.get("description_zh");
+                            }
                             NotificationModel notificationModel =
                                     new NotificationModel(doc.getId(),
                                             doc.getString("image_path"),
-                                            (List<String>) doc.get("description"),
+                                            description,
                                             doc.getString("user_id"),
                                             doc.getBoolean("seen"),
                                             doc.getBoolean("sentNotification"),

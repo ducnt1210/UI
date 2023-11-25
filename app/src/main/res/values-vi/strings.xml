@@ -71,4 +71,36 @@
     <string name="qrscan">Quét mã QR hoặc chọn từ thiết bị</string>
     <string name="turn_flash">Bật đèn flash</string>
     <string name="choose_qr">Chọn mã QR</string>
+
+<!--    ArtifactFragment-->
+    <string name="architect">Vườn kiến trúc</string>
+    <string name="peoples_vietnam">Các dân tộc Việt Nam</string>
+    <string name="peoples_world">Các dân tộc trên thế giới</string>
+    <string name="book_ticket">ĐẶT VÉ</string>
+
+<!--    MapActivity-->
+    <string name="see_direction">Xem chỉ đường</string>
+    <string name="see_detail">Xem chi tiết</string>
+    <string name="nha_cham">1. Nhà Chăm</string>
+    <string name="ghe_ngo_khome">2. Ghe Ngo Khơ Me</string>
+    <string name="thuy_dinh">3. Thủy Đình</string>
+    <string name="nha_viet">4. Nhà Việt</string>
+    <string name="nha_thuyen">5. Nhà Thuyền</string>
+    <string name="nha_rong_ba_na">6. Nhà Rông Ba Na</string>
+    <string name="nha_e_de">7. Nhà Ê Đê</string>
+    <string name="nha_mo_gia_rai">8. Nhà Mồ Gia Rai</string>
+    <string name="nha_mo_co_tu">9. Nhà Mồ Cơ Tu</string>
+    <string name="lo_ren_nung">10. Lò Rèn Nùng</string>
+    <string name="nha_tay">11. Nhà Tày</string>
+    <string name="nha_dao">12. Nhà Dao</string>
+    <string name="nha_h_mong">13. Nhà H\'Mông</string>
+    <string name="nha_ha_nhi">14. Nhà Hà Nhì</string>
+    <string name="nha_thuc_nghiem">15. Nhà Thực Nghiệm</string>
+    <string name="nha_hang">16. Nhà Hàng</string>
+    <string name="cua_hang_sach">17. Cửa Hàng Sách</string>
+    <string name="cua_hang_luu_niem">18. Cửa Hàng Lưu Niệm</string>
+    <string name="cafe">19. Cafe</string>
+    <string name="cafe_cake">20. Cafe &amp; Cake</string>
+    <string name="toa_canh_dieu">Tòa Cánh diều</string>
+    <string name="toa_trong_dong">Tòa Trống đồng</string>
 </resources>
