@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        currentUser = new UserModel(user.getUid(), user.getDisplayName(), null, user.getEmail()); // temp fix for current user not loaded when from Main info to setting fragment
 
         FragmentID = getIntent().getStringExtra("FragmentID");
         if (FragmentID != null) {
