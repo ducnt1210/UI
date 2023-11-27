@@ -45,12 +45,8 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class NotificationFragment extends Fragment {
-//    private RecyclerView recyclerViewToday;
-//    private RecyclerView recyclerViewPrevious;
     private RecyclerView recyclerViewNotification;
     private FirebaseFirestore db;
-//    private NotificationModelAdapter notificationModelAdapterToday;
-//    private NotificationModelAdapter notificationModelAdapterPrevious;
     private NotificationModelAdapter notificationModelAdapter;
     private SweetAlertDialog sweetAlertDialog;
 
@@ -67,14 +63,11 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("frag", "test");
         getNotificationModelList();
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-//        notificationModelAdapterToday = new NotificationModelAdapter(getContext());
-//        notificationModelAdapterPrevious = new NotificationModelAdapter(getContext());
         notificationModelAdapter = new NotificationModelAdapter(getContext());
 
         sweetAlertDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
@@ -85,14 +78,6 @@ public class NotificationFragment extends Fragment {
 
         recyclerViewNotification = view.findViewById(R.id.notificationRecyclerView);
 
-//        recyclerViewToday = view.findViewById(R.id.notificationRecyclerView);
-//        recyclerViewToday.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerViewToday.setAdapter(notificationModelAdapterToday);
-
-//        recyclerViewPrevious = view.findViewById(R.id.notificationRecyclerViewPrevious);
-//        recyclerViewPrevious.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerViewPrevious.setAdapter(notificationModelAdapterPrevious);
-
         recyclerViewNotification.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewNotification.setAdapter(notificationModelAdapter);
     }
@@ -102,7 +87,7 @@ public class NotificationFragment extends Fragment {
         List<NotificationModel> notificationModelListToday = new ArrayList<>();
         List<NotificationModel> notificationModelListPrevious = new ArrayList<>();
         List<NotificationModel> notificationModelList = new ArrayList<>();
-        List<NotificationModel> notifications = new ArrayList<>();
+//        List<Boolean> notifications = new ArrayList<>();
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Date currentDate = new Date();
@@ -141,7 +126,8 @@ public class NotificationFragment extends Fragment {
                             }
                         }
 
-                        notificationModelList.add(null);
+//                        notificationModelList.add(null);
+                        notificationModelList.add(new NotificationModel());
                         Collections.sort(notificationModelListToday, new Comparator<NotificationModel>() {
                             public int compare(NotificationModel o1, NotificationModel o2) {
                                 return o2.getTime().compareTo(o1.getTime());
@@ -150,7 +136,8 @@ public class NotificationFragment extends Fragment {
 //                        notificationModelAdapterToday.setNotificationModelList(notificationModelListToday);
                         notificationModelList.addAll(notificationModelListToday);
 
-                        notificationModelList.add(null);
+//                        notificationModelList.add(null);
+                        notificationModelList.add(new NotificationModel());
                         Collections.sort(notificationModelListPrevious, new Comparator<NotificationModel>() {
                             @Override
                             public int compare(NotificationModel o1, NotificationModel o2) {

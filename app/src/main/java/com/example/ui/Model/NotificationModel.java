@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.List;
@@ -22,7 +23,13 @@ public class NotificationModel {
     private Timestamp time;
 
     public NotificationModel() {
-
+        this.id = "";
+        this.image_path = "";
+        this.description = new ArrayList<>();
+        this.user_id = "";
+        this.seen = true;
+        this.sentNotification = true;
+        this.time = Timestamp.now();
     }
 
     public NotificationModel(String id, String image_path, List<String> description,
