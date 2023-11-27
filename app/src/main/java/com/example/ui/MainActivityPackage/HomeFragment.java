@@ -48,6 +48,8 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.bind(rootView);
         getIntroContentView();
 
+        ((MainActivity)requireActivity()).getSupportActionBar().hide();
+
         return rootView;
     }
 
@@ -108,8 +110,8 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-      
-        public void initNews() {
+
+    public void initNews() {
         newsHelper.fetchLatestNews(new NewsHelper.NewsDataCallback() {
             @Override
             public void onDataLoaded(List<DocumentSnapshot> newsList) {

@@ -52,6 +52,8 @@ public class NotificationActivity extends AppCompatActivity {
 
         textViewTime = findViewById(R.id.textViewTime);
 
+        getSupportActionBar().hide();
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             update = bundle.getBoolean("update");
@@ -98,11 +100,6 @@ public class NotificationActivity extends AppCompatActivity {
         sweetAlertDialog.dismissWithAnimation();
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//    }
-
     private void updateNotification(String id) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference reference = db.collection("Notification").document(id);
@@ -134,11 +131,13 @@ public class NotificationActivity extends AppCompatActivity {
 ////            MainActivity.FragmentID = "NotificationFragment";
 //            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
 //            intent.putExtra("FragmentID", "NotificationFragment");
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //            startActivity(intent);
 //        } else {
 //            super.onBackPressed();
 //        }
         Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("FragmentID", "NotificationFragment");
         startActivity(intent);
     }

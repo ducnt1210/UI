@@ -84,10 +84,21 @@ public class LoginActivity extends LocaleAwareCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
+
         if (user != null) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+            String checkUser = getIntent().getStringExtra("checkUser");
+            if (checkUser != null && checkUser.contains("newUser")) {
+                Intent intent = new Intent(LoginActivity.this, OpeningActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(intent);
         }
 
         binding.login.setOnClickListener(new View.OnClickListener() {

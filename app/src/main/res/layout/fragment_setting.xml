@@ -414,12 +414,6 @@
                         android:layout_toEndOf="@id/sign_out_icon"
                         android:textColor="@color/white" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/baseline_keyboard_arrow_right_24"
-                        android:layout_height="wrap_content" />
 
                 </RelativeLayout>
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_grey">
+
+    <RelativeLayout
+        android:id="@+id/noti_item"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/sub_item_bg"
+        android:paddingLeft="5dp"
+        android:paddingTop="2dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="2dp">
+
+        <ImageView
+            android:id="@+id/img_sub_item"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/demo_img2"
+            app:civ_border_color="@color/white" />
+
+
+        <TextView
+            android:id="@+id/heading_sub_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_toRightOf="@id/img_sub_item"
+            android:ellipsize="end"
+            android:fontFamily="@font/merriweathersanswght"
+            android:maxLines="2"
+            android:text="Trống đồng Đông Sơn"
+            android:textColor="@color/brown"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_noti_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heading_sub_item"
+            android:layout_alignLeft="@id/heading_sub_item"
+            android:ellipsize="end"
+            android:fontFamily="@font/merriweathersanswght"
+            android:maxLines="2"
+            android:text="Trống đồng hay mặt trống đồng là một trong những sản phẩm ý nghĩa dùng để treo trong nhà, phòng làm việc, phòng họp cơ quan, giúp tăng tính thẩm mỹ, mang lại phong thủy tốt và giữ gìn truyền thống văn hóa dân tộc Việt Nam. Đồ đồng Quang Hà là cơ sở đúc đồng uy tín chuyên cung cấp trồng đồng, mặt trống đồng đẹp, chất lượng."
+            android:textColor="@color/gray"
+            android:textSize="10sp" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

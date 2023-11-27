@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.Model.NotificationModel;
 import com.example.ui.NotificationActivity;
+import com.example.ui.QuizActivity;
 import com.example.ui.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -77,10 +78,8 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 
     @Override
     public void onBindViewHolder(@NonNull NotificationModelViewHolder holder, int position) {
-//        Log.d("notification", Integer.toString(notificationModelList.size()));
         NotificationModel item = this.notificationModelList.get(position);
-        if (item != null) {
-            Log.d("type", item.toString());
+        if (item.getId() != "") {
             holder.dateTextView.setVisibility(View.GONE);
 
             if (item.getSeen()) {
@@ -123,27 +122,26 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             });
         } else {
             holder.item.setVisibility(View.GONE);
-            Log.d("type", "null");
-            Log.d("count", Integer.toString(count));
             if (count == 0){
                 ++count;
                 holder.dateTextView.setText("Hôm nay");
             } else {
-                count = 0;
+//                count = 0;
                 holder.dateTextView.setText("Trước đó");
             }
         }
     }
 
     private void goToDetailedNotification(NotificationModel item) {
-        Intent intent = new Intent(this.context, NotificationActivity.class);
-        Bundle bundle = new Bundle();
+        Intent intent = new Intent(this.context, QuizActivity.class);
+//        Intent intent = new Intent(this.context, NotificationActivity.class);
+//        Bundle bundle = new Bundle();
 //        bundle.putString("id", item.getId());
-        bundle.putStringArrayList("description", (ArrayList<String>) item.getDescription());
-        bundle.putString("time", item.formatDate());
-        bundle.putBoolean("update", false);
-        bundle.putString("id", item.getId());
-        intent.putExtras(bundle);
+//        bundle.putStringArrayList("description", (ArrayList<String>) item.getDescription());
+//        bundle.putString("time", item.formatDate());
+//        bundle.putBoolean("update", false);
+//        bundle.putString("id", item.getId());
+//        intent.putExtras(bundle);
         this.context.startActivity(intent);
     }
 

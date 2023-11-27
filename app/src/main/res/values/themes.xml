@@ -18,6 +18,12 @@
         <item name="android:editTextStyle">@style/oldstandar_regularEditTextStyle</item>
     </style>
 
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/philo_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="splashscreenTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_image</item>
         <item name="android:statusBarColor">@color/white</item>

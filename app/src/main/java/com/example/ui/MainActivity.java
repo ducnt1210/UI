@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         notSentNotification(user.getUid());
-        Log.d("onresume", "on resume");
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -131,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Log.e("FragmentID", FragmentID);
         if (FragmentID == "HomeFragment") {
             finish();
         } else {
@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
         bundle.putBoolean("update", true);
         bundle.putString("id", notificationModel.getId());
         intent.putExtras(bundle);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(intent);
