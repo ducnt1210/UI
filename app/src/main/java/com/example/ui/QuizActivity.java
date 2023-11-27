@@ -57,7 +57,7 @@ public class QuizActivity extends AppCompatActivity {
         skip = (TextView) findViewById(R.id.quiz_skip);
         submit = (TextView) findViewById(R.id.quiz_skip);
 
-
+        getSupportActionBar().hide();
 
         quizAdapter = new QuizAdapter(quizModelList, new ArrayList<>());
         recyclerViewQuiz.setAdapter(quizAdapter);

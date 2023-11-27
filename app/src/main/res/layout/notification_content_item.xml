@@ -15,7 +15,8 @@
         android:lineSpacingExtra="1.3dp"
         android:text=""
         android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:justificationMode="inter_word"/>
 
     <ImageView
         android:id="@+id/notification_content_image"
