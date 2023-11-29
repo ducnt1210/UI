@@ -67,15 +67,21 @@ public class SettingFragment extends Fragment {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                         Log.d("UI", "Upload profile picture successfully!");
+                                        sweetAlertDialog.dismiss();
                                         Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         Log.d("UI", "Upload profile picture failed!");
-                                        Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
+                                        sweetAlertDialog.dismiss();
+                                        Toast.makeText(requireActivity(), "Upload failed!", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+                    } else {
+                        Log.d("UI", "Get image failed!");
+                        Toast.makeText(requireActivity(), "Upload failed!", Toast.LENGTH_SHORT).show();
+                        sweetAlertDialog.dismiss();
                     }
                 }
             });
@@ -167,6 +173,8 @@ public class SettingFragment extends Fragment {
         binding.navHeader.imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sweetAlertDialog = new SweetAlertDialog(requireActivity(), SweetAlertDialog.PROGRESS_TYPE);
+                sweetAlertDialog.show();
                 getImage.launch("image/*");
 
             }

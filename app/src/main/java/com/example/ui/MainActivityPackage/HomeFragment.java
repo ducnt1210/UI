@@ -20,8 +20,8 @@ import com.example.ui.Helper.NewsHelper;
 import com.example.ui.IntroContentActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.MapActivity;
-import com.example.ui.NewsEventsActivity;
 import com.example.ui.NavigationOpeningActivity;
+import com.example.ui.NewsEventsActivity;
 import com.example.ui.R;
 import com.example.ui.Utils;
 import com.example.ui.databinding.FragmentHomeBinding;
@@ -35,15 +35,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     private NewsHelper newsHelper;
+    SweetAlertDialog sweetAlertDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+
+        sweetAlertDialog = new SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText("Loading");
+        sweetAlertDialog.setCancelable(true);
+        sweetAlertDialog.show();
+
         newsHelper = new NewsHelper();
         initNews();
         binding = FragmentHomeBinding.bind(rootView);
@@ -166,6 +176,9 @@ public class HomeFragment extends Fragment {
                 public void onSuccess(Uri uri) {
                     if (uri != null) {
                         Glide.with(requireContext()).load(uri).into(img);
+                        if (cardIndex == 6) {
+                            sweetAlertDialog.dismiss();
+                        }
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {

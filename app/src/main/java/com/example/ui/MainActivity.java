@@ -46,12 +46,15 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class MainActivity extends AppCompatActivity {
     public static UserModel currentUser;
     private String FragmentID = "HomeFragment";
     public static Uri profilePicture = null;
     FirebaseUser user;
     ActivityMainBinding binding;
+    SweetAlertDialog sweetAlertDialog;
 
     @Override
     public void onResume() {
@@ -66,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText("Loading");
+        sweetAlertDialog.setCancelable(false);
+        sweetAlertDialog.show();
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -181,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(MainActivity.this, "User Failed!", Toast.LENGTH_SHORT).show();
-//                            sweetAlertDialog.dismissWithAnimation();
+                            sweetAlertDialog.dismiss();
                         }
                     });
         }
@@ -193,13 +201,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         profilePicture = uri;
-//                        sweetAlertDialog.dismissWithAnimation();
+                        sweetAlertDialog.dismiss();
                         Log.d("UI", "Get profile picture");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-//                        sweetAlertDialog.dismissWithAnimation();
+                        sweetAlertDialog.dismiss();
                         Log.d("UI", e.getMessage());
                     }
                 });
