@@ -179,6 +179,7 @@ public class LoginActivity extends LocaleAwareCompatActivity {
     }
 
     private void ggSignin() {
+        sweetAlertDialog.show();
         Intent intent = gsc.getSignInIntent();
         startActivityForResult(intent, 1000);
     }
@@ -193,7 +194,9 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                 Log.d(TAG, "firebaseAuthWithGoogle" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                sweetAlertDialog.dismiss();
+                Toast.makeText(this, "Login with Google failed!", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Error" + e.getMessage());
             }
         }
     }
@@ -233,6 +236,7 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                                                     @Override
                                                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                        sweetAlertDialog.dismiss();
                                                         startActivity(intent);
                                                         finish();
                                                     }
@@ -242,6 +246,7 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
                                                 Log.w(TAG, "signInWithCredential:failure", task.getException());
+                                                sweetAlertDialog.dismiss();
                                                 Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                                             }
                                         });
@@ -253,6 +258,7 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                                         if (tempGGUser.isSignIn()) {
                                             Toast.makeText(LoginActivity.this, "This account already been signed in!", Toast.LENGTH_SHORT).show();
                                             FirebaseAuth.getInstance().signOut();
+                                            sweetAlertDialog.dismiss();
                                             gsc.signOut();
                                             LoginActivity.this.recreate();
                                         } else {
@@ -262,6 +268,7 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                    sweetAlertDialog.dismiss();
                                                     startActivity(intent);
                                                     finish();
                                                 }
@@ -272,6 +279,7 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                             }
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            sweetAlertDialog.dismiss();
                             Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                         }
                     }
