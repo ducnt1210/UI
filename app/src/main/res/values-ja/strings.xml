@@ -48,8 +48,12 @@
     <string name="dangerzone">危険地帯</string>
     <string name="logout">ログアウト</string>
     <string name="deleteaccount">アカウントを削除する</string>
+    <string name="privacy">当社のサービスを使用すると、お客様は情報を信頼して当社に委ねています。 これは大きな責任であり、情報を保護し、お客様をコントロールできるように努めています。</string>
+    <string name="privacy1">このプライバシーポリシーは、お客様が収集する情報、収集する理由、および情報を更新、管理、エクスポート、および削除する方法を理解するのに役立ちます。 このプライバシーポリシーは、VMUSEUMおよびその関連会社が提供するすべてのサービスに適用されます。ただし、このプライバシーポリシーを組み込まない個別のプライバシーポリシーを持つサービスは除外されます。 このプライバシーポリシーは、このプライバシーポリシーを組み込まない個別のプライバシーポリシーを持つサービスには適用されません。</string>
+    <string name="privacy2">私たちは、お客様全員により良いサービスを提供するために情報を収集しています。 たとえば、お客様がVMUSEUMアカウントにサインアップする必要があるサービスが多数あります。 そうすると、お名前、メールアドレス、電話番号、クレジットカードなどの個人情報をお尋ねします。 提供する共有機能を最大限に活用したい場合は、公開されているVMUSEUMプロファイルを作成するように依頼する場合があります。これには、お名前と写真が含まれる場合があります。 \n サービスの使用方法から得られる情報。 お客様が使用するサービスとその使用方法に関する情報を収集します。 たとえば、YouTubeでビデオを視聴したり、当社の広告サービスを使用するWebサイトを訪問したり、当社の広告やコンテンツを表示したり、対話したりするときなどです。 この情報には、次のものが含まれます。 \n デバイス情報：デバイス固有の情報（ハードウェアモデル、オペレーティングシステムバージョン、一意のデバイス識別子、電話番号などのモバイルネットワーク情報）を収集します。 VMUSEUMは、デバイス識別子または電話番号をVMUSEUMアカウントに関連付ける場合があります。</string>
+    <string name="privacy3">ログ情報：当社のサービスを使用したり、VMUSEUMが提供するコンテンツを表示したりすると、サーバーログに特定の情報を自動的に収集して保存します。 これには、次のものが含まれます。 \n 検索クエリなど、サービスの使用方法の詳細。 \n 電話番号、呼び出し元番号、転送番号、通話の日時、通話の時間、SMSルーティング情報、通話の種類などの電話ログ情報。 \n インターネットプロトコルアドレス。 \n クラッシュ、システムアクティビティ、ハードウェア設定、ブラウザタイプ、ブラウザ言語、リクエストの日時、参照URLなどのデバイスイベント情報。 \n ブラウザまたはVMUSEUMアカウントを一意に識別できるクッキー。 \n 場所情報：VMUSEUMサービスを使用すると、実際の場所に関する情報を収集および処理する場合があります。 IPアドレス、GPS、およびその他のセンサーなどのさまざまな技術を使用して、場所を判断します。 たとえば、近くのデバイス、Wi-Fiアクセスポイント、およびセルタワーに関する情報をVMUSEUMに提供する場合があります。</string>
 
-<!--    EditInfo-->
+    <!--    EditInfo-->
     <string name="updateinfo">情報を更新する</string>
     <string name="password">パスワード</string>
     <string name="confirm_password">パスワードを認証する</string>
@@ -76,6 +80,7 @@
     <string name="architect">建築庭園</string>
     <string name="peoples_vietnam">ベトナム人</string>
     <string name="peoples_world">世界の人々</string>
+    <string name="detail"><u>詳細</u></string>
     <string name="book_ticket">チケットを予約する</string>
 
 <!--    MapActivity-->
@@ -103,4 +108,17 @@
     <string name="cafe_cake">20. カフェとケーキ</string>
     <string name="toa_canh_dieu">凧タワー</string>
     <string name="toa_trong_dong">ブロンズドラムタワー</string>
+
+    <!--    InstructionItemContentActivity-->
+    <string name="qr_title">アーティファクトQRコードをスキャンする</string>
+    <string name="qr_content1">アーティファクトQRコードをスキャンするには、Bottom Navigation Barの中央にあるQRボタンを押すことができます。 次に、電話のカメラをアーティファクトQRコードに向けると、システムが自動的に認識してアーティファクト情報ページにリダイレクトします</string>
+    <string name="qr_content2">電話のギャラリーからQRコード画像を選択することもできます（注意：博物館内のアーティファクトのQRコードのみ使用できます）。 さらに、アプリは暗い環境でQRコードをスキャンするためのフラッシュをサポートしています</string>
+    <string name="artifact_title">アーティファクトカテゴリを見る</string>
+    <string name="artifact_content1">アーティファクトカテゴリを見るには、Bottom Navigation Barのカテゴリボタンを押すことができます。 次に、アーティファクトカテゴリを選択したり、見たいアーティファクトを選択したりすることができます</string>
+    <string name="artifact_content2">アーティファクトカテゴリインターフェースの上部にある検索バーは、アーティファクトを素早く検索するのに役立ちます</string>
+    <string name="map_title">地図を見る</string>
+    <string name="map_content1">地図を見るには、ホーム画面の地図の画像をタップすることができます。地図が表示され、地図上のポイントを選択してそのポイントの詳細情報を表示することができます</string>
+    <string name="edit_profile_title">プロフィールを編集する</string>
+    <string name="edit_profile_content1">プロフィールを編集するには、Bottom Navigation Barの設定ボタンを押すことができます。 設定画面にリダイレクトされた後、プロフィールを編集するボタンを押して、自分のプロフィール情報を編集することができます</string>
+    <string name="edit_profile_content2">プロフィール画像を変更するには、設定画面またはプロフィール編集画面の現在のプロフィール画像をタップして、電話のギャラリーから新しい画像を選択することができます。 さらに、表示名、メールアドレス、パスワードを変更することもできます</string>
 </resources>

@@ -23,7 +23,7 @@
             android:fontFamily="@font/alegreysan"
             android:paddingLeft="30dp"
             android:paddingTop="50dp"
-            android:text="Tin tức và Sự kiện"
+            android:text="@string/news_events"
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold" />

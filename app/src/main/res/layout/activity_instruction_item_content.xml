@@ -6,5 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".SettingPackage.InstructionItemContentActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/textViewInstructionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xem bản đồ"
+            android:textSize="24sp"
+            android:textColor="@color/main_green"
+            android:fontFamily="@font/alegrey_bold"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/textContent1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You can see the map of the museum by clicking on the map icon in the bottom navigation bar."
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/rl1_image1"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/test_screenshot"/>
+
+            <ImageView
+                android:id="@+id/rl1_image2"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/test_screenshot"
+
+                android:layout_toRightOf="@id/rl1_image1"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textContent2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You can see the map of the museum by clicking on the map icon in the bottom navigation bar."
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/rl2_image1"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/test_screenshot"/>
+
+            <ImageView
+                android:id="@+id/rl2_image2"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/test_screenshot"
+
+                android:layout_toRightOf="@id/rl2_image1"/>
+
+            <ImageView
+                android:id="@+id/rl2_image3"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/test_screenshot"
+                android:layout_toRightOf="@id/rl2_image2"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </LinearLayout>
 
 </ScrollView>
