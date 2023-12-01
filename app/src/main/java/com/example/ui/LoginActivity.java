@@ -125,7 +125,7 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     sweetAlertDialog.dismissWithAnimation();
-                                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Email or password is incorrect", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 } else {
@@ -235,9 +235,18 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                                                 reference.putFile(defaultImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                        String checkUser = getIntent().getStringExtra("checkUser");
+                                                        if (checkUser != null && checkUser.contains("newUser")) {
+                                                            Intent intent = new Intent(LoginActivity.this, LanguageActivity.class);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                            intent.putExtra("checkUser", "newUser");
+                                                            startActivity(intent);
+                                                        } else {
+                                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                            startActivity(intent);
+                                                        }
                                                         sweetAlertDialog.dismiss();
-                                                        startActivity(intent);
                                                         finish();
                                                     }
                                                 });
