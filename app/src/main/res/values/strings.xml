@@ -38,7 +38,7 @@
     <string name="contact_admin">Contact admin</string>
     <string name="delete_account_instruction">Delete account</string>
 
-<!--    SettingFragment-->
+    <!--    SettingFragment-->
     <string name="editinfo">Edit Info</string>
     <string name="setting">Setting</string>
     <string name="nightmode">Night mode</string>
@@ -55,13 +55,13 @@
     <string name="privacy3">Log information: When you use our services or view content provided by VMUSEUM, we automatically collect and store certain information in server logs. This includes:\n Details of how you used our service, such as your search queries.\n Telephony log information like your phone number, calling-party number, forwarding numbers, time and date of calls, duration of calls, SMS routing information and types of calls.\n Internet protocol address.\n Device event information such as crashes, system activity, hardware settings, browser type, browser language, the date and time of your request and referral URL.\n Cookies that may uniquely identify your browser or your VMUSEUM Account.\n Location information: When you use VMUSEUM services, we may collect and process information about your actual location. We use various technologies to determine location, including IP address, GPS, and other sensors that may, for example, provide VMUSEUM with information on nearby devices, Wi-Fi access points and cell towers.</string>
 
 
-<!--    EditInfo-->
+    <!--    EditInfo-->
     <string name="updateinfo">UPDATE INFORMATION</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="change_password">CHANGE PASSWORD</string>
 
-<!--    MainActivity-->
+    <!--    MainActivity-->
     <string name="home">Home</string>
     <string name="artifacts">Artifacts</string>
     <string name="introduce">Introduce</string>
