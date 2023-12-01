@@ -26,16 +26,19 @@
 
     </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="50dp">
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingBottom="50dp">-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="30dp">
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="80dp">
 
             <RelativeLayout
                 android:id="@+id/rl_answer_a"
@@ -176,6 +179,6 @@
 
             </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+<!--    </ScrollView>-->
 
 </LinearLayout>

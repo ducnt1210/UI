@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -58,64 +59,71 @@
         android:id="@+id/quiz_header_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:background="@color/brown"
         android:fontFamily="@font/alegreysan"
         android:gravity="center_horizontal"
+        android:paddingTop="10dp"
         android:text="Câu hỏi 1/10"
         android:textColor="@color/white"
-        android:background="@color/brown"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="55dp" />
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="620dp"
+                android:layout_weight="1">
+            </androidx.viewpager.widget.ViewPager>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginHorizontal="15dp"
+                tools:layout_editor_absoluteX="15dp"
+                tools:layout_editor_absoluteY="753dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewQuiz"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/quiz_skip"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_quiz_time"
+                    android:fontFamily="@font/alegrey_bold"
+                    android:gravity="center"
+                    android:text="Bỏ qua"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                </androidx.recyclerview.widget.RecyclerView>
+                <TextView
+                    android:id="@+id/quiz_submit"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/bg_quiz_time"
+                    android:fontFamily="@font/alegrey_bold"
+                    android:gravity="center"
+                    android:text="Nộp"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp">
+            </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/quiz_skip"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_quiz_time"
-                        android:fontFamily="@font/alegrey_bold"
-                        android:gravity="center"
-                        android:text="SKIP"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+        </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/quiz_submit"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentRight="true"
-                        android:background="@drawable/bg_quiz_time"
-                        android:fontFamily="@font/alegrey_bold"
-                        android:gravity="center"
-                        android:text="SUBMIT"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-            </LinearLayout>
-        </ScrollView>
+    </ScrollView>
 
 </LinearLayout>

@@ -20,6 +20,7 @@ import com.example.ui.Helper.NewsHelper;
 import com.example.ui.IntroContentActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.MapActivity;
+import com.example.ui.NavigationOpeningActivity;
 import com.example.ui.NewsEventsActivity;
 import com.example.ui.R;
 import com.example.ui.Utils;
@@ -34,26 +35,44 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class HomeFragment extends Fragment {
-    FragmentHomeBinding binding;
+    private FragmentHomeBinding binding;
 
     private NewsHelper newsHelper;
+    SweetAlertDialog sweetAlertDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+
+        sweetAlertDialog = new SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setTitleText("Loading");
+        sweetAlertDialog.setCancelable(true);
+        sweetAlertDialog.show();
+
         newsHelper = new NewsHelper();
         initNews();
         binding = FragmentHomeBinding.bind(rootView);
         getIntroContentView();
 
-        ((MainActivity)requireActivity()).getSupportActionBar().hide();
+        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).hide();
 
         return rootView;
     }
 
     protected void getIntroContentView() {
+        binding.homeHeaderSearchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), NavigationOpeningActivity.class);
+                intent.putExtra("heading", "Timkiem");
+                startActivity(intent);
+            }
+        });
         binding.homeMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,7 +175,10 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onSuccess(Uri uri) {
                     if (uri != null) {
-                        Glide.with(getContext()).load(uri).into(img);
+                        Glide.with(requireContext()).load(uri).into(img);
+                        if (cardIndex == 6) {
+                            sweetAlertDialog.dismiss();
+                        }
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {

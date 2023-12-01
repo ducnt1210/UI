@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ui.Adapter.QuizAdapter;
 import com.example.ui.Model.QuizModel;
@@ -29,17 +32,21 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class QuizActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private QuizAdapter quizAdapter;
-    public static List<QuizModel> quizModelList = new ArrayList<>();
+    private ViewPager viewPagerQuiz;
+    private List<QuizModel> quizModelList;
+    public static List<Integer> choseAnswerList;
+    public static List<Boolean> submittedAnswerList;
     private RecyclerView recyclerViewQuiz;
     private TextView quizHeaderCount,
             quizTime, textViewScoreValue,
             skip, submit;
 
-    private int quizCount = 0;
+    private int quizCount = 1;
     private int quizTotal = 0;
 
     @Override
@@ -48,23 +55,47 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         db = FirebaseFirestore.getInstance();
-//        quizModelList = new ArrayList<>();
+        quizModelList = new ArrayList<>();
+        choseAnswerList = new ArrayList<>();
+        submittedAnswerList = new ArrayList<>();
 
-        recyclerViewQuiz = (RecyclerView) findViewById(R.id.recyclerViewQuiz);
+//        recyclerViewQuiz = (RecyclerView) findViewById(R.id.recyclerViewQuiz);
+        viewPagerQuiz = (ViewPager) findViewById(R.id.viewPagerQuiz);
         quizHeaderCount = (TextView) findViewById(R.id.quiz_header_count);
         quizTime = (TextView) findViewById(R.id.quiz_time);
         textViewScoreValue = (TextView) findViewById(R.id.textViewScoreValue);
         skip = (TextView) findViewById(R.id.quiz_skip);
-        submit = (TextView) findViewById(R.id.quiz_skip);
+        submit = (TextView) findViewById(R.id.quiz_submit);
 
         getSupportActionBar().hide();
 
-        quizAdapter = new QuizAdapter(quizModelList, new ArrayList<>());
-        recyclerViewQuiz.setAdapter(quizAdapter);
+        quizAdapter = new QuizAdapter(QuizActivity.this, quizModelList, choseAnswerList);
+//        recyclerViewQuiz.setAdapter(quizAdapter);
+        viewPagerQuiz.setAdapter(quizAdapter);
+        viewPagerQuiz.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerViewQuiz.setLayoutManager(layoutManager);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                quizCount = getViewPagerItem(0) + 1;
+                quizHeaderCount.setText("Câu hỏi: "
+                        + Integer.toString(quizCount) + "/" + Integer.toString(quizTotal));
+            }
+        });
+
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+//        recyclerViewQuiz.setLayoutManager(layoutManager);
+
+
 
         Bundle bundle = getIntent().getExtras();
         bundle = null;
@@ -72,34 +103,114 @@ public class QuizActivity extends AppCompatActivity {
 //            String exhibit_id = bundle.getString("id");
             String exhibit_id = "7MHOSWzGQIRyF8Hd47w6";
             assert exhibit_id != "";
+//            setSnapHelper();
             getQuizList(exhibit_id);
+            startTimer();
+            setClickListeners();
 //        }
-        Log.d("list quiz", Integer.toString(quizAdapter.getItemCount()));
-//        quizTotal = quizAdapter.getItemCount();
-//        quizModelList = quizAdapter.getQuizModelList();
-        Log.d("quizModelList", Integer.toString(quizModelList.size()));
-
-        setSnapHelper();
     }
 
-    private void setSnapHelper() {
-        SnapHelper snapHelper = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerViewQuiz);
-        recyclerViewQuiz.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//    private void setSnapHelper() {
+//        SnapHelper snapHelper = new PagerSnapHelper();
+//        snapHelper.attachToRecyclerView(recyclerViewQuiz);
+//        recyclerViewQuiz.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//
+//                View view = snapHelper.findSnapView(recyclerView.getLayoutManager());
+//                quizCount = recyclerView.getLayoutManager().getPosition(view) + 1;
+//                Log.d("quizCountScroll", Integer.toString(quizCount));
+//
+//                quizHeaderCount.setText("Câu hỏi: "
+//                        + Integer.toString(quizCount) + "/" + Integer.toString(quizTotal));
+//            }
+//
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+////                quizAdapter.onBindViewHolder(QuizAdapter.QuizViewHolder , );
+//            }
+//
+//
+//        });
+//    }
+
+    public int getViewPagerItem(int i) {
+        return viewPagerQuiz.getCurrentItem() + i;
+    }
+
+
+    private long setTimeForQuizList() {
+
+        return 30 * 1000 * quizTotal;
+    }
+
+    private void setClickListeners() {
+//         skip.setOnClickListener(new View.OnClickListener() {
+//             @Override
+//             public void onClick(View view) {
+//                 Log.d("quizCount", Integer.toString(quizCount));
+//                 Log.d("quizTotal", Integer.toString(quizTotal));
+//                 if (quizCount < quizTotal) {
+//                     recyclerViewQuiz.smoothScrollToPosition(quizCount);
+//                 }
+//             }
+//         });
+        skip.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                View view = snapHelper.findSnapView(recyclerView.getLayoutManager());
-                quizCount = recyclerView.getLayoutManager().getPosition(view);
-
-                quizHeaderCount.setText("Câu hỏi: "
-                        + Integer.toString(quizCount + 1) + "/" + Integer.toString(quizTotal));
+            public void onClick(View view) {
+                if (quizCount < quizTotal) {
+                    viewPagerQuiz.setCurrentItem(getViewPagerItem(1), true);
+                }
             }
         });
+
+         submit.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Log.e("choseAnswer", Integer.toString(quizAdapter.choseAnswerList.get(quizCount - 1)));
+                 Log.d("quizList", Integer.toString(quizAdapter.quizModelList.size()));
+                 Log.d("subbmittedAnswerList", Integer.toString(submittedAnswerList.size()));
+                 if (submittedAnswerList.get(quizCount - 1) == false) {
+                     if (quizAdapter.choseAnswerList.get(quizCount - 1) > 0) {
+                         submittedAnswerList.set(quizCount - 1, true);
+//                         quizAdapter.showResult(quizCount - 1);
+                     } else {
+                         Toast.makeText(QuizActivity.this, "Vui lòng chọn đáp án trước khi nộp", Toast.LENGTH_SHORT).show();
+                     }
+                 } else {
+                     Toast.makeText(QuizActivity.this, "Câu hỏi đã trả lời không thể nộp", Toast.LENGTH_SHORT).show();
+                 }
+             }
+         });
+    }
+
+    private void startTimer() {
+        long totalTime = setTimeForQuizList();
+        CountDownTimer timer = new CountDownTimer(totalTime + 1000, 1000) {
+            @Override
+            public void onTick(long l) {
+                String time = String.format("%02d:%02d",
+                        TimeUnit.MILLISECONDS.toMinutes(l),
+                        TimeUnit.MILLISECONDS.toSeconds(l) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l))
+                );
+                quizTime.setText("⏱  " + time);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+
+        timer.start();
     }
 
     private void getQuizList(String exhibit_id) {
+        quizModelList.clear();
         Task<QuerySnapshot> task = db.collection("Quiz")
                 .whereEqualTo("exhibit_id", exhibit_id)
                 .get()
@@ -117,12 +228,18 @@ public class QuizActivity extends AppCompatActivity {
                                     doc.getString("detailed_answer")
                             );
                             quizModelList.add(quizModel);
+                            choseAnswerList.add(0);
+                            submittedAnswerList.add(false);
                             Collections.shuffle(quizModelList);
                         }
                         quizAdapter.setQuizModelList(quizModelList);
+                        quizAdapter.setChoseAnswerList(choseAnswerList);
+//                        quizAdapter.setSubmittedAnswerList(submittedAnswerList);
                         quizTotal = quizModelList.size();
                         quizHeaderCount.setText("Câu hỏi: "
-                                + Integer.toString(quizCount + 1) + "/" + Integer.toString(quizTotal));
+                                + Integer.toString(quizCount) + "/" + Integer.toString(quizTotal));
+//                        setClickListeners();
+                        startTimer();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

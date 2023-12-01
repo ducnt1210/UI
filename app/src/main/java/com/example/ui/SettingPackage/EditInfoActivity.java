@@ -52,7 +52,7 @@ public class EditInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityEditInfoBinding.inflate(getLayoutInflater());
-        setTitle("Edit Info");
+        setTitle(R.string.editinfo);
 
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));

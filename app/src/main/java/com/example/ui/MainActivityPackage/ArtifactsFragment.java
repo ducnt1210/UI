@@ -13,10 +13,6 @@ import com.example.ui.Adapter.AreaAdapter;
 import com.example.ui.MainActivity;
 import com.example.ui.R;
 import com.example.ui.databinding.FragmentArtifactsBinding;
-import com.example.ui.Model.AreaModel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class ArtifactsFragment extends Fragment {
 
@@ -32,7 +28,7 @@ public class ArtifactsFragment extends Fragment {
 
         ActionBar actionBar = ((MainActivity) requireActivity()).getSupportActionBar();
         actionBar.show();
-        actionBar.setTitle("Danh mục hiện vật");
+        actionBar.setTitle(R.string.artifact_category);
 
         // Initialize and set the adapter
         System.out.println(1234);

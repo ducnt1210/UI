@@ -18,7 +18,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:text="Scan a QR or choose from the device"
+            android:text="@string/qrscan"
             android:textColor="@color/white"
             android:textAlignment="center"
             android:layout_alignParentTop="true"
@@ -60,12 +60,12 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_alignParentBottom="true"
-            android:text="Turn on Flash"
+            android:text="@string/turn_flash"
             android:textSize="12sp"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="20dp"
             android:textColor="@color/white"
-            android:fontFamily="@font/roboto_black"
+            android:textStyle="bold"
             android:layout_alignParentStart="true" />
 
         <ImageView
@@ -74,7 +74,7 @@
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="36dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/image_24"
             android:contentDescription="Choose QR" />
@@ -83,12 +83,12 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_alignParentBottom="true"
-            android:text="Choose a QR"
+            android:text="@string/choose_qr"
             android:textSize="12sp"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="20dp"
             android:textColor="@color/white"
-            android:fontFamily="@font/roboto_black"
+            android:textStyle="bold"
             android:layout_alignParentEnd="true" />
 
 

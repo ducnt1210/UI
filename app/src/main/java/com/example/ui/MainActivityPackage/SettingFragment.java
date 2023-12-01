@@ -1,6 +1,8 @@
 package com.example.ui.MainActivityPackage;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,13 +16,16 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.ui.LoginActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.R;
 import com.example.ui.SettingPackage.EditInfoActivity;
+import com.example.ui.SettingPackage.InstructionActivity;
 import com.example.ui.SettingPackage.LanguageActivity;
 import com.example.ui.SettingPackage.PrivacyActivity;
 import com.example.ui.databinding.FragmentSettingBinding;
@@ -44,6 +49,10 @@ public class SettingFragment extends Fragment {
     GoogleSignInClient gsc;
     SweetAlertDialog sweetAlertDialog;
 
+    boolean nightMode;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
     ActivityResultLauncher<String> getImage = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
@@ -58,15 +67,21 @@ public class SettingFragment extends Fragment {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                         Log.d("UI", "Upload profile picture successfully!");
+                                        sweetAlertDialog.dismiss();
                                         Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         Log.d("UI", "Upload profile picture failed!");
-                                        Toast.makeText(requireActivity(), "Update successfully!", Toast.LENGTH_SHORT).show();
+                                        sweetAlertDialog.dismiss();
+                                        Toast.makeText(requireActivity(), "Upload failed!", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+                    } else {
+                        Log.d("UI", "Get image failed!");
+                        Toast.makeText(requireActivity(), "Upload failed!", Toast.LENGTH_SHORT).show();
+                        sweetAlertDialog.dismiss();
                     }
                 }
             });
@@ -94,6 +109,32 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), EditInfoActivity.class));
+            }
+        });
+
+        sharedPreferences = requireActivity().getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        nightMode = sharedPreferences.getBoolean("nightMode", false);
+//        nightMode = false;
+        binding.nightModeSwitch.setChecked(nightMode);
+        binding.nightModeSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean newNightMode = !nightMode; // Toggle the night mode
+
+                AppCompatDelegate.setDefaultNightMode(
+                        newNightMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+
+                // Save the night mode state in SharedPreferences
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("nightMode", newNightMode);
+                editor.apply();
+
+                // Recreate the fragment manager to apply the changes immediately
+                if (getActivity() != null) {
+                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, SettingFragment.this);
+                    transaction.commit();
+                }
             }
         });
 
@@ -132,6 +173,8 @@ public class SettingFragment extends Fragment {
         binding.navHeader.imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sweetAlertDialog = new SweetAlertDialog(requireActivity(), SweetAlertDialog.PROGRESS_TYPE);
+                sweetAlertDialog.show();
                 getImage.launch("image/*");
 
             }
@@ -155,6 +198,13 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/")));
+            }
+        });
+
+        binding.instructionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), InstructionActivity.class));
             }
         });
 
@@ -216,4 +266,11 @@ public class SettingFragment extends Fragment {
 
         return binding.getRoot();
     }
+//    private void applyDayNight(boolean isNightMode) {
+//        int nightModeFlag = isNightMode ?
+//                AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO;
+//
+//        AppCompatDelegate.setDefaultNightMode(nightModeFlag);
+//        getDelegate().applyDayNight();
+//    }
 }

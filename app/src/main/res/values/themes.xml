@@ -37,6 +37,11 @@
         <item name="android:fontFamily">@font/oldstandar_regular</item>
     </style>
 
+    <style name="RoundedCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/brown_gradient</item>
         <!-- Support library compatibility -->

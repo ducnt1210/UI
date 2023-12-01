@@ -41,5 +41,4 @@
         app:maxImageSize="40dp"
         android:tint="@color/teal_200" />
 
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
