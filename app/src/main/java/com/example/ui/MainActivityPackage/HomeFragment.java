@@ -23,6 +23,7 @@ import com.example.ui.MapActivity;
 import com.example.ui.NavigationOpeningActivity;
 import com.example.ui.NewsEventsActivity;
 import com.example.ui.R;
+import com.example.ui.TicketHandler.TicketActivity;
 import com.example.ui.Utils;
 import com.example.ui.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -58,6 +59,13 @@ public class HomeFragment extends Fragment {
         initNews();
         binding = FragmentHomeBinding.bind(rootView);
         getIntroContentView();
+        binding.ticketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TicketActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).hide();
 
