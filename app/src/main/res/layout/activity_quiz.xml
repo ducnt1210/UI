@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -59,16 +58,14 @@
         android:id="@+id/quiz_header_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/brown"
+        android:paddingTop="10dp"
         android:fontFamily="@font/alegreysan"
         android:gravity="center_horizontal"
-        android:paddingTop="10dp"
         android:text="Câu hỏi 1/10"
         android:textColor="@color/white"
+        android:background="@color/brown"
         android:textSize="22sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="55dp" />
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -80,18 +77,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPagerQuiz"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewQuiz"
                 android:layout_width="match_parent"
-                android:layout_height="620dp">
-            </androidx.viewpager.widget.ViewPager>
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
-                android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="15dp">
+                android:layout_marginHorizontal="15dp">
 
                 <TextView
                     android:id="@+id/quiz_skip"
@@ -100,7 +96,7 @@
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="Bỏ qua"
+                    android:text="SKIP"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -113,15 +109,13 @@
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="Nộp"
+                    android:text="SUBMIT"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
-
         </LinearLayout>
-
     </ScrollView>
 
 </LinearLayout>
