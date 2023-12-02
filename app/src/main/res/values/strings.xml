@@ -38,7 +38,7 @@
     <string name="contact_admin">Contact admin</string>
     <string name="delete_account_instruction">Delete account</string>
 
-<!--    SettingFragment-->
+    <!--    SettingFragment-->
     <string name="editinfo">Edit Info</string>
     <string name="setting">Setting</string>
     <string name="nightmode">Night mode</string>
@@ -50,13 +50,13 @@
     <string name="logout">Log out</string>
     <string name="deleteaccount">DELETE ACCOUNT</string>
 
-<!--    EditInfo-->
+    <!--    EditInfo-->
     <string name="updateinfo">UPDATE INFORMATION</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="change_password">CHANGE PASSWORD</string>
 
-<!--    MainActivity-->
+    <!--    MainActivity-->
     <string name="home">Home</string>
     <string name="artifacts">Artifacts</string>
     <string name="introduce">Introduce</string>
