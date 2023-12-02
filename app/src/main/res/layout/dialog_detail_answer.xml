@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewDetailAnswer"
         android:layout_width="350sp"
-        android:layout_height="280dp"
+        android:layout_height="320dp"
         android:layout_centerInParent="true"
         app:cardCornerRadius="10dp">
 
@@ -23,45 +23,67 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/imageViewDetailedAnswer"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:src="@drawable/correct_img" />
+
                 <TextView
                     android:id="@+id/check_correct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/alegreysan"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/alegreysan"
                     android:text="Câu trả lời chính xác"
+                    android:textColor="@color/brown"
                     android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/brown"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/show_correct_answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/philo_bold"
                 android:layout_marginTop="10dp"
-                android:text="Đáp án đúng là: Một con vịt xòe ra 2 cái cánh."
+                android:fontFamily="@font/philo_bold"
                 android:justificationMode="inter_word"
+                android:text="Đáp án đúng là: Một con vịt xòe ra 2 cái cánh."
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <ScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="130dp">
+
+                <TextView
+                    android:id="@+id/detailed_answer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:justificationMode="inter_word"
+                    android:text="Giải thích: Một con vịt xòe ra 2 cái cánh. Nó kêu rằng nếu muốn sống thì đầu hàng. Gặp cảnh sát nó boom boom vài phát."
+                    android:textSize="17sp" />
+            </ScrollView>
+
+            <TextView
+                android:id="@+id/dialog_skip"
                 android:layout_marginTop="10dp"
-                android:text="Giải thích: Một con vịt xòe ra 2 cái cánh. Nó kêu rằng nếu muốn sống thì đầu hàng. Gặp cảnh sát nó boom boom vài phát."
-                android:textSize="17sp"
-                android:justificationMode="inter_word"/>
-            </LinearLayout>
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_quiz_time"
+                android:fontFamily="@font/alegrey_bold"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

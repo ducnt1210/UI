@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.ui.MainActivity;
 import com.example.ui.Model.QuizModel;
 import com.example.ui.QuizActivity;
 import com.example.ui.R;
@@ -82,14 +83,15 @@ public class QuizAdapter extends NoScrollRecyclerView.Adapter<QuizAdapter.QuizVi
 //        Log.e("enable scroll before", Boolean.toString(QuizActivity.layoutManager.getScrollingEnabled()));
 //        QuizActivity.layoutManager.setScrollingEnabled(false);
 //        Log.d("enable scroll", Boolean.toString(QuizActivity.layoutManager.getScrollingEnabled()));
-        Log.d("position", Integer.toString(position));
-        Log.e("quizList", Integer.toString(QuizActivity.choseAnswerList.size()));
-        QuizModel quizModel = this.quizModelList.get(position);
+//        Log.d("position", Integer.toString(position));
+//        Log.e("quizList", Integer.toString(QuizActivity.choseAnswerList.size()));
+//        Log.e("quizList", Integer.toString(QuizActivity.quizModelList.size()));
+//        QuizModel quizModel = this.quizModelList.get(position);
+        QuizModel quizModel = quizModelList.get(position);
         List<String> answers = quizModel.getAnswer();
 
         Log.d("adapterPostion", Integer.toString(viewHolder.getAdapterPosition()));
         int choseAnswer = choseAnswerList.get(position);
-        Log.d("choseAnswer", Integer.toString(choseAnswer));
         boolean submittedAnswer = QuizActivity.submittedAnswerList.get(position);
         viewHolder.quizContent.setText(quizModel.getQuestion());
         Log.d("quizAnswers", Integer.toString(viewHolder.quizAnswers.size()));
@@ -146,7 +148,11 @@ public class QuizAdapter extends NoScrollRecyclerView.Adapter<QuizAdapter.QuizVi
         int answer = choseAnswerList.get(position) - 1;
         QuizModel quiz = quizModelList.get(position);
         Log.e("choseAnswer", Integer.toString(answer + 1));
-        if (checkAnswer(answer, quiz)) {
+        QuizActivity.correctAnswer = checkAnswer(answer, quiz);
+        if (QuizActivity.correctAnswer) {
+            MainActivity.scoreModel.setScore(
+                    MainActivity.scoreModel.getScore() + 10
+            );
             QuizViewHolder.rlAnswers.get(answer)
                     .setBackgroundResource(R.drawable.bg_true_answer_item);
         } else {

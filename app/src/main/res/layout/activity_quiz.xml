@@ -97,7 +97,7 @@
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="SKIP"
+                    android:text="Bỏ qua"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -110,7 +110,7 @@
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="SUBMIT"
+                    android:text="Nộp"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />

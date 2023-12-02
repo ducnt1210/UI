@@ -26,12 +26,14 @@ import com.example.ui.MainActivityPackage.HomeFragment;
 import com.example.ui.MainActivityPackage.NotificationFragment;
 import com.example.ui.MainActivityPackage.SettingFragment;
 import com.example.ui.Model.NotificationModel;
+import com.example.ui.Model.ScoreModel;
 import com.example.ui.Model.UserModel;
 import com.example.ui.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.color.utilities.Score;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,6 +52,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity {
     public static UserModel currentUser;
+    public static ScoreModel scoreModel;
     private String FragmentID = "HomeFragment";
     public static Uri profilePicture = null;
     FirebaseUser user;
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         currentUser = new UserModel(user.getUid(), user.getDisplayName(), null, user.getEmail()); // temp fix for current user not loaded when from Main info to setting fragment
-
+        getScore(user.getUid());
         FragmentID = getIntent().getStringExtra("FragmentID");
         if (FragmentID != null) {
             switch (FragmentID) {
@@ -209,6 +212,27 @@ public class MainActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         sweetAlertDialog.dismiss();
                         Log.d("UI", e.getMessage());
+                    }
+                });
+    }
+
+    public void getScore(String user_id) {
+        FirebaseFirestore.getInstance().collection("Score")
+                .document(user_id)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        scoreModel = new ScoreModel(
+                                documentSnapshot.getId(),
+                                documentSnapshot.getLong("score").intValue()
+                        );
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("get score failed", user_id);
                     }
                 });
     }

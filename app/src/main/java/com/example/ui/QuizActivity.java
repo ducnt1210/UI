@@ -8,11 +8,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,9 +48,10 @@ public class QuizActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private QuizAdapter quizAdapter;
     private ViewPager viewPagerQuiz;
-    private List<QuizModel> quizModelList;
+    public static List<QuizModel> quizModelList;
     public static List<Integer> choseAnswerList;
     public static List<Boolean> submittedAnswerList;
+    public static boolean correctAnswer = false;
     private NoScrollRecyclerView recyclerViewQuiz;
 //    public static HScrollManager layoutManager;
     public static LinearLayoutManager layoutManager;
@@ -80,6 +88,7 @@ public class QuizActivity extends AppCompatActivity {
         submit = (TextView) findViewById(R.id.quiz_submit);
 
         getSupportActionBar().hide();
+        textViewScoreValue.setText("" + MainActivity.scoreModel.getScore());
 
         quizAdapter = new QuizAdapter(quizModelList, choseAnswerList);
         recyclerViewQuiz.setAdapter(quizAdapter);
@@ -114,7 +123,6 @@ public class QuizActivity extends AppCompatActivity {
 
 
         Bundle bundle = getIntent().getExtras();
-        bundle = null;
 //        if (bundle != null) {
 //            String exhibit_id = bundle.getString("id");
             String exhibit_id = "7MHOSWzGQIRyF8Hd47w6";
@@ -138,16 +146,16 @@ public class QuizActivity extends AppCompatActivity {
                 quizCount = recyclerView.getLayoutManager().getPosition(view) + 1;
                 Log.d("quizCountScroll", Integer.toString(quizCount));
 
-                quizHeaderCount.setText("Câu hỏi: "
+                quizHeaderCount.setText("Câu hỏi "
                         + Integer.toString(quizCount) + "/" + Integer.toString(quizTotal));
             }
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                skip.setText("Bỏ qua");
+                submit.setVisibility(View.VISIBLE);
             }
-
-
         });
     }
 
@@ -168,23 +176,26 @@ public class QuizActivity extends AppCompatActivity {
                  Log.d("quizCount", Integer.toString(quizCount));
                  Log.d("quizTotal", Integer.toString(quizTotal));
                  if (quizCount < quizTotal) {
-//                     layoutManager.setScrollingEnabled(true);
-//                     recyclerViewQuiz.setLayoutFrozen(false);
-//                     recyclerViewQuiz.setNestedScrollingEnabled(true);
                      recyclerViewQuiz.smoothScrollToPosition(quizCount);
-//                     recyclerViewQuiz.;
+                 } else {
+                     FirebaseFirestore.getInstance().collection("Score")
+                             .document(MainActivity.scoreModel.getId())
+                             .set(MainActivity.scoreModel)
+                             .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                 @Override
+                                 public void onSuccess(Void unused) {
+
+                                 }
+                             }).addOnFailureListener(new OnFailureListener() {
+                                 @Override
+                                 public void onFailure(@NonNull Exception e) {
+                                     Log.e("Update score failed", MainActivity.scoreModel.getId());
+                                 }
+                             });
+                     onBackPressed();
                  }
-//                 layoutManager.setScrollingEnabled(false);
              }
          });
-//        skip.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (quizCount < quizTotal) {
-//                    viewPagerQuiz.setCurrentItem(getViewPagerItem(1), true);
-//                }
-//            }
-//        });
 
          submit.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -192,6 +203,7 @@ public class QuizActivity extends AppCompatActivity {
                  Log.e("choseAnswer", Integer.toString(quizAdapter.choseAnswerList.get(quizCount - 1)));
                  Log.d("quizList", Integer.toString(quizAdapter.quizModelList.size()));
                  Log.d("subbmittedAnswerList", Integer.toString(submittedAnswerList.size()));
+                 Log.e("quizModelList", Integer.toString(quizModelList.size()));
                  if (submittedAnswerList.get(quizCount - 1) == false) {
                      if (quizAdapter.choseAnswerList.get(quizCount - 1) > 0) {
                          submittedAnswerList.set(quizCount - 1, true);
@@ -201,17 +213,22 @@ public class QuizActivity extends AppCompatActivity {
                              public void run() {
                                  // Do something after 5s = 5000ms
                                  quizAdapter.showResult(quizCount - 1);
+                                 submit.setVisibility(View.GONE);
+                                 textViewScoreValue.setText("" + MainActivity.scoreModel.getScore());
+                                 final Handler handlerDialog = new Handler();
+                                 handler.postDelayed(new Runnable() {
+                                     @Override
+                                     public void run() {
+                                         openDialog(Gravity.CENTER);
+                                     }
+                                 }, 300);
                              }
                          }, 500);
                      } else {
                          Toast.makeText(QuizActivity.this, "Vui lòng chọn đáp án trước khi nộp", Toast.LENGTH_SHORT).show();
                      }
                  } else {
-                     if (quizCount < quizTotal) {
-                         Toast.makeText(QuizActivity.this, "Câu hỏi đã trả lời không thể nộp", Toast.LENGTH_SHORT).show();
-                     } else {
-
-                     }
+                     Toast.makeText(QuizActivity.this, "Câu hỏi đã trả lời không thể nộp", Toast.LENGTH_SHORT).show();
                  }
              }
          });
@@ -241,7 +258,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private void getQuizList(String exhibit_id) {
         quizModelList.clear();
-        Task<QuerySnapshot> task = db.collection("Quiz")
+        db.collection("Quiz")
                 .whereEqualTo("exhibit_id", exhibit_id)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -280,5 +297,56 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    public void openDialog(int gravity) {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_detail_answer);
+
+        Window window = dialog.getWindow();
+        if (window == null) return;
+
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        ImageView imageViewDetailedAnswer = (ImageView) dialog.findViewById(R.id.imageViewDetailedAnswer);
+        TextView textViewCheckCorrect = (TextView) dialog.findViewById(R.id.check_correct);
+        TextView textViewShowCorrectAnswer = (TextView) dialog.findViewById(R.id.show_correct_answer);
+        TextView textViewDetailedAnswer = (TextView) dialog.findViewById(R.id.detailed_answer);
+        TextView textViewSkip = (TextView) dialog.findViewById(R.id.dialog_skip);
+
+        QuizModel quizModel = quizAdapter.quizModelList.get(quizCount - 1);
+        if (correctAnswer) {
+            imageViewDetailedAnswer.setImageResource(R.drawable.correct_img);
+            textViewCheckCorrect.setText("Câu trả lời chính xác");
+        } else {
+            imageViewDetailedAnswer.setImageResource(R.drawable.incorrect_img);
+            textViewCheckCorrect.setText("Câu trả lời không chính xác");
+        }
+        textViewShowCorrectAnswer.setText("Đáp án đúng là: " + quizModel.getTrue_answer());
+        textViewDetailedAnswer.setText(quizModel.getDetailed_answer());
+        if (quizCount < quizTotal) {
+            textViewSkip.setText("Tiếp tục");
+            skip.setText("Tiếp tục");
+        } else {
+            textViewSkip.setText("Hoàn thành");
+            skip.setText("Hoàn thành");
+        }
+        textViewSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                    skip.callOnClick();
+                }
+            }
+        });
+
+        dialog.show();
     }
 }
