@@ -1,248 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bg_grey"
     android:orientation="vertical">
 
-
-    <RelativeLayout
-        android:id="@+id/quiz_header"
+    <LinearLayout
+        android:id="@+id/quiz_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/brown_gradient"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:paddingTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="30dp"
+        android:background="@color/brown">
 
         <TextView
-            android:id="@+id/quiz_header_count"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:id="@+id/quiz_time"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg_quiz_time"
             android:fontFamily="@font/alegreysan"
-            android:gravity="center_horizontal"
-            android:text="Question 1 of 10"
+            android:gravity="center"
+            android:text="⏱  03:10"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/quiz_content"
+        <RelativeLayout
+            android:id="@+id/layout_score"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center_vertical"
-            android:fontFamily="@font/youngserif"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="30dp"
-            android:text="ViewPager lets you swipe left or right on a specific area. It consists of images, texts, and buttons. It provides you with different views in a constant"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_below="@id/quiz_header_count"/>
-
-        <LinearLayout
-            android:layout_below="@id/quiz_content"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingHorizontal="30dp">
+            android:layout_height="wrap_content"
+            android:gravity="end">
 
             <TextView
-                android:id="@+id/quiz_time"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/bg_quiz_time"
-                android:fontFamily="@font/alegreysan"
-                android:gravity="center"
-                android:text="⏱  03:10"
-                android:textColor="@color/white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <RelativeLayout
-                android:id="@+id/layout_score"
-                android:layout_width="match_parent"
+                android:id="@+id/textViewScore"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="end">
+                android:text="Điểm: "
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/textViewScore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Score: "
-                    android:textColor="?attr/colorOnPrimary"
-                    android:textSize="24sp" />
+            <TextView
+                android:id="@+id/textViewScoreValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textViewScore"
+                android:text="1200"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="24sp" />
+        </RelativeLayout>
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textViewScoreValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/textViewScore"
-                    android:text="1200"
-                    android:textColor="?attr/colorOnPrimary"
-                    android:textSize="24sp" />
-            </RelativeLayout>
-        </LinearLayout>
-
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/quiz_header_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/brown"
+        android:fontFamily="@font/alegreysan"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:text="Câu hỏi 1/10"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="55dp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="50dp">
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="30dp">
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/rl_answer_a"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerQuiz"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@drawable/bg_answer_item">
-
-                <TextView
-                    android:id="@+id/quiz_answer_a"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/yellow_circle"
-                    android:fontFamily="@font/youngserif"
-                    android:gravity="center"
-                    android:text="A"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/quiz_answer_a_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/quiz_answer_a"
-                    android:fontFamily="@font/philo_bold"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="In order to use an icon you must attribute it to its author."
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-            </RelativeLayout>
+                android:layout_height="620dp">
+            </androidx.viewpager.widget.ViewPager>
 
             <RelativeLayout
-                android:id="@+id/rl_answer_b"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bg_answer_item">
-
-                <TextView
-                    android:id="@+id/quiz_answer_b"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/yellow_circle"
-                    android:fontFamily="@font/youngserif"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/quiz_answer_b_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/quiz_answer_b"
-                    android:fontFamily="@font/philo_bold"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="Supaya lebih cepat sampai di tempat tujuan, orang "
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_answer_c"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bg_answer_item">
-
-                <TextView
-                    android:id="@+id/quiz_answer_c"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/yellow_circle"
-                    android:fontFamily="@font/youngserif"
-                    android:gravity="center"
-                    android:text="C"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/quiz_answer_c_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/quiz_answer_c"
-                    android:fontFamily="@font/philo_bold"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="In order to use an icon you must attribute it to its author."
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_answer_d"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bg_answer_item">
-
-                <TextView
-                    android:id="@+id/quiz_answer_d"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/yellow_circle"
-                    android:fontFamily="@font/youngserif"
-                    android:gravity="center"
-                    android:text="D"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/quiz_answer_d_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/quiz_answer_d"
-                    android:fontFamily="@font/philo_bold"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="In order to use an icon you must attribute it to its author."
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
+                android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="15dp">
 
                 <TextView
                     android:id="@+id/quiz_skip"
@@ -251,7 +100,7 @@
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="SKIP"
+                    android:text="Bỏ qua"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -264,16 +113,15 @@
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="SUBMIT"
+                    android:text="Nộp"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
 
-
         </LinearLayout>
-    </ScrollView>
 
+    </ScrollView>
 
 </LinearLayout>

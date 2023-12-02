@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.Model.NotificationModel;
 import com.example.ui.NotificationActivity;
+import com.example.ui.QuizActivity;
 import com.example.ui.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -78,10 +79,8 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 
     @Override
     public void onBindViewHolder(@NonNull NotificationModelViewHolder holder, int position) {
-//        Log.d("notification", Integer.toString(notificationModelList.size()));
         NotificationModel item = this.notificationModelList.get(position);
-        if (item != null) {
-            Log.d("type", item.toString());
+        if (item.getId() != "") {
             holder.dateTextView.setVisibility(View.GONE);
 
             if (item.getSeen()) {
@@ -126,7 +125,6 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             holder.item.setVisibility(View.GONE);
             Log.d("type", "null");
             Log.d("count", Integer.toString(count));
-            holder.dateTextView.setTextColor(Color.parseColor("#666666"));
             if (count == 0){
                 ++count;
                 holder.dateTextView.setText(R.string.today);
