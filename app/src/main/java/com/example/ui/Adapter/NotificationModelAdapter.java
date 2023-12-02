@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ui.Model.NotificationModel;
 import com.example.ui.NotificationActivity;
 import com.example.ui.QuizActivity;
@@ -89,21 +91,21 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             } else {
                 holder.dotStatus.setVisibility(View.VISIBLE);
             }
-//        storageReference.child(item.getImage_path()).
-//                getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                    @Override
-//                    public void onSuccess(Uri uri) {
-//                        if (uri != null) {
-//                            Glide.with(finalContext).load(uri.toString()).into(finalHolder.imageItem);
-//                        }
-//
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.e("Firebase Storage", "Error downloading image: " + e.getMessage());
-//                    }
-//                });
+
+            StorageReference imageRef = FirebaseStorage.getInstance("gs://ui-123456.appspot.com").getReference().child("notification_images").child(item.getImage_path());
+            imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        if (uri != null) {
+                            Glide.with(context).load(uri.toString()).into(holder.imageItem);
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("Firebase Storage", "Error downloading image: " + e.getMessage());
+                    }
+                });
 
 //        holder.time.setText(convertTimeFormat(item.getTime()));
             holder.content.setText(item.heading());
@@ -116,9 +118,9 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
                         item.setSeen(true);
                         updateData(item);
                         notifyDataSetChanged();
+//                        holder.dotStatus.setVisibility(View.INVISIBLE);
                     }
                     goToDetailedNotification(item);
-//                holder.dotStatus.setVisibility(View.INVISIBLE);
                 }
             });
         } else {
@@ -171,6 +173,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
     public class NotificationModelViewHolder extends RecyclerView.ViewHolder {
         public RelativeLayout item;
         public ImageView dotStatus;
+        public CircleImageView imageItem;
         public TextView time, content, dateTextView;
 
         public NotificationModelViewHolder(View itemView) {
@@ -179,7 +182,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 
             item = itemView.findViewById(R.id.noti_item);
             dotStatus = itemView.findViewById(R.id.noti_item_dot_status);
-//            imageItem = itemView.findViewById(R.id.img_noti_item);
+            imageItem = itemView.findViewById(R.id.img_noti_item);
             time = itemView.findViewById(R.id.txt_noti_item_time);
             content = itemView.findViewById(R.id.txt_noti_item_content);
         }

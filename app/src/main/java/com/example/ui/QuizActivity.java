@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ui.Adapter.HScrollManager;
 import com.example.ui.Adapter.QuizAdapter;
 import com.example.ui.Model.QuizModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,6 +43,7 @@ public class QuizActivity extends AppCompatActivity {
     public static List<Integer> choseAnswerList;
     public static List<Boolean> submittedAnswerList;
     private RecyclerView recyclerViewQuiz;
+    public static HScrollManager layoutManager;
     private TextView quizHeaderCount,
             quizTime, textViewScoreValue,
             skip, submit;
@@ -59,8 +61,8 @@ public class QuizActivity extends AppCompatActivity {
         choseAnswerList = new ArrayList<>();
         submittedAnswerList = new ArrayList<>();
 
-//        recyclerViewQuiz = (RecyclerView) findViewById(R.id.recyclerViewQuiz);
-        viewPagerQuiz = (ViewPager) findViewById(R.id.viewPagerQuiz);
+        recyclerViewQuiz = (RecyclerView) findViewById(R.id.recyclerViewQuiz);
+//        viewPagerQuiz = (ViewPager) findViewById(R.id.viewPagerQuiz);
         quizHeaderCount = (TextView) findViewById(R.id.quiz_header_count);
         quizTime = (TextView) findViewById(R.id.quiz_time);
         textViewScoreValue = (TextView) findViewById(R.id.textViewScoreValue);
@@ -69,32 +71,35 @@ public class QuizActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        quizAdapter = new QuizAdapter(QuizActivity.this, quizModelList, choseAnswerList);
-//        recyclerViewQuiz.setAdapter(quizAdapter);
-        viewPagerQuiz.setAdapter(quizAdapter);
-        viewPagerQuiz.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                quizCount = getViewPagerItem(0) + 1;
-                quizHeaderCount.setText("Câu hỏi: "
-                        + Integer.toString(quizCount) + "/" + Integer.toString(quizTotal));
-            }
-        });
+        quizAdapter = new QuizAdapter(quizModelList, choseAnswerList);
+        recyclerViewQuiz.setAdapter(quizAdapter);
+//        viewPagerQuiz.setAdapter(quizAdapter);
+//        viewPagerQuiz.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//                quizCount = getViewPagerItem(0) + 1;
+//                quizHeaderCount.setText("Câu hỏi: "
+//                        + Integer.toString(quizCount) + "/" + Integer.toString(quizTotal));
+//            }
+//        });
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 //        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 //        recyclerViewQuiz.setLayoutManager(layoutManager);
-
+        layoutManager = new HScrollManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewQuiz.setLayoutManager(layoutManager);
+        layoutManager.setScrollingEnabled(false);
 
 
         Bundle bundle = getIntent().getExtras();
@@ -103,39 +108,40 @@ public class QuizActivity extends AppCompatActivity {
 //            String exhibit_id = bundle.getString("id");
             String exhibit_id = "7MHOSWzGQIRyF8Hd47w6";
             assert exhibit_id != "";
-//            setSnapHelper();
+            setSnapHelper();
             getQuizList(exhibit_id);
             startTimer();
             setClickListeners();
 //        }
     }
 
-//    private void setSnapHelper() {
-//        SnapHelper snapHelper = new PagerSnapHelper();
-//        snapHelper.attachToRecyclerView(recyclerViewQuiz);
-//        recyclerViewQuiz.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//
-//                View view = snapHelper.findSnapView(recyclerView.getLayoutManager());
-//                quizCount = recyclerView.getLayoutManager().getPosition(view) + 1;
-//                Log.d("quizCountScroll", Integer.toString(quizCount));
-//
-//                quizHeaderCount.setText("Câu hỏi: "
-//                        + Integer.toString(quizCount) + "/" + Integer.toString(quizTotal));
-//            }
-//
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//
-////                quizAdapter.onBindViewHolder(QuizAdapter.QuizViewHolder , );
-//            }
-//
-//
-//        });
-//    }
+    private void setSnapHelper() {
+        SnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerViewQuiz);
+        recyclerViewQuiz.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                View view = snapHelper.findSnapView(recyclerView.getLayoutManager());
+                quizCount = recyclerView.getLayoutManager().getPosition(view) + 1;
+                Log.d("quizCountScroll", Integer.toString(quizCount));
+
+                quizHeaderCount.setText("Câu hỏi: "
+                        + Integer.toString(quizCount) + "/" + Integer.toString(quizTotal));
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+//                quizAdapter.onBindViewHolder(QuizAdapter.QuizViewHolder , );
+                layoutManager.setScrollingEnabled(false);
+            }
+
+
+        });
+    }
 
     public int getViewPagerItem(int i) {
         return viewPagerQuiz.getCurrentItem() + i;
@@ -148,24 +154,26 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void setClickListeners() {
-//         skip.setOnClickListener(new View.OnClickListener() {
-//             @Override
-//             public void onClick(View view) {
-//                 Log.d("quizCount", Integer.toString(quizCount));
-//                 Log.d("quizTotal", Integer.toString(quizTotal));
-//                 if (quizCount < quizTotal) {
-//                     recyclerViewQuiz.smoothScrollToPosition(quizCount);
-//                 }
-//             }
-//         });
-        skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (quizCount < quizTotal) {
-                    viewPagerQuiz.setCurrentItem(getViewPagerItem(1), true);
-                }
-            }
-        });
+         skip.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Log.d("quizCount", Integer.toString(quizCount));
+                 Log.d("quizTotal", Integer.toString(quizTotal));
+                 if (quizCount < quizTotal) {
+                     layoutManager.setScrollingEnabled(true);
+                     recyclerViewQuiz.smoothScrollToPosition(quizCount);
+                 }
+//                 layoutManager.setScrollingEnabled(false);
+             }
+         });
+//        skip.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (quizCount < quizTotal) {
+//                    viewPagerQuiz.setCurrentItem(getViewPagerItem(1), true);
+//                }
+//            }
+//        });
 
          submit.setOnClickListener(new View.OnClickListener() {
              @Override
