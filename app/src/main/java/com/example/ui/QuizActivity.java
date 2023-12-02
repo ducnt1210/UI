@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ui.Adapter.HScrollManager;
+import com.example.ui.Adapter.NoScrollRecyclerView;
 import com.example.ui.Adapter.QuizAdapter;
 import com.example.ui.Model.QuizModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,14 +44,22 @@ public class QuizActivity extends AppCompatActivity {
     private List<QuizModel> quizModelList;
     public static List<Integer> choseAnswerList;
     public static List<Boolean> submittedAnswerList;
-    private RecyclerView recyclerViewQuiz;
-    public static HScrollManager layoutManager;
+    private NoScrollRecyclerView recyclerViewQuiz;
+//    public static HScrollManager layoutManager;
+    public static LinearLayoutManager layoutManager;
+    public SnapHelper snapHelper;
     private TextView quizHeaderCount,
             quizTime, textViewScoreValue,
             skip, submit;
 
     private int quizCount = 1;
     private int quizTotal = 0;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("resume", "resume");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +71,7 @@ public class QuizActivity extends AppCompatActivity {
         choseAnswerList = new ArrayList<>();
         submittedAnswerList = new ArrayList<>();
 
-        recyclerViewQuiz = (RecyclerView) findViewById(R.id.recyclerViewQuiz);
+        recyclerViewQuiz = (NoScrollRecyclerView) findViewById(R.id.recyclerViewQuiz);
 //        viewPagerQuiz = (ViewPager) findViewById(R.id.viewPagerQuiz);
         quizHeaderCount = (TextView) findViewById(R.id.quiz_header_count);
         quizTime = (TextView) findViewById(R.id.quiz_time);
@@ -93,13 +103,14 @@ public class QuizActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        recyclerViewQuiz.setLayoutManager(layoutManager);
-        layoutManager = new HScrollManager(this);
+        layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewQuiz.setLayoutManager(layoutManager);
-        layoutManager.setScrollingEnabled(false);
+
+//        layoutManager = new HScrollManager(this);
+//        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+//        recyclerViewQuiz.setLayoutManager(layoutManager);
+//        layoutManager.setScrollingEnabled(false);
 
 
         Bundle bundle = getIntent().getExtras();
@@ -116,7 +127,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void setSnapHelper() {
-        SnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(recyclerViewQuiz);
         recyclerViewQuiz.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -134,9 +145,6 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
-//                quizAdapter.onBindViewHolder(QuizAdapter.QuizViewHolder , );
-                layoutManager.setScrollingEnabled(false);
             }
 
 
@@ -160,8 +168,11 @@ public class QuizActivity extends AppCompatActivity {
                  Log.d("quizCount", Integer.toString(quizCount));
                  Log.d("quizTotal", Integer.toString(quizTotal));
                  if (quizCount < quizTotal) {
-                     layoutManager.setScrollingEnabled(true);
+//                     layoutManager.setScrollingEnabled(true);
+//                     recyclerViewQuiz.setLayoutFrozen(false);
+//                     recyclerViewQuiz.setNestedScrollingEnabled(true);
                      recyclerViewQuiz.smoothScrollToPosition(quizCount);
+//                     recyclerViewQuiz.;
                  }
 //                 layoutManager.setScrollingEnabled(false);
              }
@@ -184,12 +195,23 @@ public class QuizActivity extends AppCompatActivity {
                  if (submittedAnswerList.get(quizCount - 1) == false) {
                      if (quizAdapter.choseAnswerList.get(quizCount - 1) > 0) {
                          submittedAnswerList.set(quizCount - 1, true);
-//                         quizAdapter.showResult(quizCount - 1);
+                         final Handler handler = new Handler();
+                         handler.postDelayed(new Runnable() {
+                             @Override
+                             public void run() {
+                                 // Do something after 5s = 5000ms
+                                 quizAdapter.showResult(quizCount - 1);
+                             }
+                         }, 500);
                      } else {
                          Toast.makeText(QuizActivity.this, "Vui lòng chọn đáp án trước khi nộp", Toast.LENGTH_SHORT).show();
                      }
                  } else {
-                     Toast.makeText(QuizActivity.this, "Câu hỏi đã trả lời không thể nộp", Toast.LENGTH_SHORT).show();
+                     if (quizCount < quizTotal) {
+                         Toast.makeText(QuizActivity.this, "Câu hỏi đã trả lời không thể nộp", Toast.LENGTH_SHORT).show();
+                     } else {
+
+                     }
                  }
              }
          });
@@ -230,6 +252,7 @@ public class QuizActivity extends AppCompatActivity {
                             Collections.shuffle(answers);
                             QuizModel quizModel = new QuizModel(
                                     doc.getId(),
+                                    exhibit_id,
                                     doc.getString("question"),
                                     answers,
                                     doc.getString("true_answer"),

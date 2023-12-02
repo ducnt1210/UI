@@ -11,6 +11,9 @@ public class HScrollManager extends LinearLayoutManager {
         super(context);
     }
 
+    public boolean getScrollingEnabled() {
+        return scrollingEnabled;
+    }
     public void setScrollingEnabled(boolean enabled) {
         scrollingEnabled = enabled;
     }

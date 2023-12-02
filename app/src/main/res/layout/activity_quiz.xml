@@ -77,12 +77,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.example.ui.Adapter.NoScrollRecyclerView
                 android:id="@+id/recyclerViewQuiz"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/quiz_content_item">
 
-            </androidx.recyclerview.widget.RecyclerView>
+            </com.example.ui.Adapter.NoScrollRecyclerView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
