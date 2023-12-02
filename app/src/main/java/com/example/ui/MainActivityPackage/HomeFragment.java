@@ -22,6 +22,7 @@ import com.example.ui.MainActivity;
 import com.example.ui.MapActivity;
 import com.example.ui.NavigationOpeningActivity;
 import com.example.ui.NewsEventsActivity;
+import com.example.ui.QuizActivity;
 import com.example.ui.R;
 import com.example.ui.TicketHandler.TicketActivity;
 import com.example.ui.Utils;
@@ -78,7 +79,7 @@ public class HomeFragment extends Fragment {
         binding.homeHeaderSearchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), NavigationOpeningActivity.class);
+                Intent intent = new Intent(getContext(), QuizActivity.class);
                 intent.putExtra("heading", "Timkiem");
                 startActivity(intent);
             }
