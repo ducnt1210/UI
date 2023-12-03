@@ -27,7 +27,8 @@
         <activity
             android:name=".Quiz.GiftActivity"
             android:exported="false"
-            android:label="@string/title_activity_gift" />
+            android:label="@string/title_activity_gift"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".TicketHandler.SuccessPaymentActivity"
             android:exported="true" />
