@@ -34,7 +34,10 @@
                     android:background="@drawable/search_bg"
                     android:hint="🔍 Tìm kiếm"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
+                    android:paddingRight="10dp"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:singleLine="true" />
 
                 <ExpandableListView
                     android:id="@+id/elv_artifact"
@@ -43,7 +46,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="100dp"
                     android:layout_gravity="center_vertical"
-                    android:layoutDirection="rtl" />
+                    android:layoutDirection="ltr" />
 
             </LinearLayout>
         </ScrollView>

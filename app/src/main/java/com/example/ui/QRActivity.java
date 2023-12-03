@@ -2,6 +2,7 @@ package com.example.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -27,18 +28,26 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.ui.Helper.AreaHelper;
+import com.example.ui.Model.ExhibitModel;
+import com.example.ui.Model.LocalAreaModel;
 import com.example.ui.databinding.ActivityQrBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -206,6 +215,37 @@ public class QRActivity extends AppCompatActivity {
                     String id = dataArr[0];
                     String data = dataArr[1];
                     Toast.makeText(this, id + " " + data, Toast.LENGTH_SHORT).show();
+                    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+                    // Reference to the "localAreas" collection
+                    CollectionReference localAreasCollection = firestore.collection("Exhibit");
+                    DocumentReference localAreaDocRef = localAreasCollection.document(id);
+
+                    localAreaDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    // Convert the document to a LocalAreaModel
+                                    ExhibitModel exhibitModel = new ExhibitModel(document.getId(),
+                                            document.getString("localArea"),
+                                            document.getString("name"),
+                                            document.getString("description"),
+                                            document.getString("video"),
+                                            (ArrayList<String>) document.get("content"),
+                                            document.getString("image_path"));
+
+                                    Intent intent = new Intent(QRActivity.this, ShowExhibitActivity.class);
+                                    intent.putExtra("exhibit", exhibitModel);
+                                    startActivity(intent);
+                                }
+                            } else {
+                                // Handle errors here
+                                System.out.println("lỗi 12345");
+                            }
+                        }
+                    });
                 }
             } else {
                 Toast.makeText(this, "This QR code type is not supported", Toast.LENGTH_SHORT).show();
@@ -216,3 +256,4 @@ public class QRActivity extends AppCompatActivity {
 
 
 }
+

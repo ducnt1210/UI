@@ -29,7 +29,6 @@ public class ArtifactsFragment extends Fragment {
         expandableListView = binding.elvArtifact;
 
         // Initialize and set the adapter
-        System.out.println(1234);
         areaAdapter = new AreaAdapter(getContext());
         expandableListView.setAdapter(areaAdapter);
 
