@@ -31,26 +31,13 @@
 
         <RelativeLayout
             android:id="@+id/layout_score"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end">
 
-            <TextView
-                android:id="@+id/textViewScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Điểm: "
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/textViewScoreValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/textViewScore"
-                android:text="1200"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="24sp" />
+            <include
+                android:id="@+id/coin_layout"
+                layout="@layout/coin_layout" />
         </RelativeLayout>
     </LinearLayout>
 

@@ -20,8 +20,9 @@ import com.example.ui.Helper.NewsHelper;
 import com.example.ui.IntroContentActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.MapActivity;
-import com.example.ui.NavigationOpeningActivity;
 import com.example.ui.NewsEventsActivity;
+import com.example.ui.Quiz.GiftActivity;
+import com.example.ui.Quiz.QuizActivity;
 import com.example.ui.R;
 import com.example.ui.TicketHandler.TicketActivity;
 import com.example.ui.Utils;
@@ -34,6 +35,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -42,6 +44,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     private NewsHelper newsHelper;
+    public String language = Locale.getDefault().getLanguage();
     SweetAlertDialog sweetAlertDialog;
 
     @Override
@@ -73,14 +76,21 @@ public class HomeFragment extends Fragment {
     }
 
     protected void getIntroContentView() {
-        binding.homeHeaderSearchIcon.setOnClickListener(new View.OnClickListener() {
+        binding.homeHeaderLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), NavigationOpeningActivity.class);
-                intent.putExtra("heading", "Timkiem");
+                Intent intent = new Intent(getContext(), QuizActivity.class);
                 startActivity(intent);
             }
         });
+        binding.coinLayout.coin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), GiftActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.coinLayout.arrow.setVisibility(View.VISIBLE);
         binding.homeMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,8 +182,21 @@ public class HomeFragment extends Fragment {
             ImageView img = cardView.findViewById(getImageId(cardIndex));
             TextView text = cardView.findViewById(getTextId(cardIndex));
 
-            String title = document.getString("title");
-            List<String> description = (List<String>) document.get("description");
+            String title;
+            List<String> description;
+            if (language.equals("vi")) {
+                title = document.getString("title");
+                description = (List<String>) document.get("description");
+            } else if (language.equals("en")) {
+                title = document.getString("title_en");
+                description = (List<String>) document.get("description_en");
+            } else if (language.equals("ja")) {
+                title = document.getString("title_ja");
+                description = (List<String>) document.get("description_ja");
+            } else {
+                title = document.getString("title_zh");
+                description = (List<String>) document.get("description_zh");
+            }
             String imageName = document.getString("image_path");
             String time = Utils.formatDate(document.getTimestamp("time"));
 

@@ -7,7 +7,7 @@
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">#70332E</item>
-        <item name="colorSecondaryVariant">#5E2B27</item>
+        <item name="colorSecondaryVariant">#6B3C13</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
@@ -31,10 +31,12 @@
 
     <style name="AlegreyTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/alegrey</item>
+        <item name="android:textColor">#383838</item>
     </style>
 
     <style name="oldstandar_regularEditTextStyle" parent="android:Widget.EditText">
         <item name="android:fontFamily">@font/oldstandar_regular</item>
+        <item name="android:textColor">#383838</item>
     </style>
 
     <style name="RoundedCorner" parent="">
@@ -63,4 +65,13 @@
         <item name="colorSwitchThumbNormal">#FFFFFF</item>
         <item name="android:colorForeground">#99FFFFFF</item>
     </style>
+
+    <style name="Theme.UI.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.UI.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.UI.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

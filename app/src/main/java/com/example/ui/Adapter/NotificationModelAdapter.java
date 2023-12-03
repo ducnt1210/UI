@@ -3,7 +3,6 @@ package com.example.ui.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,18 +19,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.ui.Model.NotificationModel;
 import com.example.ui.NotificationActivity;
-import com.example.ui.QuizActivity;
 import com.example.ui.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -124,6 +119,8 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             });
         } else {
             holder.item.setVisibility(View.GONE);
+            Log.d("type", "null");
+            Log.d("count", Integer.toString(count));
             if (count == 0){
                 ++count;
                 holder.dateTextView.setText(R.string.today);
@@ -135,15 +132,14 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
     }
 
     private void goToDetailedNotification(NotificationModel item) {
-        Intent intent = new Intent(this.context, QuizActivity.class);
-//        Intent intent = new Intent(this.context, NotificationActivity.class);
-//        Bundle bundle = new Bundle();
+        Intent intent = new Intent(this.context, NotificationActivity.class);
+        Bundle bundle = new Bundle();
 //        bundle.putString("id", item.getId());
-//        bundle.putStringArrayList("description", (ArrayList<String>) item.getDescription());
-//        bundle.putString("time", item.formatDate());
-//        bundle.putBoolean("update", false);
-//        bundle.putString("id", item.getId());
-//        intent.putExtras(bundle);
+        bundle.putStringArrayList("description", (ArrayList<String>) item.getDescription());
+        bundle.putString("time", item.formatDate());
+        bundle.putBoolean("update", false);
+        bundle.putString("id", item.getId());
+        intent.putExtras(bundle);
         this.context.startActivity(intent);
     }
 

@@ -275,133 +275,133 @@ public class MapActivity extends AppCompatActivity {
         StorageReference imgRef = FirebaseStorage.getInstance().getReference().child("map_imgs");
         switch (type) {
             case 00:
-                txtTitleDialog.setText("Tòa Trống đồng");
+                txtTitleDialog.setText(R.string.toa_trong_dong);
                 imgRef.child("toatrongdong.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 101:
-                txtTitleDialog.setText("Tòa Cánh diều");
+                txtTitleDialog.setText(R.string.toa_canh_dieu);
                 imgRef.child("toacanhdieu.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 1:
-                txtTitleDialog.setText("1. Nhà Chăm");
+                txtTitleDialog.setText(R.string.nha_cham);
                 imgRef.child("nhacham1.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 2:
-                txtTitleDialog.setText("2. Ghe Ngo Khơ me");
+                txtTitleDialog.setText(R.string.ghe_ngo_khome);
                 imgRef.child("ghengo2.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 3:
-                txtTitleDialog.setText("3. Thủy Đình");
+                txtTitleDialog.setText(R.string.thuy_dinh);
                 imgRef.child("thuydinh3.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 4:
-                txtTitleDialog.setText("4. Nhà Việt");
+                txtTitleDialog.setText(R.string.nha_viet);
                 imgRef.child("nhaviet4.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 5:
-                txtTitleDialog.setText("5. Nhà thuyền");
+                txtTitleDialog.setText(R.string.nha_thuyen);
                 imgRef.child("nhathuyen5.jpg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 6:
-                txtTitleDialog.setText("6. Nhà rông Banana");
+                txtTitleDialog.setText(R.string.nha_rong_ba_na);
                 imgRef.child("nharong6.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 7:
-                txtTitleDialog.setText("7. Nhà Êđê");
+                txtTitleDialog.setText(R.string.nha_e_de);
                 imgRef.child("nhaede7.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 8:
-                txtTitleDialog.setText("8. Nhà mồ Giarai");
+                txtTitleDialog.setText(R.string.nha_mo_gia_rai);
                 imgRef.child("nhamo8.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 9:
-                txtTitleDialog.setText("9. Nhà mồ Cơtu");
+                txtTitleDialog.setText(R.string.nha_mo_co_tu);
                 imgRef.child("nhamocotu9.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 10:
-                txtTitleDialog.setText("10. Lò rèn Nùng");
+                txtTitleDialog.setText(R.string.lo_ren_nung);
                 imgRef.child("loren10.jpg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 11:
-                txtTitleDialog.setText("11. Nhà Tày");
+                txtTitleDialog.setText(R.string.nha_tay);
                 imgRef.child("nhatay11.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 12:
-                txtTitleDialog.setText("12. Nhà Dao");
+                txtTitleDialog.setText(R.string.nha_dao);
                 imgRef.child("nhadao12.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 13:
-                txtTitleDialog.setText("13. Nhà Hmông");
+                txtTitleDialog.setText(R.string.nha_h_mong);
                 imgRef.child("nhahmong13.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 14:
-                txtTitleDialog.setText("14. Nhà Hà Nhì");
+                txtTitleDialog.setText(R.string.nha_ha_nhi);
                 imgRef.child("hanhi14.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 15:
-                txtTitleDialog.setText("15. Nhà thực nghiệm");
+                txtTitleDialog.setText(R.string.nha_thuc_nghiem);
                 imgRef.child("thucnghiem15.jpg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 16:
-                txtTitleDialog.setText("16. Nhà hàng");
+                txtTitleDialog.setText(R.string.nha_hang);
                 imgRef.child("nhahang16.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 17:
-                txtTitleDialog.setText("17. Cửa hàng sách");
+                txtTitleDialog.setText(R.string.cua_hang_sach);
                 imgRef.child("nhahang16.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 18:
-                txtTitleDialog.setText("18. Cửa hàng lưu niệm");
+                txtTitleDialog.setText(R.string.cua_hang_luu_niem);
                 imgRef.child("luuniem18.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 19:
-                txtTitleDialog.setText("19. Café");
+                txtTitleDialog.setText(R.string.cafe);
                 imgRef.child("cf19.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
                 break;
             case 20:
-                txtTitleDialog.setText("20. Coffee & Cake");
+                txtTitleDialog.setText(R.string.cafe_cake);
                 imgRef.child("cfvabanhngot20.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });

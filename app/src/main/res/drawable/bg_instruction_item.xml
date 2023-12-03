@@ -11,7 +11,7 @@
         android:top="0dp"
         android:bottom="1dp">
         <shape>
-            <solid android:color="#FFFFFFFF" /> <!-- Màu nền của dialog -->
+            <solid android:color="?attr/colorOnPrimary" /> <!-- Màu nền của dialog -->
         </shape>
     </item>
 </layer-list>

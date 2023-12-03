@@ -29,7 +29,9 @@
                     android:background="@drawable/search_bg"
                     android:hint="@string/search_bar"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
+                    android:paddingRight="10dp"
+                    android:textColor="#666666"
+                    android:textColorHint="#666666"/>
 
                 <ExpandableListView
                     android:id="@+id/elv_artifact"
