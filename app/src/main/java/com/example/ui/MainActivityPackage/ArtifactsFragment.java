@@ -31,7 +31,6 @@ public class ArtifactsFragment extends Fragment {
         actionBar.setTitle(R.string.artifact_category);
 
         // Initialize and set the adapter
-        System.out.println(1234);
         areaAdapter = new AreaAdapter(getContext());
         expandableListView.setAdapter(areaAdapter);
 

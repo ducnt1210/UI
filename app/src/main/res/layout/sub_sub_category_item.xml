@@ -16,15 +16,14 @@
         android:paddingRight="15dp"
         android:paddingBottom="2dp">
 
+
         <ImageView
             android:id="@+id/img_sub_item"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_centerVertical="true"
             android:scaleType="centerCrop"
             android:src="@drawable/demo_img2"
             app:civ_border_color="@color/white" />
-
 
         <TextView
             android:id="@+id/heading_sub_item"
