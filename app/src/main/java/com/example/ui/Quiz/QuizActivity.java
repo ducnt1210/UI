@@ -1,4 +1,4 @@
-package com.example.ui;
+package com.example.ui.Quiz;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,18 +8,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 import androidx.viewpager.widget.ViewPager;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ui.Adapter.HScrollManager;
 import com.example.ui.Adapter.QuizAdapter;
 import com.example.ui.Model.QuizModel;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.ui.R;
+import com.example.ui.databinding.ActivityQuizBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -27,15 +28,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class QuizActivity extends AppCompatActivity {
+    ActivityQuizBinding binding;
     private FirebaseFirestore db;
     private QuizAdapter quizAdapter;
     private ViewPager viewPagerQuiz;
@@ -54,6 +53,7 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityQuizBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_quiz);
 
         db = FirebaseFirestore.getInstance();
@@ -65,7 +65,7 @@ public class QuizActivity extends AppCompatActivity {
 //        viewPagerQuiz = (ViewPager) findViewById(R.id.viewPagerQuiz);
         quizHeaderCount = (TextView) findViewById(R.id.quiz_header_count);
         quizTime = (TextView) findViewById(R.id.quiz_time);
-        textViewScoreValue = (TextView) findViewById(R.id.textViewScoreValue);
+        textViewScoreValue = (TextView) findViewById(R.id.coin_layout).findViewById(R.id.coin);
         skip = (TextView) findViewById(R.id.quiz_skip);
         submit = (TextView) findViewById(R.id.quiz_submit);
 
@@ -113,6 +113,8 @@ public class QuizActivity extends AppCompatActivity {
             startTimer();
             setClickListeners();
 //        }
+        Drawable leftDrawable = binding.coinLayout.coin.getCompoundDrawablesRelative()[0];
+        binding.coinLayout.coin.setCompoundDrawablesRelative(leftDrawable, null, null, null);
     }
 
     private void setSnapHelper() {

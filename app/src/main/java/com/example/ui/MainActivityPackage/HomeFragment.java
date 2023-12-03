@@ -20,9 +20,9 @@ import com.example.ui.Helper.NewsHelper;
 import com.example.ui.IntroContentActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.MapActivity;
-import com.example.ui.NavigationOpeningActivity;
 import com.example.ui.NewsEventsActivity;
-import com.example.ui.QuizActivity;
+import com.example.ui.Quiz.ExchangeGiftActivity;
+import com.example.ui.Quiz.QuizActivity;
 import com.example.ui.R;
 import com.example.ui.TicketHandler.TicketActivity;
 import com.example.ui.Utils;
@@ -76,14 +76,21 @@ public class HomeFragment extends Fragment {
     }
 
     protected void getIntroContentView() {
-        binding.homeHeaderSearchIcon.setOnClickListener(new View.OnClickListener() {
+        binding.homeHeaderLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), QuizActivity.class);
-                intent.putExtra("heading", "Timkiem");
                 startActivity(intent);
             }
         });
+        binding.coinLayout.coin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ExchangeGiftActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.coinLayout.arrow.setVisibility(View.VISIBLE);
         binding.homeMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

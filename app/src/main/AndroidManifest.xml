@@ -25,13 +25,16 @@
         android:theme="@style/Theme.UI"
         tools:targetApi="31">
         <activity
+            android:name=".Quiz.ExchangeGiftActivity"
+            android:exported="false" />
+        <activity
             android:name=".TicketHandler.SuccessPaymentActivity"
             android:exported="true" />
         <activity
             android:name=".TicketHandler.TicketActivity"
-            android:parentActivityName=".MainActivity"
             android:exported="true"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -70,7 +73,7 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".Quiz.QuizActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity

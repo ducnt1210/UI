@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_grey">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/gift_card_item"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="20dp"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/gift_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/demo_img2" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:background="?attr/colorOnPrimary">
+
+                <TextView
+                    android:id="@+id/gift_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="5dp"
+                    android:paddingLeft="7dp"
+                    android:text="Móc khóa thỏ hum blablaaa"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gift_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginHorizontal="7dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/bg_exchange_button"
+                    android:drawableLeft="@drawable/baseline_monetization_on_24"
+                    android:paddingHorizontal="6dp"
+                    android:text="2000"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
 
         <RelativeLayout
             android:id="@+id/home_header"
@@ -38,15 +38,13 @@
                 android:textColor="@color/white"
                 android:textSize="30dp" />
 
-            <ImageButton
-                android:id="@+id/home_header_search_icon"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+            <include
+                android:id="@+id/coin_layout"
+                layout="@layout/coin_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:background="@null"
-                android:src="@drawable/baseline_search_24" />
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
 
         <ScrollView
@@ -67,13 +65,13 @@
                     android:src="@drawable/map_img" />
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:paddingTop="20dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:paddingLeft="20dp"
+                    android:paddingTop="20dp"
                     android:paddingRight="20dp"
-                    android:paddingBottom="20dp"
-                    android:layout_height="wrap_content">
+                    android:paddingBottom="20dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -86,9 +84,9 @@
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/alegrey_bold"
                             android:text="@string/introduce"
+                            android:textColor="#666666"
                             android:textSize="25sp"
-                            android:textStyle="bold"
-                            android:textColor="#666666"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/homeIntroMore"
@@ -330,9 +328,9 @@
                         android:layout_marginTop="30dp"
                         android:fontFamily="@font/alegrey_bold"
                         android:text="@string/news_events"
+                        android:textColor="#666666"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textColor="#666666"/>
+                        android:textStyle="bold" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -585,17 +583,17 @@
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/ticketButton"
         android:layout_width="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="70dp"
-        android:text="@string/book_ticket"
-        app:icon="@drawable/ticket_icon"
-        app:shapeAppearanceOverlay="@style/RoundedCorner"
-        android:textSize="18sp"
-        android:fontFamily="@font/merriweathersanswght"
-        android:backgroundTint="@color/red"
-        android:textAlignment="center"
-        android:layout_marginEnd="20dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_height="wrap_content" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/merriweathersanswght"
+        android:text="@string/book_ticket"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:icon="@drawable/ticket_icon"
+        app:shapeAppearanceOverlay="@style/RoundedCorner" />
 
 </RelativeLayout>

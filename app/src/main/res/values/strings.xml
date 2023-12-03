@@ -78,14 +78,14 @@
     <string name="turn_flash">Turn on Flash</string>
     <string name="choose_qr">Choose a QR</string>
 
-<!--    ArtifactFragment-->
+    <!--    ArtifactFragment-->
     <string name="architect">Architect garden</string>
     <string name="peoples_vietnam">Peoples of Vietnam</string>
     <string name="peoples_world">Peoples of the world</string>
     <string name="detail"><u>Detail</u></string>
     <string name="book_ticket">BOOK TICKET</string>
 
-<!--    MapActivity-->
+    <!--    MapActivity-->
     <string name="see_direction">See direction</string>
     <string name="see_detail">See detail</string>
     <string name="nha_cham">1. Cham House</string>
@@ -123,4 +123,7 @@
     <string name="edit_profile_title">Edit personal information</string>
     <string name="edit_profile_content1">To edit personal information, you can click on the setting button in the Bottom Navigation Bar. After being navigated to the Settings screen, you can click on the Edit profile button to edit your personal information</string>
     <string name="edit_profile_content2">You can change your avatar by clicking on the current avatar image on the Settings interface or in the Edit profile interface, then select a new image from the phone\'s photo library. In addition, you can also change your display name or email and password</string>
+    <string name="title_activity_gift">GiftActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>
