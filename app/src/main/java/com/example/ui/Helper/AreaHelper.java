@@ -1,6 +1,7 @@
 package com.example.ui.Helper;
 
 import com.example.ui.Model.AreaModel;
+import com.example.ui.Model.ExhibitModel;
 import com.example.ui.Model.LocalAreaModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,14 +63,11 @@ public class AreaHelper {
         // Get the localAreaIds from the AreaModel
         List<String> localAreaIds = areaModel.getLocalAreaIds();
 
-        System.out.println(localAreaIds);
-        // Create a list to store LocalAreaModel objects
         final List<LocalAreaModel> localAreas = new ArrayList<>();
 
         // Fetch each LocalAreaModel based on its ID
         if(localAreaIds.size() > 0) {
             for (String localAreaId : localAreaIds) {
-                System.out.println(222);
                 DocumentReference localAreaDocRef = localAreasCollection.document(localAreaId);
 
                 localAreaDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -105,6 +103,55 @@ public class AreaHelper {
         }
     }
 
+    public void getExhibitModels(final LocalAreaModel localAreaModel, final OnExhibitModelsRetrievedListener onExhibitModelsRetrievedListener) {
+        // Reference to the "localAreas" collection
+        CollectionReference localAreasCollection = firestore.collection("Exhibit");
+
+        // Get the localAreaIds from the AreaModel
+        List<String> exhibitIds = localAreaModel.getExhibits();
+
+        final List<ExhibitModel> exhibitModels = new ArrayList<>();
+
+        // Fetch each LocalAreaModel based on its ID
+        if(exhibitIds.size() > 0) {
+            for (String exhibitId : exhibitIds) {
+                DocumentReference localAreaDocRef = localAreasCollection.document(exhibitId);
+
+                localAreaDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                // Convert the document to a LocalAreaModel
+                                ExhibitModel exhibitModel = new ExhibitModel(document.getId(),
+                                        localAreaModel.getParentId(),
+                                        document.getString("name"),
+                                        document.getString("description"),
+                                        document.getString("video"),
+                                        (ArrayList<String>) document.get("content"),
+                                        document.getString("image_path"));
+
+                                // Add the LocalAreaModel to the list
+                                exhibitModels.add(exhibitModel);
+
+                                // Check if all LocalAreaModels have been retrieved
+                                if (exhibitModels.size() == localAreaModel.getExhibits().size()) {
+                                    // Callback with the list of LocalAreaModels
+                                    onExhibitModelsRetrievedListener.onExhibitsRetrieved(exhibitModels);
+                                }
+                            }
+                        } else {
+                            // Handle errors here
+                            System.out.println("lỗi 12345");
+                            onExhibitModelsRetrievedListener.onError(task.getException().getMessage());
+                        }
+                    }
+                });
+            }
+        }
+    }
+
     // Interface to define callback methods for retrieving AreaModels
     public interface OnAreasRetrievedListener {
         void onAreasRetrieved(List<AreaModel> areas);
@@ -119,5 +166,12 @@ public class AreaHelper {
         void onLocalAreasNotFound();
 
         void onError(String errorMessage);
+    }
+
+    public interface OnExhibitModelsRetrievedListener {
+        void onExhibitsRetrieved(List<ExhibitModel> exhibitModels);
+        void onExhibitsNotFound();
+        void onError(String errorMessage);
+
     }
 }
