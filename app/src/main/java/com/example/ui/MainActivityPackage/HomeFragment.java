@@ -21,7 +21,7 @@ import com.example.ui.IntroContentActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.MapActivity;
 import com.example.ui.NewsEventsActivity;
-import com.example.ui.Quiz.ExchangeGiftActivity;
+import com.example.ui.Quiz.GiftActivity;
 import com.example.ui.Quiz.QuizActivity;
 import com.example.ui.R;
 import com.example.ui.TicketHandler.TicketActivity;
@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment {
         binding.coinLayout.coin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ExchangeGiftActivity.class);
+                Intent intent = new Intent(getContext(), GiftActivity.class);
                 startActivity(intent);
             }
         });

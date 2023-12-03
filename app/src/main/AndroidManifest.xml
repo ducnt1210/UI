@@ -25,8 +25,9 @@
         android:theme="@style/Theme.UI"
         tools:targetApi="31">
         <activity
-            android:name=".Quiz.ExchangeGiftActivity"
-            android:exported="false" />
+            android:name=".Quiz.GiftActivity"
+            android:exported="false"
+            android:label="@string/title_activity_gift" />
         <activity
             android:name=".TicketHandler.SuccessPaymentActivity"
             android:exported="true" />
