@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="opening_instruction">設定セクションでアプリケーションの使用手順を確認できます。</string>
+    <string name="press_setting_button">設定ボタンを押します。</string>
+    <string name="your_string_here" translatable="false">
+        <u>概要 →</u>
+    </string>
+    <string name="intro1">アプリケーションは、ベトナム民族博物館の訪問者をサポートします</string>
+    <string name="book_tickets">チケットを予約する</string>
+    <string name="book_tickets_content">VMUSEUMは、学生チケットを含む、オンラインでチケットを予約するのをサポートします</string>
+    <string name="instruction">指示</string>
+    <string name="instruction_opeing_content">問題が発生した場合は、設定→インストラクションのセクションでアプリケーションの使用方法を確認できます。</string>
+    <string name="app_name">VMUSEUM</string>
+    <string name="numberTV">電話番号</string>
+    <string name="password_changeTV">パスワードの変更</string>
+    <string name="password_desTV">パスワードを変更したくない場合は、空のままにしてください。</string>
+    <string name="delete_all_user_data">すべてのユーザーデータを削除します</string>
+    <string name="choose_your_language">言語を選んでください</string>
+    <string name="vietnamese">🇻🇳ベトナム語</string>
+    <string name="english">\ud83c\uddec\ud83c\udde7英語</string>
+    <string name="japanese">🇯🇵日本人</string>
+    <string name="chinese">🇨🇳中国語</string>
+    <string name="set_your_languageBT">言語を設定する</string>
+    <string name="full_nameTV">フルネーム</string>
+    <string name="email">Eメール</string>
+    <string name="log_out">ログアウト</string>
+
+    <!--    Trong phần hướng dẫn-->
+    <string name="search_bar">検索</string>
+    <string name="qr_instruction">QRコード</string>
+    <string name="artifact_instruction">アーティファクト</string>
+    <string name="map_instruction">地図</string>
+    <string name="edit_profile_instruction">プロフィールを編集する</string>
+    <string name="language_instruction">言語を選択する</string>
+    <string name="newsnevents_instruction">ニュースとイベント</string>
+    <string name="notification_instruction">通知を見る</string>
+    <string name="contact_admin">管理者に連絡する</string>
+    <string name="delete_account_instruction">アカウントを削除する</string>
+
+<!--    SettingFragment-->
+    <string name="editinfo">情報を編集する</string>
+    <string name="setting">設定</string>
+    <string name="nightmode">ナイトモード</string>
+    <string name="language">言語</string>
+    <string name="notification">通知</string>
+    <string name="aboutus">私たちに関しては</string>
+    <string name="securitynprivacy">安全</string>
+    <string name="dangerzone">危険地帯</string>
+    <string name="logout">ログアウト</string>
+    <string name="deleteaccount">アカウントを削除する</string>
+
+<!--    EditInfo-->
+    <string name="updateinfo">情報を更新する</string>
+    <string name="password">パスワード</string>
+    <string name="confirm_password">パスワードを認証する</string>
+    <string name="change_password">パスワードを変更する</string>
+
+<!--    MainActivity-->
+    <string name="home">ホーム</string>
+    <string name="artifacts">アーティファクト</string>
+    <string name="introduce">紹介</string>
+    <string name="strategy">戦略</string>
+    <string name="history">歴史</string>
+    <string name="spaces">スペース</string>
+    <string name="personel">人員</string>
+    <string name="cooperation">協力</string>
+    <string name="news_events">ニュースとイベント</string>
+    <string name="artifact_category">アーティファクトカテゴリ</string>
+    <string name="today">今日</string>
+    <string name="before">前</string>
+    <string name="qrscan">QRコードをスキャンするか、デバイスから選択します</string>
+    <string name="turn_flash">フラッシュをオンにする</string>
+    <string name="choose_qr">QRコードを選択する</string>
+</resources>

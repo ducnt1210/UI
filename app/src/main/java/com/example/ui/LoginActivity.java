@@ -12,9 +12,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ui.Model.UserModel;
+import com.example.ui.SettingPackage.LanguageActivity;
 import com.example.ui.databinding.ActivityLoginBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -36,12 +36,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity;
 
 import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends LocaleAwareCompatActivity {
 
     SweetAlertDialog sweetAlertDialog;
     ActivityLoginBinding binding;
@@ -52,10 +53,11 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_UI);
+        super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
@@ -83,10 +85,22 @@ public class LoginActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
+
         if (user != null) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+            String checkUser = getIntent().getStringExtra("checkUser");
+            if (checkUser != null && checkUser.contains("newUser")) {
+                Intent intent = new Intent(LoginActivity.this, LanguageActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("checkUser", "newUser");
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(intent);
         }
 
         binding.login.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +179,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void ggSignin() {
+        sweetAlertDialog.show();
         Intent intent = gsc.getSignInIntent();
         startActivityForResult(intent, 1000);
     }
@@ -179,7 +194,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "firebaseAuthWithGoogle" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                sweetAlertDialog.dismiss();
+                Toast.makeText(this, "Login with Google failed!", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Error" + e.getMessage());
             }
         }
     }
@@ -219,6 +236,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                        sweetAlertDialog.dismiss();
                                                         startActivity(intent);
                                                         finish();
                                                     }
@@ -228,6 +246,7 @@ public class LoginActivity extends AppCompatActivity {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
                                                 Log.w(TAG, "signInWithCredential:failure", task.getException());
+                                                sweetAlertDialog.dismiss();
                                                 Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                                             }
                                         });
@@ -239,6 +258,7 @@ public class LoginActivity extends AppCompatActivity {
                                         if (tempGGUser.isSignIn()) {
                                             Toast.makeText(LoginActivity.this, "This account already been signed in!", Toast.LENGTH_SHORT).show();
                                             FirebaseAuth.getInstance().signOut();
+                                            sweetAlertDialog.dismiss();
                                             gsc.signOut();
                                             LoginActivity.this.recreate();
                                         } else {
@@ -248,6 +268,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                    sweetAlertDialog.dismiss();
                                                     startActivity(intent);
                                                     finish();
                                                 }
@@ -258,6 +279,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            sweetAlertDialog.dismiss();
                             Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                         }
                     }

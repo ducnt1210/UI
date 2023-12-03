@@ -2,7 +2,12 @@ package com.example.ui.MainActivityPackage;
 
 import static java.lang.System.exit;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,11 +16,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ui.Adapter.NotificationAdapter;
 import com.example.ui.Adapter.NotificationModelAdapter;
+import com.example.ui.MainActivity;
 import com.example.ui.Model.NotificationModel;
 import com.example.ui.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,24 +45,37 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class NotificationFragment extends Fragment {
-    private RecyclerView recyclerViewToday;
-    private RecyclerView recyclerViewPrevious;
+//    private RecyclerView recyclerViewToday;
+//    private RecyclerView recyclerViewPrevious;
+    private RecyclerView recyclerViewNotification;
     private FirebaseFirestore db;
-    private NotificationModelAdapter notificationModelAdapterToday;
-    private NotificationModelAdapter notificationModelAdapterPrevious;
+//    private NotificationModelAdapter notificationModelAdapterToday;
+//    private NotificationModelAdapter notificationModelAdapterPrevious;
+    private NotificationModelAdapter notificationModelAdapter;
     private SweetAlertDialog sweetAlertDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        ActionBar actionBar = ((MainActivity) requireActivity()).getSupportActionBar();
+        actionBar.show();
+        actionBar.setTitle(R.string.notification);
         return inflater.inflate(R.layout.fragment_notifcation, container, false);
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("frag", "test");
+        getNotificationModelList();
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        notificationModelAdapterToday = new NotificationModelAdapter(getContext());
-        notificationModelAdapterPrevious = new NotificationModelAdapter(getContext());
+//        notificationModelAdapterToday = new NotificationModelAdapter(getContext());
+//        notificationModelAdapterPrevious = new NotificationModelAdapter(getContext());
+        notificationModelAdapter = new NotificationModelAdapter(getContext());
 
         sweetAlertDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
         sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
@@ -61,19 +83,26 @@ public class NotificationFragment extends Fragment {
         sweetAlertDialog.show();
         getNotificationModelList();
 
-        recyclerViewToday = view.findViewById(R.id.notificationRecyclerViewToday);
-        recyclerViewToday.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewToday.setAdapter(notificationModelAdapterToday);
+        recyclerViewNotification = view.findViewById(R.id.notificationRecyclerView);
 
-        recyclerViewPrevious = view.findViewById(R.id.notificationRecyclerViewPrevious);
-        recyclerViewPrevious.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewPrevious.setAdapter(notificationModelAdapterPrevious);
+//        recyclerViewToday = view.findViewById(R.id.notificationRecyclerView);
+//        recyclerViewToday.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recyclerViewToday.setAdapter(notificationModelAdapterToday);
+
+//        recyclerViewPrevious = view.findViewById(R.id.notificationRecyclerViewPrevious);
+//        recyclerViewPrevious.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recyclerViewPrevious.setAdapter(notificationModelAdapterPrevious);
+
+        recyclerViewNotification.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewNotification.setAdapter(notificationModelAdapter);
     }
 
     private void getNotificationModelList() {
         db = FirebaseFirestore.getInstance();
         List<NotificationModel> notificationModelListToday = new ArrayList<>();
         List<NotificationModel> notificationModelListPrevious = new ArrayList<>();
+        List<NotificationModel> notificationModelList = new ArrayList<>();
+        List<NotificationModel> notifications = new ArrayList<>();
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Date currentDate = new Date();
@@ -96,6 +125,7 @@ public class NotificationFragment extends Fragment {
                                             (List<String>) doc.get("description"),
                                             doc.getString("user_id"),
                                             doc.getBoolean("seen"),
+                                            doc.getBoolean("sentNotification"),
                                             doc.getTimestamp("time"));
                             if (notificationModel.getTime().toDate().compareTo(currentDate) > 0) {
                                 sweetAlertDialog.dismissWithAnimation();
@@ -104,27 +134,36 @@ public class NotificationFragment extends Fragment {
                                         Toast.LENGTH_SHORT);
                                 Log.e("Future notification", notificationModel.getId());
                                 exit(0);
-                            } else if (notificationModel.isSameday(currentDate, notificationModel.getTime().toDate())) {
+                            } else if (notificationModel.isSameday(currentDate)) {
                                 notificationModelListToday.add(notificationModel);
                             } else {
                                 notificationModelListPrevious.add(notificationModel);
                             }
                         }
 
+                        notificationModelList.add(null);
                         Collections.sort(notificationModelListToday, new Comparator<NotificationModel>() {
                             public int compare(NotificationModel o1, NotificationModel o2) {
                                 return o2.getTime().compareTo(o1.getTime());
                             }
                         });
-                        notificationModelAdapterToday.setNotificationModelList(notificationModelListToday);
+//                        notificationModelAdapterToday.setNotificationModelList(notificationModelListToday);
+                        notificationModelList.addAll(notificationModelListToday);
 
+                        notificationModelList.add(null);
                         Collections.sort(notificationModelListPrevious, new Comparator<NotificationModel>() {
                             @Override
                             public int compare(NotificationModel o1, NotificationModel o2) {
                                 return o2.getTime().compareTo(o1.getTime());
                             }
                         });
-                        notificationModelAdapterPrevious.setNotificationModelList(notificationModelListPrevious);
+//                        notificationModelAdapterPrevious.setNotificationModelList(notificationModelListPrevious);
+                        notificationModelList.addAll(notificationModelListPrevious);
+
+                        Log.d("notificationModelList", Integer.toString(notificationModelList.size()));
+
+                        notificationModelAdapter.setNotificationModelList(notificationModelList);
+
 //                        Log.d("current time", new Date().toString());
                         sweetAlertDialog.dismissWithAnimation();
                     }
@@ -136,4 +175,24 @@ public class NotificationFragment extends Fragment {
                     }
                 });
     }
+
+//    private void sendNotification(String name, String message) {
+//        Intent intent = new Intent(this, MainActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+//
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(.this, "My Notification");
+//        builder.setContentTitle(name);
+//        builder.setSmallIcon(R.drawable.wallet_icon);
+//        builder.setContentText(message);
+//        builder.setAutoCancel(true);
+//        builder.setContentIntent(pendingIntent);
+//
+//        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(AddSavingActivity.this);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+//            return;
+//        }
+//        managerCompat.notify(1, builder.build());
+//    }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="opening_instruction">Bạn có thể xem hướng dẫn sử dụng ứng dụng trong phần cài đặt.</string>
+    <string name="your_string_here" translatable="false">
+        <u>Tổng quan →</u>
+    </string>
+    <string name="press_setting_button">Nhấn nút cài đặt.</string>
+    <string name="instruction">Hướng dẫn</string>
+    <string name="intro1">Ứng dụng hỗ trợ người dùng tham quan Bảo tàng Dân tộc học Việt Nam</string>
+    <string name="book_tickets">Đặt vé</string>
+    <string name="book_tickets_content">VMUSEUM hỗ trợ người dùng đặt vé online, kể cả vé học sinh, sinh viên</string>
+    <string name="instruction_opeing_content">Nếu gặp bất cứ khó khăn gì, bạn có thể xem cách sử dụng ứng dụng trong phần Cài đặt -> Hướng dẫn</string>
+    <string name="app_name">VMUSEUM</string>
+    <string name="full_nameTV">Tên</string>
+    <string name="numberTV">Số điện thoại</string>
+    <string name="email">Email</string>
+    <string name="log_out">Đăng xuất</string>
+    <string name="password_changeTV">THAY ĐỔI MẬT KHẨU</string>
+    <string name="password_desTV">ĐỂ TRỐNG VÙNG PASSWORD NẾU BẠN KHÔNG MUỐN THAY ĐỔI NÓ</string>
+    <string name="delete_all_user_data">XÓA HẾT DỮ LIỆU NGƯỜI DÙNG</string>
+    <string name="choose_your_language">Chọn ngôn ngữ của bạn</string>
+    <string name="vietnamese">🇻🇳 Tiếng Việt</string>
+    <string name="english">\ud83c\uddec\ud83c\udde7 Tiếng Anh</string>
+    <string name="japanese">🇯🇵 Tiếng nhật</string>
+    <string name="chinese">🇨🇳 Tiếng Trung</string>
+    <string name="set_your_languageBT">CHỌN NGÔN NGỮ</string>
+
+<!--    Trong phần hướng dẫn-->
+    <string name="search_bar">Tìm kiếm</string>
+    <string name="qr_instruction">Quét mã QR</string>
+    <string name="artifact_instruction">Hiện vật</string>
+    <string name="map_instruction">Bản đồ</string>
+    <string name="edit_profile_instruction">Chỉnh sửa thông tin</string>
+    <string name="language_instruction">Thay đổi ngôn ngữ</string>
+    <string name="newsnevents_instruction">Tin tức và Sự kiện</string>
+    <string name="notification_instruction">Xem thông báo</string>
+    <string name="contact_admin">Liên hệ Quản trị viên</string>
+    <string name="delete_account_instruction">Xóa tài khoản</string>
+
+<!--    SettingFragment-->
+    <string name="editinfo">Sửa hồ sơ</string>
+    <string name="setting">Cài đặt</string>
+    <string name="nightmode">Chế độ ban đêm</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="notification">Thông báo</string>
+    <string name="aboutus">Về chúng tôi</string>
+    <string name="securitynprivacy">Bảo mật và quyền riêng tư</string>
+    <string name="dangerzone">Vùng nguy hiểm</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="deleteaccount">XÓA TÀI KHOẢN</string>
+
+<!--    EditInfo-->
+    <string name="updateinfo">CẬP NHẬT THÔNG TIN</string>
+    <string name="password">Mật khẩu</string>
+    <string name="confirm_password">Xác nhận mật khẩu</string>
+    <string name="change_password">ĐỔI MẬT KHẨU</string>
+
+<!--    MainActivity-->
+    <string name="home">Trang chủ</string>
+    <string name="artifacts">Hiện vật</string>
+    <string name="introduce">Giới thiệu</string>
+    <string name="strategy">Chiến lược bảo tàng</string>
+    <string name="history">Lịch sử bảo tàng</string>
+    <string name="spaces">Các không gian</string>
+    <string name="personel">Tổ chức và nhân sự</string>
+    <string name="cooperation">Hợp tác</string>
+    <string name="news_events">Tin tức và sự kiện</string>
+    <string name="artifact_category">Danh mục hiện vật</string>
+    <string name="today">Hôm nay</string>
+    <string name="before">Trước đó</string>
+    <string name="qrscan">Quét mã QR hoặc chọn từ thiết bị</string>
+    <string name="turn_flash">Bật đèn flash</string>
+    <string name="choose_qr">Chọn mã QR</string>
+</resources>

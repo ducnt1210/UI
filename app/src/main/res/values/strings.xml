@@ -1,14 +1,75 @@
 <resources>
     <string name="app_name">VMUSEUM</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="your_string_here">
-        <u>Tổng quan →</u>
+    <string name="your_string_here" translatable="false">
+        <u>Overview →</u>
     </string>
-    <string name="full_nameTV">Fullname</string>
+
+    <string name="intro1">The application supports users in visiting the Vietnam Museum of Ethnology</string>
+    <string name="book_tickets">Book tickets</string>
+    <string name="book_tickets_content">VMUSEUM supports users to book tickets online, including student tickets</string>
+    <string name="opening_instruction">You can see instructions for using the application in the settings section.</string>
+    <string name="press_setting_button">Press the setting button.</string>
+    <string name="instruction">Instruction</string>
+    <string name="instruction_opeing_content">If you encounter any difficulties, you can see how to use the application in the Settings -> Instruction section.</string>
     <string name="numberTV">Phone number</string>
     <string name="email">Email</string>
-    <string name="log_out">Log out</string>
     <string name="password_changeTV">PASSWORD CHANGE</string>
     <string name="password_desTV">" Leave passwords empty, when you don't want to change it."</string>
     <string name="delete_all_user_data">DELETE ALL USER DATA</string>
+    <string name="choose_your_language">Choose your language</string>
+    <string name="vietnamese">🇻🇳 Vietnamese</string>
+    <string name="english">\ud83c\uddec\ud83c\udde7 English</string>
+    <string name="japanese">🇯🇵 Japanese</string>
+    <string name="chinese">🇨🇳 Chinese</string>
+    <string name="set_your_languageBT">Set your language</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="full_nameTV">Fullname</string>
+    <string name="log_out">Log out</string>
+
+    <!--    Trong phần hướng dẫn-->
+    <string name="search_bar">Search</string>
+    <string name="qr_instruction">QR code</string>
+    <string name="artifact_instruction">Artifacts</string>
+    <string name="map_instruction">Map</string>
+    <string name="edit_profile_instruction">Edit profile</string>
+    <string name="language_instruction">Change language</string>
+    <string name="newsnevents_instruction">News and Events</string>
+    <string name="notification_instruction">See notification</string>
+    <string name="contact_admin">Contact admin</string>
+    <string name="delete_account_instruction">Delete account</string>
+
+    <!--    SettingFragment-->
+    <string name="editinfo">Edit Info</string>
+    <string name="setting">Setting</string>
+    <string name="nightmode">Night mode</string>
+    <string name="language">Language</string>
+    <string name="notification">Notifications</string>
+    <string name="aboutus">About Us</string>
+    <string name="securitynprivacy">Security and Privacy</string>
+    <string name="dangerzone">Danger Zone</string>
+    <string name="logout">Log out</string>
+    <string name="deleteaccount">DELETE ACCOUNT</string>
+
+    <!--    EditInfo-->
+    <string name="updateinfo">UPDATE INFORMATION</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="change_password">CHANGE PASSWORD</string>
+
+    <!--    MainActivity-->
+    <string name="home">Home</string>
+    <string name="artifacts">Artifacts</string>
+    <string name="introduce">Introduce</string>
+    <string name="strategy">Museum strategy</string>
+    <string name="history">Museum history</string>
+    <string name="spaces">Spaces</string>
+    <string name="personel">Oganization and Personel</string>
+    <string name="cooperation">Cooperation</string>
+    <string name="news_events">News and Events</string>
+    <string name="artifact_category">Artifact Category</string>
+    <string name="today">Today</string>
+    <string name="before">Before</string>
+    <string name="qrscan">Scan a QR or choose from the device</string>
+    <string name="turn_flash">Turn on Flash</string>
+    <string name="choose_qr">Choose a QR</string>
 </resources>

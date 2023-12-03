@@ -35,7 +35,7 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="Setting"
+                    android:text="@string/setting"
                     android:textColor="@color/black"
                     android:layout_marginStart="5dp"
                     android:textSize="20sp"
@@ -69,7 +69,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Night mode"
+                        android:text="@string/nightmode"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_toEndOf="@id/night_mode_icon"
@@ -104,7 +104,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Notifications"
+                        android:text="@string/notification"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_toEndOf="@id/notification_icon"
@@ -140,7 +140,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Language"
+                        android:text="@string/language"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_toEndOf="@id/language_icon"
@@ -172,7 +172,7 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="About Us"
+                    android:text="@string/aboutus"
                     android:textColor="@color/black"
                     android:layout_marginStart="5dp"
                     android:textSize="20sp"
@@ -207,7 +207,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Security and Privacy"
+                        android:text="@string/securitynprivacy"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_toEndOf="@id/security_icon"
@@ -223,7 +223,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/faq_button"
+                    android:id="@+id/instruction_button"
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_height="wrap_content">
@@ -231,9 +231,9 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:id="@+id/faq_icon"
-                        android:src="@drawable/faq_icon"
+                        android:src="@drawable/baseline_info_24"
                         android:background="@drawable/round_back_purple"
-                        android:padding="12dp"
+                        android:padding="2dp"
                         android:layout_height="40dp" />
 
                     <TextView
@@ -241,7 +241,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="FAQ"
+                        android:text="@string/instruction"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_toEndOf="@id/faq_icon"
@@ -375,7 +375,7 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="Danger Zone"
+                    android:text="@string/dangerzone"
                     android:textColor="@color/black"
                     android:layout_marginStart="5dp"
                     android:textSize="20sp"
@@ -408,18 +408,12 @@
                         android:layout_marginStart="20dp"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Sign Out"
+                        android:text="@string/logout"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_toEndOf="@id/sign_out_icon"
                         android:textColor="@color/white" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/baseline_keyboard_arrow_right_24"
-                        android:layout_height="wrap_content" />
 
                 </RelativeLayout>
 
@@ -441,7 +435,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="DELETE ACCOUNT"
+                        android:text="@string/deleteaccount"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_toEndOf="@id/delete_icon"

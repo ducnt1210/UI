@@ -12,8 +12,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -23,23 +25,66 @@
         android:theme="@style/Theme.UI"
         tools:targetApi="31">
         <activity
+            android:name=".TicketHandler.SuccessPaymentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TicketHandler.TicketActivity"
+            android:parentActivityName=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="app"
+                    android:scheme="demozpdk" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NewsEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingPackage.InstructionItemContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NavigationOpeningActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingPackage.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingPackage.PrivacyActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SettingPackage.InstructionActivity"
+            android:exported="false" />
+        <activity
             android:name=".NotificationActivity"
             android:exported="false" />
         <activity
             android:name=".MapActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".QuizActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".IntroContentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".EditInfoActivity"
-            android:exported="false" />
+            android:name=".SettingPackage.EditInfoActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".QRActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
 
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
@@ -47,7 +92,8 @@
 
         <activity
             android:name=".SignupActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"

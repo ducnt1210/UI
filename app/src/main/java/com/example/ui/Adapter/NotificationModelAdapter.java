@@ -1,3 +1,4 @@
+
 package com.example.ui.Adapter;
 
 import android.content.Context;
@@ -36,12 +37,15 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
     private Context context;
     public List<NotificationModel> notificationModelList;
 
+    private int count = 0;
+
     public NotificationModelAdapter(Context context) {
         this.context = context;
         this.notificationModelList = new ArrayList<>();
     }
 
-    public NotificationModelAdapter(Context context, List<NotificationModel> notificationModelList) {
+    public NotificationModelAdapter(Context context,
+                                    List<NotificationModel> notificationModelList) {
         this.context = context;
         this.notificationModelList = notificationModelList;
     }
@@ -55,12 +59,12 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
         notifyDataSetChanged();
     }
 
-    public void addNotification(NotificationModel data) {
+    public void addNotificationModelList(NotificationModel data) {
         this.notificationModelList.add(data);
         notifyDataSetChanged();
     }
 
-    public void clearNotification() {
+    public void clearNotificationModelList() {
         this.notificationModelList.clear();
         notifyDataSetChanged();
     }
@@ -73,15 +77,18 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 
     @Override
     public void onBindViewHolder(@NonNull NotificationModelViewHolder holder, int position) {
+//        Log.d("notification", Integer.toString(notificationModelList.size()));
         NotificationModel item = this.notificationModelList.get(position);
-        if (item == null) return;
+        if (item != null) {
+            Log.d("type", item.toString());
+            holder.dateTextView.setVisibility(View.GONE);
 
-        if (item.getSeen()) {
-            holder.dotStatus.setVisibility(View.INVISIBLE);
-            holder.item.setBackgroundResource(R.drawable.bg_read_noti);
-        } else {
-            holder.dotStatus.setVisibility(View.VISIBLE);
-        }
+            if (item.getSeen()) {
+                holder.dotStatus.setVisibility(View.INVISIBLE);
+                holder.item.setBackgroundResource(R.drawable.bg_read_noti);
+            } else {
+                holder.dotStatus.setVisibility(View.VISIBLE);
+            }
 //        storageReference.child(item.getImage_path()).
 //                getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 //                    @Override
@@ -99,45 +106,43 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 //                });
 
 //        holder.time.setText(convertTimeFormat(item.getTime()));
-        holder.content.setText(deleteMark(item.getDescription()));
-        holder.time.setText(item.formatDate(item.getTime()));
+            holder.content.setText(item.heading());
+            holder.time.setText(item.formatDate());
 
-        holder.item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (item.getSeen() == false) {
-                    item.setSeen(true);
-                    updateData(item);
-                    notifyDataSetChanged();
-                }
-                goToDetailedNotification(item);
+            holder.item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (item.getSeen() == false) {
+                        item.setSeen(true);
+                        updateData(item);
+                        notifyDataSetChanged();
+                    }
+                    goToDetailedNotification(item);
 //                holder.dotStatus.setVisibility(View.INVISIBLE);
-            }
-        });
-    }
-
-    private String deleteMark(List<String> description) {
-        String result = "";
-        for (String des: description) {
-            if (des.startsWith("$heading$")) {
-                result = result + des.substring("$heading$".length()) + "\n";
-            } else if (des.startsWith("$note$")) {
-                result = result + des.substring("$note$".length()) + "\n";
-            } else if (des.startsWith("$imgs$")) {
-                continue;
+                }
+            });
+        } else {
+            holder.item.setVisibility(View.GONE);
+            Log.d("type", "null");
+            Log.d("count", Integer.toString(count));
+            if (count == 0){
+                ++count;
+                holder.dateTextView.setText(R.string.today);
             } else {
-                result = result + des + "\n";
+                count = 0;
+                holder.dateTextView.setText(R.string.before);
             }
         }
-        return result;
     }
 
     private void goToDetailedNotification(NotificationModel item) {
         Intent intent = new Intent(this.context, NotificationActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("id", item.getId());
+//        bundle.putString("id", item.getId());
         bundle.putStringArrayList("description", (ArrayList<String>) item.getDescription());
-        bundle.putString("time", item.formatDate(item.getTime()));
+        bundle.putString("time", item.formatDate());
+        bundle.putBoolean("update", false);
+        bundle.putString("id", item.getId());
         intent.putExtras(bundle);
         this.context.startActivity(intent);
     }
@@ -166,10 +171,11 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
     public class NotificationModelViewHolder extends RecyclerView.ViewHolder {
         public RelativeLayout item;
         public ImageView dotStatus;
-        public TextView time, content;
+        public TextView time, content, dateTextView;
 
         public NotificationModelViewHolder(View itemView) {
             super(itemView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
 
             item = itemView.findViewById(R.id.noti_item);
             dotStatus = itemView.findViewById(R.id.noti_item_dot_status);

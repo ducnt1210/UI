@@ -15,9 +15,13 @@ import com.example.ui.databinding.ActivityIntroContentBinding;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class IntroContentActivity extends AppCompatActivity {
 
@@ -30,6 +34,7 @@ public class IntroContentActivity extends AppCompatActivity {
     private IntroContentAdapter introContentAdapter;
     private int savedVideoPosition = 0;
     private VideoView videoView;
+    private SweetAlertDialog sweetAlertDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +42,12 @@ public class IntroContentActivity extends AppCompatActivity {
         binding = ActivityIntroContentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setIntroContentView();
+
+        getSupportActionBar().hide();
+
+        sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.setCancelable(false);
+        sweetAlertDialog.show();
 
         recyclerView = findViewById(R.id.rv_intro_content);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -47,17 +58,25 @@ public class IntroContentActivity extends AppCompatActivity {
         recyclerView.setDrawingCacheQuality(RecyclerView.DRAWING_CACHE_QUALITY_HIGH);
 
         videoView = findViewById(R.id.intro_video);
-        videoView.setOnPreparedListener(mp -> {
-            mp.setLooping(true);
-            mp.setVolume(0, 0);
-            // If you have saved video position, start playing the video from the saved position
-            if (savedVideoPosition > 0) {
-                mp.seekTo(savedVideoPosition);
-            }
-        });
+        StorageReference videoRef = FirebaseStorage.getInstance().getReference().child("video/demo_vid_cut.mp4");
 
-        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.demo_vid_cut);
-        videoView.setVideoURI(videoUri);
+        videoRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            // Set the video URI and start playing
+            videoView.setVideoURI(uri);
+            videoView.setOnPreparedListener(mp -> {
+                mp.setLooping(true);
+                mp.setVolume(0, 0);
+                // If you have saved video position, start playing the video from the saved position
+                if (savedVideoPosition > 0) {
+                    mp.seekTo(savedVideoPosition);
+                }
+                sweetAlertDialog.dismissWithAnimation();
+            });
+            videoView.start();
+        }).addOnFailureListener(e -> {
+            sweetAlertDialog.dismissWithAnimation();
+            Toast.makeText(this, "Error loading video from storage", Toast.LENGTH_SHORT).show();
+        });
 
     }
 

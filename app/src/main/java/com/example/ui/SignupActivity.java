@@ -1,14 +1,14 @@
 package com.example.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ui.Model.UserModel;
 import com.example.ui.databinding.ActivitySignupBinding;
@@ -37,6 +37,7 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignupBinding.inflate(getLayoutInflater());
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(binding.getRoot());
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -69,7 +70,9 @@ public class SignupActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(AuthResult authResult) {
                                             Toast.makeText(SignupActivity.this, "Sign up successfully", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                            Intent loginIntent = new Intent(SignupActivity.this, LoginActivity.class);
+                                            loginIntent.putExtra("checkUser", "newUser");
+                                            startActivity(loginIntent);
                                             sweetAlertDialog.dismissWithAnimation();
 
                                             firebaseFirestore.collection("User")

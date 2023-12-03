@@ -4,16 +4,25 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.Image;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Size;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.OptIn;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
@@ -48,6 +57,7 @@ import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 
 import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -66,7 +76,58 @@ public class QRActivity extends AppCompatActivity {
     private ProcessCameraProvider cameraProvider = null;
     private Camera camera = null;
 
+    ActivityResultLauncher<String> getImageToAnalyze = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @RequiresApi(api = Build.VERSION_CODES.P)
+                @Override
+                public void onActivityResult(Uri selectedImageUri) {
+                    if (selectedImageUri != null) {
+                        try {
+//                            InputImage inputImage = InputImage.fromFilePath(QRActivity.this, selectedImageUri);
+                            ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), selectedImageUri);
+                            Bitmap bitmap = ImageDecoder.decodeBitmap(source);
+                            InputImage inputImage = InputImage.fromBitmap(bitmap, 0);
 
+                            BarcodeScannerOptions barcodeScannerOptions = new BarcodeScannerOptions.Builder()
+                                    .setBarcodeFormats(
+                                            Barcode.FORMAT_QR_CODE,
+                                            Barcode.FORMAT_AZTEC
+                                    ).build();
+
+                            BarcodeScanner scanner = BarcodeScanning.getClient(barcodeScannerOptions);
+
+                            Task<List<Barcode>> result = scanner.process(inputImage)
+                                    .addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
+                                        @Override
+                                        public void onSuccess(List<Barcode> barcodes) {
+                                            Log.d("MUSEUM1", "Scan QR code successfully!");
+                                            readerBarcodeData(barcodes);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            // Handle failure
+                                            Log.d("MUSEUM1", "Scan QR code failed!");
+                                            Toast.makeText(QRActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnCompleteListener(new OnCompleteListener<List<Barcode>>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<List<Barcode>> task) {
+                                            bitmap.recycle();
+                                        }
+                                    });
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.d("MUSEUM1", "Scan QR code failed!");
+                            Toast.makeText(QRActivity.this, "Error loading image", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.d("MUSEUM1", "Scan QR code failed!");
+                    }
+                }
+            });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +138,7 @@ public class QRActivity extends AppCompatActivity {
 //            .setTitleText("Oops...")
 //            .setContentText("Something went wrong!");
 
+        getSupportActionBar().hide();
         previewView = binding.cameraPreview;
         this.getWindow().setFlags(1024, 1024);
 
@@ -121,6 +183,12 @@ public class QRActivity extends AppCompatActivity {
             }
         });
 
+        binding.chooseImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getImageToAnalyze.launch("image/*");
+            }
+        });
     }
 
     @Override
@@ -200,6 +268,7 @@ public class QRActivity extends AppCompatActivity {
     }
 
     private void readerBarcodeData(List<Barcode> barcodes) {
+        Log.d("MUSEUM1", "QR code size: " + barcodes.size());
         for (Barcode barcode : barcodes) {
             Rect bounds = barcode.getBoundingBox();
             Point[] corners = barcode.getCornerPoints();
@@ -208,6 +277,7 @@ public class QRActivity extends AppCompatActivity {
             String text = barcode.getDisplayValue();
 
             int valueType = barcode.getValueType();
+            Log.d("MUSEUM1", "QR code type: " + valueType);
             // See API reference for complete list of supported types
             if (valueType == Barcode.TYPE_TEXT && text != null) {
                 String[] dataArr = text.split(" ");
@@ -254,6 +324,4 @@ public class QRActivity extends AppCompatActivity {
         }
     }
 
-
 }
-
