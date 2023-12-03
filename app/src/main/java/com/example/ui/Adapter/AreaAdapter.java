@@ -5,13 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.example.ui.Helper.AreaHelper;
 import com.example.ui.Model.AreaModel;
 import com.example.ui.Model.LocalAreaModel;
 import com.example.ui.R;
+import com.example.ui.View.SecondLevelExpandableListView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -81,16 +84,7 @@ public class AreaAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        if (listDataHeader != null && listDataChild != null) {
-            AreaModel groupItem = listDataHeader.get(groupPosition);
-            if (groupItem != null && listDataChild.containsKey(groupItem)) {
-                List<LocalAreaModel> childItems = listDataChild.get(groupItem);
-                if (childItems != null) {
-                    return childItems.size();
-                }
-            }
-        }
-        return 0;
+        return 1;
     }
 
     @Override
@@ -148,18 +142,18 @@ public class AreaAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        if (listDataHeader != null && listDataChild != null) {
-            String childText = ((LocalAreaModel) getChild(groupPosition, childPosition)).getName();
-            if (convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.category_artifact_item, null);
-            }
 
-            TextView childTextView = convertView.findViewById(R.id.category_item_name);
-            childTextView.setText(childText);
-        }
-        return convertView;
+        final SecondLevelExpandableListView secondLevelELV = new SecondLevelExpandableListView(context);
+        secondLevelELV.setAdapter(new SubAreaAdapter(context, areaHelper, listDataChild.get(listDataHeader.get(groupPosition))));
+        secondLevelELV.setGroupIndicator(null);
+
+
+        return secondLevelELV;
+
+
     }
+
+
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
