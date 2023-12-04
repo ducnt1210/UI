@@ -37,9 +37,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.ui.Helper.AreaHelper;
 import com.example.ui.Model.ExhibitModel;
-import com.example.ui.Model.LocalAreaModel;
 import com.example.ui.databinding.ActivityQrBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,8 +54,8 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 
-import java.util.ArrayList;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -316,10 +314,13 @@ public class QRActivity extends AppCompatActivity {
                             }
                         }
                     });
+                } else {
+                    Log.d("MUSEUM1", "This QR code type is not supported or text is null/empty");
+                    Toast.makeText(this, "This QR code type is not supported", Toast.LENGTH_SHORT).show();
                 }
             } else {
+                Log.d("MUSEUM1", "This QR code type is not supported or text is null/empty");
                 Toast.makeText(this, "This QR code type is not supported", Toast.LENGTH_SHORT).show();
-                return;
             }
         }
     }

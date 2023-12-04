@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.example.ui.LoginActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.Quiz.GiftActivity;
+import com.example.ui.Model.UserModel;
 import com.example.ui.R;
 import com.example.ui.SettingPackage.CheckPriorityActivity;
 import com.example.ui.SettingPackage.EditInfoActivity;
@@ -36,7 +37,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
@@ -94,6 +97,12 @@ public class SettingFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentSettingBinding.inflate(inflater, container, false);
 
+        sweetAlertDialog = new SweetAlertDialog(requireActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        sweetAlertDialog.setCancelable(false);
+
+        getUser();
+
         if (MainActivity.profilePicture != null) {
             if (this.getContext() != null) {
                 Glide.with(this.getContext())
@@ -102,7 +111,7 @@ public class SettingFragment extends Fragment {
             }
         }
 
-        ((MainActivity)requireActivity()).getSupportActionBar().hide();
+        ((MainActivity) requireActivity()).getSupportActionBar().hide();
 
         binding.navHeader.username.setText(MainActivity.currentUser.getName());
         binding.navHeader.email.setText(MainActivity.currentUser.getEmail());
@@ -152,10 +161,6 @@ public class SettingFragment extends Fragment {
             }
         });
 
-        sweetAlertDialog = new SweetAlertDialog(requireActivity(), SweetAlertDialog.PROGRESS_TYPE);
-        sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        sweetAlertDialog.setCancelable(false);
-
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(com.firebase.ui.auth.R.string.default_web_client_id))
                 .requestEmail()
@@ -204,7 +209,7 @@ public class SettingFragment extends Fragment {
         binding.instagramButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/hhhlsciuuu/")));
             }
         });
 
@@ -279,6 +284,64 @@ public class SettingFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    protected void getUser() {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            FirebaseAuth.getInstance()
+                    .signInAnonymously()
+                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(requireContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//            Comment this to fix bug of current user not loaded when from edit info to setting fragment
+//            currentUser = new UserModel(Uid, null, null, null);
+            FirebaseFirestore.getInstance().collection("User").document(Uid).get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            MainActivity.currentUser = documentSnapshot.toObject(UserModel.class);
+                            assert MainActivity.currentUser != null;
+                            MainActivity.currentUser.setId(Uid);
+                            getProfilePicture();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(requireContext(), "User Failed!", Toast.LENGTH_SHORT).show();
+                            sweetAlertDialog.dismiss();
+                        }
+                    });
+        }
+    }
+
+    public void getProfilePicture() {
+        FirebaseStorage.getInstance().getReference().child("images/" + MainActivity.currentUser.getId()).getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        MainActivity.profilePicture = uri;
+                        sweetAlertDialog.dismiss();
+                        Log.d("UI", "Get profile picture");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        sweetAlertDialog.dismiss();
+                        Log.d("UI", e.getMessage());
+                    }
+                });
     }
 //    private void applyDayNight(boolean isNightMode) {
 //        int nightModeFlag = isNightMode ?

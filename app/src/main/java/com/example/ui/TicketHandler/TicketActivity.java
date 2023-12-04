@@ -137,24 +137,23 @@ public class TicketActivity extends AppCompatActivity {
 
                         String id = FirebaseFirestore.getInstance().collection("Transaction").document().getId();
                         Timestamp timestamp = new Timestamp(System.currentTimeMillis() / 1000, 0);
+                        Timestamp usedTimestamp = new Timestamp(System.currentTimeMillis() / 1000, 0);
+                        try {
+                            usedTimestamp = new Timestamp(dateFormat.parse(binding.dateET.getText().toString()).getTime() / 1000, 0);
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
                         long numberOfTickets = Long.parseLong(binding.numberOfTickets.getText().toString());
                         long amount = Long.parseLong(NumberTextWatcherForThousand.trimCommaOfString(binding.totalPrice.getText().toString()));
                         String userID = MainActivity.currentUser.getId();
-                        TransactionModel transactionModel = new TransactionModel(id, timestamp, numberOfTickets, token, amount, userID);
+                        TransactionModel transactionModel = new TransactionModel(id, timestamp, usedTimestamp, numberOfTickets, token, amount, false, userID);
                         DocumentReference transactionRef = FirebaseFirestore.getInstance().collection("Transaction").document(id);
                         batch.set(transactionRef, transactionModel);
 
                         for (int i = 0; i < numberOfTickets; i++) {
                             String ticketID = FirebaseFirestore.getInstance().collection("Ticket").document().getId();
-                            Timestamp buyTimestamp = new Timestamp(System.currentTimeMillis() / 1000, 0);
-                            Timestamp usedTimestamp = new Timestamp(System.currentTimeMillis() / 1000, 0);
-                            try {
-                                usedTimestamp = new Timestamp(dateFormat.parse(binding.dateET.getText().toString()).getTime() / 1000, 0);
-                            } catch (ParseException e) {
-                                throw new RuntimeException(e);
-                            }
                             long price = Long.parseLong(NumberTextWatcherForThousand.trimCommaOfString(binding.pricePerTicket.getText().toString()));
-                            TicketModel ticketModel = new TicketModel(ticketID, buyTimestamp, usedTimestamp, price, userID, id);
+                            TicketModel ticketModel = new TicketModel(ticketID, timestamp, usedTimestamp, price, userID, id);
                             DocumentReference ticketRef = FirebaseFirestore.getInstance().collection("Ticket").document(ticketID);
                             batch.set(ticketRef, ticketModel);
                         }

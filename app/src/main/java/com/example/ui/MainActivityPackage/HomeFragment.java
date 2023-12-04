@@ -66,6 +66,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), TicketActivity.class);
+//                Intent intent = new Intent(getContext(), BoughtTicketActivity.class);
                 startActivity(intent);
             }
         });
