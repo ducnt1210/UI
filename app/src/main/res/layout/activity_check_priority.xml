@@ -74,14 +74,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_instruction_item"/>
+            android:background="@drawable/bg_instruction_item" />
 
         <TextView
             android:id="@+id/txt_instruction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Quá trình xác minh sẽ diễn ra trong vòng 15 ngày làm việc. Trong thời gian này, bạn có thể sử dụng quyền lợi của đối tượng ưu tiên hiện tại (nếu có)."
+            android:text="Quá trình xác minh sẽ diễn ra trong vòng 15 ngày làm việc. Trong thời gian này, bạn vẫn có thể sử dụng các dịch vụ của ứng dụng."
             android:textSize="10sp"
             android:textStyle="italic"
             android:visibility="gone" />
@@ -177,7 +177,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Người cao tuổi, khuyết tật"
+                android:text="Người cao tuổi"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="20.000đ/người"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingVertical="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Người khuyết tật nặng"
                 android:textSize="18sp" />
 
             <TextView
@@ -220,6 +240,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(Các trường hợp này không hỗ trợ xác minh để mua vé trực tuyến. Vui lòng mua vé miễn phí tại quầy vé Bảo tàng Dân tộc học Việt Nam)"
+            android:textSize="10sp"
+            android:textStyle="italic" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="5dp"
@@ -238,6 +265,13 @@
             android:layout_height="wrap_content"
             android:paddingVertical="5dp"
             android:text="Thẻ Người bạn Bảo tàng của BTDTHVN"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="5dp"
+            android:text="Người khuyết tật nặng đặc biệt"
             android:textSize="18sp" />
 
     </LinearLayout>

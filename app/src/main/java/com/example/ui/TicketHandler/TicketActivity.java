@@ -16,6 +16,7 @@ import com.example.ui.MainActivity;
 import com.example.ui.Model.CreateOrder;
 import com.example.ui.Model.TicketModel;
 import com.example.ui.Model.TransactionModel;
+import com.example.ui.SettingPackage.CheckPriorityActivity;
 import com.example.ui.Util.NumberTextWatcherForThousand;
 import com.example.ui.databinding.ActivityTicketBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -72,6 +73,13 @@ public class TicketActivity extends AppCompatActivity {
             public void onClick(View view) {
                 sweetAlertDialog.show();
                 requestZalo();
+            }
+        });
+        binding.tickerPriceDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TicketActivity.this, CheckPriorityActivity.class);
+                startActivity(intent);
             }
         });
         setContentView(binding.getRoot());

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioButton;
@@ -33,6 +34,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -48,9 +50,11 @@ public class CheckPriorityActivity extends AppCompatActivity {
     private static final int MANAGE_EXTERNAL_STORAGE_REQUEST_CODE = 102;
     private static final int PICKFILE_REQUEST_CODE = 1;
     ActivityCheckPriorityBinding binding;
+    public PriorityModel priorityField;
     Uri tempFile;
     String path, fileName, fileId;
     String priority = "";
+    String uid = MainActivity.currentUser.getId();
     ActivityResultLauncher<String> getFile = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
@@ -73,10 +77,34 @@ public class CheckPriorityActivity extends AppCompatActivity {
         if (MainActivity.profilePicture != null) {
             Glide.with(this).load(MainActivity.profilePicture).into(binding.imgAvatar);
         }
+
         binding.txtName.setText(MainActivity.currentUser.getName());
 
         binding.vertifyButton.setOnClickListener(v -> openDialog());
 
+        setDisplayVerifyButton();
+    }
+
+    private void setDisplayVerifyButton() {
+        FirebaseFirestore.getInstance().collection("Priority").document(uid).get().addOnSuccessListener(new OnSuccessListener<com.google.firebase.firestore.DocumentSnapshot>() {
+            @Override
+            public void onSuccess(com.google.firebase.firestore.DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    binding.vertifyButton.setEnabled(false);
+                    binding.vertifyButton.setBackgroundResource(R.drawable.bg_review_gift);
+
+                    priorityField = documentSnapshot.toObject(PriorityModel.class);
+                    if (!priorityField.isVerified()) {
+                        binding.vertifyButton.setText("Đang chờ");
+                        binding.txtInstruction.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.vertifyButton.setText("Đã xác minh");
+                        binding.txtInstruction.setVisibility(View.GONE);
+                        binding.txtPriority.setText(priorityField.getPriority());
+                    }
+                }
+            }
+        });
     }
 
     private void requestManageExternalStoragePermission() {
@@ -175,18 +203,16 @@ public class CheckPriorityActivity extends AppCompatActivity {
             } else if (tempFile == null) {
                 Toast.makeText(CheckPriorityActivity.this, "Vui lòng tải lên tệp minh chứng!", Toast.LENGTH_SHORT).show();
             } else {
-                String uid = MainActivity.currentUser.getId();
-
                 Calendar calendar = Calendar.getInstance();
                 String date = calendar.get(Calendar.DAY_OF_MONTH) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.YEAR);
                 String userName = MainActivity.currentUser.getName();
 
 
-                PriorityModel priorityField = new PriorityModel(uid, priority, userName, date, "", false);
+                priorityField = new PriorityModel(uid, priority, userName, date, "", false);
                 FirebaseFirestore.getInstance().collection("Priority").document(uid).set(priorityField);
 
 
-                StorageReference referencee = FirebaseStorage.getInstance().getReference().child("priority_files/" + date).child(tempFile.getLastPathSegment());
+                StorageReference referencee = FirebaseStorage.getInstance().getReference().child("priority_files/" + date).child(fileName);
                 referencee.putFile(tempFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
