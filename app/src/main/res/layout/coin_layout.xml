@@ -34,7 +34,7 @@
         android:layout_toLeftOf="@id/arrow"
         android:drawableLeft="@drawable/coin"
         android:gravity="top"
-        android:text="1000"
+        android:text="0"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold" />

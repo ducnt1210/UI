@@ -52,7 +52,6 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity {
     public static UserModel currentUser;
-    public static ScoreModel scoreModel;
     private String FragmentID = "HomeFragment";
     public static Uri profilePicture = null;
     FirebaseUser user;
@@ -80,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         currentUser = new UserModel(user.getUid(), user.getDisplayName(), null, user.getEmail()); // temp fix for current user not loaded when from Main info to setting fragment
-        getScore(user.getUid());
         FragmentID = getIntent().getStringExtra("FragmentID");
         if (FragmentID != null) {
             switch (FragmentID) {
@@ -212,27 +210,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         sweetAlertDialog.dismiss();
                         Log.d("UI", e.getMessage());
-                    }
-                });
-    }
-
-    public void getScore(String user_id) {
-        FirebaseFirestore.getInstance().collection("Score")
-                .document(user_id)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        scoreModel = new ScoreModel(
-                                documentSnapshot.getId(),
-                                documentSnapshot.getLong("score").intValue()
-                        );
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e("get score failed", user_id);
                     }
                 });
     }

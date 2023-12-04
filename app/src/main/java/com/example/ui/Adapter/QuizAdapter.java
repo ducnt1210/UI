@@ -143,9 +143,7 @@ public class QuizAdapter extends NoScrollRecyclerView.Adapter<QuizAdapter.QuizVi
         Log.e("choseAnswer", Integer.toString(answer + 1));
         QuizActivity.correctAnswer = checkAnswer(answer, quiz);
         if (QuizActivity.correctAnswer) {
-            MainActivity.scoreModel.setScore(
-                    MainActivity.scoreModel.getScore() + 10
-            );
+            QuizActivity.countCorrectAnswer += 1;
             QuizViewHolder.rlAnswers.get(answer)
                     .setBackgroundResource(R.drawable.bg_true_answer_item);
         } else {

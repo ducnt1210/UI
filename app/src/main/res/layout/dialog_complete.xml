@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewCompleteQuiz"
         android:layout_width="350sp"
-        android:layout_height="500dp"
+        android:layout_height="540dp"
         android:layout_centerInParent="true"
         app:cardCornerRadius="10dp">
 
@@ -29,7 +29,7 @@
 
 
             <TextView
-                android:id="@+id/check_correct"
+                android:id="@+id/completedMinigame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -47,6 +47,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/numberOfCorrectAnswers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/philo_bold"
@@ -74,6 +75,34 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/remainingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/philo_bold"
+                    android:justificationMode="inter_word"
+                    android:text="Thời gian còn lại: "
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/remaining_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/philo_bold"
+                    android:text="00:00"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/totalReceivedCoins"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/philo_bold"
@@ -101,6 +130,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/totalCurrentCoins"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/philo_bold"
@@ -126,14 +156,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_change_gift"
+                    android:id="@+id/button_complete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hoàn thành"
                     app:cornerRadius="10dp"/>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_complete"
+                    android:id="@+id/button_change_gift"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

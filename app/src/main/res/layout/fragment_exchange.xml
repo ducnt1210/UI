@@ -7,37 +7,42 @@
     android:orientation="vertical"
     tools:context=".Quiz.ui.exchange.ExchangeFragment">
 
-    <ScrollView
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <GridLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:columnCount="2">-->
+
+<!--            <include layout="@layout/gift_item_layout" />-->
+
+<!--            <include layout="@layout/gift_item_layout" />-->
+
+<!--            <include layout="@layout/gift_item_layout" />-->
+
+<!--            <include layout="@layout/gift_item_layout" />-->
+
+<!--            <include layout="@layout/gift_item_layout" />-->
+
+<!--            <include layout="@layout/gift_item_layout" />-->
+
+<!--            <include layout="@layout/gift_item_layout" />-->
+
+<!--            <include layout="@layout/gift_item_layout" />-->
+
+<!--        </GridLayout>-->
+
+<!--        &lt;!&ndash;        <androidx.recyclerview.widget.RecyclerView&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:id="@+id/rv_gift"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_height="match_parent" />&ndash;&gt;-->
+<!--    </ScrollView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gift_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:columnCount="2">
-
-            <include layout="@layout/gift_item_layout" />
-
-            <include layout="@layout/gift_item_layout" />
-
-            <include layout="@layout/gift_item_layout" />
-
-            <include layout="@layout/gift_item_layout" />
-
-            <include layout="@layout/gift_item_layout" />
-
-            <include layout="@layout/gift_item_layout" />
-
-            <include layout="@layout/gift_item_layout" />
-
-            <include layout="@layout/gift_item_layout" />
-
-        </GridLayout>
-
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/rv_gift"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent" />-->
-    </ScrollView>
+        android:layout_height="match_parent" />
 </LinearLayout>
