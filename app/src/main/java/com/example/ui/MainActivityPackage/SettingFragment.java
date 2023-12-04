@@ -190,7 +190,7 @@ public class SettingFragment extends Fragment {
         binding.instagramButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/hhhlsciuuu/")));
             }
         });
 

@@ -38,7 +38,6 @@
                     android:id="@+id/elv_artifact"
                     android:layout_width="match_parent"
                     android:layout_height="700dp"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="100dp"
                     android:layout_gravity="center_vertical"

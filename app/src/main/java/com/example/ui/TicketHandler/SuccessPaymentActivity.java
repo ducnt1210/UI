@@ -20,17 +20,19 @@ public class SuccessPaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySuccessPaymentBinding.inflate(getLayoutInflater());
         String amount = getIntent().getStringExtra("amount");
-        Spannable wordToSpan = new SpannableString("Amount: " + amount + " VND");
-        wordToSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 8, wordToSpan.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        String prefix1 = "Amount: ";
+        Spannable wordToSpan = new SpannableString(prefix1 + amount + " VND");
+        wordToSpan.setSpan(new ForegroundColorSpan(Color.BLUE), prefix1.length(), wordToSpan.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         binding.amount.setText(wordToSpan);
 
         String transactionID = getIntent().getStringExtra("transactionID");
-        Spannable wordToSpan2 = new SpannableString("Transaction ID: " + transactionID);
-        wordToSpan2.setSpan(new ForegroundColorSpan(Color.BLUE), 15, wordToSpan2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        String prefix2 = "Transaction ID: ";
+        Spannable wordToSpan2 = new SpannableString(prefix2 + transactionID);
+        wordToSpan2.setSpan(new ForegroundColorSpan(Color.BLUE), prefix2.length(), wordToSpan2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         binding.transactionID.setText(wordToSpan2);
 
         String s3 = "Paid with ZaloPay";
-        Spannable wordToSpan3 = new SpannableString("Paid with ZaloPay");
+        Spannable wordToSpan3 = new SpannableString(s3);
         wordToSpan3.setSpan(new ForegroundColorSpan(Color.BLUE), 10, s3.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         binding.zaloPay.setText(wordToSpan3);
 

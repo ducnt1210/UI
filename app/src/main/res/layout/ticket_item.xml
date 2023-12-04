@@ -1,0 +1,115 @@
+<!-- ticket_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/ticket_item"
+    android:paddingTop="5dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/blank_ticket">
+
+    <!-- Ticket Title -->
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/ticket_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIETNAM MUSEUM OF ETHNOLOGY"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal" />
+
+
+    <!-- Ticket Information -->
+    <LinearLayout
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Left side (Ticket Details) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Address: "
+                    android:textSize="14sp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyễn Văn Huyên, Quan Hoa, Cầu Giấy, Hà Nội"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Date: "
+                    android:textSize="14sp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="03/12/2023"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="ID: "
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/transactionID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:text="0123456789"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!-- Right side (QR Code) -->
+        <ImageView
+            android:id="@+id/qrCode"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/temp_qr_code"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+</LinearLayout>
