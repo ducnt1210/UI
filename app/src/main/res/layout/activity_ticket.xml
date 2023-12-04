@@ -223,6 +223,7 @@
         android:layout_marginTop="30dp"
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/main_blue_color"
         android:text="PAY WITH ZALOPAY" />
