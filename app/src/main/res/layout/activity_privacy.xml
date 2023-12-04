@@ -7,47 +7,45 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:padding="20dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
-            android:text="When you use our services, you’re trusting us with your information. We understand this is a big responsibility and work hard to protect your information and put you in control."
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oldstandar_regular"
+            android:justificationMode="inter_word"
+            android:text="@string/privacy"
             android:textSize="25sp"
-            android:fontFamily="@font/oldstandar_regular"
-            android:justificationMode="inter_word"
-            android:textStyle="bold"
-            android:layout_height="wrap_content" />
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:textSize="20sp"
-            android:justificationMode="inter_word"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/oldstandar_regular"
-            android:text="We want you to understand the types of information we collect as you use our services"
-            android:layout_height="wrap_content" />
+            android:justificationMode="inter_word"
+            android:text="@string/privacy1"
+            android:textSize="20sp" />
 
         <TextView
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:textSize="15sp"
-            android:justificationMode="inter_word"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/oldstandar_regular"
-            android:text="\tWe collect information to provide better services to all our users — from figuring out basic stuff like which language you speak, to more complex things like which ads you’ll find most useful, the people who matter most to you online, or which YouTube videos you might like. The information Google collects, and how that information is used, depends on how you use our services and how you manage your privacy controls.
+            android:justificationMode="inter_word"
+            android:text="@string/privacy2"
+            android:textSize="15sp" />
 
-When you’re not signed in to a Google Account, we store the information we collect with unique identifiers tied to the browser, application, or device you’re using. This allows us to do things like maintain your preferences across browsing sessions, such as your preferred language or whether to show you more relevant search results or ads based on your activity.
-
-When you’re signed in, we also collect information that we store with your Google Account, which we treat as personal information.
-When you create a Google Account, you provide us with personal information that includes your name and a password. You can also choose to add a phone number or payment information to your account. Even if you aren’t signed in to a Google Account, you might choose to provide us with information — like an email address to communicate with Google or receive updates about our services.
-
-We also collect the content you create, upload, or receive from others when using our services.\n\tThis includes things like email you write and receive, photos and videos you save, docs and spreadsheets you create, and comments you make on YouTube videos. \n We collect information about the apps, browsers, and devices you use to access Google services, which helps us provide features like automatic product updates and dimming your screen if your battery runs low.
-
-The information we collect includes unique identifiers, browser type and settings, device type and settings, operating system, mobile network information including carrier name and phone number, and application version number. We also collect information about the interaction of your apps, browsers, and devices with our services, including IP address, crash reports, system activity, and the date, time, and referrer URL of your request.
-
-We collect this information when a Google service on your device contacts our servers — for example, when you install an app from the Play Store or when a service checks for automatic updates. If you’re using an Android device with Google apps, your device periodically contacts Google servers to provide information about your device and connection to our services. This information includes things like your device type and carrier name, crash reports, which apps you've installed, and, depending on your device settings, other information about how you’re using your Android device."
-            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/oldstandar_regular"
+            android:justificationMode="inter_word"
+            android:text="@string/privacy3"
+            android:textSize="15sp" />
 
 
     </LinearLayout>

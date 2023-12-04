@@ -17,21 +17,13 @@
         android:paddingBottom="2dp">
 
 
-        <ImageView
-            android:id="@+id/img_sub_item"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/demo_img2"
-            app:civ_border_color="@color/white" />
-
         <TextView
             android:id="@+id/heading_sub_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="25dp"
-            android:layout_toRightOf="@id/img_sub_item"
+            android:layout_toRightOf="@+id/img_sub_item"
             android:ellipsize="end"
             android:fontFamily="@font/merriweathersanswght"
             android:maxLines="2"
@@ -52,6 +44,16 @@
             android:text="Trống đồng hay mặt trống đồng là một trong những sản phẩm ý nghĩa dùng để treo trong nhà, phòng làm việc, phòng họp cơ quan, giúp tăng tính thẩm mỹ, mang lại phong thủy tốt và giữ gìn truyền thống văn hóa dân tộc Việt Nam. Đồ đồng Quang Hà là cơ sở đúc đồng uy tín chuyên cung cấp trồng đồng, mặt trống đồng đẹp, chất lượng."
             android:textColor="@color/gray"
             android:textSize="10sp" />
+
+        <ImageView
+            android:id="@+id/img_sub_item"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/demo_img2"
+            app:civ_border_color="@color/white" />
 
 
     </RelativeLayout>

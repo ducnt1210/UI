@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ui.R;
 import com.example.ui.databinding.ActivityPrivacyBinding;
 
 public class PrivacyActivity extends AppCompatActivity {
@@ -14,5 +15,6 @@ public class PrivacyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPrivacyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setTitle(R.string.securitynprivacy);
     }
 }

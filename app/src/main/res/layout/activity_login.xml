@@ -17,11 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:fontFamily="@font/youngserif"
-        android:textStyle="bold"
         android:gravity="center"
         android:text="Login"
         android:textColor="#5E3511"
-        android:textSize="45dp" />
+        android:textSize="45dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/email"
@@ -43,6 +43,18 @@
         android:hint="Password"
         android:inputType="textPassword" />
 
+    <TextView
+        android:id="@+id/resetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center"
+        android:text="Forgot Password?"
+        android:textColor="@color/main_green"
+        android:textSize="18sp" />
+
 
     <Button
         android:id="@+id/login"
@@ -52,36 +64,42 @@
         android:layout_marginTop="50dp"
         android:text="Login" />
 
-    <TextView
-        android:id="@+id/resetPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:text="Reset Password"
-        android:textColor="@color/main_green"
-        android:textSize="15sp" />
-
-
-    <TextView
-        android:id="@+id/toSignupActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:text="Signup"
-        android:textColor="@color/main_green"
-        android:textSize="15sp" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="or try"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="or try" />
 
     <ImageView
-        android:layout_marginTop="10dp"
         android:id="@+id/ggButton"
         android:layout_width="40dp"
-        android:src="@drawable/gg_signin"
-        android:layout_height="40dp" />
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/gg_signin" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Don't have an account? "
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/toSignupActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Sign Up"
+            android:textColor="@color/main_green"
+            android:textSize="17sp" />
+    </LinearLayout>
 
 </LinearLayout>

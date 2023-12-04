@@ -23,7 +23,7 @@
             android:fontFamily="@font/alegreysan"
             android:paddingLeft="30dp"
             android:paddingTop="50dp"
-            android:text="Thông báo"
+            android:text="@string/notification"
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold" />

@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_grey"
-    android:padding="10dp"
     android:layout_height="match_parent"
+    android:background="@color/bg_grey"
+    android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".TicketHandler.TicketActivity">
 
     <androidx.cardview.widget.CardView
@@ -31,17 +31,17 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
                     android:layout_gravity="center_vertical"
-                    android:text="Date:" />
+                    android:layout_weight="4"
+                    android:text="Date:"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/dateET"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
                     android:layout_height="40dp"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
@@ -57,15 +57,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textSize="20sp"
                     android:layout_weight="4"
-                    android:text="Number of Tickets:" />
+                    android:text="Number of Tickets"
+                    android:textSize="20sp" />
 
                 <NumberPicker
                     android:id="@+id/numberPicker"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="80dp" />
+                    android:layout_height="80dp"
+                    android:layout_weight="1" />
 
 
             </LinearLayout>
@@ -77,9 +77,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginHorizontal="10dp"
         app:cardCornerRadius="20dp"
         app:contentPadding="10dp">
 
@@ -91,22 +91,22 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:text="Date:" />
+                    android:text="Date:"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/dateReceipt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
                     android:layout_alignParentEnd="true"
-                    android:text="29/11/2023" />
+                    android:text="29/11/2023"
+                    android:textSize="20sp" />
             </RelativeLayout>
 
             <View
@@ -116,8 +116,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -129,9 +129,9 @@
                     android:id="@+id/pricePerTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
                     android:layout_alignParentEnd="true"
-                    android:text="40,000" />
+                    android:text="40,000"
+                    android:textSize="20sp" />
             </RelativeLayout>
 
             <View
@@ -141,24 +141,50 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:text="Number of Tickets:" />
+                    android:text="Number of Tickets:"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/numberOfTickets"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
                     android:layout_alignParentEnd="true"
-                    android:text="1" />
+                    android:text="1"
+                    android:textSize="20sp" />
             </RelativeLayout>
 
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/gray" />
+
+            <RelativeLayout
+                android:id="@+id/discountLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Priority discounts:"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="-20,000"
+                    android:textSize="20sp" />
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -173,16 +199,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:text="Total:" />
+                    android:text="Total:"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/totalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
                     android:layout_alignParentEnd="true"
-                    android:text="40,000" />
+                    android:text="40,000"
+                    android:textSize="20sp" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -197,9 +223,21 @@
         android:layout_marginTop="30dp"
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/main_blue_color"
-        android:text="PAY WITH ZALOPAY"
-        android:layout_height="wrap_content" />
+        android:text="PAY WITH ZALOPAY" />
+
+    <TextView
+        android:id="@+id/ticker_price_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="70dp"
+        android:textStyle="bold|italic"
+        android:text="Bảng giá vé chi tiết"
+        android:textColor="@color/main_green"
+        android:textSize="18sp" />
 
 </LinearLayout>

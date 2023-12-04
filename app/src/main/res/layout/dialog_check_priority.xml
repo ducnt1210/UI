@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewCompleteQuiz"
+        android:layout_width="400sp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="30dp"
+            android:paddingBottom="20dp">
+
+
+            <TextView
+                android:id="@+id/check_correct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/alegreysan"
+                android:gravity="center"
+                android:text="Xác minh\nđối tượng ưu tiên"
+                android:textColor="?attr/colorPrimaryVariant"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_plain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="(Chọn đối tượng ưu tiên và tải lên tệp minh chứng: ảnh thẻ sinh viên, thẻ căn cước,...)"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txt_priority_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:justificationMode="inter_word"
+                android:text="Đối tượng ưu tiên:"
+                android:textColor="?attr/colorPrimaryVariant"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Sinh viên" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Học sinh" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Người cao tuổi"
+                    android:translationX="-4dp" />
+
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Dân tộc thiểu số"
+                    android:translationX="-5dp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Người khuyết tật nặng"
+                    android:translationX="-8dp" />
+
+
+            </RadioGroup>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/choose_file_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Chọn tệp"
+                app:cornerRadius="10dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Gửi yêu cầu"
+                app:cornerRadius="10dp" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

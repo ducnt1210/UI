@@ -18,8 +18,8 @@ public class ViewPagerAdapter extends PagerAdapter {
     Context context;
     int sliderAllImages[] = {
             R.drawable.noti_img_header,
-            R.drawable.demo_img2,
-            R.drawable.map_img_detaill,
+            R.drawable.ticket_opening,
+            R.drawable.instruction_opening,
     };
     int sliderAllTitle[] = {
             R.string.app_name,

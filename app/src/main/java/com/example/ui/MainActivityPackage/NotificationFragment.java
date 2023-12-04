@@ -41,18 +41,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class NotificationFragment extends Fragment {
-//    private RecyclerView recyclerViewToday;
-//    private RecyclerView recyclerViewPrevious;
     private RecyclerView recyclerViewNotification;
     private FirebaseFirestore db;
-//    private NotificationModelAdapter notificationModelAdapterToday;
-//    private NotificationModelAdapter notificationModelAdapterPrevious;
     private NotificationModelAdapter notificationModelAdapter;
     private SweetAlertDialog sweetAlertDialog;
+    String language = Locale.getDefault().getLanguage();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,14 +65,11 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("frag", "test");
         getNotificationModelList();
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-//        notificationModelAdapterToday = new NotificationModelAdapter(getContext());
-//        notificationModelAdapterPrevious = new NotificationModelAdapter(getContext());
         notificationModelAdapter = new NotificationModelAdapter(getContext());
 
         sweetAlertDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
@@ -85,14 +80,6 @@ public class NotificationFragment extends Fragment {
 
         recyclerViewNotification = view.findViewById(R.id.notificationRecyclerView);
 
-//        recyclerViewToday = view.findViewById(R.id.notificationRecyclerView);
-//        recyclerViewToday.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerViewToday.setAdapter(notificationModelAdapterToday);
-
-//        recyclerViewPrevious = view.findViewById(R.id.notificationRecyclerViewPrevious);
-//        recyclerViewPrevious.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerViewPrevious.setAdapter(notificationModelAdapterPrevious);
-
         recyclerViewNotification.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewNotification.setAdapter(notificationModelAdapter);
     }
@@ -102,7 +89,7 @@ public class NotificationFragment extends Fragment {
         List<NotificationModel> notificationModelListToday = new ArrayList<>();
         List<NotificationModel> notificationModelListPrevious = new ArrayList<>();
         List<NotificationModel> notificationModelList = new ArrayList<>();
-        List<NotificationModel> notifications = new ArrayList<>();
+//        List<Boolean> notifications = new ArrayList<>();
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Date currentDate = new Date();
@@ -119,10 +106,20 @@ public class NotificationFragment extends Fragment {
 //                            for (int i = 0; i < description.size(); ++i) {
 //                                Log.d("doc" + Integer.toString(i), description.get(i));
 //                            }
+                            List<String> description;
+                            if (language.equals("vi")) {
+                                description = (List<String>) doc.get("description");
+                            } else if (language.equals("en")) {
+                                description = (List<String>) doc.get("description_en");
+                            } else if (language.equals("ja")) {
+                                description = (List<String>) doc.get("description_ja");
+                            } else  {
+                                description = (List<String>) doc.get("description_zh");
+                            }
                             NotificationModel notificationModel =
                                     new NotificationModel(doc.getId(),
                                             doc.getString("image_path"),
-                                            (List<String>) doc.get("description"),
+                                            description,
                                             doc.getString("user_id"),
                                             doc.getBoolean("seen"),
                                             doc.getBoolean("sentNotification"),
@@ -141,7 +138,8 @@ public class NotificationFragment extends Fragment {
                             }
                         }
 
-                        notificationModelList.add(null);
+//                        notificationModelList.add(null);
+                        notificationModelList.add(new NotificationModel());
                         Collections.sort(notificationModelListToday, new Comparator<NotificationModel>() {
                             public int compare(NotificationModel o1, NotificationModel o2) {
                                 return o2.getTime().compareTo(o1.getTime());
@@ -150,7 +148,8 @@ public class NotificationFragment extends Fragment {
 //                        notificationModelAdapterToday.setNotificationModelList(notificationModelListToday);
                         notificationModelList.addAll(notificationModelListToday);
 
-                        notificationModelList.add(null);
+//                        notificationModelList.add(null);
+                        notificationModelList.add(new NotificationModel());
                         Collections.sort(notificationModelListPrevious, new Comparator<NotificationModel>() {
                             @Override
                             public int compare(NotificationModel o1, NotificationModel o2) {

@@ -15,7 +15,8 @@
         android:lineSpacingExtra="1.3dp"
         android:text="Ngày 12 tháng 11 năm 1997, tại Hà Nội diễn ra một sự kiện quan trọng: Phó Chủ tịch nước Cộng hòa xã hội chủ nghĩa Việt Nam Nguyễn Thị Bình và Tổng thống Cộng hòa Pháp Jacques Chirac cắt băng khai trương Bảo tàng Dân tộc học Việt Nam."
         android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:justificationMode="inter_word"/>
 
     <ImageView
         android:id="@+id/img_intro_item"
