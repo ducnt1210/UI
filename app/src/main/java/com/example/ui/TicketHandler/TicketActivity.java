@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ui.MainActivity;
 import com.example.ui.Model.CreateOrder;
+import com.example.ui.Model.PriorityModel;
 import com.example.ui.Model.TicketModel;
 import com.example.ui.Model.TransactionModel;
 import com.example.ui.SettingPackage.CheckPriorityActivity;
@@ -44,6 +45,9 @@ public class TicketActivity extends AppCompatActivity {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     SweetAlertDialog sweetAlertDialog;
 
+    PriorityModel priorityModel;
+    String uid = MainActivity.currentUser.getId();
+    long discount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +59,15 @@ public class TicketActivity extends AppCompatActivity {
         binding = ActivityTicketBinding.inflate(getLayoutInflater());
         binding.numberPicker.setMinValue(1);
         binding.numberPicker.setMaxValue(100);
+
+        getDiscount();
+
         // Zalo pay
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         binding.numberPicker.setOnValueChangedListener((numberPicker, i, i1) -> {
             String price = NumberTextWatcherForThousand.trimCommaOfString(binding.pricePerTicket.getText().toString());
-            binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf((i1 * Integer.parseInt(price)))));
+            binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf((i1 * Integer.parseInt(price) + discount))));
             binding.numberOfTickets.setText(String.valueOf(i1));
         });
 
@@ -83,6 +90,33 @@ public class TicketActivity extends AppCompatActivity {
             }
         });
         setContentView(binding.getRoot());
+    }
+
+    private void getDiscount() {
+        FirebaseFirestore.getInstance().collection("Priority").document(uid).get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                priorityModel = documentSnapshot.toObject(PriorityModel.class);
+                String priority = priorityModel.getPriority();
+                if (priorityModel.isVerified()) {
+                    if (priority.equals("Học sinh")) {
+                        discount = -30000;
+                        binding.totalPrice.setText("10,000");
+                    } else {
+                        discount = -20000;
+                        binding.totalPrice.setText("20,000");
+                    }
+                    binding.discountLayout.setVisibility(View.VISIBLE);
+                    binding.line.setVisibility(View.VISIBLE);
+                } else {
+                    binding.discountLayout.setVisibility(View.GONE);
+                    binding.line.setVisibility(View.GONE);
+                }
+                binding.discount.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf(discount)));
+            } else {
+                binding.discountLayout.setVisibility(View.GONE);
+                binding.line.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void requestZalo() {
