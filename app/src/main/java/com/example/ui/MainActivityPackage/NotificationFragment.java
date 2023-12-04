@@ -107,16 +107,16 @@ public class NotificationFragment extends Fragment {
 //                                Log.d("doc" + Integer.toString(i), description.get(i));
 //                            }
                             List<String> description;
-                            description = (List<String>) doc.get("description");
-//                            if (language.equals("vi")) {
-//                                description = (List<String>) doc.get("description");
-//                            } else if (language.equals("en")) {
-//                                description = (List<String>) doc.get("description_en");
-//                            } else if (language.equals("ja")) {
-//                                description = (List<String>) doc.get("description_ja");
-//                            } else  {
-//                                description = (List<String>) doc.get("description_zh");
-//                            }
+//                            description = (List<String>) doc.get("description");
+                            if (language.equals("vi")) {
+                                description = (List<String>) doc.get("description");
+                            } else if (language.equals("en")) {
+                                description = (List<String>) doc.get("description_en");
+                            } else if (language.equals("ja")) {
+                                description = (List<String>) doc.get("description_ja");
+                            } else  {
+                                description = (List<String>) doc.get("description_zh");
+                            }
                             NotificationModel notificationModel =
                                     new NotificationModel(doc.getId(),
                                             doc.getString("image_path"),
