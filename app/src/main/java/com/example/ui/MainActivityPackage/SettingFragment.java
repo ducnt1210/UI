@@ -23,7 +23,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.ui.LoginActivity;
 import com.example.ui.MainActivity;
+import com.example.ui.Quiz.GiftActivity;
 import com.example.ui.R;
+import com.example.ui.SettingPackage.CheckPriorityActivity;
 import com.example.ui.SettingPackage.EditInfoActivity;
 import com.example.ui.SettingPackage.InstructionActivity;
 import com.example.ui.SettingPackage.LanguageActivity;
@@ -109,6 +111,18 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), EditInfoActivity.class));
+            }
+        });
+        binding.exchangedGiftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), GiftActivity.class).putExtra("type", "exchanged"));
+            }
+        });
+        binding.voucherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), CheckPriorityActivity.class));
             }
         });
 
