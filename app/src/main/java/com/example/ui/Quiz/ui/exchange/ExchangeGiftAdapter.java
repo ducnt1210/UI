@@ -25,6 +25,7 @@ import com.example.ui.R;
 import com.example.ui.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,6 +33,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -142,20 +144,13 @@ public class ExchangeGiftAdapter extends RecyclerView.Adapter<ExchangeGiftAdapte
     }
 
     public void addExchangedGift(GiftModel giftModel) {
-//        ExchangedGiftModel exchangedGiftModel = new ExchangedGiftModel(
-//                "",
-//                FirebaseAuth.getInstance().getCurrentUser().getUid(),
-//                giftModel.getName(),
-//                giftModel.getPrice(),
-//                giftModel.getImage_path(),
-//                "Đã đổi"
-//        );
         Map<String, Object> data = new HashMap<>();
         data.put("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
         data.put("name", giftModel.getName());
         data.put("price", giftModel.getPrice());
         data.put("image_path", giftModel.getImage_path());
         data.put("status", "Đã đổi");
+        data.put("time", new Timestamp(new Date()));
         FirebaseFirestore.getInstance()
                 .collection("ExchangedGift")
                 .add(data)
@@ -169,8 +164,8 @@ public class ExchangeGiftAdapter extends RecyclerView.Adapter<ExchangeGiftAdapte
                         alertDialogBuilder.setIcon(R.drawable.tzuki_success);
                         // Setting Alert Dialog Message
                         alertDialogBuilder.setMessage(
-                                "Bạn đã đổi quà thành công!\n"
-                                        + "Khi checkout, bạn đưa cho nhân viên xem để nhận quà nhé"
+                                "Vào mục \"Quà đã đổi\" để xem các quà đã đổi của bạn!\n"
+                                        + "Khi checkout, bạn đưa cho nhân viên xem để nhận quà nhé!"
                         );
                         alertDialogBuilder.setCancelable(true);
                         AlertDialog alertDialog = alertDialogBuilder.create();

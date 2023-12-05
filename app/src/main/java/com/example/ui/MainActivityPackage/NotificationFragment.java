@@ -101,22 +101,17 @@ public class NotificationFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (DocumentSnapshot doc: task.getResult()) {
-//                            List<String> description = (List<String>) doc.get("description");
-//                            Log.d("length discription", Integer.toString(description.size()));
-//                            for (int i = 0; i < description.size(); ++i) {
-//                                Log.d("doc" + Integer.toString(i), description.get(i));
-//                            }
                             List<String> description;
-//                            description = (List<String>) doc.get("description");
-                            if (language.equals("vi")) {
-                                description = (List<String>) doc.get("description");
-                            } else if (language.equals("en")) {
-                                description = (List<String>) doc.get("description_en");
-                            } else if (language.equals("ja")) {
-                                description = (List<String>) doc.get("description_ja");
-                            } else  {
-                                description = (List<String>) doc.get("description_zh");
-                            }
+                            description = (List<String>) doc.get("description");
+//                            if (language.equals("vi")) {
+//                                description = (List<String>) doc.get("description");
+//                            } else if (language.equals("en")) {
+//                                description = (List<String>) doc.get("description_en");
+//                            } else if (language.equals("ja")) {
+//                                description = (List<String>) doc.get("description_ja");
+//                            } else  {
+//                                description = (List<String>) doc.get("description_zh");
+//                            }
                             NotificationModel notificationModel =
                                     new NotificationModel(doc.getId(),
                                             doc.getString("image_path"),
@@ -175,24 +170,4 @@ public class NotificationFragment extends Fragment {
                     }
                 });
     }
-
-//    private void sendNotification(String name, String message) {
-//        Intent intent = new Intent(this, MainActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-//
-//        NotificationCompat.Builder builder = new NotificationCompat.Builder(.this, "My Notification");
-//        builder.setContentTitle(name);
-//        builder.setSmallIcon(R.drawable.wallet_icon);
-//        builder.setContentText(message);
-//        builder.setAutoCancel(true);
-//        builder.setContentIntent(pendingIntent);
-//
-//        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(AddSavingActivity.this);
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
-//            return;
-//        }
-//        managerCompat.notify(1, builder.build());
-//    }
 }

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
-import androidx.viewpager.widget.ViewPager;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -24,14 +23,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ui.Adapter.HScrollManager;
 import com.example.ui.Adapter.NoScrollRecyclerView;
 import com.example.ui.Adapter.QuizAdapter;
-import com.example.ui.MainActivity;
 import com.example.ui.MainActivityPackage.HomeFragment;
 import com.example.ui.Model.QuizModel;
 import com.example.ui.R;
@@ -39,18 +35,14 @@ import com.example.ui.Utils;
 import com.example.ui.databinding.ActivityQuizBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class QuizActivity extends AppCompatActivity {
     ActivityQuizBinding binding;

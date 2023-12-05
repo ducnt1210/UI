@@ -1,5 +1,10 @@
 package com.example.ui.Model;
 
+import com.example.ui.Utils;
+import com.google.firebase.Timestamp;
+
+import java.util.Date;
+
 public class ExchangedGiftModel {
     private String id;
     private String user_id;
@@ -7,6 +12,7 @@ public class ExchangedGiftModel {
     private int price;
     private String image_path;
     private String status;
+    private Timestamp time;
 
     public ExchangedGiftModel() {
         id = "";
@@ -15,16 +21,18 @@ public class ExchangedGiftModel {
         price = 0;
         image_path = "";
         status = "";
+        time = new Timestamp(new Date());
     }
 
     public ExchangedGiftModel(String id, String user_id, String name,
-                              int price, String image_path, String status) {
+                              int price, String image_path, String status, Timestamp time) {
         this.id = id;
         this.user_id = user_id;
         this.name = name;
         this.price = price;
         this.image_path = image_path;
         this.status = status;
+        this.time = time;
     }
 
     public String getUser_id() {
@@ -72,5 +80,17 @@ public class ExchangedGiftModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    public String formatDate() {
+        return Utils.formatDate(time);
     }
 }

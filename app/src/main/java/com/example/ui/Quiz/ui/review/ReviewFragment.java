@@ -24,9 +24,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ReviewFragment extends Fragment {
@@ -73,10 +76,17 @@ public class ReviewFragment extends Fragment {
                                     doc.getString("name"),
                                     doc.getLong("price").intValue(),
                                     doc.getString("image_path"),
-                                    doc.getString("status")
+                                    doc.getString("status"),
+                                    doc.getTimestamp("time")
                             );
                             giftModelList.add(exchangedGiftModel);
                         }
+                        Collections.sort(giftModelList, new Comparator<ExchangedGiftModel>() {
+                            @Override
+                            public int compare(ExchangedGiftModel o1, ExchangedGiftModel o2) {
+                                return o2.getTime().compareTo(o1.getTime());
+                            }
+                        });
                         reviewGiftAdapter.setGiftModelList(giftModelList);
                     }
                 }).addOnFailureListener(new OnFailureListener() {

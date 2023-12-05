@@ -24,6 +24,7 @@ import com.example.ui.Model.ExchangedGiftModel;
 import com.example.ui.Model.GiftModel;
 import com.example.ui.Quiz.QuizActivity;
 import com.example.ui.R;
+import com.example.ui.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -92,6 +93,7 @@ public class ReviewGiftAdapter extends RecyclerView.Adapter<ReviewGiftAdapter.Re
         holder.giftName.setText(exchangedGiftModel.getName());
         holder.giftValue.setText(Integer.toString(exchangedGiftModel.getPrice()));
         holder.giftStatus.setText(exchangedGiftModel.getStatus());
+        holder.giftTime.setText(exchangedGiftModel.formatDate());
     }
 
     @Override
@@ -107,6 +109,7 @@ public class ReviewGiftAdapter extends RecyclerView.Adapter<ReviewGiftAdapter.Re
         public TextView giftName;
         public TextView giftValue;
         public TextView giftStatus;
+        public TextView giftTime;
         public ReviewGiftViewHolder(@NonNull View view) {
             super(view);
 
@@ -114,6 +117,7 @@ public class ReviewGiftAdapter extends RecyclerView.Adapter<ReviewGiftAdapter.Re
             giftName = (TextView) view.findViewById(R.id.txt_gift_name);
             giftValue = (TextView) view.findViewById(R.id.txt_gift_point);
             giftStatus = (TextView) view.findViewById(R.id.txt_gift_status);
+            giftTime = (TextView) view.findViewById(R.id.txt_gift_time);
         }
     }
 }
