@@ -31,6 +31,7 @@ import com.example.ui.SettingPackage.EditInfoActivity;
 import com.example.ui.SettingPackage.InstructionActivity;
 import com.example.ui.SettingPackage.LanguageActivity;
 import com.example.ui.SettingPackage.PrivacyActivity;
+import com.example.ui.TicketHandler.BoughtTicketActivity;
 import com.example.ui.databinding.FragmentSettingBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -120,6 +121,12 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), EditInfoActivity.class));
+            }
+        });
+        binding.bookedTicketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), BoughtTicketActivity.class));
             }
         });
         binding.exchangedGiftButton.setOnClickListener(new View.OnClickListener() {

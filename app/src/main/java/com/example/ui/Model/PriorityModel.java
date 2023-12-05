@@ -2,18 +2,19 @@ package com.example.ui.Model;
 
 public class PriorityModel {
     private String uid, priority, userName, date, filePath;
-    boolean isVerified;
+    boolean isVerified, isSent = false;
 
     public PriorityModel() {
 
     }
-    public PriorityModel(String uid, String priority, String userName, String date, String filePath, boolean isVerified) {
+    public PriorityModel(String uid, String priority, String userName, String date, String filePath, boolean isVerified, boolean isSent) {
         this.uid = uid;
         this.priority = priority;
         this.userName = userName;
         this.date = date;
         this.filePath = filePath;
         this.isVerified = isVerified;
+        this.isSent = isSent;
     }
 
     public String getUid() {
@@ -62,5 +63,13 @@ public class PriorityModel {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public boolean isSent() {
+        return isSent;
+    }
+
+    public void setSent(boolean sent) {
+        isSent = sent;
     }
 }
