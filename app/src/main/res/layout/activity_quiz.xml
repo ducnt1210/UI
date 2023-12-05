@@ -14,7 +14,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="30dp"
-        android:background="@color/brown">
+        android:background="?attr/colorPrimaryVariant">
 
         <TextView
             android:id="@+id/quiz_time"
@@ -50,7 +50,7 @@
         android:gravity="center_horizontal"
         android:text="Câu hỏi 1/10"
         android:textColor="@color/white"
-        android:background="@color/brown"
+        android:background="?attr/colorPrimaryVariant"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -79,12 +79,13 @@
 
                 <TextView
                     android:id="@+id/quiz_skip"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
+                    android:paddingHorizontal="20dp"
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="Bỏ qua"
+                    android:text="Hoàn thành"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />

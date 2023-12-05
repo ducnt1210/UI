@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,12 +27,14 @@ import com.example.ui.MainActivityPackage.HomeFragment;
 import com.example.ui.MainActivityPackage.NotificationFragment;
 import com.example.ui.MainActivityPackage.SettingFragment;
 import com.example.ui.Model.NotificationModel;
+import com.example.ui.Model.PriorityModel;
 import com.example.ui.Model.UserModel;
 import com.example.ui.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -136,6 +139,69 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, QRActivity.class);
             this.startActivity(intent);
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit);
+        });
+
+        updatePriorityNotification();
+    }
+
+    private void updatePriorityNotification() {
+        FirebaseFirestore.getInstance().collection("Priority").document(user.getUid()).get().addOnSuccessListener(new OnSuccessListener<com.google.firebase.firestore.DocumentSnapshot>() {
+            @Override
+            public void onSuccess(com.google.firebase.firestore.DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    PriorityModel priorityModel = documentSnapshot.toObject(PriorityModel.class);
+                    if (!priorityModel.isSent()) {
+                        if (priorityModel.getPriority() != null) {
+                            if (priorityModel.isVerified()) {
+                                String id = "vertified" + user.getUid();
+                                String image_path = "vertify.jpg";
+                                boolean seen = false;
+                                boolean sentNotification = false;
+                                String user_id = user.getUid();
+                                Timestamp time = Timestamp.now();
+
+                                List<String> description = new ArrayList<>();
+                                description.add("$heading$Đã xác minh đối tượng ưu tiên");
+                                description.add("Loại đối tượng: " + priorityModel.getPriority());
+                                description.add("Ngày xác minh: " + priorityModel.getDate());
+                                description.add("Nếu có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi qua các phương thức liên hệ trong mục Cài đặt.");
+
+                                NotificationModel notificationModel = new NotificationModel(id, image_path, description, user_id, seen, sentNotification, time);
+                                FirebaseFirestore.getInstance().collection("Notification").document(id).set(notificationModel);
+
+                                List<String> description_en = new ArrayList<>();
+                                description_en.add("$heading$Verified priority object");
+                                description_en.add("Priority type: " + priorityModel.getPriority());
+                                description_en.add("Verified date: " + priorityModel.getDate());
+                                description_en.add("If you have any questions, please contact us via the contact methods in the Settings section.");
+
+                                FirebaseFirestore.getInstance().collection("Notification").document(id).update("description_en", description_en);
+                            }
+                        } else {
+                            String id = "failvertified" + user.getUid();
+                            String image_path = "vertify.jpg";
+                            boolean seen = false;
+                            boolean sentNotification = false;
+                            String user_id = user.getUid();
+                            Timestamp time = Timestamp.now();
+
+                            List<String> description = new ArrayList<>();
+                            description.add("$heading$Xác minh đối tượng ưu tiên thất bại");
+                            description.add("Nếu có bất kỳ thắc mắc nào, vui lòng thử lại hoặc liên hệ với chúng tôi qua các phương thức liên hệ trong mục Cài đặt.");
+
+                            NotificationModel notificationModel = new NotificationModel(id, image_path, description, user_id, seen, sentNotification, time);
+                            FirebaseFirestore.getInstance().collection("Notification").document(id).set(notificationModel);
+
+                            List<String> description_en = new ArrayList<>();
+                            description_en.add("$heading$Verified priority object failed");
+                            description_en.add("If you have any questions, please try again or contact us via the contact methods in the Settings section.");
+
+                            FirebaseFirestore.getInstance().collection("Notification").document(id).update("description_en", description_en);
+                        }
+                        FirebaseFirestore.getInstance().collection("Priority").document(user.getUid()).update("sent", true);
+                    }
+                }
+            }
         });
     }
 
@@ -287,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
         Notification notification = new NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)
                 .setContentTitle(notificationModel.heading())
                 .setContentText(notificationModel.fullDescription())
-                .setSmallIcon(R.drawable.gg_signin)
+                .setSmallIcon(R.drawable.vmuseum_noti_icon)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .build();

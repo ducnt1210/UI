@@ -130,9 +130,11 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             if (count == 0){
                 ++count;
                 holder.dateTextView.setText(R.string.today);
+                holder.dateTextView.setTextColor(context.getResources().getColor(R.color.black));
             } else {
                 count = 0;
                 holder.dateTextView.setText(R.string.before);
+                holder.dateTextView.setTextColor(context.getResources().getColor(R.color.black));
             }
         }
     }

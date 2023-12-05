@@ -72,14 +72,15 @@
 
             <TextView
                 android:id="@+id/dialog_skip"
-                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/bg_quiz_time"
                 android:fontFamily="@font/alegrey_bold"
                 android:gravity="center"
-                android:text="Next"
+                android:text="Hoàn thành"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="8dp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />

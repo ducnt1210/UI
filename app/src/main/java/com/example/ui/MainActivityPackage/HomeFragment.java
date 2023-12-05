@@ -30,7 +30,9 @@ import com.example.ui.Utils;
 import com.example.ui.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -71,7 +73,7 @@ public class HomeFragment extends Fragment {
         sweetAlertDialog.setCancelable(true);
         sweetAlertDialog.show();
 
-//        getScore(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        getScore(FirebaseAuth.getInstance().getCurrentUser().getUid());
         newsHelper = new NewsHelper();
         initNews();
         binding = FragmentHomeBinding.bind(rootView);
@@ -97,30 +99,33 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
-//    public void getScore(String user_id) {
-//        Log.e("user_id", user_id);
-//        FirebaseFirestore.getInstance().collection("Score")
-//                .document(user_id)
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        scoreModel = new ScoreModel(
-//                                documentSnapshot.getId(),
-//                                documentSnapshot.getLong("score").intValue()
-//                        );
-//                        binding.coinLayout.coin.setText(Integer.toString(
-//                                scoreModel.getScore()
-//                        ));
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.e("get score failed", user_id);
-//                    }
-//                });
-//    }
+    public void getScore(String user_id) {
+        Log.e("user_id", user_id);
+        FirebaseFirestore.getInstance().collection("Score")
+                .document(user_id)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Long score = documentSnapshot.getLong("score");
+                        if (score == null) {
+                            score = Long.valueOf(0);
+                        }
+                        scoreModel = new ScoreModel(user_id, score.intValue());
+                        Utils.updateScore(scoreModel);
+
+                        binding.coinLayout.coin.setText(Integer.toString(
+                                scoreModel.getScore()
+                        ));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("get score failed", user_id);
+                    }
+                });
+    }
 
     protected void getIntroContentView() {
         binding.homeHeaderLogo.setOnClickListener(new View.OnClickListener() {
