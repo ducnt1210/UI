@@ -76,10 +76,17 @@ public class EditInfoActivity extends AppCompatActivity {
         }
 
         binding.imageProfile.setOnClickListener(v -> {
+            binding.imageProfile.animate().rotationBy(360).setDuration(1000);
             getImage.launch("image/*");
         });
 
         binding.updateInformationButton.setOnClickListener(v -> {
+            binding.updateInformationButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                @Override
+                public void run() {
+                    binding.updateInformationButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                }
+            });
             sweetAlertDialog.show();
             updateInformation();
 //            Quick fix, should let the MainActivity load before changing to SettingFragment
@@ -88,6 +95,12 @@ public class EditInfoActivity extends AppCompatActivity {
         });
 
         binding.changePasswordButton.setOnClickListener(v -> {
+            binding.changePasswordButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                @Override
+                public void run() {
+                    binding.changePasswordButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                }
+            });
             sweetAlertDialog.show();
             updatePassword();
         });

@@ -51,6 +51,13 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                binding.signup.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        binding.signup.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 String fullName = binding.fullName.getText().toString();
                 String number = binding.mobileNumber.getText().toString();
                 String email = binding.email.getText().toString().trim();
@@ -109,6 +116,13 @@ public class SignupActivity extends AppCompatActivity {
         binding.toLoginActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.toLoginActivity.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        binding.toLoginActivity.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                 finishAffinity();
             }

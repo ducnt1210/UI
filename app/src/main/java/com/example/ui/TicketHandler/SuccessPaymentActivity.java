@@ -37,6 +37,9 @@ public class SuccessPaymentActivity extends AppCompatActivity {
         binding.zaloPay.setText(wordToSpan3);
 
         binding.homeScreenButton.setOnClickListener(v -> {
+            binding.homeScreenButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(() -> {
+                binding.homeScreenButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+            });
             startActivity(new Intent(SuccessPaymentActivity.this, MainActivity.class));
             finishAffinity();
         });

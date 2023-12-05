@@ -243,6 +243,8 @@ public class MapActivity extends AppCompatActivity {
         windowAttributeshehe.gravity = Gravity.CENTER;
         windowhehe.setAttributes(windowAttributeshehe);
 
+        dialoghehe.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
         dialoghehe.show();
     }
 
@@ -250,6 +252,8 @@ public class MapActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_map);
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
         Window window = dialog.getWindow();
         if (window == null) return;
@@ -262,13 +266,13 @@ public class MapActivity extends AppCompatActivity {
         window.setAttributes(windowAttributes);
 
         TextView txtTitleDialog = dialog.findViewById(R.id.locationName);
-        TextView direcMap = dialog.findViewById(R.id.textViewDirection);
+        TextView directMap = dialog.findViewById(R.id.textViewDirection);
         TextView detailMap = dialog.findViewById(R.id.textViewDetail);
         ImageView imgDialog = dialog.findViewById(R.id.imageViewMap);
         TextView txtDirection = dialog.findViewById(R.id.textViewDirection);
         TextView txtDetail = dialog.findViewById(R.id.textViewDetail);
 
-        direcMap.setOnClickListener(view -> {
+        directMap.setOnClickListener(view -> {
             openDialoghehe();
         });
 

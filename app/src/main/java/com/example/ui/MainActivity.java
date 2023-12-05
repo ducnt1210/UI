@@ -26,14 +26,12 @@ import com.example.ui.MainActivityPackage.HomeFragment;
 import com.example.ui.MainActivityPackage.NotificationFragment;
 import com.example.ui.MainActivityPackage.SettingFragment;
 import com.example.ui.Model.NotificationModel;
-import com.example.ui.Model.ScoreModel;
 import com.example.ui.Model.UserModel;
 import com.example.ui.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.color.utilities.Score;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -134,8 +132,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.qrScan.setOnClickListener(v -> {
+            binding.qrScan.animate().rotationBy(360).setDuration(1000);
             Intent intent = new Intent(MainActivity.this, QRActivity.class);
-            MainActivity.this.startActivity(intent);
+            this.startActivity(intent);
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit);
         });
     }
 

@@ -34,7 +34,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -80,7 +79,12 @@ public class CheckPriorityActivity extends AppCompatActivity {
 
         binding.txtName.setText(MainActivity.currentUser.getName());
 
-        binding.vertifyButton.setOnClickListener(v -> openDialog());
+        binding.vertifyButton.setOnClickListener(v -> {
+            binding.vertifyButton.animate().alpha(0.5f).setDuration(100).withEndAction(() -> {
+                binding.vertifyButton.animate().alpha(1f).setDuration(100);
+            });
+            openDialog();
+        });
 
         setDisplayVerifyButton();
     }

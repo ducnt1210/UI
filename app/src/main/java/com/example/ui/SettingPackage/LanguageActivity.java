@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.ui.MainActivity;
-import com.example.ui.MainActivityPackage.SettingFragment;
 import com.example.ui.NavigationOpeningActivity;
 import com.example.ui.databinding.ActivityLanguageBinding;
 import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity;
@@ -36,6 +35,12 @@ public class LanguageActivity extends LocaleAwareCompatActivity {
         binding.setLanguageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.setLanguageButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.setLanguageButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                }).start();
                 setLanguageApp();
                 if (checkUser != null && checkUser.contains("newUser")) {
                     Intent intent = new Intent(LanguageActivity.this, NavigationOpeningActivity.class);
