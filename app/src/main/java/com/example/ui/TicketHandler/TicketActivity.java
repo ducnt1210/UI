@@ -14,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ui.MainActivity;
 import com.example.ui.Model.CreateOrder;
+import com.example.ui.Model.PriorityModel;
 import com.example.ui.Model.TicketModel;
 import com.example.ui.Model.TransactionModel;
+import com.example.ui.SettingPackage.CheckPriorityActivity;
 import com.example.ui.Util.NumberTextWatcherForThousand;
 import com.example.ui.databinding.ActivityTicketBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,6 +45,9 @@ public class TicketActivity extends AppCompatActivity {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     SweetAlertDialog sweetAlertDialog;
 
+    PriorityModel priorityModel;
+    String uid = MainActivity.currentUser.getId();
+    long discount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +59,15 @@ public class TicketActivity extends AppCompatActivity {
         binding = ActivityTicketBinding.inflate(getLayoutInflater());
         binding.numberPicker.setMinValue(1);
         binding.numberPicker.setMaxValue(100);
+
+        getDiscount();
+
         // Zalo pay
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         binding.numberPicker.setOnValueChangedListener((numberPicker, i, i1) -> {
             String price = NumberTextWatcherForThousand.trimCommaOfString(binding.pricePerTicket.getText().toString());
-            binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf((i1 * Integer.parseInt(price)))));
+            binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf((i1 * Integer.parseInt(price) + discount))));
             binding.numberOfTickets.setText(String.valueOf(i1));
         });
 
@@ -74,7 +82,41 @@ public class TicketActivity extends AppCompatActivity {
                 requestZalo();
             }
         });
+        binding.tickerPriceDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TicketActivity.this, CheckPriorityActivity.class);
+                startActivity(intent);
+            }
+        });
         setContentView(binding.getRoot());
+    }
+
+    private void getDiscount() {
+        FirebaseFirestore.getInstance().collection("Priority").document(uid).get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                priorityModel = documentSnapshot.toObject(PriorityModel.class);
+                String priority = priorityModel.getPriority();
+                if (priorityModel.isVerified()) {
+                    if (priority.equals("Học sinh")) {
+                        discount = -30000;
+                        binding.totalPrice.setText("10,000");
+                    } else {
+                        discount = -20000;
+                        binding.totalPrice.setText("20,000");
+                    }
+                    binding.discountLayout.setVisibility(View.VISIBLE);
+                    binding.line.setVisibility(View.VISIBLE);
+                } else {
+                    binding.discountLayout.setVisibility(View.GONE);
+                    binding.line.setVisibility(View.GONE);
+                }
+                binding.discount.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf(discount)));
+            } else {
+                binding.discountLayout.setVisibility(View.GONE);
+                binding.line.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void requestZalo() {
@@ -95,24 +137,23 @@ public class TicketActivity extends AppCompatActivity {
 
                         String id = FirebaseFirestore.getInstance().collection("Transaction").document().getId();
                         Timestamp timestamp = new Timestamp(System.currentTimeMillis() / 1000, 0);
+                        Timestamp usedTimestamp = new Timestamp(System.currentTimeMillis() / 1000, 0);
+                        try {
+                            usedTimestamp = new Timestamp(dateFormat.parse(binding.dateET.getText().toString()).getTime() / 1000, 0);
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
                         long numberOfTickets = Long.parseLong(binding.numberOfTickets.getText().toString());
                         long amount = Long.parseLong(NumberTextWatcherForThousand.trimCommaOfString(binding.totalPrice.getText().toString()));
                         String userID = MainActivity.currentUser.getId();
-                        TransactionModel transactionModel = new TransactionModel(id, timestamp, numberOfTickets, token, amount, userID);
+                        TransactionModel transactionModel = new TransactionModel(id, timestamp, usedTimestamp, numberOfTickets, token, amount, false, userID);
                         DocumentReference transactionRef = FirebaseFirestore.getInstance().collection("Transaction").document(id);
                         batch.set(transactionRef, transactionModel);
 
                         for (int i = 0; i < numberOfTickets; i++) {
                             String ticketID = FirebaseFirestore.getInstance().collection("Ticket").document().getId();
-                            Timestamp buyTimestamp = new Timestamp(System.currentTimeMillis() / 1000, 0);
-                            Timestamp usedTimestamp = new Timestamp(System.currentTimeMillis() / 1000, 0);
-                            try {
-                                usedTimestamp = new Timestamp(dateFormat.parse(binding.dateET.getText().toString()).getTime() / 1000, 0);
-                            } catch (ParseException e) {
-                                throw new RuntimeException(e);
-                            }
                             long price = Long.parseLong(NumberTextWatcherForThousand.trimCommaOfString(binding.pricePerTicket.getText().toString()));
-                            TicketModel ticketModel = new TicketModel(ticketID, buyTimestamp, usedTimestamp, price, userID, id);
+                            TicketModel ticketModel = new TicketModel(ticketID, timestamp, usedTimestamp, price, userID, id);
                             DocumentReference ticketRef = FirebaseFirestore.getInstance().collection("Ticket").document(ticketID);
                             batch.set(ticketRef, ticketModel);
                         }

@@ -20,11 +20,68 @@
                 android:id="@+id/nav_header"
                 layout="@layout/nav_header" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Quản lý"
+                android:textColor="@color/black"
+                android:layout_marginStart="30dp"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/baseline_manage_history_24"
+                android:drawablePadding="5dp"
+                android:layout_marginTop="30dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="30dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/booked_ticket_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:text="Vé đã đặt"
+                    android:textSize="16sp"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:drawablePadding="5dp"
+                    android:drawableTop="@drawable/ticket"/>
+
+                <TextView
+                    android:id="@+id/exchanged_gift_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:drawableTop="@drawable/gift"
+                    android:drawablePadding="5dp"
+                    android:gravity="bottom"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:text="Quà đã đổi"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/voucher_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center"
+                    android:text="Vé ưu tiên"
+                    android:textSize="16sp"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="5dp"
+                    android:drawableTop="@drawable/people_voucher"/>
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="30dp"
                 android:layout_height="wrap_content">
 
