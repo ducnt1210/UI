@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
         Notification notification = new NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)
                 .setContentTitle(notificationModel.heading())
                 .setContentText(notificationModel.fullDescription())
-                .setSmallIcon(R.drawable.gg_signin)
+                .setSmallIcon(R.drawable.vmuseum_noti_icon)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .build();
