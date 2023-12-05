@@ -101,10 +101,13 @@ public class HomeFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        scoreModel = new ScoreModel(
-                                documentSnapshot.getId(),
-                                documentSnapshot.getLong("score").intValue()
-                        );
+                        Long score = documentSnapshot.getLong("score");
+                        if (score == null) {
+                            score = Long.valueOf(0);
+                        }
+                        scoreModel = new ScoreModel(user_id, score.intValue());
+                        Utils.updateScore(scoreModel);
+
                         binding.coinLayout.coin.setText(Integer.toString(
                                 scoreModel.getScore()
                         ));
