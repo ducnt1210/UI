@@ -1,7 +1,9 @@
 package com.example.ui.Quiz;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
+import com.example.ui.MainActivityPackage.HomeFragment;
 import com.example.ui.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,6 +38,8 @@ public class GiftActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.coin_layout);
+        TextView coin = (TextView) getSupportActionBar().getCustomView().findViewById(R.id.coin);
+        coin.setText(Integer.toString(HomeFragment.scoreModel.getScore()));
         getSupportActionBar().getCustomView().findViewById(R.id.exchange_gift_title).setVisibility(android.view.View.VISIBLE);
     }
 

@@ -85,10 +85,18 @@ public class UnusedTicketAdapter extends RecyclerView.Adapter<UnusedTicketAdapte
         holder.ticketItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                holder.ticketItem.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        holder.ticketItem.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Dialog dialog = new Dialog(context);
                 dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_ticket_qr);
+
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
                 ImageView imageView = dialog.findViewById(R.id.imageViewMap);
                 Bitmap bitmap = qrgEncoder.getBitmap();

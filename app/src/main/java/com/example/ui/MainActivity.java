@@ -135,8 +135,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.qrScan.setOnClickListener(v -> {
+            binding.qrScan.animate().rotationBy(360).setDuration(1000);
             Intent intent = new Intent(MainActivity.this, QRActivity.class);
-            MainActivity.this.startActivity(intent);
+            this.startActivity(intent);
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit);
         });
 
         updatePriorityNotification();

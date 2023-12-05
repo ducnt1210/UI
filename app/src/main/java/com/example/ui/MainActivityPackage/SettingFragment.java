@@ -23,8 +23,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.ui.LoginActivity;
 import com.example.ui.MainActivity;
-import com.example.ui.Quiz.GiftActivity;
 import com.example.ui.Model.UserModel;
+import com.example.ui.Quiz.GiftActivity;
 import com.example.ui.R;
 import com.example.ui.SettingPackage.CheckPriorityActivity;
 import com.example.ui.SettingPackage.EditInfoActivity;
@@ -120,24 +120,48 @@ public class SettingFragment extends Fragment {
         binding.navHeader.editInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.navHeader.editInfoButton.animate().scaleX(0.9f).scaleY(0.9f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.navHeader.editInfoButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(getActivity(), EditInfoActivity.class));
             }
         });
         binding.bookedTicketButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.bookedTicketButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.bookedTicketButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(getActivity(), BoughtTicketActivity.class));
             }
         });
         binding.exchangedGiftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.exchangedGiftButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.exchangedGiftButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(getActivity(), GiftActivity.class).putExtra("type", "exchanged"));
             }
         });
         binding.voucherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.voucherButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.voucherButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(getActivity(), CheckPriorityActivity.class));
             }
         });
@@ -178,6 +202,12 @@ public class SettingFragment extends Fragment {
         binding.signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.signOutButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.signOutButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 FirebaseFirestore.getInstance().collection("User").document(MainActivity.currentUser.getId())
                         .update("signIn", false)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -199,6 +229,12 @@ public class SettingFragment extends Fragment {
         binding.navHeader.imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.navHeader.imageProfile.animate().scaleX(0.9f).scaleY(0.9f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.navHeader.imageProfile.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 sweetAlertDialog = new SweetAlertDialog(requireActivity(), SweetAlertDialog.PROGRESS_TYPE);
                 sweetAlertDialog.show();
                 getImage.launch("image/*");
@@ -209,6 +245,12 @@ public class SettingFragment extends Fragment {
         binding.fbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.fbButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.fbButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/tuanduc.nguyen1210/")));
             }
         });
@@ -216,6 +258,12 @@ public class SettingFragment extends Fragment {
         binding.instagramButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.instagramButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.instagramButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/hhhlsciuuu/")));
             }
         });
@@ -223,6 +271,12 @@ public class SettingFragment extends Fragment {
         binding.twitterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.twitterButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.twitterButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/")));
             }
         });
@@ -230,6 +284,12 @@ public class SettingFragment extends Fragment {
         binding.instructionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.instructionButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.instructionButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(getActivity(), InstructionActivity.class));
             }
         });
@@ -237,6 +297,12 @@ public class SettingFragment extends Fragment {
         binding.deleteAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.deleteAccountButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.deleteAccountButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 sweetAlertDialog = new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE);
                 sweetAlertDialog.setTitleText("Are you sure?")
                         .setContentText("You won't be able to recover this account!")
@@ -279,6 +345,12 @@ public class SettingFragment extends Fragment {
         binding.securityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.securityButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.securityButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(getActivity(), PrivacyActivity.class));
             }
         });
@@ -286,6 +358,12 @@ public class SettingFragment extends Fragment {
         binding.languageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.languageButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.languageButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(getActivity(), LanguageActivity.class));
             }
         });

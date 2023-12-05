@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ui.MainActivity;
 import com.example.ui.Model.QuizModel;
 import com.example.ui.Quiz.QuizActivity;
 import com.example.ui.R;
@@ -17,7 +18,7 @@ import com.example.ui.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
+public class QuizAdapter extends NoScrollRecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
     public List<QuizModel> quizModelList;
     public List<Integer> choseAnswerList;
 
@@ -72,14 +73,18 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull QuizViewHolder viewHolder, int position) {
-        Log.d("position", Integer.toString(position));
-        Log.e("quizList", Integer.toString(QuizActivity.choseAnswerList.size()));
-        QuizModel quizModel = this.quizModelList.get(position);
+//        Log.e("enable scroll before", Boolean.toString(QuizActivity.layoutManager.getScrollingEnabled()));
+//        QuizActivity.layoutManager.setScrollingEnabled(false);
+//        Log.d("enable scroll", Boolean.toString(QuizActivity.layoutManager.getScrollingEnabled()));
+//        Log.d("position", Integer.toString(position));
+//        Log.e("quizList", Integer.toString(QuizActivity.choseAnswerList.size()));
+//        Log.e("quizList", Integer.toString(QuizActivity.quizModelList.size()));
+//        QuizModel quizModel = this.quizModelList.get(position);
+        QuizModel quizModel = quizModelList.get(position);
         List<String> answers = quizModel.getAnswer();
 
         Log.d("adapterPostion", Integer.toString(viewHolder.getAdapterPosition()));
         int choseAnswer = choseAnswerList.get(position);
-        Log.d("choseAnswer", Integer.toString(choseAnswer));
         boolean submittedAnswer = QuizActivity.submittedAnswerList.get(position);
         viewHolder.quizContent.setText(quizModel.getQuestion());
         Log.d("quizAnswers", Integer.toString(viewHolder.quizAnswers.size()));
@@ -125,22 +130,8 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         }
     }
 
-    public boolean checkAnswer(int position) {
-        int answer = choseAnswerList.get(position) - 1;
-        Log.d("answer", Integer.toString(answer));
-//        Log.d("positionTrueAnswer", quizModelList.get(position).getTrue_answer());
-        if (quizModelList.get(position) == null) {
-            Log.d("quizNull", "null");
-        } else {
-            if (quizModelList.get(position).getTrue_answer() == null) {
-                Log.d("True answer", "null");
-            } else {
-                Log.d("True answer", quizModelList.get(position).getTrue_answer());
-            }
-        }
-        Log.d("positionAnswer", quizModelList.get(position).getAnswer().get(answer));
-        if (quizModelList.get(position).getTrue_answer()
-                .equals(quizModelList.get(position).getAnswer().get(answer))) {
+    public boolean checkAnswer(int answer, QuizModel quiz) {
+        if (quiz.noOfTrueAnswer() == answer) {
             return true;
         }
         return false;
@@ -148,13 +139,18 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
     public void showResult(int position) {
         int answer = choseAnswerList.get(position) - 1;
+        QuizModel quiz = quizModelList.get(position);
         Log.e("choseAnswer", Integer.toString(answer + 1));
-        if (checkAnswer(position)) {
+        QuizActivity.correctAnswer = checkAnswer(answer, quiz);
+        if (QuizActivity.correctAnswer) {
+            QuizActivity.countCorrectAnswer += 1;
             QuizViewHolder.rlAnswers.get(answer)
                     .setBackgroundResource(R.drawable.bg_true_answer_item);
         } else {
             QuizViewHolder.rlAnswers.get(answer)
                     .setBackgroundResource(R.drawable.bg_false_answer_item);
+            QuizViewHolder.rlAnswers.get(quiz.noOfTrueAnswer())
+                    .setBackgroundResource(R.drawable.bg_true_answer_item);
         }
     }
 
@@ -166,7 +162,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         return 0;
     }
 
-    public static class QuizViewHolder extends RecyclerView.ViewHolder {
+    public static class QuizViewHolder extends NoScrollRecyclerView.ViewHolder {
         public TextView quizContent;
 //                        quizAnswerA, quizAnswerB, quizAnswerC, quizAnswerD;
 //        public RelativeLayout rlAnswerA, rlAnswerB, rlAnswerC, rlAnswerD;

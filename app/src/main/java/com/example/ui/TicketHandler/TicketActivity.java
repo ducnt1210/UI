@@ -233,4 +233,10 @@ public class TicketActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         ZaloPaySDK.getInstance().onResult(intent);
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        this.overridePendingTransition(R.anim.animate_zoom_exit, R.anim.animate_zoom_enter);
+//    }
 }

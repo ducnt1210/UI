@@ -1,10 +1,13 @@
 package com.example.ui.Model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuizModel {
     private String id;
+    private String exhibit_id;
     private String question;
     private List<String> answer;
     private String true_answer;
@@ -12,14 +15,17 @@ public class QuizModel {
 
     public QuizModel() {
         id = "";
+        exhibit_id = "";
         question = "";
         answer = new ArrayList<>();
         true_answer = "";
         detailed_answer = "";
     }
 
-    public QuizModel(String id, String question, List<String> answer, String true_answer, String detailed_answer) {
+    public QuizModel(String id, String exhibit_id, String question,
+                     List<String> answer, String true_answer, String detailed_answer) {
         this.id = id;
+        this.exhibit_id = exhibit_id;
         this.question = question;
         this.answer = answer;
         this.true_answer = true_answer;
@@ -32,6 +38,14 @@ public class QuizModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getExhibit_id() {
+        return exhibit_id;
+    }
+
+    public void setExhibit_id(String exhibit_id) {
+        this.exhibit_id = exhibit_id;
     }
 
     public String getQuestion() {
@@ -64,5 +78,15 @@ public class QuizModel {
 
     public void setDetailed_answer(String detailed_answer) {
         this.detailed_answer = detailed_answer;
+    }
+
+    public int noOfTrueAnswer() {
+        for (int i = 0; i < this.answer.size(); ++i) {
+            if (this.answer.get(i).equals(this.true_answer)) {
+                return i;
+            }
+        }
+        Log.e("There is not the true answer", id);
+        return -1;
     }
 }

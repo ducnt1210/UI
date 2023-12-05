@@ -52,8 +52,8 @@ public class CheckPriorityActivity extends AppCompatActivity {
     private static final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 101;
     private static final int MANAGE_EXTERNAL_STORAGE_REQUEST_CODE = 102;
     private static final int PICKFILE_REQUEST_CODE = 1;
-    public PriorityModel priorityField;
     ActivityCheckPriorityBinding binding;
+    public PriorityModel priorityField;
     Uri tempFile;
     String path, fileName, fileId;
     String priority = "";
@@ -83,7 +83,12 @@ public class CheckPriorityActivity extends AppCompatActivity {
 
         binding.txtName.setText(MainActivity.currentUser.getName());
 
-        binding.vertifyButton.setOnClickListener(v -> openDialog());
+        binding.vertifyButton.setOnClickListener(v -> {
+            binding.vertifyButton.animate().alpha(0.5f).setDuration(100).withEndAction(() -> {
+                binding.vertifyButton.animate().alpha(1f).setDuration(100);
+            });
+            openDialog();
+        });
 
         setDisplayVerifyButton();
 
@@ -249,7 +254,6 @@ public class CheckPriorityActivity extends AppCompatActivity {
                         Toast.makeText(CheckPriorityActivity.this, "Tải tệp thất bại!", Toast.LENGTH_SHORT).show();
                     }
                 });
-
                 dialog.dismiss();
 
                 FirebaseStorage.getInstance().getReference().child("notification_images/" + fileName).putFile(tempFile);
