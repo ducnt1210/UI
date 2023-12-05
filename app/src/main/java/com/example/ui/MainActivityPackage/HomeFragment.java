@@ -20,6 +20,7 @@ import com.example.ui.Helper.NewsHelper;
 import com.example.ui.IntroContentActivity;
 import com.example.ui.MainActivity;
 import com.example.ui.MapActivity;
+import com.example.ui.Model.ScoreModel;
 import com.example.ui.NewsEventsActivity;
 import com.example.ui.Quiz.GiftActivity;
 import com.example.ui.Quiz.QuizActivity;
@@ -29,7 +30,10 @@ import com.example.ui.Utils;
 import com.example.ui.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -47,6 +51,18 @@ public class HomeFragment extends Fragment {
     public String language = Locale.getDefault().getLanguage();
     SweetAlertDialog sweetAlertDialog;
 
+    public static ScoreModel scoreModel;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (scoreModel != null) {
+            binding.coinLayout.coin.setText(Integer.toString(
+                    scoreModel.getScore()
+            ));
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -58,6 +74,7 @@ public class HomeFragment extends Fragment {
         sweetAlertDialog.setCancelable(true);
         sweetAlertDialog.show();
 
+        getScore(FirebaseAuth.getInstance().getCurrentUser().getUid());
         newsHelper = new NewsHelper();
         initNews();
         binding = FragmentHomeBinding.bind(rootView);
@@ -74,6 +91,31 @@ public class HomeFragment extends Fragment {
         Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).hide();
 
         return rootView;
+    }
+
+    public void getScore(String user_id) {
+        Log.e("user_id", user_id);
+        FirebaseFirestore.getInstance().collection("Score")
+                .document(user_id)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        scoreModel = new ScoreModel(
+                                documentSnapshot.getId(),
+                                documentSnapshot.getLong("score").intValue()
+                        );
+                        binding.coinLayout.coin.setText(Integer.toString(
+                                scoreModel.getScore()
+                        ));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("get score failed", user_id);
+                    }
+                });
     }
 
     protected void getIntroContentView() {

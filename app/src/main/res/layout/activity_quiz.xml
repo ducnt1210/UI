@@ -64,12 +64,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.example.ui.Adapter.NoScrollRecyclerView
                 android:id="@+id/recyclerViewQuiz"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/quiz_content_item">
 
-            </androidx.recyclerview.widget.RecyclerView>
+            </com.example.ui.Adapter.NoScrollRecyclerView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -83,7 +84,7 @@
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="SKIP"
+                    android:text="Bỏ qua"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -96,7 +97,7 @@
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="SUBMIT"
+                    android:text="Nộp"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
