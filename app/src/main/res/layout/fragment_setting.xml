@@ -46,6 +46,7 @@
                     android:textSize="16sp"
                     android:paddingVertical="5dp"
                     android:paddingHorizontal="10dp"
+                    android:textColor="@color/black"
                     android:drawablePadding="5dp"
                     android:drawableTop="@drawable/ticket"/>
 
@@ -55,6 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:drawableTop="@drawable/gift"
+                    android:textColor="@color/black"
                     android:drawablePadding="5dp"
                     android:gravity="bottom"
                     android:paddingHorizontal="10dp"
@@ -66,6 +68,7 @@
                     android:id="@+id/voucher_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:gravity="bottom|center"
                     android:text="Vé ưu tiên"
                     android:textSize="16sp"

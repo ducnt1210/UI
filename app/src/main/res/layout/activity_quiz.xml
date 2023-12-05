@@ -14,7 +14,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="30dp"
-        android:background="@color/brown">
+        android:background="?attr/colorPrimaryVariant">
 
         <TextView
             android:id="@+id/quiz_time"
@@ -50,7 +50,7 @@
         android:gravity="center_horizontal"
         android:text="Câu hỏi 1/10"
         android:textColor="@color/white"
-        android:background="@color/brown"
+        android:background="?attr/colorPrimaryVariant"
         android:textSize="22sp"
         android:textStyle="bold" />
 
