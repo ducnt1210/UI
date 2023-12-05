@@ -79,12 +79,13 @@
 
                 <TextView
                     android:id="@+id/quiz_skip"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
+                    android:paddingHorizontal="20dp"
                     android:background="@drawable/bg_quiz_time"
                     android:fontFamily="@font/alegrey_bold"
                     android:gravity="center"
-                    android:text="Bỏ qua"
+                    android:text="Hoàn thành"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
