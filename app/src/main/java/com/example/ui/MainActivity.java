@@ -169,13 +169,6 @@ public class MainActivity extends AppCompatActivity {
                                 NotificationModel notificationModel = new NotificationModel(id, image_path, description, user_id, seen, sentNotification, time);
                                 FirebaseFirestore.getInstance().collection("Notification").document(id).set(notificationModel);
 
-                                List<String> description_en = new ArrayList<>();
-                                description_en.add("$heading$Verified priority object");
-                                description_en.add("Priority type: " + priorityModel.getPriority());
-                                description_en.add("Verified date: " + priorityModel.getDate());
-                                description_en.add("If you have any questions, please contact us via the contact methods in the Settings section.");
-
-                                FirebaseFirestore.getInstance().collection("Notification").document(id).update("description_en", description_en);
                             }
                         } else {
                             String id = "failvertified" + user.getUid();
@@ -191,12 +184,6 @@ public class MainActivity extends AppCompatActivity {
 
                             NotificationModel notificationModel = new NotificationModel(id, image_path, description, user_id, seen, sentNotification, time);
                             FirebaseFirestore.getInstance().collection("Notification").document(id).set(notificationModel);
-
-                            List<String> description_en = new ArrayList<>();
-                            description_en.add("$heading$Verified priority object failed");
-                            description_en.add("If you have any questions, please try again or contact us via the contact methods in the Settings section.");
-
-                            FirebaseFirestore.getInstance().collection("Notification").document(id).update("description_en", description_en);
                         }
                         FirebaseFirestore.getInstance().collection("Priority").document(user.getUid()).update("sent", true);
                     }
@@ -320,10 +307,8 @@ public class MainActivity extends AppCompatActivity {
                             sendNotification(notificationModel);
                             Utils.updateSentNotification(notificationModel);
                         }
-//                        Log.d("length1", Integer.toString(notSentNotifications.size()));
                     }
                 });
-//        Log.d("length2", Integer.toString(notSentNotifications.size()));
     }
 
     private void sendNotification(NotificationModel notificationModel) {
@@ -342,13 +327,6 @@ public class MainActivity extends AppCompatActivity {
 //        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         PendingIntent pendingIntent = stackBuilder.getPendingIntent((int) new Date().getTime(), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
-
-//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MyApplication.CHANNEL_ID);
-//        builder.setContentTitle(notificationModel.heading());
-//        builder.setSmallIcon(R.drawable.gg_signin);
-//        builder.setContentText(notificationModel.fullDescription());
-//        builder.setAutoCancel(true);
-//        builder.setContentIntent(pendingIntent);
 
         Notification notification = new NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)
                 .setContentTitle(notificationModel.heading())

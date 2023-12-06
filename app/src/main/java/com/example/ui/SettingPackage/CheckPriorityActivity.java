@@ -273,15 +273,6 @@ public class CheckPriorityActivity extends AppCompatActivity {
                 description.add("Nếu có bất kỳ sai sót gì, vui lòng liên hệ theo thông tin liên hệ ở mục cài đặt để được hỗ trợ giải quyết.");
                 NotificationModel notificationModel = new NotificationModel(id, image_path, description, user_id, seen, sentNotification, time);
                 FirebaseFirestore.getInstance().collection("Notification").document(id).set(notificationModel);
-
-                List<String> description_en = new ArrayList<>();
-                description_en.add("$heading$Sent priority verification information");
-                description_en.add("Priority type: " + priority);
-                description_en.add("$imgs$" + fileName);
-                description_en.add("$note$Priority verification evidence");
-                description_en.add("If there are any errors, please contact the contact information in the settings section for assistance.");
-                FirebaseFirestore.getInstance().collection("Notification").document(id).update("description_en", description_en);
-
             }
         });
         dialog.show();

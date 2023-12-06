@@ -153,7 +153,7 @@ public class TicketActivity extends AppCompatActivity {
                         for (int i = 0; i < numberOfTickets; i++) {
                             String ticketID = FirebaseFirestore.getInstance().collection("Ticket").document().getId();
                             long price = Long.parseLong(NumberTextWatcherForThousand.trimCommaOfString(binding.pricePerTicket.getText().toString()));
-                            TicketModel ticketModel = new TicketModel(ticketID, timestamp, usedTimestamp, price, userID, id);
+                            TicketModel ticketModel = new TicketModel(ticketID, timestamp, usedTimestamp, price, userID, id, i);
                             DocumentReference ticketRef = FirebaseFirestore.getInstance().collection("Ticket").document(ticketID);
                             batch.set(ticketRef, ticketModel);
                         }
@@ -172,6 +172,7 @@ public class TicketActivity extends AppCompatActivity {
                         Intent intent = new Intent(TicketActivity.this, SuccessPaymentActivity.class);
                         intent.putExtra("amount", binding.totalPrice.getText().toString());
                         intent.putExtra("transactionID", id);
+                        intent.putExtra("quantity", binding.numberOfTickets.getText().toString());
                         startActivity(intent);
                         finish();
                     }

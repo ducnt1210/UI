@@ -10,7 +10,13 @@ import android.text.style.ForegroundColorSpan;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ui.MainActivity;
+import com.example.ui.Model.NotificationModel;
 import com.example.ui.databinding.ActivitySuccessPaymentBinding;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SuccessPaymentActivity extends AppCompatActivity {
     ActivitySuccessPaymentBinding binding;
@@ -37,6 +43,21 @@ public class SuccessPaymentActivity extends AppCompatActivity {
         binding.zaloPay.setText(wordToSpan3);
 
         binding.homeScreenButton.setOnClickListener(v -> {
+            String id = generateFileId();
+            String image_path = "ticket.png";
+            boolean seen = false;
+            boolean sentNotification = false;
+            String user_id = MainActivity.currentUser.getId();
+            Timestamp time = Timestamp.now();
+
+            List<String> description = new ArrayList<>();
+            description.add("$heading$Đặt vé thành công");
+            description.add("Số lượng vé: " + getIntent().getStringExtra("quantity"));
+            description.add("Mã giao dịch: " + transactionID);
+            description.add("Bạn đã đặt vé thành công. Vui lòng kiểm tra lại thông tin chi tiết trong mục vé đã đặt ở phần Cài đặt.");
+            NotificationModel notificationModel = new NotificationModel(id, image_path, description, user_id, seen, sentNotification, time);
+            FirebaseFirestore.getInstance().collection("Notification").document(id).set(notificationModel);
+
             binding.homeScreenButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(() -> {
                 binding.homeScreenButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
             });
@@ -45,5 +66,8 @@ public class SuccessPaymentActivity extends AppCompatActivity {
         });
 
         setContentView(binding.getRoot());
+    }
+    private String generateFileId() {
+        return String.valueOf(System.currentTimeMillis());
     }
 }

@@ -10,6 +10,8 @@ public class TicketModel {
     String UserID;
     String transactionID;
 
+    int amount;
+
     public TicketModel() {
     }
 
@@ -21,13 +23,14 @@ public class TicketModel {
         this.transactionID = transactionID;
     }
 
-    public TicketModel(String ID, Timestamp buyTimestamp, Timestamp usedTimestamp, long price, String userID, String transactionID) {
+    public TicketModel(String ID, Timestamp buyTimestamp, Timestamp usedTimestamp, long price, String userID, String transactionID, int amount) {
         this.ID = ID;
         this.buyTimestamp = buyTimestamp;
         this.usedTimestamp = usedTimestamp;
         this.price = price;
         UserID = userID;
         this.transactionID = transactionID;
+        this.amount = amount;
     }
 
     public String getID() {
@@ -68,5 +71,13 @@ public class TicketModel {
 
     public void setUserID(String userID) {
         UserID = userID;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
