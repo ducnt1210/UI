@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ui.Adapter.TicketViewPagerAdapter;
+import com.example.ui.R;
 import com.example.ui.databinding.ActivityBoughtTicketBinding;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -21,14 +22,16 @@ public class BoughtTicketActivity extends AppCompatActivity {
         viewPagerAdapter = new TicketViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         binding.viewPager.setAdapter(viewPagerAdapter);
 
+        setTitle(R.string.booked_tickets);
+
         new TabLayoutMediator(binding.tabLayout, binding.viewPager,
                 (tab, position) -> {
                     switch (position) {
                         case 0:
-                            tab.setText("Unused Tickets");
+                            tab.setText(R.string.unused_ticket);
                             break;
                         case 1:
-                            tab.setText("Used Tickets");
+                            tab.setText(R.string.used_ticket);
                             break;
                     }
                 }

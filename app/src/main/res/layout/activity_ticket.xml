@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="4"
-                    android:text="Date:"
+                    android:text="@string/date"
                     android:textSize="20sp" />
 
                 <EditText
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="4"
-                    android:text="Number of Tickets"
+                    android:text="@string/number_of_tickets"
                     android:textSize="20sp" />
 
                 <NumberPicker
@@ -97,7 +97,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date:"
+                    android:text="@string/date"
                     android:textSize="20sp" />
 
                 <TextView
@@ -123,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:text="Price per Tickets:" />
+                    android:text="@string/price_per_ticket" />
 
                 <TextView
                     android:id="@+id/pricePerTicket"
@@ -147,7 +147,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Number of Tickets:"
+                    android:text="@string/number_of_tickets"
                     android:textSize="20sp" />
 
                 <TextView
@@ -174,7 +174,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Priority discounts:"
+                    android:text="@string/discount"
                     android:textSize="20sp" />
 
                 <TextView
@@ -199,7 +199,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total:"
+                    android:text="@string/total"
                     android:textSize="20sp" />
 
                 <TextView
@@ -224,9 +224,10 @@
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alegreysan"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/main_blue_color"
-        android:text="PAY WITH ZALOPAY" />
+        android:text="@string/pay_with_zalopay" />
 
     <TextView
         android:id="@+id/ticker_price_detail"
@@ -236,8 +237,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="70dp"
         android:textStyle="bold|italic"
-        android:text="Bảng giá vé chi tiết"
-        android:textColor="@color/main_green"
+        android:text="@string/detail_price"
+        android:textColor="@drawable/text_pressed_green_to_blue"
         android:textSize="18sp" />
 
 </LinearLayout>
