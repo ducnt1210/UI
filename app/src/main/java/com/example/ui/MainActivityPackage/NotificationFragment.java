@@ -37,6 +37,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -95,7 +96,7 @@ public class NotificationFragment extends Fragment {
         Date currentDate = new Date();
 
         db.collection("Notification")
-                .whereEqualTo("user_id", currentUser.getUid())
+                .whereIn("user_id", Arrays.asList(currentUser.getUid(), "all"))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
