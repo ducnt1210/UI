@@ -52,6 +52,10 @@
     <string name="privacy1">このプライバシーポリシーは、お客様が収集する情報、収集する理由、および情報を更新、管理、エクスポート、および削除する方法を理解するのに役立ちます。 このプライバシーポリシーは、VMUSEUMおよびその関連会社が提供するすべてのサービスに適用されます。ただし、このプライバシーポリシーを組み込まない個別のプライバシーポリシーを持つサービスは除外されます。 このプライバシーポリシーは、このプライバシーポリシーを組み込まない個別のプライバシーポリシーを持つサービスには適用されません。</string>
     <string name="privacy2">私たちは、お客様全員により良いサービスを提供するために情報を収集しています。 たとえば、お客様がVMUSEUMアカウントにサインアップする必要があるサービスが多数あります。 そうすると、お名前、メールアドレス、電話番号、クレジットカードなどの個人情報をお尋ねします。 提供する共有機能を最大限に活用したい場合は、公開されているVMUSEUMプロファイルを作成するように依頼する場合があります。これには、お名前と写真が含まれる場合があります。 \n サービスの使用方法から得られる情報。 お客様が使用するサービスとその使用方法に関する情報を収集します。 たとえば、YouTubeでビデオを視聴したり、当社の広告サービスを使用するWebサイトを訪問したり、当社の広告やコンテンツを表示したり、対話したりするときなどです。 この情報には、次のものが含まれます。 \n デバイス情報：デバイス固有の情報（ハードウェアモデル、オペレーティングシステムバージョン、一意のデバイス識別子、電話番号などのモバイルネットワーク情報）を収集します。 VMUSEUMは、デバイス識別子または電話番号をVMUSEUMアカウントに関連付ける場合があります。</string>
     <string name="privacy3">ログ情報：当社のサービスを使用したり、VMUSEUMが提供するコンテンツを表示したりすると、サーバーログに特定の情報を自動的に収集して保存します。 これには、次のものが含まれます。 \n 検索クエリなど、サービスの使用方法の詳細。 \n 電話番号、呼び出し元番号、転送番号、通話の日時、通話の時間、SMSルーティング情報、通話の種類などの電話ログ情報。 \n インターネットプロトコルアドレス。 \n クラッシュ、システムアクティビティ、ハードウェア設定、ブラウザタイプ、ブラウザ言語、リクエストの日時、参照URLなどのデバイスイベント情報。 \n ブラウザまたはVMUSEUMアカウントを一意に識別できるクッキー。 \n 場所情報：VMUSEUMサービスを使用すると、実際の場所に関する情報を収集および処理する場合があります。 IPアドレス、GPS、およびその他のセンサーなどのさまざまな技術を使用して、場所を判断します。 たとえば、近くのデバイス、Wi-Fiアクセスポイント、およびセルタワーに関する情報をVMUSEUMに提供する場合があります。</string>
+    <string name="manage">管理</string>
+    <string name="booked_tickets">チケット</string>
+    <string name="exchanged_gifts">贈り物</string>
+    <string name="priority_tickets">優先チト</string>
 
     <!--    EditInfo-->
     <string name="updateinfo">情報を更新する</string>
@@ -121,4 +125,22 @@
     <string name="edit_profile_title">プロフィールを編集する</string>
     <string name="edit_profile_content1">プロフィールを編集するには、Bottom Navigation Barの設定ボタンを押すことができます。 設定画面にリダイレクトされた後、プロフィールを編集するボタンを押して、自分のプロフィール情報を編集することができます</string>
     <string name="edit_profile_content2">プロフィール画像を変更するには、設定画面またはプロフィール編集画面の現在のプロフィール画像をタップして、電話のギャラリーから新しい画像を選択することができます。 さらに、表示名、メールアドレス、パスワードを変更することもできます</string>
+
+    <string name="welcome_to_vmuseum">VMUSEUMへようこそ！ \n言語を選択してください。</string>
+
+    <!--    Ticket-->
+    <string name="date">日付：</string>
+    <string name="number_of_tickets">チケットの数：</string>
+    <string name="price_per_ticket">チケットの価格：</string>
+    <string name="discount">割引：</string>
+    <string name="total">合計：</string>
+    <string name="pay_with_zalopay">ZaloPayで支払う</string>
+    <string name="detail_price"><u>詳細価格表</u></string>
+    <string name="payment_success">チケット支払い成功</string>
+    <string name="transaction_id">取引ID：</string>
+    <string name="amount_paid">支払った金額：</string>
+    <string name="paid_with_zalopay">ZaloPayで支払う</string>
+    <string name="home_screen">ホーム画面へ</string>
+    <string name="unused_ticket">未使用のチケット</string>
+    <string name="used_ticket">使用済みチケット</string>
 </resources>

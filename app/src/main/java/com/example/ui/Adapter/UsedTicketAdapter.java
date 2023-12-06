@@ -77,6 +77,7 @@ public class UsedTicketAdapter extends RecyclerView.Adapter<UsedTicketAdapter.Us
         TransactionModel transactionModel = transactionModelList.get(position);
         holder.date.setText(dateFormat.format(transactionModel.getUsedTimestamp().toDate()));
         holder.id.setText(transactionModel.getID());
+        holder.amount.setText(String.valueOf(transactionModel.getNumberOfTickets()));
 
         String qrCode = "THISISVMUSEUMQRCODE " + transactionModel.getNumberOfTickets() + transactionModel.getID();
         QRGEncoder qrgEncoder = new QRGEncoder(qrCode, null, QRGContents.Type.TEXT, 500);
@@ -146,7 +147,7 @@ public class UsedTicketAdapter extends RecyclerView.Adapter<UsedTicketAdapter.Us
     }
 
     public class UsedTicketViewHolder extends RecyclerView.ViewHolder {
-        TextView date, id;
+        TextView date, id, amount;
         ImageView qrCode;
         LinearLayout ticketItem;
 
@@ -156,6 +157,7 @@ public class UsedTicketAdapter extends RecyclerView.Adapter<UsedTicketAdapter.Us
             date = itemView.findViewById(R.id.date);
             id = itemView.findViewById(R.id.transactionID);
             qrCode = itemView.findViewById(R.id.qrCode);
+            amount = itemView.findViewById(R.id.amount);
             ticketItem = itemView.findViewById(R.id.ticket_item);
         }
     }

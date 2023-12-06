@@ -16,7 +16,7 @@
     <TextView
         android:layout_marginTop="80dp"
         android:layout_width="match_parent"
-        android:text="Ticket Payment Successful"
+        android:text="@string/payment_success"
         android:textAlignment="center"
         android:textSize="32sp"
         android:layout_height="wrap_content" />
@@ -25,7 +25,7 @@
         android:id="@+id/transactionID"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:text="Transaction ID: 123456"
+        android:text="@string/transaction_id"
         android:textAlignment="center"
         android:textSize="20sp"
         android:layout_height="wrap_content" />
@@ -41,7 +41,7 @@
         android:id="@+id/amount"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:text="Amount paid: 40,000"
+        android:text="@string/amount_paid"
         android:textAlignment="center"
         android:textSize="20sp"
         android:layout_height="wrap_content" />
@@ -50,7 +50,7 @@
         android:id="@+id/zaloPay"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:text="Paid with ZaloPay"
+        android:text="@string/paid_with_zalopay"
         android:textAlignment="center"
         android:textSize="20sp"
         android:layout_height="wrap_content" />
@@ -59,7 +59,7 @@
         android:id="@+id/homeScreenButton"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
-        android:text="TO HOME SCREEN"
+        android:text="@string/home_screen"
         android:layout_marginTop="40dp"
         android:layout_height="wrap_content" />
 

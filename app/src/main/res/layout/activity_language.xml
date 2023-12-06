@@ -17,7 +17,7 @@
         android:layout_marginBottom="80dp"
         android:fontFamily="@font/alegreysan"
         android:gravity="center"
-        android:text="WELCOME TO THE VMUSEUM! \nFirst, please choose your language!"
+        android:text="@string/welcome_to_vmuseum"
         android:textColor="?attr/colorSecondary"
         android:textSize="20sp"
         android:visibility="gone"/>
