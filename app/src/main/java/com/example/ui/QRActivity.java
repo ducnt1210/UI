@@ -37,9 +37,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.ui.Helper.AreaHelper;
 import com.example.ui.Model.ExhibitModel;
-import com.example.ui.Model.LocalAreaModel;
 import com.example.ui.databinding.ActivityQrBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,8 +54,8 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 
-import java.util.ArrayList;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -75,6 +73,9 @@ public class QRActivity extends AppCompatActivity {
     private SweetAlertDialog sweetAlertDialog;
     private ProcessCameraProvider cameraProvider = null;
     private Camera camera = null;
+    private boolean isBarcodeDataProcessed = false;
+    private long lastScanTime = 0;
+    private static final long SCAN_INTERVAL = 1000; // 1 second
 
     ActivityResultLauncher<String> getImageToAnalyze = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -269,6 +270,16 @@ public class QRActivity extends AppCompatActivity {
 
     private void readerBarcodeData(List<Barcode> barcodes) {
         Log.d("MUSEUM1", "QR code size: " + barcodes.size());
+
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastScanTime < SCAN_INTERVAL) {
+            return; // Prevent scanning if not enough time has elapsed
+        }
+
+        // Reset the flag and update the last scan time
+        lastScanTime = currentTime;
+
+
         for (Barcode barcode : barcodes) {
             Rect bounds = barcode.getBoundingBox();
             Point[] corners = barcode.getCornerPoints();
@@ -289,7 +300,7 @@ public class QRActivity extends AppCompatActivity {
 
                     // Reference to the "localAreas" collection
                     CollectionReference localAreasCollection = firestore.collection("Exhibit");
-                    DocumentReference localAreaDocRef = localAreasCollection.document(id);
+                    DocumentReference localAreaDocRef = localAreasCollection.document(data);
 
                     localAreaDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -299,7 +310,6 @@ public class QRActivity extends AppCompatActivity {
                                 if (document.exists()) {
                                     // Convert the document to a LocalAreaModel
                                     ExhibitModel exhibitModel = new ExhibitModel(document.getId(),
-                                            document.getString("localArea"),
                                             document.getString("name"),
                                             document.getString("description"),
                                             document.getString("video"),
@@ -316,11 +326,15 @@ public class QRActivity extends AppCompatActivity {
                             }
                         }
                     });
+                } else {
+                    Log.d("MUSEUM1", "This QR code type is not supported or text is null/empty");
+                    Toast.makeText(this, "This QR code type is not supported", Toast.LENGTH_SHORT).show();
                 }
             } else {
+                Log.d("MUSEUM1", "This QR code type is not supported or text is null/empty");
                 Toast.makeText(this, "This QR code type is not supported", Toast.LENGTH_SHORT).show();
-                return;
             }
+            return;
         }
     }
 

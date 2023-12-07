@@ -3,7 +3,7 @@ package com.example.ui.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,19 +16,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ui.Model.NotificationModel;
 import com.example.ui.NotificationActivity;
 import com.example.ui.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -77,10 +75,8 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 
     @Override
     public void onBindViewHolder(@NonNull NotificationModelViewHolder holder, int position) {
-//        Log.d("notification", Integer.toString(notificationModelList.size()));
         NotificationModel item = this.notificationModelList.get(position);
-        if (item != null) {
-            Log.d("type", item.toString());
+        if (item.getId() != "") {
             holder.dateTextView.setVisibility(View.GONE);
 
             if (item.getSeen()) {
@@ -89,21 +85,21 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             } else {
                 holder.dotStatus.setVisibility(View.VISIBLE);
             }
-//        storageReference.child(item.getImage_path()).
-//                getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                    @Override
-//                    public void onSuccess(Uri uri) {
-//                        if (uri != null) {
-//                            Glide.with(finalContext).load(uri.toString()).into(finalHolder.imageItem);
-//                        }
-//
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.e("Firebase Storage", "Error downloading image: " + e.getMessage());
-//                    }
-//                });
+
+            StorageReference imageRef = FirebaseStorage.getInstance("gs://ui-123456.appspot.com").getReference().child("notification_images").child(item.getImage_path());
+            imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        if (uri != null) {
+                            Glide.with(context).load(uri.toString()).into(holder.imageItem);
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("Firebase Storage", "Error downloading image: " + e.getMessage());
+                    }
+                });
 
 //        holder.time.setText(convertTimeFormat(item.getTime()));
             holder.content.setText(item.heading());
@@ -112,13 +108,19 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             holder.item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    holder.item.animate().alpha(0.5f).setDuration(100).withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            holder.item.animate().alpha(1).setDuration(100);
+                        }
+                    });
                     if (item.getSeen() == false) {
                         item.setSeen(true);
                         updateData(item);
                         notifyDataSetChanged();
+//                        holder.dotStatus.setVisibility(View.INVISIBLE);
                     }
                     goToDetailedNotification(item);
-//                holder.dotStatus.setVisibility(View.INVISIBLE);
                 }
             });
         } else {
@@ -128,9 +130,11 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             if (count == 0){
                 ++count;
                 holder.dateTextView.setText(R.string.today);
+                holder.dateTextView.setTextColor(context.getResources().getColor(R.color.black));
             } else {
                 count = 0;
                 holder.dateTextView.setText(R.string.before);
+                holder.dateTextView.setTextColor(context.getResources().getColor(R.color.black));
             }
         }
     }
@@ -171,6 +175,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
     public class NotificationModelViewHolder extends RecyclerView.ViewHolder {
         public RelativeLayout item;
         public ImageView dotStatus;
+        public CircleImageView imageItem;
         public TextView time, content, dateTextView;
 
         public NotificationModelViewHolder(View itemView) {
@@ -179,7 +184,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
 
             item = itemView.findViewById(R.id.noti_item);
             dotStatus = itemView.findViewById(R.id.noti_item_dot_status);
-//            imageItem = itemView.findViewById(R.id.img_noti_item);
+            imageItem = itemView.findViewById(R.id.img_noti_item);
             time = itemView.findViewById(R.id.txt_noti_item_time);
             content = itemView.findViewById(R.id.txt_noti_item_content);
         }

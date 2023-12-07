@@ -48,6 +48,14 @@
     <string name="dangerzone">Vùng nguy hiểm</string>
     <string name="logout">Đăng xuất</string>
     <string name="deleteaccount">XÓA TÀI KHOẢN</string>
+    <string name="privacy">Khi bạn sử dụng dịch vụ của chúng tôi, bạn tin tưởng chúng tôi về thông tin của bạn. Chúng tôi hiểu đây là một trách nhiệm lớn và làm việc chăm chỉ để bảo vệ thông tin của bạn và đặt bạn vào trong tầm kiểm soát.</string>
+    <string name="privacy1">Chính sách bảo mật này nhằm giúp bạn hiểu thông tin chúng tôi thu thập, tại sao chúng tôi thu thập nó và cách bạn có thể cập nhật, quản lý, xuất khẩu và xóa thông tin của mình. \n Chính sách bảo mật này áp dụng cho tất cả các dịch vụ được cung cấp bởi VMUSEUM và các công ty liên kết của nó, bao gồm các dịch vụ được cung cấp trên các trang web khác, nhưng không bao gồm các dịch vụ có chính sách bảo mật riêng biệt không bao gồm Chính sách bảo mật này. \n Chính sách bảo mật này không áp dụng cho các dịch vụ có chính sách bảo mật riêng biệt không bao gồm Chính sách bảo mật này.</string>
+    <string name="privacy2">Chúng tôi thu thập thông tin để cung cấp dịch vụ tốt hơn cho tất cả người dùng của chúng tôi - từ việc tìm hiểu những thứ cơ bản như ngôn ngữ bạn nói, đến những thứ phức tạp hơn như quảng cáo nào bạn sẽ thấy hữu ích nhất, những người quan trọng nhất đối với bạn trực tuyến, hoặc những video YouTube nào bạn có thể thích. \n Thông tin bạn cung cấp cho chúng tôi. Ví dụ, nhiều dịch vụ của chúng tôi đòi hỏi bạn đăng ký tài khoản VMUSEUM. Khi bạn làm như vậy, chúng tôi sẽ yêu cầu bạn cung cấp thông tin cá nhân, chẳng hạn như tên, địa chỉ email, số điện thoại hoặc thẻ tín dụng. Nếu bạn muốn tận dụng tối đa các tính năng chia sẻ mà chúng tôi cung cấp, chúng tôi cũng có thể yêu cầu bạn tạo một Hồ sơ VMUSEUM có thể nhìn thấy công khai, có thể bao gồm tên và ảnh của bạn. \n Thông tin chúng tôi nhận được từ việc sử dụng dịch vụ của chúng tôi. Chúng tôi thu thập thông tin về các dịch vụ bạn sử dụng và cách bạn sử dụng chúng, chẳng hạn như khi bạn xem video trên YouTube, truy cập trang web sử dụng dịch vụ </string>
+    <string name="privacy3">Thông tin nhật ký: Khi bạn sử dụng dịch vụ của chúng tôi hoặc xem nội dung được cung cấp bởi VMUSEUM, chúng tôi tự động thu thập và lưu trữ một số thông tin trong nhật ký máy chủ. Điều này bao gồm: \n Chi tiết về cách bạn sử dụng dịch vụ của chúng tôi, chẳng hạn như truy vấn tìm kiếm của bạn. \n Thông tin nhật ký điện thoại, chẳng hạn như số điện thoại của bạn, số điện thoại người gọi, số điện thoại chuyển tiếp, ngày và giờ cuộc gọi, thời lượng cuộc gọi, thông tin định tuyến tin nhắn văn bản và loại cuộc gọi. \n Địa chỉ giao thức Internet. \n Thông tin sự kiện thiết bị, chẳng hạn như sự cố, hoạt động hệ thống, cài đặt phần cứng, loại trình duyệt, ngôn ngữ trình duyệt, ngày và giờ yêu cầu, URL giới thiệu và cookie có thể xác định trình duyệt hoặc tài khoản VMUSEUM của bạn. \n Thông tin vị trí: Khi bạn sử dụng dịch vụ VMUSEUM, chúng tôi có thể thu thập và xử lý thông tin về vị trí thực tế của bạn. Chúng tôi sử dụng nhiều công nghệ để xác định vị trí, bao gồm địa chỉ IP, GPS và các cảm biến khác có thể cung cấp...</string>
+    <string name="manage">Quản lý</string>
+    <string name="booked_tickets">Vé đã đặt</string>
+    <string name="exchanged_gifts">Quà đã đổi</string>
+    <string name="priority_tickets">Vé ưu tiên</string>
 
 <!--    EditInfo-->
     <string name="updateinfo">CẬP NHẬT THÔNG TIN</string>
@@ -71,4 +79,71 @@
     <string name="qrscan">Quét mã QR hoặc chọn từ thiết bị</string>
     <string name="turn_flash">Bật đèn flash</string>
     <string name="choose_qr">Chọn mã QR</string>
+
+<!--    ArtifactFragment-->
+    <string name="architect">Vườn kiến trúc</string>
+    <string name="peoples_vietnam">Các dân tộc Việt Nam</string>
+    <string name="peoples_world">Các dân tộc trên thế giới</string>
+    <string name="book_ticket">ĐẶT VÉ</string>
+    <string name="detail"><u>Chi tiết</u></string>
+
+<!--    MapActivity-->
+    <string name="see_direction">Xem chỉ đường</string>
+    <string name="see_detail">Xem chi tiết</string>
+    <string name="nha_cham">1. Nhà Chăm</string>
+    <string name="ghe_ngo_khome">2. Ghe Ngo Khơ Me</string>
+    <string name="thuy_dinh">3. Thủy Đình</string>
+    <string name="nha_viet">4. Nhà Việt</string>
+    <string name="nha_thuyen">5. Nhà Thuyền</string>
+    <string name="nha_rong_ba_na">6. Nhà Rông Ba Na</string>
+    <string name="nha_e_de">7. Nhà Ê Đê</string>
+    <string name="nha_mo_gia_rai">8. Nhà Mồ Gia Rai</string>
+    <string name="nha_mo_co_tu">9. Nhà Mồ Cơ Tu</string>
+    <string name="lo_ren_nung">10. Lò Rèn Nùng</string>
+    <string name="nha_tay">11. Nhà Tày</string>
+    <string name="nha_dao">12. Nhà Dao</string>
+    <string name="nha_h_mong">13. Nhà H\'Mông</string>
+    <string name="nha_ha_nhi">14. Nhà Hà Nhì</string>
+    <string name="nha_thuc_nghiem">15. Nhà Thực Nghiệm</string>
+    <string name="nha_hang">16. Nhà Hàng</string>
+    <string name="cua_hang_sach">17. Cửa Hàng Sách</string>
+    <string name="cua_hang_luu_niem">18. Cửa Hàng Lưu Niệm</string>
+    <string name="cafe">19. Cafe</string>
+    <string name="cafe_cake">20. Cafe &amp; Cake</string>
+    <string name="toa_canh_dieu">Tòa Cánh diều</string>
+    <string name="toa_trong_dong">Tòa Trống đồng</string>
+
+<!--    InstructionItemContentActivity-->
+    <string name="qr_title">Quét mã QR hiện vật</string>
+    <string name="qr_content1">Để quét mã QR hiện vật, bạn có thể nhấn nút qr ở chính giữa Bottom Navigation Bar. Sau đó, hướng camera điện thoại vào mã QR hiện vật, hệ thống sẽ tự động nhận diện và chuyển hướng đến trang thông tin hiện vật</string>
+    <string name="qr_content2">Bạn cũng có thể chọn ảnh qr từ thư viện ảnh của điện thoại (lưu ý là chỉ dùng được ảnh qr của hiện vật trong Bảo tàng). Ngoài ra, ứng dụng còn hỗ trợ flash để quét mã qr trong môi trường thiếu sáng</string>
+    <string name="artifact_title">Xem danh mục hiện vật</string>
+    <string name="artifact_content1">Để xem danh mục hiện vật, bạn có thể nhấn nút danh mục ở Bottom Navigation Bar, sau đó, bạn có thể chọn danh mục hiện vật, cũng như hiện vật mà bạn muốn xem</string>
+    <string name="artifact_content2">Thanh tìm kiếm phía trên giao diện danh mục hiện vật giúp bạn tìm kiếm hiện vật một cách nhanh chóng</string>
+    <string name="map_title">Xem bản đồ</string>
+    <string name="map_content1">Để xem bản đồ, bạn có thể nhấn vào hình ảnh bản đồ ở giao diện Trang chủ, một bản đồ sẽ hiện ra, bạn có thể chọn các điểm trên bản đồ để xem thông tin chi tiết của điểm đó</string>
+    <string name="edit_profile_title">Chỉnh sửa thông tin cá nhân</string>
+    <string name="edit_profile_content1">Để chỉnh sửa thông tin cá nhân, bạn có thể nhấn vào nút cài đặt ở Bottom Navigation Bar. Sau khi được điều hướng tới màn hình Cài đặt, bạn có thể nhấn vào nút Sửa hồ sơ để chỉnh sửa thông tin cá nhân của mình</string>
+    <string name="edit_profile_content2">Bạn có thể thay đổi ảnh đại diện của mình bằng cách nhấn vào ảnh đại diện hiện tại ở giao diện Cài đặt hoặc trong giao diện Chỉnh sửa hồ sơ, sau đó chọn ảnh mới từ thư viện ảnh của điện thoại. Ngoài ra, bạn cũng có thể thay đổi tên hiển thị hoặc email và mật khẩu của mình</string>
+
+    <string name="welcome_to_vmuseum">Chào mừng đến với VMUSEUM! \nVui lòng chọn ngôn ngữ của bạn.</string>
+
+<!--    Ticket-->
+    <string name="date">Ngày:</string>
+    <string name="number_of_tickets">Số lượng vé:</string>
+    <string name="price_per_ticket">Giá vé:</string>
+    <string name="discount">Giảm giá ưu tiên:</string>
+    <string name="total">Tổng:</string>
+    <string name="pay_with_zalopay">Thanh toán bằng ZaloPay</string>
+    <string name="detail_price"><u>Bảng giá vé chi tiết</u></string>
+    <string name="payment_success">Thanh toán thành công</string>
+    <string name="transaction_id">Mã giao dịch:</string>
+    <string name="amount_paid">Số tiền đã thanh toán:</string>
+    <string name="paid_with_zalopay">Thanh toán bằng ZaloPay</string>
+    <string name="home_screen">TRỞ VỀ TRANG CHỦ</string>
+    <string name="unused_ticket">CHƯA SỬ DỤNG</string>
+    <string name="used_ticket">ĐÃ SỬ DỤNG</string>
+    <string name="use_coin">Sử dụng xu </string>
+    <string name="giftTab0">Đổi quà</string>
+    <string name="giftTab1">Quà đã đổi</string>
 </resources>

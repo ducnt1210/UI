@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/artifact_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_grey"
@@ -29,20 +30,41 @@
                     android:background="@drawable/search_bg"
                     android:hint="@string/search_bar"
                     android:paddingLeft="10dp"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/black"
                     android:paddingRight="10dp"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:singleLine="true" />
 
-                <ExpandableListView
-                    android:id="@+id/elv_artifact"
+                <ViewSwitcher
+                    android:id="@+id/viewSwitcher"
                     android:layout_width="match_parent"
-                    android:layout_height="700dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="100dp"
-                    android:layout_gravity="center_vertical"
-                    android:layoutDirection="ltr" />
+                    android:layout_height="wrap_content"
+                    >
+
+                    <!-- ExpandableListView -->
+                    <ExpandableListView
+                        android:id="@+id/elv_artifact"
+                        android:layout_width="match_parent"
+                        android:layout_height="700dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="100dp"
+                        android:layoutDirection="ltr" />
+
+                    <!-- RecyclerView -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/artifact"
+                        android:layout_width="match_parent"
+                        android:layout_height="700dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="100dp"
+                        android:layoutDirection="ltr" />
+
+
+                </ViewSwitcher>
 
             </LinearLayout>
         </ScrollView>

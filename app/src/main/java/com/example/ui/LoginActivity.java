@@ -74,6 +74,12 @@ public class LoginActivity extends LocaleAwareCompatActivity {
         binding.ggButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.ggButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.ggButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 ggSignin();
             }
         });
@@ -107,6 +113,12 @@ public class LoginActivity extends LocaleAwareCompatActivity {
 
             @Override
             public void onClick(View view) {
+                binding.login.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.login.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 String email = binding.email.getText().toString();
                 String password = binding.password.getText().toString().trim();
                 sweetAlertDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
@@ -125,7 +137,7 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     sweetAlertDialog.dismissWithAnimation();
-                                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Email or password is incorrect", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 } else {
@@ -138,6 +150,12 @@ public class LoginActivity extends LocaleAwareCompatActivity {
         binding.resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.resetPassword.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.resetPassword.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 String email = binding.email.getText().toString();
 
 
@@ -172,6 +190,12 @@ public class LoginActivity extends LocaleAwareCompatActivity {
         binding.toSignupActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.toSignupActivity.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.toSignupActivity.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
                 finishAffinity();
             }
@@ -235,9 +259,18 @@ public class LoginActivity extends LocaleAwareCompatActivity {
                                                 reference.putFile(defaultImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                        String checkUser = getIntent().getStringExtra("checkUser");
+                                                        if (checkUser != null && checkUser.contains("newUser")) {
+                                                            Intent intent = new Intent(LoginActivity.this, LanguageActivity.class);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                            intent.putExtra("checkUser", "newUser");
+                                                            startActivity(intent);
+                                                        } else {
+                                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                            startActivity(intent);
+                                                        }
                                                         sweetAlertDialog.dismiss();
-                                                        startActivity(intent);
                                                         finish();
                                                     }
                                                 });
