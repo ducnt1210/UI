@@ -34,18 +34,22 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationModelAdapter.NotificationModelViewHolder> {
     private Context context;
     public List<NotificationModel> notificationModelList;
+    public List<String> timeMarks;
 
     private int count = 0;
 
     public NotificationModelAdapter(Context context) {
         this.context = context;
         this.notificationModelList = new ArrayList<>();
+        this.timeMarks = new ArrayList<>();
     }
 
     public NotificationModelAdapter(Context context,
-                                    List<NotificationModel> notificationModelList) {
+                                    List<NotificationModel> notificationModelList,
+                                    List<String> timeMarks) {
         this.context = context;
         this.notificationModelList = notificationModelList;
+        this.timeMarks = timeMarks;
     }
 
     public List<NotificationModel> getNotificationModelList() {
@@ -67,6 +71,11 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
         notifyDataSetChanged();
     }
 
+    public void setTimeMarks(List<String> timeMarks) {
+        this.timeMarks = timeMarks;
+        notifyDataSetChanged();
+    }
+
    @Override
    public NotificationModelViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.noti_item, parent, false);
@@ -76,6 +85,7 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
     @Override
     public void onBindViewHolder(@NonNull NotificationModelViewHolder holder, int position) {
         NotificationModel item = this.notificationModelList.get(position);
+        Log.d("noti id", item.getId());
         if (item.getId() != "") {
             holder.dateTextView.setVisibility(View.GONE);
 
@@ -124,18 +134,20 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
                 }
             });
         } else {
+            holder.dateTextView.setVisibility(View.VISIBLE);
             holder.item.setVisibility(View.GONE);
-            Log.d("type", "null");
-            Log.d("count", Integer.toString(count));
-            if (count == 0){
-                ++count;
-                holder.dateTextView.setText(R.string.today);
-                holder.dateTextView.setTextColor(context.getResources().getColor(R.color.black));
-            } else {
-                count = 0;
-                holder.dateTextView.setText(R.string.before);
-                holder.dateTextView.setTextColor(context.getResources().getColor(R.color.black));
-            }
+//            Log.d("type", "null");
+//            Log.d("count", Integer.toString(count));
+//            if (count == 0){
+//                ++count;
+//                holder.dateTextView.setText(R.string.today);
+//            } else {
+//                count = 0;
+//                holder.dateTextView.setText(R.string.before);
+//            }
+            String timeMark = this.timeMarks.get(position);
+            holder.dateTextView.setText(timeMark);
+            holder.dateTextView.setTextColor(context.getResources().getColor(R.color.black));
         }
     }
 
