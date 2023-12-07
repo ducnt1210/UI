@@ -152,7 +152,7 @@ public class SettingFragment extends Fragment {
                         binding.exchangedGiftButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
                     }
                 });
-                startActivity(new Intent(getActivity(), GiftActivity.class).putExtra("type", "exchanged"));
+                startActivity(new Intent(getActivity(), GiftActivity.class).putExtra("selectedTab", 1));
             }
         });
         binding.voucherButton.setOnClickListener(new View.OnClickListener() {

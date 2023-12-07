@@ -143,4 +143,6 @@
     <string name="home_screen">TRỞ VỀ TRANG CHỦ</string>
     <string name="unused_ticket">CHƯA SỬ DỤNG</string>
     <string name="used_ticket">ĐÃ SỬ DỤNG</string>
+    <string name="giftTab0">Đổi quà</string>
+    <string name="giftTab1">Quà đã đổi</string>
 </resources>

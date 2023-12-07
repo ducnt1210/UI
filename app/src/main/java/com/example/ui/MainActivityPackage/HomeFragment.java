@@ -69,7 +69,6 @@ public class HomeFragment extends Fragment {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
 
         sweetAlertDialog = new SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE);
-        sweetAlertDialog.setTitleText("Loading");
         sweetAlertDialog.setCancelable(true);
         sweetAlertDialog.show();
 
@@ -260,6 +259,7 @@ public class HomeFragment extends Fragment {
             public void onDataLoaded(List<DocumentSnapshot> newsList) {
                 System.out.println(newsList.size());
                 updateCardViews(newsList);
+                sweetAlertDialog.dismiss();
             }
         });
     }
@@ -313,9 +313,6 @@ public class HomeFragment extends Fragment {
                 public void onSuccess(Uri uri) {
                     if (uri != null) {
                         Glide.with(requireContext()).load(uri).into(img);
-                        if (cardIndex == 6) {
-                            sweetAlertDialog.dismiss();
-                        }
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {

@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        sweetAlertDialog.setTitleText("Loading");
         sweetAlertDialog.setCancelable(false);
         sweetAlertDialog.show();
 
@@ -200,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             FragmentID = "HomeFragment";
             replaceFragment(new HomeFragment());
+            binding.bottomNavigationView.setSelectedItemId(R.id.home);
         }
     }
 

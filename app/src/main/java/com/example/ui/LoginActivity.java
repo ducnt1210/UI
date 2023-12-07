@@ -190,6 +190,12 @@ public class LoginActivity extends LocaleAwareCompatActivity {
         binding.toSignupActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.toSignupActivity.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.toSignupActivity.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
                 finishAffinity();
             }
