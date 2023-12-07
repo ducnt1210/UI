@@ -194,10 +194,6 @@ public class SettingFragment extends Fragment {
             }
         });
 
-        sweetAlertDialog = new SweetAlertDialog(requireActivity(), SweetAlertDialog.PROGRESS_TYPE);
-        sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        sweetAlertDialog.setCancelable(false);
-
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(com.firebase.ui.auth.R.string.default_web_client_id))
                 .requestEmail()
