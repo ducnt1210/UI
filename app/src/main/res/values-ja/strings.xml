@@ -144,4 +144,6 @@
     <string name="unused_ticket">未使用のチケット</string>
     <string name="used_ticket">使用済みチケット</string>
     <string name="use_coin">コインを使用する</string>
+    <string name="giftTab0">贈り物</string>
+    <string name="giftTab1">交換しました</string>
 </resources>

@@ -102,15 +102,17 @@ public class SettingFragment extends Fragment {
         sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         sweetAlertDialog.setCancelable(false);
 
-        getUser();
+        sweetAlertDialog.show();
 
         if (MainActivity.profilePicture != null) {
-            if (this.getContext() != null) {
-                Glide.with(this.getContext())
+            if (this.getActivity().getApplicationContext() != null) {
+                Glide.with(this.getActivity().getApplicationContext())
                         .load(MainActivity.profilePicture)
                         .into(binding.navHeader.imageProfile);
             }
         }
+
+        getUser();
 
         ((MainActivity) requireActivity()).getSupportActionBar().hide();
 
@@ -150,7 +152,7 @@ public class SettingFragment extends Fragment {
                         binding.exchangedGiftButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
                     }
                 });
-                startActivity(new Intent(getActivity(), GiftActivity.class).putExtra("type", "exchanged"));
+                startActivity(new Intent(getActivity(), GiftActivity.class).putExtra("selectedTab", 1));
             }
         });
         binding.voucherButton.setOnClickListener(new View.OnClickListener() {
