@@ -120,12 +120,12 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             holder.item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    holder.item.animate().alpha(0.5f).setDuration(100).withEndAction(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            holder.item.animate().alpha(1).setDuration(100);
-//                        }
-//                    });
+                    holder.item.animate().alpha(0.5f).setDuration(100).withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            holder.item.animate().alpha(1).setDuration(100);
+                        }
+                    });
                     if (item.getSeen() == false) {
                         item.setSeen(true);
                         updateData(item);
