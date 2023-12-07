@@ -1,9 +1,11 @@
 package com.example.ui;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.Adapter.ExhibitDetailsAdapter;
 import com.example.ui.Model.ExhibitModel;
+import com.example.ui.Quiz.QuizActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -39,6 +42,16 @@ public class ShowExhibitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_exhibit);
+
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.quiz_header);
+        ImageView img = (ImageView) getSupportActionBar().getCustomView().findViewById(R.id.quiz);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ShowExhibitActivity.this, QuizActivity.class));
+            }
+        });
 
         // Lấy tham chiếu đến các thành phần trong XML
         artifactNameTextView = findViewById(R.id.artifactName);
