@@ -145,6 +145,7 @@
     <string name="home_screen">TO HOME SCREEN</string>
     <string name="unused_ticket">UNUSED TICKETS</string>
     <string name="used_ticket">USED TICKETS</string>
+    <string name="use_coin">Use coin </string>
     <string name="giftTab0">Gift</string>
     <string name="giftTab1">Exchanged</string>
 </resources>

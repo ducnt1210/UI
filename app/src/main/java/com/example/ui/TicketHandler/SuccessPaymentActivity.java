@@ -61,6 +61,11 @@ public class SuccessPaymentActivity extends AppCompatActivity {
             binding.homeScreenButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(() -> {
                 binding.homeScreenButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
             });
+
+            int finalScore = getIntent().getExtras().getInt("finalScore");
+            FirebaseFirestore.getInstance().collection("Score")
+                    .document(MainActivity.currentUser.getId())
+                    .update("score", finalScore);
             startActivity(new Intent(SuccessPaymentActivity.this, MainActivity.class));
             finishAffinity();
         });

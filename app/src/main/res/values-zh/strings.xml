@@ -143,6 +143,7 @@
     <string name="home_screen">回到主屏幕</string>
     <string name="unused_ticket">未使用的门票</string>
     <string name="used_ticket">已使用的门票</string>
+    <string name="use_coin">使用硬币</string>
     <string name="giftTab0">礼物</string>
     <string name="giftTab1">已交换</string>
 </resources>
