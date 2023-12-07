@@ -52,6 +52,10 @@
     <string name="privacy1">本隐私政策旨在帮助您了解我们收集的信息，为什么收集它以及如何更新，管理，导出和删除您的信息。 \n本隐私政策适用于VMUSEUM及其关联公司提供的所有服务，包括在其他网站上提供的服务，但不包括具有单独的隐私政策的服务，这些隐私政策不包含本隐私政策。 \n本隐私政策不适用于具有单独的隐私政策的服务，这些隐私政策不包含本隐私政策。</string>
     <string name="privacy2">我们收集信息以向所有用户提供更好的服务-从了解您使用的语言到了解您在线上最重要的人，或者您可能喜欢的YouTube视频等更复杂的事情。 \n您向我们提供的信息。 例如，我们的许多服务都要求您注册VMUSEUM帐户。 当您这样做时，我们将要求您提供个人信息，例如您的姓名，电子邮件地址，电话号码或信用卡。 如果您想充分利用我们提供的共享功能，我们还可能要求您创建公开可见的VMUSEUM个人资料，其中可能包括您的姓名和照片。\n我们从您使用我们的服务中获得的信息。 我们收集有关您使用的服务以及您如何使用它们的信息，例如您在YouTube上观看视频，访问使用我们的广告服务的网站，或查看和与我们的广告和内容进行交互的时间。 此信息包括：\n设备信息：我们收集设备特定信息（例如硬件型号，操作系统版本，唯一设备标识符和移动网络信息，包括电话号码）。 VMUSEUM可能会将您的设备标识符或电话号码与您的VMUSEUM帐户相关联。</string>
     <string name="privacy3">日志信息：当您使用我们的服务或查看VMUSEUM提供的内容时，我们会自动在服务器日志中收集和存储某些信息。 这包括：\n您使用我们的服务的详细信息，例如您的搜索查询。\n电话日志信息，例如您的电话号码，呼叫方号码，转发号码，呼叫时间和日期，呼叫持续时间，短信路由信息和呼叫类型。\nInternet协议地址。\n设备事件信息，例如崩溃，系统活动，硬件设置，浏览器类型，浏览器语言，请求的日期和时间以及引荐URL。\n可能唯一标识您的浏览器或VMUSEUM帐户的Cookie。\n位置信息：当您使用VMUSEUM服务时，我们可能会收集和处理有关您实际位置的信息。 我们使用各种技术来确定位置，包括IP地址，GPS和其他传感器，例如可能向VMUSEUM提供有关附近设备，Wi-Fi接入点和蜂塔的信息。</string>
+    <string name="manage">管理</string>
+    <string name="booked_tickets">预订门票</string>
+    <string name="exchanged_gifts">兑换礼物</string>
+    <string name="priority_tickets">优先门票</string>
 
     <!--    EditInfo-->
     <string name="updateinfo">更新信息</string>
@@ -121,4 +125,25 @@
     <string name="edit_profile_title">编辑个人资料</string>
     <string name="edit_profile_content1">要编辑个人资料，您可以按设置按钮。 被重定向到设置屏幕后，您可以按编辑个人资料按钮来编辑您的个人资料信息</string>
     <string name="edit_profile_content2">您可以通过按设置屏幕或编辑个人资料屏幕上的当前个人资料图像来更改个人资料图像，然后从电话的图库中选择新图像。 此外，您还可以更改显示名称，电子邮件和密码</string>
+
+    <string name="welcome_to_vmuseum">欢迎来到VMUSEUM！ \n请选择您的语言。</string>
+
+    <!--    Ticket-->
+    <string name="date">日期：</string>
+    <string name="number_of_tickets">门票数量：</string>
+    <string name="price_per_ticket">票价：</string>
+    <string name="discount">折扣：</string>
+    <string name="total">总：</string>
+    <string name="pay_with_zalopay">用ZaloPay支付</string>
+    <string name="detail_price"><u>详细价格表</u></string>
+    <string name="payment_success">门票付款成功</string>
+    <string name="transaction_id">交易ID：</string>
+    <string name="amount_paid">支付金额：</string>
+    <string name="paid_with_zalopay">用ZaloPay支付</string>
+    <string name="home_screen">回到主屏幕</string>
+    <string name="unused_ticket">未使用的门票</string>
+    <string name="used_ticket">已使用的门票</string>
+    <string name="use_coin">使用硬币</string>
+    <string name="giftTab0">礼物</string>
+    <string name="giftTab1">已交换</string>
 </resources>

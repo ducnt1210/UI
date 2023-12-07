@@ -7,22 +7,29 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ui.MainActivity;
 import com.example.ui.Model.CreateOrder;
 import com.example.ui.Model.PriorityModel;
+import com.example.ui.Model.ScoreModel;
 import com.example.ui.Model.TicketModel;
 import com.example.ui.Model.TransactionModel;
 import com.example.ui.SettingPackage.CheckPriorityActivity;
 import com.example.ui.Util.NumberTextWatcherForThousand;
+import com.example.ui.Utils;
 import com.example.ui.databinding.ActivityTicketBinding;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
@@ -47,7 +54,9 @@ public class TicketActivity extends AppCompatActivity {
 
     PriorityModel priorityModel;
     String uid = MainActivity.currentUser.getId();
-    long discount;
+    long discount, coin, finalScore;
+
+    Long score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,14 +70,53 @@ public class TicketActivity extends AppCompatActivity {
         binding.numberPicker.setMaxValue(100);
 
         getDiscount();
+        getScore(uid);
 
         // Zalo pay
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         binding.numberPicker.setOnValueChangedListener((numberPicker, i, i1) -> {
             String price = NumberTextWatcherForThousand.trimCommaOfString(binding.pricePerTicket.getText().toString());
-            binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf((i1 * Integer.parseInt(price) + discount))));
+            if (binding.switchCoin.isChecked()) {
+                if (score < Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(String.valueOf(i1 * Integer.parseInt(price) + discount)))) {
+                    binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf((i1 * Integer.parseInt(price) + discount - score))));
+                    finalScore = 0;
+                    binding.warning.setVisibility(View.INVISIBLE);
+                } else {
+                    finalScore = score - (i1 * Integer.parseInt(price) + discount) + 1000;
+                    binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString("1000"));
+                    binding.warning.setText("ZaloPay cho phép thanh toán với giá trị tối thiểu 1000đ.\nNếu dùng xu, số xu còn lại của bạn là: " + String.valueOf(finalScore));
+                    binding.warning.setVisibility(View.VISIBLE);
+                }
+            } else {
+                binding.warning.setVisibility(View.INVISIBLE);
+                finalScore = score;
+                binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf((i1 * Integer.parseInt(price) + discount))));
+            }
             binding.numberOfTickets.setText(String.valueOf(i1));
+        });
+
+        binding.switchCoin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                String price = NumberTextWatcherForThousand.trimCommaOfString(binding.pricePerTicket.getText().toString());
+                if (b) {
+                    if (score < Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(String.valueOf(binding.numberPicker.getValue() * Integer.parseInt(price) + discount)))) {
+                        finalScore = 0;
+                        binding.warning.setVisibility(View.INVISIBLE);
+                        binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf((binding.numberPicker.getValue() * Integer.parseInt(price) + discount - score))));
+                    } else {
+                        finalScore = score - (binding.numberPicker.getValue() * Integer.parseInt(price) + discount) + 1000;
+                        binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString("1000"));
+                        binding.warning.setText("ZaloPay cho phép thanh toán với giá trị tối thiểu 1000đ.\nNếu dùng xu, số xu còn lại của bạn là: " + String.valueOf(finalScore));
+                        binding.warning.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    binding.warning.setVisibility(View.INVISIBLE);
+                    finalScore = score;
+                    binding.totalPrice.setText(NumberTextWatcherForThousand.getDecimalFormattedString(String.valueOf((binding.numberPicker.getValue() * Integer.parseInt(price) + discount))));
+                }
+            }
         });
 
         // ZaloPay SDK Init
@@ -90,6 +138,34 @@ public class TicketActivity extends AppCompatActivity {
             }
         });
         setContentView(binding.getRoot());
+    }
+    public void getScore(String user_id) {
+        Log.e("user_id", user_id);
+        FirebaseFirestore.getInstance().collection("Score")
+                .document(user_id)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        score = documentSnapshot.getLong("score");
+                        if (score == null) {
+                            score = Long.valueOf(0);
+                        }
+                        ScoreModel scoreModel = new ScoreModel(user_id, score.intValue());
+                        Utils.updateScore(scoreModel);
+
+                        binding.coin.setText(Integer.toString(
+                                scoreModel.getScore()
+                        ));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("get score failed", user_id);
+                    }
+                });
+        coin = Long.parseLong(binding.coin.getText().toString());
     }
 
     private void getDiscount() {
@@ -153,7 +229,7 @@ public class TicketActivity extends AppCompatActivity {
                         for (int i = 0; i < numberOfTickets; i++) {
                             String ticketID = FirebaseFirestore.getInstance().collection("Ticket").document().getId();
                             long price = Long.parseLong(NumberTextWatcherForThousand.trimCommaOfString(binding.pricePerTicket.getText().toString()));
-                            TicketModel ticketModel = new TicketModel(ticketID, timestamp, usedTimestamp, price, userID, id);
+                            TicketModel ticketModel = new TicketModel(ticketID, timestamp, usedTimestamp, price, userID, id, i);
                             DocumentReference ticketRef = FirebaseFirestore.getInstance().collection("Ticket").document(ticketID);
                             batch.set(ticketRef, ticketModel);
                         }
@@ -172,6 +248,8 @@ public class TicketActivity extends AppCompatActivity {
                         Intent intent = new Intent(TicketActivity.this, SuccessPaymentActivity.class);
                         intent.putExtra("amount", binding.totalPrice.getText().toString());
                         intent.putExtra("transactionID", id);
+                        intent.putExtra("finalScore", (int)finalScore);
+                        intent.putExtra("quantity", binding.numberOfTickets.getText().toString());
                         startActivity(intent);
                         finish();
                     }
@@ -233,4 +311,10 @@ public class TicketActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         ZaloPaySDK.getInstance().onResult(intent);
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        this.overridePendingTransition(R.anim.animate_zoom_exit, R.anim.animate_zoom_enter);
+//    }
 }

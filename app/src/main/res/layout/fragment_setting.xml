@@ -22,7 +22,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:text="Quản lý"
+                android:text="@string/manage"
                 android:textColor="@color/black"
                 android:layout_marginStart="30dp"
                 android:textSize="20sp"
@@ -42,10 +42,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
-                    android:text="Vé đã đặt"
+                    android:text="@string/booked_tickets"
                     android:textSize="16sp"
                     android:paddingVertical="5dp"
                     android:paddingHorizontal="10dp"
+                    android:textColor="@drawable/text_color"
+                    android:textStyle="bold"
                     android:drawablePadding="5dp"
                     android:drawableTop="@drawable/ticket"/>
 
@@ -56,10 +58,12 @@
                     android:layout_centerHorizontal="true"
                     android:drawableTop="@drawable/gift"
                     android:drawablePadding="5dp"
+                    android:textColor="@drawable/text_color"
+                    android:textStyle="bold"
                     android:gravity="bottom"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="5dp"
-                    android:text="Quà đã đổi"
+                    android:text="@string/exchanged_gifts"
                     android:textSize="16sp" />
 
                 <TextView
@@ -67,9 +71,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="bottom|center"
-                    android:text="Vé ưu tiên"
+                    android:text="@string/priority_tickets"
                     android:textSize="16sp"
                     android:paddingVertical="5dp"
+                    android:textColor="@drawable/text_color"
+                    android:textStyle="bold"
                     android:paddingHorizontal="10dp"
                     android:layout_alignParentRight="true"
                     android:drawablePadding="5dp"

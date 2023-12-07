@@ -74,6 +74,12 @@ public class LoginActivity extends LocaleAwareCompatActivity {
         binding.ggButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.ggButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.ggButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 ggSignin();
             }
         });
@@ -107,6 +113,12 @@ public class LoginActivity extends LocaleAwareCompatActivity {
 
             @Override
             public void onClick(View view) {
+                binding.login.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.login.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 String email = binding.email.getText().toString();
                 String password = binding.password.getText().toString().trim();
                 sweetAlertDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
@@ -138,6 +150,12 @@ public class LoginActivity extends LocaleAwareCompatActivity {
         binding.resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.resetPassword.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.resetPassword.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 String email = binding.email.getText().toString();
 
 
@@ -172,6 +190,12 @@ public class LoginActivity extends LocaleAwareCompatActivity {
         binding.toSignupActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.toSignupActivity.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.toSignupActivity.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
                 finishAffinity();
             }

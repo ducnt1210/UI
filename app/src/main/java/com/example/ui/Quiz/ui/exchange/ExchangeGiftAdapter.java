@@ -21,6 +21,7 @@ import com.example.ui.MainActivity;
 import com.example.ui.MainActivityPackage.HomeFragment;
 import com.example.ui.Model.ExchangedGiftModel;
 import com.example.ui.Model.GiftModel;
+import com.example.ui.Model.NotificationModel;
 import com.example.ui.R;
 import com.example.ui.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -117,6 +118,22 @@ public class ExchangeGiftAdapter extends RecyclerView.Adapter<ExchangeGiftAdapte
                     alertDialogBuilder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
+                            String id = generateFileId();
+                            String image_path = "gift.png";
+                            boolean seen = false;
+                            boolean sentNotification = false;
+                            String user_id = MainActivity.currentUser.getId();
+                            Timestamp time = Timestamp.now();
+
+                            List<String> description = new ArrayList<>();
+                            description.add("$heading$Đổi quà thành công");
+                            description.add("Quà đã đổi: " + giftModel.getName());
+                            description.add("Số xu đã dùng: " + giftModel.getPrice());
+                            description.add("Bạn đã đổi quà thành công. Vào mục \"Quà đã đổi\" để xem các quà đã đổi của bạn!");
+                            description.add("Quà đã đổi chỉ có thể được nhận khi bạn checkout tại quầy vé trong ngày đổi quà.");
+                            NotificationModel notificationModel = new NotificationModel(id, image_path, description, user_id, seen, sentNotification, time);
+                            FirebaseFirestore.getInstance().collection("Notification").document(id).set(notificationModel);
+
                             HomeFragment.scoreModel.setScore(
                                     HomeFragment.scoreModel.getScore() - giftModel.getPrice()
                             );
@@ -141,6 +158,9 @@ public class ExchangeGiftAdapter extends RecyclerView.Adapter<ExchangeGiftAdapte
                 }
             }
         });
+    }
+    private String generateFileId() {
+        return String.valueOf(System.currentTimeMillis());
     }
 
     public void addExchangedGift(GiftModel giftModel) {

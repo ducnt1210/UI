@@ -73,6 +73,9 @@ public class QRActivity extends AppCompatActivity {
     private SweetAlertDialog sweetAlertDialog;
     private ProcessCameraProvider cameraProvider = null;
     private Camera camera = null;
+    private boolean isBarcodeDataProcessed = false;
+    private long lastScanTime = 0;
+    private static final long SCAN_INTERVAL = 1000; // 1 second
 
     ActivityResultLauncher<String> getImageToAnalyze = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -267,6 +270,16 @@ public class QRActivity extends AppCompatActivity {
 
     private void readerBarcodeData(List<Barcode> barcodes) {
         Log.d("MUSEUM1", "QR code size: " + barcodes.size());
+
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastScanTime < SCAN_INTERVAL) {
+            return; // Prevent scanning if not enough time has elapsed
+        }
+
+        // Reset the flag and update the last scan time
+        lastScanTime = currentTime;
+
+
         for (Barcode barcode : barcodes) {
             Rect bounds = barcode.getBoundingBox();
             Point[] corners = barcode.getCornerPoints();
@@ -283,6 +296,7 @@ public class QRActivity extends AppCompatActivity {
                     String id = dataArr[0];
                     String data = dataArr[1];
                     Toast.makeText(this, id + " " + data, Toast.LENGTH_SHORT).show();
+
                     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
                     // Reference to the "localAreas" collection
@@ -322,6 +336,7 @@ public class QRActivity extends AppCompatActivity {
                 Log.d("MUSEUM1", "This QR code type is not supported or text is null/empty");
                 Toast.makeText(this, "This QR code type is not supported", Toast.LENGTH_SHORT).show();
             }
+            return;
         }
     }
 

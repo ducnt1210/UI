@@ -32,7 +32,7 @@
             android:fontFamily="@font/karmaregular"
             android:padding="10dp"
             android:text="@string/detail"
-            android:textColor="@color/brown"
+            android:textColor="@drawable/text_color"
             android:textSize="13sp"
             android:textStyle="bold" />
     </RelativeLayout>

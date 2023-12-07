@@ -77,6 +77,7 @@ public class UsedTicketAdapter extends RecyclerView.Adapter<UsedTicketAdapter.Us
         TransactionModel transactionModel = transactionModelList.get(position);
         holder.date.setText(dateFormat.format(transactionModel.getUsedTimestamp().toDate()));
         holder.id.setText(transactionModel.getID());
+        holder.amount.setText(String.valueOf(transactionModel.getNumberOfTickets()));
 
         String qrCode = "THISISVMUSEUMQRCODE " + transactionModel.getNumberOfTickets() + transactionModel.getID();
         QRGEncoder qrgEncoder = new QRGEncoder(qrCode, null, QRGContents.Type.TEXT, 500);
@@ -86,10 +87,18 @@ public class UsedTicketAdapter extends RecyclerView.Adapter<UsedTicketAdapter.Us
         holder.ticketItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                holder.ticketItem.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        holder.ticketItem.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Dialog dialog = new Dialog(context);
                 dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_ticket_qr);
+
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
                 ImageView imageView = dialog.findViewById(R.id.imageViewMap);
                 Bitmap bitmap = qrgEncoder.getBitmap();
@@ -138,7 +147,7 @@ public class UsedTicketAdapter extends RecyclerView.Adapter<UsedTicketAdapter.Us
     }
 
     public class UsedTicketViewHolder extends RecyclerView.ViewHolder {
-        TextView date, id;
+        TextView date, id, amount;
         ImageView qrCode;
         LinearLayout ticketItem;
 
@@ -148,6 +157,7 @@ public class UsedTicketAdapter extends RecyclerView.Adapter<UsedTicketAdapter.Us
             date = itemView.findViewById(R.id.date);
             id = itemView.findViewById(R.id.transactionID);
             qrCode = itemView.findViewById(R.id.qrCode);
+            amount = itemView.findViewById(R.id.amount);
             ticketItem = itemView.findViewById(R.id.ticket_item);
         }
     }

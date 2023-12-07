@@ -29,6 +29,8 @@
                     android:background="@drawable/search_bg"
                     android:hint="@string/search_bar"
                     android:paddingLeft="10dp"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/black"
                     android:paddingRight="10dp"
                     android:imeOptions="actionSearch"
                     android:inputType="text"

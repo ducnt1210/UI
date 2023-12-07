@@ -249,7 +249,7 @@
                 android:layout_height="36dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/overlay_video"
-                android:src="@drawable/baseline_horizontal_rule_24" />
+                android:src="@drawable/minus" />
 
             <TextView
                 android:id="@+id/zoom_ratio"

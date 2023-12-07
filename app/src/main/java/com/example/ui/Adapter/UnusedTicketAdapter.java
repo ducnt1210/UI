@@ -77,18 +77,27 @@ public class UnusedTicketAdapter extends RecyclerView.Adapter<UnusedTicketAdapte
         TransactionModel transactionModel = transactionModelList.get(position);
         holder.date.setText(dateFormat.format(transactionModel.getUsedTimestamp().toDate()));
         holder.id.setText(transactionModel.getID());
-        String qrCode = "THISISVMUSEUMQRCODE " + transactionModel.getNumberOfTickets() + transactionModel.getID();
+        String qrCode = "THISISVMUSEUMQRCODE " + transactionModel.getNumberOfTickets() + "tickets_transID" + transactionModel.getID();
         QRGEncoder qrgEncoder = new QRGEncoder(qrCode, null, QRGContents.Type.TEXT, 500);
         Bitmap bitmap = qrgEncoder.getBitmap();
         holder.qrCode.setImageBitmap(bitmap);
+        holder.amount.setText(String.valueOf(transactionModel.getNumberOfTickets()));
 
         holder.ticketItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                holder.ticketItem.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        holder.ticketItem.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Dialog dialog = new Dialog(context);
                 dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_ticket_qr);
+
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
                 ImageView imageView = dialog.findViewById(R.id.imageViewMap);
                 Bitmap bitmap = qrgEncoder.getBitmap();
@@ -137,7 +146,7 @@ public class UnusedTicketAdapter extends RecyclerView.Adapter<UnusedTicketAdapte
     }
 
     public class UnusedTicketViewHolder extends RecyclerView.ViewHolder {
-        TextView date, id;
+        TextView date, id, amount;
         ImageView qrCode;
         LinearLayout ticketItem;
 
@@ -148,6 +157,7 @@ public class UnusedTicketAdapter extends RecyclerView.Adapter<UnusedTicketAdapte
             id = itemView.findViewById(R.id.transactionID);
             qrCode = itemView.findViewById(R.id.qrCode);
             ticketItem = itemView.findViewById(R.id.ticket_item);
+            amount = itemView.findViewById(R.id.amount);
         }
     }
 }

@@ -96,7 +96,7 @@
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/oldstandar_regular"
                             android:text="@string/your_string_here"
-                            android:textColor="@color/brown"
+                            android:textColor="@drawable/text_color"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 

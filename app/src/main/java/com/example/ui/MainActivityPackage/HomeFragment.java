@@ -31,7 +31,6 @@ import com.example.ui.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -70,7 +69,6 @@ public class HomeFragment extends Fragment {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
 
         sweetAlertDialog = new SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE);
-        sweetAlertDialog.setTitleText("Loading");
         sweetAlertDialog.setCancelable(true);
         sweetAlertDialog.show();
 
@@ -82,9 +80,16 @@ public class HomeFragment extends Fragment {
         binding.ticketButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.ticketButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.ticketButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), TicketActivity.class);
 //                Intent intent = new Intent(getContext(), BoughtTicketActivity.class);
                 startActivity(intent);
+                requireActivity().overridePendingTransition(R.anim.animate_zoom_enter, R.anim.animate_zoom_exit);
             }
         });
 
@@ -125,6 +130,12 @@ public class HomeFragment extends Fragment {
         binding.homeHeaderLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.homeHeaderLogo.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.homeHeaderLogo.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), QuizActivity.class);
                 startActivity(intent);
             }
@@ -132,6 +143,12 @@ public class HomeFragment extends Fragment {
         binding.coinLayout.coin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.coinLayout.coin.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.coinLayout.coin.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), GiftActivity.class);
                 startActivity(intent);
             }
@@ -140,6 +157,12 @@ public class HomeFragment extends Fragment {
         binding.homeMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.homeMap.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.homeMap.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), MapActivity.class);
                 startActivity(intent);
             }
@@ -147,6 +170,12 @@ public class HomeFragment extends Fragment {
         binding.homeIntroMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.homeIntroMore.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.homeIntroMore.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), IntroContentActivity.class);
                 intent.putExtra("heading", "");
                 startActivity(intent);
@@ -155,6 +184,12 @@ public class HomeFragment extends Fragment {
         binding.introCardview1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.introCardview1.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.introCardview1.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), IntroContentActivity.class);
                 intent.putExtra("heading", "Chienluoc");
                 startActivity(intent);
@@ -163,6 +198,12 @@ public class HomeFragment extends Fragment {
         binding.introCardview2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.introCardview2.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.introCardview2.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), IntroContentActivity.class);
                 intent.putExtra("heading", "Lichsu");
                 startActivity(intent);
@@ -171,6 +212,12 @@ public class HomeFragment extends Fragment {
         binding.introCardview3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.introCardview3.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.introCardview3.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), IntroContentActivity.class);
                 intent.putExtra("heading", "Khonggian");
                 startActivity(intent);
@@ -179,6 +226,12 @@ public class HomeFragment extends Fragment {
         binding.introCardview4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.introCardview4.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.introCardview4.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), IntroContentActivity.class);
                 intent.putExtra("heading", "Nhansu");
                 startActivity(intent);
@@ -187,6 +240,12 @@ public class HomeFragment extends Fragment {
         binding.introCardview5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.introCardview5.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.introCardview5.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent intent = new Intent(getContext(), IntroContentActivity.class);
                 intent.putExtra("heading", "Hoptac");
                 startActivity(intent);
@@ -200,6 +259,7 @@ public class HomeFragment extends Fragment {
             public void onDataLoaded(List<DocumentSnapshot> newsList) {
                 System.out.println(newsList.size());
                 updateCardViews(newsList);
+                sweetAlertDialog.dismiss();
             }
         });
     }
@@ -253,9 +313,6 @@ public class HomeFragment extends Fragment {
                 public void onSuccess(Uri uri) {
                     if (uri != null) {
                         Glide.with(requireContext()).load(uri).into(img);
-                        if (cardIndex == 6) {
-                            sweetAlertDialog.dismiss();
-                        }
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -272,6 +329,12 @@ public class HomeFragment extends Fragment {
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    cardView.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            cardView.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                        }
+                    });
                     Intent intent = new Intent(getContext(), NewsEventsActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("title", title);

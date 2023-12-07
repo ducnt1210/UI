@@ -1,8 +1,5 @@
 package com.example.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.ui.Adapter.ViewPagerAdapter;
 
@@ -53,6 +53,12 @@ public class NavigationOpeningActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                backButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        backButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 if (getItem(0) > 0) {
                     slideViewPager.setCurrentItem(getItem(-1), true);
                 }
@@ -61,6 +67,12 @@ public class NavigationOpeningActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nextButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        nextButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 if (getItem(0) < 2)
                     slideViewPager.setCurrentItem(getItem(1), true);
                 else {
@@ -73,6 +85,12 @@ public class NavigationOpeningActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                skipButton.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        skipButton.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 Intent i = new Intent(NavigationOpeningActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();

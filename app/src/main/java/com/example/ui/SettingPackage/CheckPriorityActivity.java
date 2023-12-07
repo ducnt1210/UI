@@ -27,6 +27,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.ui.MainActivity;
+import com.example.ui.Model.NotificationModel;
 import com.example.ui.Model.PriorityModel;
 import com.example.ui.R;
 import com.example.ui.databinding.ActivityCheckPriorityBinding;
@@ -34,7 +35,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -42,7 +43,9 @@ import com.google.firebase.storage.UploadTask;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class CheckPriorityActivity extends AppCompatActivity {
 
@@ -80,27 +83,42 @@ public class CheckPriorityActivity extends AppCompatActivity {
 
         binding.txtName.setText(MainActivity.currentUser.getName());
 
-        binding.vertifyButton.setOnClickListener(v -> openDialog());
+        binding.vertifyButton.setOnClickListener(v -> {
+            binding.vertifyButton.animate().alpha(0.5f).setDuration(100).withEndAction(() -> {
+                binding.vertifyButton.animate().alpha(1f).setDuration(100);
+            });
+            openDialog();
+        });
 
         setDisplayVerifyButton();
+
     }
+
 
     private void setDisplayVerifyButton() {
         FirebaseFirestore.getInstance().collection("Priority").document(uid).get().addOnSuccessListener(new OnSuccessListener<com.google.firebase.firestore.DocumentSnapshot>() {
             @Override
             public void onSuccess(com.google.firebase.firestore.DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-                    binding.vertifyButton.setEnabled(false);
-                    binding.vertifyButton.setBackgroundResource(R.drawable.bg_review_gift);
-
                     priorityField = documentSnapshot.toObject(PriorityModel.class);
-                    if (!priorityField.isVerified()) {
-                        binding.vertifyButton.setText("Đang chờ");
-                        binding.txtInstruction.setVisibility(View.VISIBLE);
+                    if (priorityField.getPriority() != null) {
+                        binding.vertifyButton.setEnabled(false);
+                        binding.vertifyButton.setBackgroundResource(R.drawable.bg_review_gift);
+
+                        if (!priorityField.isVerified()) {
+                            binding.vertifyButton.setText("Đang chờ");
+                            binding.txtInstruction.setVisibility(View.VISIBLE);
+                        } else {
+                            binding.vertifyButton.setText("Đã xác minh");
+                            binding.txtInstruction.setVisibility(View.GONE);
+                            binding.txtPriority.setText(priorityField.getPriority());
+                        }
                     } else {
-                        binding.vertifyButton.setText("Đã xác minh");
+                        binding.vertifyButton.setEnabled(true);
+                        binding.vertifyButton.setBackgroundResource(R.drawable.bg_exchange_button);
+                        binding.vertifyButton.setText("Xác minh");
                         binding.txtInstruction.setVisibility(View.GONE);
-                        binding.txtPriority.setText(priorityField.getPriority());
+
                     }
                 }
             }
@@ -208,7 +226,7 @@ public class CheckPriorityActivity extends AppCompatActivity {
                 String userName = MainActivity.currentUser.getName();
 
 
-                priorityField = new PriorityModel(uid, priority, userName, date, "", false);
+                priorityField = new PriorityModel(uid, priority, userName, date, "", false, true);
                 FirebaseFirestore.getInstance().collection("Priority").document(uid).set(priorityField);
 
 
@@ -237,6 +255,24 @@ public class CheckPriorityActivity extends AppCompatActivity {
                     }
                 });
                 dialog.dismiss();
+
+                FirebaseStorage.getInstance().getReference().child("notification_images/" + fileName).putFile(tempFile);
+                String id = generateFileId();
+                String image_path = "vertify.jpg";
+                boolean seen = false;
+                boolean sentNotification = false;
+                String user_id = uid;
+                Timestamp time = Timestamp.now();
+
+
+                List<String> description = new ArrayList<>();
+                description.add("$heading$Đã gửi thông tin xác minh đối tượng ưu tiên");
+                description.add("Loại đối tượng: " + priority);
+                description.add("$imgs$" + fileName);
+                description.add("$note$Minh chứng xét đối tượng ưu tiên");
+                description.add("Nếu có bất kỳ sai sót gì, vui lòng liên hệ theo thông tin liên hệ ở mục cài đặt để được hỗ trợ giải quyết.");
+                NotificationModel notificationModel = new NotificationModel(id, image_path, description, user_id, seen, sentNotification, time);
+                FirebaseFirestore.getInstance().collection("Notification").document(id).set(notificationModel);
             }
         });
         dialog.show();
