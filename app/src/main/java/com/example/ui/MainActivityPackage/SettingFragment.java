@@ -194,6 +194,10 @@ public class SettingFragment extends Fragment {
             }
         });
 
+        sweetAlertDialog = new SweetAlertDialog(requireActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        sweetAlertDialog.setCancelable(false);
+
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(com.firebase.ui.auth.R.string.default_web_client_id))
                 .requestEmail()
@@ -231,6 +235,12 @@ public class SettingFragment extends Fragment {
         binding.navHeader.imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.navHeader.imageProfile.animate().scaleX(0.9f).scaleY(0.9f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.navHeader.imageProfile.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 binding.navHeader.imageProfile.animate().scaleX(0.9f).scaleY(0.9f).setDuration(100).withEndAction(new Runnable() {
                     @Override
                     public void run() {

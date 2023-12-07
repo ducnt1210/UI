@@ -1,6 +1,7 @@
 package com.example.ui.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.example.ui.Helper.AreaHelper;
 import com.example.ui.Model.AreaModel;
 import com.example.ui.Model.LocalAreaModel;
 import com.example.ui.R;
+import com.example.ui.ShowExhibitActivity;
 import com.example.ui.View.SecondLevelExpandableListView;
 
 import java.util.ArrayList;

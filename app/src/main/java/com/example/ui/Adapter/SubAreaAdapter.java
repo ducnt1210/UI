@@ -20,6 +20,7 @@ import com.example.ui.Model.LocalAreaModel;
 import com.example.ui.Model.ExhibitModel;
 import com.example.ui.R;
 import com.example.ui.ShowExhibitActivity;
+import com.example.ui.ShowLocalAreaActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -112,6 +113,18 @@ public class SubAreaAdapter extends BaseExpandableListAdapter {
 
         TextView groupTextView = convertView.findViewById(R.id.category_item_name);
         groupTextView.setText(listDataHeader.get(groupPosition).getName());
+        TextView categoryDetailTextView = convertView.findViewById(R.id.category_detail);
+        categoryDetailTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Xử lý khi nút "Chi tiết" được bấm
+                // Chuyển sang ShowLocalAreaActivity
+                Intent intent = new Intent(context, ShowLocalAreaActivity.class);
+                intent.putExtra("localArea",(LocalAreaModel) getGroup(groupPosition));
+                context.startActivity(intent);
+            }
+        });
+
         return convertView;
     }
 
@@ -134,9 +147,11 @@ public class SubAreaAdapter extends BaseExpandableListAdapter {
                 ImageView imageView = convertView.findViewById(R.id.img_sub_item);
 //                System.out.println(imageView);
 //                getImage(exhibitModels.get(childPosition).getImage_path(), imageView);
-                Glide.with(context)
-                        .load(Uri.parse(exhibitModels.get(childPosition).getImage()))
-                        .into(imageView);
+                if(exhibitModels.get(childPosition).getImage()!=null) {
+                    Glide.with(context)
+                            .load(Uri.parse(exhibitModels.get(childPosition).getImage()))
+                            .into(imageView);
+                }
             }
         }
 
