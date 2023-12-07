@@ -65,7 +65,12 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        sweetAlertDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        sweetAlertDialog.setCancelable(false);
+        sweetAlertDialog.show();
         getNotificationModelList();
+        sweetAlertDialog.dismissWithAnimation();
     }
 
     @Override
@@ -82,6 +87,7 @@ public class NotificationFragment extends Fragment {
 
         recyclerViewNotification.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewNotification.setAdapter(notificationModelAdapter);
+        sweetAlertDialog.dismissWithAnimation();
     }
 
     private void getNotificationModelList() {
@@ -165,12 +171,10 @@ public class NotificationFragment extends Fragment {
                         notificationModelAdapter.setTimeMarks(timeMarks);
 
 //                        Log.d("current time", new Date().toString());
-                        sweetAlertDialog.dismissWithAnimation();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        sweetAlertDialog.dismissWithAnimation();
                         Toast.makeText(getActivity(), "The server is experiencing an error. Please come back later", Toast.LENGTH_SHORT).show();
                     }
                 });
