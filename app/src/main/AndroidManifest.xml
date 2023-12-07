@@ -117,15 +117,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".ShowExhibitActivity">
         </activity>
         <activity android:name=".ShowLocalAreaActivity">
         </activity>
 
-=======
-        <activity android:name=".ShowExhibitActivity"></activity>
->>>>>>> ecff7cdde53684619ce6ad3c2ba0cdc521bcc3cd
+
         <activity
             android:name=".MainActivity"
             android:configChanges="screenSize|orientation"
