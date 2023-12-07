@@ -88,12 +88,14 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
         Log.d("noti id", item.getId());
         if (item.getId() != "") {
             holder.dateTextView.setVisibility(View.GONE);
+            holder.item.setVisibility(View.VISIBLE);
 
             if (item.getSeen()) {
                 holder.dotStatus.setVisibility(View.INVISIBLE);
                 holder.item.setBackgroundResource(R.drawable.bg_read_noti);
             } else {
                 holder.dotStatus.setVisibility(View.VISIBLE);
+                holder.item.setBackgroundResource(R.drawable.bg_unread_noti);
             }
 
             StorageReference imageRef = FirebaseStorage.getInstance("gs://ui-123456.appspot.com").getReference().child("notification_images").child(item.getImage_path());
@@ -118,16 +120,16 @@ public class NotificationModelAdapter extends RecyclerView.Adapter<NotificationM
             holder.item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    holder.item.animate().alpha(0.5f).setDuration(100).withEndAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            holder.item.animate().alpha(1).setDuration(100);
-                        }
-                    });
+//                    holder.item.animate().alpha(0.5f).setDuration(100).withEndAction(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            holder.item.animate().alpha(1).setDuration(100);
+//                        }
+//                    });
                     if (item.getSeen() == false) {
                         item.setSeen(true);
                         updateData(item);
-                        notifyDataSetChanged();
+//                        notifyDataSetChanged();
 //                        holder.dotStatus.setVisibility(View.INVISIBLE);
                     }
                     goToDetailedNotification(item);
