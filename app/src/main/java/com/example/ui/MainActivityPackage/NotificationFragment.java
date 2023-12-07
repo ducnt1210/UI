@@ -89,6 +89,7 @@ public class NotificationFragment extends Fragment {
         List<NotificationModel> notificationModelListToday = new ArrayList<>();
         List<NotificationModel> notificationModelListPrevious = new ArrayList<>();
         List<NotificationModel> notificationModelList = new ArrayList<>();
+        List<String> timeMarks = new ArrayList<>();
 //        List<Boolean> notifications = new ArrayList<>();
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -132,8 +133,10 @@ public class NotificationFragment extends Fragment {
                             } else {
                                 notificationModelListPrevious.add(notificationModel);
                             }
+                            timeMarks.add("");
                         }
 
+                        timeMarks.add(0, getString(R.string.today));
 //                        notificationModelList.add(null);
                         notificationModelList.add(new NotificationModel());
                         Collections.sort(notificationModelListToday, new Comparator<NotificationModel>() {
@@ -144,6 +147,7 @@ public class NotificationFragment extends Fragment {
 //                        notificationModelAdapterToday.setNotificationModelList(notificationModelListToday);
                         notificationModelList.addAll(notificationModelListToday);
 
+                        timeMarks.add(notificationModelList.size(), getString(R.string.before));
 //                        notificationModelList.add(null);
                         notificationModelList.add(new NotificationModel());
                         Collections.sort(notificationModelListPrevious, new Comparator<NotificationModel>() {
@@ -158,6 +162,7 @@ public class NotificationFragment extends Fragment {
                         Log.d("notificationModelList", Integer.toString(notificationModelList.size()));
 
                         notificationModelAdapter.setNotificationModelList(notificationModelList);
+                        notificationModelAdapter.setTimeMarks(timeMarks);
 
 //                        Log.d("current time", new Date().toString());
                         sweetAlertDialog.dismissWithAnimation();

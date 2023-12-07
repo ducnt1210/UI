@@ -126,19 +126,19 @@ public class NotificationActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        if (update) {
-//            update = false;
-////            MainActivity.FragmentID = "NotificationFragment";
-//            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
-//            intent.putExtra("FragmentID", "NotificationFragment");
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            startActivity(intent);
-//        } else {
-//            super.onBackPressed();
-//        }
-        Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra("FragmentID", "NotificationFragment");
-        startActivity(intent);
+        if (update) {
+            update = false;
+//            MainActivity.FragmentID = "NotificationFragment";
+            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+            intent.putExtra("FragmentID", "NotificationFragment");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        } else {
+            super.onBackPressed();
+        }
+//        Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        intent.putExtra("FragmentID", "NotificationFragment");
+//        startActivity(intent);
     }
 }
