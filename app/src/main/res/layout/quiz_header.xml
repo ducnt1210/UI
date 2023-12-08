@@ -3,16 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="42dp">
 
-    <TextView
-        android:id="@+id/artifact_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"
-        android:fontFamily="@font/philo_bold"
-        android:text="Hiện vật"
-        android:textColor="@color/white"
-        android:textSize="26sp" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/artifact_title"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:fontFamily="@font/philo_bold"-->
+    <!--        android:text="Hiện vật"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textSize="26sp" />-->
 
 
     <ImageView

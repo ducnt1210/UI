@@ -25,9 +25,13 @@
         android:theme="@style/Theme.UI"
         tools:targetApi="31">
         <activity
+            android:name=".ShowLocalAreaActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".SettingPackage.CheckPriorityActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Quiz.GiftActivity"
             android:exported="false"
@@ -116,7 +120,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowExhibitActivity"></activity>
+        <activity
+            android:name=".ShowExhibitActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

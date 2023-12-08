@@ -80,7 +80,6 @@ public class AreaHelper {
                                 LocalAreaModel localAreaModel = new LocalAreaModel(document.getId(),
                                         document.getString("name"),
                                         (ArrayList<String>) document.get("exhibits"),
-                                        document.getString("area"),
                                         (ArrayList<String>) document.get("description"));
 
                                 // Add the LocalAreaModel to the list
@@ -125,7 +124,6 @@ public class AreaHelper {
                             if (document.exists()) {
                                 // Convert the document to a LocalAreaModel
                                 ExhibitModel exhibitModel = new ExhibitModel(document.getId(),
-                                        localAreaModel.getParentId(),
                                         document.getString("name"),
                                         document.getString("description"),
                                         document.getString("video"),

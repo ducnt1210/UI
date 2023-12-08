@@ -1,6 +1,7 @@
 package com.example.ui;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.ScaleGestureDetector;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -20,14 +22,24 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.ui.Model.LocalAreaModel;
 import com.example.ui.databinding.ActivityMapBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class MapActivity extends AppCompatActivity {
+    private ArrayList<LocalAreaModel> localAreas = new ArrayList<>();
     ActivityMapBinding binding;
     ScaleGestureDetector scaleGestureDetector;
     private float scaleFactor = 1.0f;
@@ -35,10 +47,15 @@ public class MapActivity extends AppCompatActivity {
     private boolean isPanning = false;
     private int originalHeight;
     private SweetAlertDialog sweetAlertDialog;
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        firestore = FirebaseFirestore.getInstance();
+        getLocalAreaModels();
+
         binding = ActivityMapBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -243,8 +260,6 @@ public class MapActivity extends AppCompatActivity {
         windowAttributeshehe.gravity = Gravity.CENTER;
         windowhehe.setAttributes(windowAttributeshehe);
 
-        dialoghehe.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-
         dialoghehe.show();
     }
 
@@ -283,11 +298,31 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("toatrongdong.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        intent.putExtra("localArea", localAreas.get(0));
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 101:
                 txtTitleDialog.setText(R.string.toa_canh_dieu);
                 imgRef.child("toacanhdieu.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                imgDialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(imgDialog.getContext(), ShowLocalAreaActivity.class);
+                        intent.putExtra("localArea", localAreas.get(0));
+                        imgDialog.getContext().startActivity(intent);
+                    }
                 });
                 break;
             case 1:
@@ -321,6 +356,7 @@ public class MapActivity extends AppCompatActivity {
                 });
                 break;
             case 6:
+
                 txtTitleDialog.setText(R.string.nha_rong_ba_na);
                 imgRef.child("nharong6.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
@@ -494,4 +530,36 @@ public class MapActivity extends AppCompatActivity {
             return true;
         }
     }
+
+    public void getLocalAreaModels() {
+        CollectionReference localAreasCollection = firestore.collection("LocalArea");
+
+        localAreasCollection.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    // Lấy tất cả các tài liệu từ kết quả truy vấn
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        // Convert each document to a LocalAreaModel
+                        LocalAreaModel localAreaModel = new LocalAreaModel(
+                                document.getId(),
+                                document.getString("name"),
+                                (ArrayList<String>) document.get("exhibits"),
+                                (ArrayList<String>) document.get("description")
+                        );
+
+                        // Add the LocalAreaModel to the list
+                        localAreas.add(localAreaModel);
+                    }
+
+                    // Xử lý khi dữ liệu đã được tải về
+                } else {
+                    // Handle errors here
+                    Log.e("MapActivity", "Error getting local areas: " + task.getException().getMessage());
+                }
+            }
+        });
+    }
+
+
 }

@@ -2,11 +2,9 @@ package com.example.ui.Model;
 
 import android.net.Uri;
 import android.util.Log;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -17,15 +15,14 @@ import java.util.ArrayList;
 
 public class ExhibitModel implements Serializable {
     private String id;
-    private String parentId;
     private String name;
     private String description;
     private String video;
     private ArrayList<String> content;
     private String image_path;
-    public ExhibitModel(String id, String parentId, String name, String description) {
+
+    public ExhibitModel(String id, String name, String description) {
         this.id = id;
-        this.parentId = parentId;
         this.name = name;
         this.description = description;
     }
@@ -34,9 +31,8 @@ public class ExhibitModel implements Serializable {
 
     public ExhibitModel() {}
 
-    public ExhibitModel(String id, String parentId, String name, String description, String video, ArrayList<String> content, String image_path) {
+    public ExhibitModel(String id, String name, String description, String video, ArrayList<String> content, String image_path) {
         this.id = id;
-        this.parentId = parentId;
         this.name = name;
         this.description = description;
         this.video = video;
@@ -77,13 +73,6 @@ public class ExhibitModel implements Serializable {
         this.id = id;
     }
 
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
 
     public String getName() {
         return name;
@@ -127,4 +116,21 @@ public class ExhibitModel implements Serializable {
         });
 
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        ExhibitModel that = (ExhibitModel) obj;
+
+        // So sánh các trường cụ thể của ExhibitModel ở đây
+        return id.equals(that.id) &&
+                name.equals(that.name) &&
+                description.equals(that.description) &&
+                video.equals(that.video) &&
+                content.equals(that.content) &&
+                image_path.equals(that.image_path);
+    }
+
 }

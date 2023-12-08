@@ -130,7 +130,7 @@
 
     <string name="welcome_to_vmuseum">WELCOME TO THE VMUSEUM! \nFirst, please choose your language!</string>
 
-<!--    Ticket-->
+    <!--    Ticket-->
     <string name="date">Date:</string>
     <string name="number_of_tickets">Number of tickets:</string>
     <string name="price_per_ticket">Price per ticket:</string>

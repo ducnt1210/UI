@@ -296,12 +296,11 @@ public class QRActivity extends AppCompatActivity {
                     String id = dataArr[0];
                     String data = dataArr[1];
                     Toast.makeText(this, id + " " + data, Toast.LENGTH_SHORT).show();
-
                     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
                     // Reference to the "localAreas" collection
                     CollectionReference localAreasCollection = firestore.collection("Exhibit");
-                    DocumentReference localAreaDocRef = localAreasCollection.document(id);
+                    DocumentReference localAreaDocRef = localAreasCollection.document(data);
 
                     localAreaDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -311,7 +310,6 @@ public class QRActivity extends AppCompatActivity {
                                 if (document.exists()) {
                                     // Convert the document to a LocalAreaModel
                                     ExhibitModel exhibitModel = new ExhibitModel(document.getId(),
-                                            document.getString("localArea"),
                                             document.getString("name"),
                                             document.getString("description"),
                                             document.getString("video"),
