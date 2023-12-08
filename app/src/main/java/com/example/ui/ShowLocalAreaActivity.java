@@ -14,10 +14,12 @@ import com.example.ui.Model.ExhibitModel;
 import com.example.ui.Model.LocalAreaModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,15 @@ public class ShowLocalAreaActivity extends AppCompatActivity {
         artifactRecyclerView.setAdapter(artifactAdapter);
 
         RecyclerView contentRecyclerView = findViewById(R.id.content_recycler_view);
+        contentRecyclerView.setNestedScrollingEnabled(false);
+        contentRecyclerView.setLayoutManager(new LinearLayoutManager(this) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
+
+        contentRecyclerView.setNestedScrollingEnabled(false);
         contentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         contentRecyclerView.setAdapter(contentAdapter);
         loadArtifactData();

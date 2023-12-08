@@ -75,7 +75,7 @@ public class QRActivity extends AppCompatActivity {
     private Camera camera = null;
     private boolean isBarcodeDataProcessed = false;
     private long lastScanTime = 0;
-    private static final long SCAN_INTERVAL = 1000; // 1 second
+    private static final long SCAN_INTERVAL = 3000; // 1 second
 
     ActivityResultLauncher<String> getImageToAnalyze = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -295,7 +295,7 @@ public class QRActivity extends AppCompatActivity {
                 if (dataArr.length == 2) {
                     String id = dataArr[0];
                     String data = dataArr[1];
-                    Toast.makeText(this, id + " " + data, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Quét thành công!", Toast.LENGTH_SHORT).show();
                     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
                     // Reference to the "localAreas" collection

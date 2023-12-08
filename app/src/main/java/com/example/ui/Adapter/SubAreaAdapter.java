@@ -20,6 +20,7 @@ import com.example.ui.Model.LocalAreaModel;
 import com.example.ui.Model.ExhibitModel;
 import com.example.ui.R;
 import com.example.ui.ShowExhibitActivity;
+import com.example.ui.ShowLocalAreaActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -112,6 +113,18 @@ public class SubAreaAdapter extends BaseExpandableListAdapter {
 
         TextView groupTextView = convertView.findViewById(R.id.category_item_name);
         groupTextView.setText(listDataHeader.get(groupPosition).getName());
+        TextView categoryDetailTextView = convertView.findViewById(R.id.category_detail);
+        categoryDetailTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Xử lý khi nút "Chi tiết" được bấm
+                // Chuyển sang ShowLocalAreaActivity
+                Intent intent = new Intent(context, ShowLocalAreaActivity.class);
+                intent.putExtra("localArea",(LocalAreaModel) getGroup(groupPosition));
+                context.startActivity(intent);
+            }
+        });
+
         return convertView;
     }
 
@@ -121,10 +134,13 @@ public class SubAreaAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.sub_sub_category_item, null);
         }
+
         if (listDataChild.containsKey(listDataHeader.get(groupPosition))) {
             List<ExhibitModel> exhibitModels = listDataChild.get(listDataHeader.get(groupPosition));
-            if (exhibitModels != null && !exhibitModels.isEmpty()) {
-                // Tiếp tục xử lý
+
+            // Check if exhibitModels is not null and not empty
+            if (exhibitModels != null && !exhibitModels.isEmpty() && exhibitModels.size() > childPosition) {
+                // Continue processing only if the childPosition is within bounds
                 TextView childTextView = convertView.findViewById(R.id.heading_sub_item);
                 childTextView.setText(exhibitModels.get(childPosition).getName());
 
@@ -132,25 +148,28 @@ public class SubAreaAdapter extends BaseExpandableListAdapter {
                 contentText.setText(exhibitModels.get(childPosition).getDescription());
 
                 ImageView imageView = convertView.findViewById(R.id.img_sub_item);
-//                System.out.println(imageView);
-//                getImage(exhibitModels.get(childPosition).getImage_path(), imageView);
-                Glide.with(context)
-                        .load(Uri.parse(exhibitModels.get(childPosition).getImage()))
-                        .into(imageView);
+//                if(exhibitModels.get(childPosition).getImage() != null) {
+//                    Glide.with(context)
+//                            .load(exhibitModels.get(childPosition).getImage())
+//                            .into(imageView);
+//                }
+
+
             }
         }
 
-        // Thêm OnClickListener cho child item
+        // Add OnClickListener for child item
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Xử lý sự kiện khi người dùng ấn vào child item
+                // Handle the event when the user clicks on a child item
                 handleChildItemClick((ExhibitModel) getChild(groupPosition, childPosition));
             }
         });
 
         return convertView;
     }
+
 
     void handleChildItemClick(ExhibitModel exhibitModel) {
         System.out.println(exhibitModel.getName());
@@ -167,8 +186,6 @@ public class SubAreaAdapter extends BaseExpandableListAdapter {
 
     public void getImage(String image_path, ImageView imageView) {
         StorageReference imageRef = FirebaseStorage.getInstance().getReference().child(image_path);
-        System.out.println(3333);
-
         imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
