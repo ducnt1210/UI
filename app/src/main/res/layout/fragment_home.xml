@@ -65,13 +65,13 @@
                     android:src="@drawable/map_img" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="20dp"
+                    android:layout_width="match_parent"
                     android:paddingTop="20dp"
+                    android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:paddingBottom="20dp">
+                    android:paddingBottom="20dp"
+                    android:layout_height="wrap_content">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -84,7 +84,6 @@
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/alegrey_bold"
                             android:text="@string/introduce"
-                            android:textColor="#666666"
                             android:textSize="25sp"
                             android:textStyle="bold" />
 
@@ -96,7 +95,7 @@
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/oldstandar_regular"
                             android:text="@string/your_string_here"
-                            android:textColor="@drawable/text_color"
+                            android:textColor="@color/brown"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -328,7 +327,6 @@
                         android:layout_marginTop="30dp"
                         android:fontFamily="@font/alegrey_bold"
                         android:text="@string/news_events"
-                        android:textColor="#666666"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -583,17 +581,17 @@
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/ticketButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="20dp"
         android:layout_marginBottom="70dp"
-        android:backgroundTint="@color/red"
-        android:fontFamily="@font/merriweathersanswght"
-        android:text="@string/book_ticket"
-        android:textAlignment="center"
-        android:textSize="18sp"
+        android:text="Đặt vé"
         app:icon="@drawable/ticket_icon"
-        app:shapeAppearanceOverlay="@style/RoundedCorner" />
+        app:shapeAppearanceOverlay="@style/RoundedCorner"
+        android:textSize="18sp"
+        android:fontFamily="@font/merriweathersanswght"
+        android:backgroundTint="@color/red"
+        android:textAlignment="center"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

@@ -237,6 +237,12 @@ public class SettingFragment extends Fragment {
                         binding.navHeader.imageProfile.animate().scaleX(1f).scaleY(1f).setDuration(100);
                     }
                 });
+                binding.navHeader.imageProfile.animate().scaleX(0.9f).scaleY(0.9f).setDuration(100).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.navHeader.imageProfile.animate().scaleX(1f).scaleY(1f).setDuration(100);
+                    }
+                });
                 sweetAlertDialog = new SweetAlertDialog(requireActivity(), SweetAlertDialog.PROGRESS_TYPE);
                 sweetAlertDialog.show();
                 getImage.launch("image/*");

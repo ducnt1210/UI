@@ -106,6 +106,7 @@
             android:name=".SignupActivity"
             android:exported="false"
             android:parentActivityName=".LoginActivity" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -116,9 +117,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowExhibitActivity"></activity>
+        <activity android:name=".ShowExhibitActivity">
+        </activity>
+        <activity android:name=".ShowLocalAreaActivity">
+        </activity>
+
+
         <activity
             android:name=".MainActivity"
+            android:configChanges="screenSize|orientation"
             android:exported="true" />
     </application>
 

@@ -53,7 +53,7 @@ public class QuizActivity extends AppCompatActivity {
     public static List<Boolean> submittedAnswerList;
     public static boolean correctAnswer = false;
     private NoScrollRecyclerView recyclerViewQuiz;
-//    public static HScrollManager layoutManager;
+    //    public static HScrollManager layoutManager;
     public static LinearLayoutManager layoutManager;
     public SnapHelper snapHelper;
     private TextView quizHeaderCount,
@@ -98,11 +98,11 @@ public class QuizActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 //        if (bundle != null) {
 //            String exhibit_id = bundle.getString("id");
-            String exhibit_id = "7MHOSWzGQIRyF8Hd47w6";
-            assert exhibit_id != "";
-            setSnapHelper();
-            getQuizList(exhibit_id);
-            setClickListeners();
+        String exhibit_id = "7MHOSWzGQIRyF8Hd47w6";
+        assert exhibit_id != "";
+        setSnapHelper();
+        getQuizList(exhibit_id);
+        setClickListeners();
 //        }
         Drawable leftDrawable = binding.coinLayout.coin.getCompoundDrawablesRelative()[0];
         binding.coinLayout.coin.setCompoundDrawablesRelative(leftDrawable, null, null, null);
@@ -228,115 +228,115 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void setClickListeners() {
-         skip.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Log.d("quizCount", Integer.toString(quizCount));
-                 Log.d("quizTotal", Integer.toString(quizTotal));
-                 if (quizCount < quizTotal) {
-                     if (submittedAnswerList.get(quizCount - 1)) {
-                         recyclerViewQuiz.smoothScrollToPosition(quizCount);
-                     } else {
-                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(QuizActivity.this);
-                         // Setting Alert Dialog Title
-                         alertDialogBuilder.setTitle("Bạn chưa trả lời câu hỏi này!");
-                         // Icon Of Alert Dialog
-                         alertDialogBuilder.setIcon(R.drawable.tzuki_question);
-                         // Setting Alert Dialog Message
-                         alertDialogBuilder.setMessage(
-                                 "Câu hỏi đã bỏ qua không thể quay lại\n"
-                                         + "Bạn chắc chắn muốn bỏ qua chứ?");
-                         alertDialogBuilder.setCancelable(true);
-                         alertDialogBuilder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("quizCount", Integer.toString(quizCount));
+                Log.d("quizTotal", Integer.toString(quizTotal));
+                if (quizCount < quizTotal) {
+                    if (submittedAnswerList.get(quizCount - 1)) {
+                        recyclerViewQuiz.smoothScrollToPosition(quizCount);
+                    } else {
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(QuizActivity.this);
+                        // Setting Alert Dialog Title
+                        alertDialogBuilder.setTitle("Bạn chưa trả lời câu hỏi này!");
+                        // Icon Of Alert Dialog
+                        alertDialogBuilder.setIcon(R.drawable.tzuki_question);
+                        // Setting Alert Dialog Message
+                        alertDialogBuilder.setMessage(
+                                "Câu hỏi đã bỏ qua không thể quay lại\n"
+                                        + "Bạn chắc chắn muốn bỏ qua chứ?");
+                        alertDialogBuilder.setCancelable(true);
+                        alertDialogBuilder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
 
-                             @Override
-                             public void onClick(DialogInterface arg0, int arg1) {
-                                 recyclerViewQuiz.smoothScrollToPosition(quizCount);
-                             }
-                         });
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                recyclerViewQuiz.smoothScrollToPosition(quizCount);
+                            }
+                        });
 
-                         alertDialogBuilder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                             @Override
-                             public void onClick(DialogInterface dialog, int which) {
+                        alertDialogBuilder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                             }
-                         });
+                            }
+                        });
 
-                         AlertDialog alertDialog = alertDialogBuilder.create();
-                         alertDialog.show();
-                     }
-                 } else {
-                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(QuizActivity.this);
-                     // Setting Alert Dialog Title
-                     alertDialogBuilder.setTitle("Xác nhận hoàn thành");
-                     // Icon Of Alert Dialog
-                     alertDialogBuilder.setIcon(R.drawable.tzuki_question);
-                     // Setting Alert Dialog Message
-                     alertDialogBuilder.setMessage("Bạn chắc chắn muốn hoàn thành?");
-                     alertDialogBuilder.setCancelable(true);
-                     alertDialogBuilder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                    }
+                } else {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(QuizActivity.this);
+                    // Setting Alert Dialog Title
+                    alertDialogBuilder.setTitle("Xác nhận hoàn thành");
+                    // Icon Of Alert Dialog
+                    alertDialogBuilder.setIcon(R.drawable.tzuki_question);
+                    // Setting Alert Dialog Message
+                    alertDialogBuilder.setMessage("Bạn chắc chắn muốn hoàn thành?");
+                    alertDialogBuilder.setCancelable(true);
+                    alertDialogBuilder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
 
-                         @Override
-                         public void onClick(DialogInterface arg0, int arg1) {
-                             completedQuiz = true;
-                             pauseTimer();
-                             updateScore();
-                             openCompletedDialog(Gravity.CENTER);
-                         }
-                     });
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            completedQuiz = true;
+                            pauseTimer();
+                            updateScore();
+                            openCompletedDialog(Gravity.CENTER);
+                        }
+                    });
 
-                     alertDialogBuilder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                         @Override
-                         public void onClick(DialogInterface dialog, int which) {
+                    alertDialogBuilder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                         }
-                     });
+                        }
+                    });
 
-                     AlertDialog alertDialog = alertDialogBuilder.create();
-                     alertDialog.show();
-                 }
-             }
-         });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
+            }
+        });
 
-         submit.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Log.e("choseAnswer", Integer.toString(quizAdapter.choseAnswerList.get(quizCount - 1)));
-                 Log.d("quizList", Integer.toString(quizAdapter.quizModelList.size()));
-                 Log.d("subbmittedAnswerList", Integer.toString(submittedAnswerList.size()));
-                 Log.e("quizModelList", Integer.toString(quizModelList.size()));
-                 if (submittedAnswerList.get(quizCount - 1) == false) {
-                     if (quizAdapter.choseAnswerList.get(quizCount - 1) > 0) {
-                         pauseTimer();
-                         submittedAnswerList.set(quizCount - 1, true);
-                         final Handler handler = new Handler();
-                         handler.postDelayed(new Runnable() {
-                             @Override
-                             public void run() {
-                                 // Do something after 5s = 5000ms
-                                 quizAdapter.showResult(quizCount - 1);
-                                 submit.setVisibility(View.GONE);
-                                 textViewScoreValue.setText(Integer.toString(
-                                         HomeFragment.scoreModel.getScore()
-                                                 + setCoinForCorrectAnswer(countCorrectAnswer)
-                                 ));
-                                 final Handler handlerDialog = new Handler();
-                                 handler.postDelayed(new Runnable() {
-                                     @Override
-                                     public void run() {
-                                         openDetailedAnswerDialog(Gravity.CENTER);
-                                     }
-                                 }, 300);
-                             }
-                         }, 500);
-                     } else {
-                         Toast.makeText(QuizActivity.this, "Vui lòng chọn đáp án trước khi nộp", Toast.LENGTH_SHORT).show();
-                     }
-                 } else {
-                     Toast.makeText(QuizActivity.this, "Câu hỏi đã trả lời không thể nộp", Toast.LENGTH_SHORT).show();
-                 }
-             }
-         });
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("choseAnswer", Integer.toString(quizAdapter.choseAnswerList.get(quizCount - 1)));
+                Log.d("quizList", Integer.toString(quizAdapter.quizModelList.size()));
+                Log.d("subbmittedAnswerList", Integer.toString(submittedAnswerList.size()));
+                Log.e("quizModelList", Integer.toString(quizModelList.size()));
+                if (submittedAnswerList.get(quizCount - 1) == false) {
+                    if (quizAdapter.choseAnswerList.get(quizCount - 1) > 0) {
+                        pauseTimer();
+                        submittedAnswerList.set(quizCount - 1, true);
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                quizAdapter.showResult(quizCount - 1);
+                                submit.setVisibility(View.GONE);
+                                textViewScoreValue.setText(Integer.toString(
+                                        HomeFragment.scoreModel.getScore()
+                                                + setCoinForCorrectAnswer(countCorrectAnswer)
+                                ));
+                                final Handler handlerDialog = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        openDetailedAnswerDialog(Gravity.CENTER);
+                                    }
+                                }, 300);
+                            }
+                        }, 500);
+                    } else {
+                        Toast.makeText(QuizActivity.this, "Vui lòng chọn đáp án trước khi nộp", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(QuizActivity.this, "Câu hỏi đã trả lời không thể nộp", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void getQuizList(String exhibit_id) {

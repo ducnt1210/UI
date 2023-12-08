@@ -1,24 +1,23 @@
 package com.example.ui.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LocalAreaModel {
+public class LocalAreaModel implements Serializable {
     private String id;
 
     private String name;
     private ArrayList<String> exhibits;
-    private String parentId;
     private ArrayList<String> description;
 
     public LocalAreaModel() {
 
     }
 
-    public LocalAreaModel(String id, String name, ArrayList<String> exhibits, String parentId, ArrayList<String> description) {
+    public LocalAreaModel(String id, String name, ArrayList<String> exhibits, ArrayList<String> description) {
         this.id = id;
         this.name = name;
         this.exhibits = exhibits;
-        this.parentId = parentId;
         this.description = description;
     }
 
@@ -46,13 +45,6 @@ public class LocalAreaModel {
         this.exhibits = exhibits;
     }
 
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
 
     public ArrayList<String> getDescription() {
         return description;
