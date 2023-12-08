@@ -54,6 +54,15 @@ public class ShowLocalAreaActivity extends AppCompatActivity {
         artifactRecyclerView.setAdapter(artifactAdapter);
 
         RecyclerView contentRecyclerView = findViewById(R.id.content_recycler_view);
+        contentRecyclerView.setNestedScrollingEnabled(false);
+        contentRecyclerView.setLayoutManager(new LinearLayoutManager(this) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
+
+        contentRecyclerView.setNestedScrollingEnabled(false);
         contentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         contentRecyclerView.setAdapter(contentAdapter);
         loadArtifactData();

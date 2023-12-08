@@ -51,7 +51,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="40dp"
                         android:layout_marginBottom="100dp"
-                        android:layoutDirection="ltr" />
+                        android:layoutDirection="rtl" />
 
                     <!-- RecyclerView -->
                     <androidx.recyclerview.widget.RecyclerView
@@ -61,7 +61,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="40dp"
                         android:layout_marginBottom="100dp"
-                        android:layoutDirection="ltr" />
+                        android:layoutDirection="rtl" />
 
 
                 </ViewSwitcher>

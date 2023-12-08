@@ -39,6 +39,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -309,7 +310,13 @@ public class MapActivity extends AppCompatActivity {
                         // Xử lý khi nút "Chi tiết" được bấm
                         // Chuyển sang ShowLocalAreaActivity
                         Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
-                        intent.putExtra("localArea", localAreas.get(0));
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "CNpO7hRfQDarn8KSuMf6")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
                         txtDetail.getContext().startActivity(intent);
                     }
                 });
@@ -319,14 +326,20 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("toacanhdieu.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
-                imgDialog.setOnClickListener(new View.OnClickListener() {
+                txtDetail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         // Xử lý khi nút "Chi tiết" được bấm
                         // Chuyển sang ShowLocalAreaActivity
-                        Intent intent = new Intent(imgDialog.getContext(), ShowLocalAreaActivity.class);
-                        intent.putExtra("localArea", localAreas.get(0));
-                        imgDialog.getContext().startActivity(intent);
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "YukORtSL94wCO8Kcf8dl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
                     }
                 });
                 break;
@@ -335,11 +348,43 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("nhacham1.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "dcHYjMST8VtG6946RuBl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 2:
                 txtTitleDialog.setText(R.string.ghe_ngo_khome);
                 imgRef.child("ghengo2.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "D6KE1KGPVtEVb1rQZPyB")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
                 });
                 break;
             case 3:
@@ -347,17 +392,65 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("thuydinh3.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "dcHYjMST8VtG6946RuBl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 4:
                 txtTitleDialog.setText(R.string.nha_viet);
                 imgRef.child("nhaviet4.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "OMK34M15dzKeQKxe8ANU")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 5:
                 txtTitleDialog.setText(R.string.nha_thuyen);
                 imgRef.child("nhathuyen5.jpg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "dcHYjMST8VtG6946RuBl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
                 });
                 break;
             case 6:
@@ -366,11 +459,43 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("nharong6.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "dcHYjMST8VtG6946RuBl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 7:
                 txtTitleDialog.setText(R.string.nha_e_de);
                 imgRef.child("nhaede7.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "cJq6ua3EBdk6g7vJr2sT")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
                 });
                 break;
             case 8:
@@ -378,11 +503,43 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("nhamo8.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "YVRtVpJWXZKdFrMZ2CQx")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 9:
                 txtTitleDialog.setText(R.string.nha_mo_co_tu);
                 imgRef.child("nhamocotu9.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "dcHYjMST8VtG6946RuBl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
                 });
                 break;
             case 10:
@@ -390,11 +547,43 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("loren10.jpg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "E3ID0Svr6T1DnL9ibBw4")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 11:
                 txtTitleDialog.setText(R.string.nha_tay);
                 imgRef.child("nhatay11.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "dcHYjMST8VtG6946RuBl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
                 });
                 break;
             case 12:
@@ -402,11 +591,43 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("nhadao12.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "aFR2dC4Q3PnRCYB91yoP")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 13:
                 txtTitleDialog.setText(R.string.nha_h_mong);
                 imgRef.child("nhahmong13.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "LzdUGdCOwkP0voSyYBer")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
                 });
                 break;
             case 14:
@@ -414,11 +635,43 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("hanhi14.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "dcHYjMST8VtG6946RuBl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 15:
                 txtTitleDialog.setText(R.string.nha_thuc_nghiem);
                 imgRef.child("thucnghiem15.jpg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "BbY9ZPLY2cbASEnfugDg")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
                 });
                 break;
             case 16:
@@ -426,11 +679,43 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("nhahang16.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "kBFkQPZUykkA1VluL1bM")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 17:
                 txtTitleDialog.setText(R.string.cua_hang_sach);
                 imgRef.child("nhahang16.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "dcHYjMST8VtG6946RuBl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
                 });
                 break;
             case 18:
@@ -438,17 +723,65 @@ public class MapActivity extends AppCompatActivity {
                 imgRef.child("luuniem18.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "FhoPnmhg7vNyRKBQx1gF")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 19:
                 txtTitleDialog.setText(R.string.cafe);
                 imgRef.child("cf19.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
                 });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "LY4O2L1rfSg1Um7TRy5V")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
+                });
                 break;
             case 20:
                 txtTitleDialog.setText(R.string.cafe_cake);
                 imgRef.child("cfvabanhngot20.jpeg").getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(this).load(uri).into(imgDialog);
+                });
+                txtDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Xử lý khi nút "Chi tiết" được bấm
+                        // Chuyển sang ShowLocalAreaActivity
+                        Intent intent = new Intent(txtDetail.getContext(), ShowLocalAreaActivity.class);
+                        LocalAreaModel localAreaModel = new LocalAreaModel();
+                        for(int i = 0; i < localAreas.size(); i++) {
+                            if(Objects.equals(localAreas.get(i).getId(), "dcHYjMST8VtG6946RuBl")) {
+                                localAreaModel = localAreas.get(i);
+                            }
+                        }
+                        intent.putExtra("localArea", localAreaModel);
+                        txtDetail.getContext().startActivity(intent);
+                    }
                 });
                 break;
         }

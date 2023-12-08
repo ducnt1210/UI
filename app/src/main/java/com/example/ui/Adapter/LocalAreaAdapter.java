@@ -62,7 +62,7 @@ public class LocalAreaAdapter extends RecyclerView.Adapter<LocalAreaAdapter.Intr
             if (introContent != null && !introContent.isEmpty()) {
                 if (introContent.startsWith("$imgs$")) {
                     String imageName = introContent.substring("$imgs$".length());
-                    StorageReference imageRef = FirebaseStorage.getInstance("gs://ui-123456.appspot.com").getReference().child("exhibit_imgs").child(imageName);
+                    StorageReference imageRef = FirebaseStorage.getInstance("gs://ui-123456.appspot.com").getReference().child("local_area_imgs").child(imageName);
                     imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
